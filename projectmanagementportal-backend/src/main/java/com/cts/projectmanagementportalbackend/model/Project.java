@@ -65,5 +65,118 @@ public class Project {
 	
 	@Size(max = 100)
 	private String remarks;
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
+	public String getTeamSize() {
+		return teamSize;
+	}
+
+	public void setTeamSize(String teamSize) {
+		this.teamSize = teamSize;
+	}
+
+	public String getProjectManagerName() {
+		return projectManagerName;
+	}
+
+	public void setProjectManagerName(String projectManagerName) {
+		this.projectManagerName = projectManagerName;
+	}
+
+	public String getProjectManagerEmailId() {
+		return projectManagerEmailId;
+	}
+
+	public void setProjectManagerEmailId(String projectManagerEmailId) {
+		this.projectManagerEmailId = projectManagerEmailId;
+	}
+
+	public String getTeamLeadName() {
+		return teamLeadName;
+	}
+
+	public void setTeamLeadName(String teamLeadName) {
+		this.teamLeadName = teamLeadName;
+	}
+
+	public String getTeamLeadEmailId() {
+		return teamLeadEmailId;
+	}
+
+	public void setTeamLeadEmailId(String teamLeadEmailId) {
+		this.teamLeadEmailId = teamLeadEmailId;
+	}
+
+	public Date getProjectStartDate() {
+		return projectStartDate;
+	}
+
+	public void setProjectStartDate(Date projectStartDate) {
+		this.projectStartDate = projectStartDate;
+	}
+
+	public Date getProjectEndDate() {
+		return projectEndDate;
+	}
+
+	public void setProjectEndDate(Date projectEndDate) {
+		this.projectEndDate = projectEndDate;
+	}
+
+	public String getTechStack() {
+		return techStack;
+	}
+
+	public void setTechStack(String techStack) {
+		this.techStack = techStack;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	
 	
 }
