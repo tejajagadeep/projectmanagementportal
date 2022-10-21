@@ -1,1 +1,1 @@
-export const USER_API_URL = "https://localhost:8093"
+export const USER_API_URL = "http://localhost:8093/project-management"

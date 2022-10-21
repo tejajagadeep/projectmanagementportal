@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 
@@ -27,7 +29,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@PostMapping("/createUser")
+	@PostMapping("/userSignUp")
 	public User createUser(@Valid @RequestBody User user) {
 		return userService.createUser(user);
 	}
