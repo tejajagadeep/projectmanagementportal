@@ -17,7 +17,7 @@ export class UserDataServiceService {
 
   constructor(private http: HttpClient) { }
 
-  saveUserDetailsDataService(user: User){
+  saveUser(user: User){
     return this.http.post<User>(`${USER_API_URL}/userSignUp`,user);
   }
 

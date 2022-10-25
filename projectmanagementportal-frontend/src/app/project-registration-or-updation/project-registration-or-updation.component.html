@@ -1,1 +1,47 @@
 <p>project-registration-or-updation works!</p>
+<h1 class="text-center">project-registration-or-updation</h1>
+
+
+<div class="container">
+  <table class="table table-striped">
+      <caption>List project</caption>
+      <thead class="thead-light">
+          <tr>
+              <th>Project Id</th>
+              <th>ProjectName</th>
+              <th>Description</th>
+              <th>Team Name</th>
+              <th>Team Size</th>
+              <th>Project Manager Name</th>
+              <th>Project Manager Email Id</th>
+              <th>Tech Lead Name</th>
+              <th>Tech Lead Email Id</th>
+              <th>Project Start Date</th>
+              <th>Project End Date</th>
+              <th>Tech Stack</th>
+              <th>Status</th>
+              <th>Remarks</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- for (UserDetails userDetail: userDetails) -->
+          <tr *ngFor="let projectDetail of project">
+              <td>{{projectDetail.projectId}}</td>
+              <td>{{projectDetail.projectName}}</td>
+              <td>{{projectDetail.projectDescription}}</td>
+              <td>{{projectDetail.teamName}}</td>
+              <td>{{projectDetail.teamSize}}</td>
+              <td>{{projectDetail.projectManagerName}}</td>
+              <td>{{projectDetail.projectManagerEmailId}}</td>
+              <td>{{projectDetail.techLeadName}}</td>
+              <td>{{projectDetail.techLeadEmailId}}</td>
+              <td>{{projectDetail.projectStartDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{projectDetail.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{projectDetail.techStack}}</td>
+              <td>{{projectDetail.status}}</td>
+              <td>{{projectDetail.remarks}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+</div>

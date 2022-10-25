@@ -38,11 +38,12 @@ export class MemberSignUpComponent implements OnInit {
   }
 
  saveUser(){
-    this.userDataService.saveUserDetailsDataService(this.user)
+    this.userDataService.saveUser(this.user)
     .subscribe(
-      userData => {
-        console.log(userData)
-        this.router.navigate(['login']);
+      response => {
+        this.user
+        console.log(response)
+        // this.router.navigate(['login']);
       }
     )
  }

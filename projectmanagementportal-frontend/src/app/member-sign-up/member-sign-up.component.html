@@ -2,7 +2,7 @@
 
 <h1>Signup</h1>
 
-<div class="container">
+<form class="container" #usersForm="ngForm" (onSubmit)="saveUser()">
 
     
     <fieldset class="form-group col-md-9 pe-5">
@@ -14,13 +14,13 @@
         <label>Email Id</label>
     <fieldset class="form-group col-md-9 pe-5">
         <label></label>
-        <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailId" required="required">
+        <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailAddress" required="required">
         <!-- <input type="email" [(ngModel)]="userDetails.userEmailId" class="form-control" name="userEmailId" required="required"> -->
     </fieldset>
     
     <fieldset class="form-group col-md-9 pe-5">
         <label>Mobile Number</label>
-        <input type="tel"  [(ngModel)]="user.contactNo" class="form-control" name="contactNumber" maxlength="10" required="required">
+        <input type="tel"  [(ngModel)]="user.contactNo" class="form-control" name="contactNo" maxlength="10" required="required">
         <!-- <input type="tel" [(ngModel)]="userDetails.userMobileNumber" class="form-control" name="userMobileNumber" maxlength="10" required="required"> -->
     </fieldset>
 
@@ -48,6 +48,7 @@
         <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
     </fieldset>
 
-        <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">Register</button>
+        <button type="submit" class="btn btn-warning btn-lg ms-2" >Register</button>
+        <button type="reset" class="btn btn-warning btn-lg ms-2">reset</button>
 
-</div>
+</form>

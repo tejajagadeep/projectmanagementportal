@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../member-sign-up/member-sign-up.component';
+import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
+import { ProjectDataServiceService } from '../service/data/project-data-service.service';
+import { StoryDataServiceService } from '../service/data/story-data-service.service';
 import { UserDataServiceService } from '../service/data/user-data-service.service';
 
 @Component({
@@ -19,10 +22,16 @@ export class LoginComponent implements OnInit {
   name=''
   user!:User[]
 
-  constructor(private router : Router, private route: ActivatedRoute, private userService: UserDataServiceService) { }
+  constructor(
+    private router : Router, 
+    private route: ActivatedRoute, 
+    private userService: UserDataServiceService,
+    private storyService: StoryDataServiceService
+    
+    ) { }
 
   ngOnInit(): void {
-    this.getAllUsers()
+    this.getAllUsers();
   }
 
   handleJWTAuthLogin() {
@@ -80,13 +89,7 @@ export class LoginComponent implements OnInit {
     this.user = response
    }
 
-   getAllProjects(){
-    this.userService.getAllUsers().subscribe(
-      response => this.handleGetUsers(response)
-    );
-   }
+   
 
-   handleGetProjectss(response : any){
-    this.user = response
-   }
+   
 }

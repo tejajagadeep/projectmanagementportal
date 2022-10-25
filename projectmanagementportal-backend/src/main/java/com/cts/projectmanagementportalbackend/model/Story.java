@@ -37,7 +37,7 @@ public class Story {
 	private String assigneeEmailId;
 	
 	@NotNull
-	private Date assigneeDate;
+	private Date assignmentDate;
 	
 	@NotNull
 	private Date targetDate;
@@ -97,12 +97,12 @@ public class Story {
 		this.assigneeEmailId = assigneeEmailId;
 	}
 
-	public Date getAssigneeDate() {
-		return assigneeDate;
+	public Date getAssignmentDate() {
+		return assignmentDate;
 	}
 
-	public void setAssigneeDate(Date assigneeDate) {
-		this.assigneeDate = assigneeDate;
+	public void setAssignmentDate(Date assignmentDate) {
+		this.assignmentDate = assignmentDate;
 	}
 
 	public Date getTargetDate() {
@@ -128,6 +128,29 @@ public class Story {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
+	public Story(@Size(max = 20) String storyId, @NotNull @Size(max = 20) String projectId,
+			@NotNull @Size(max = 50) String storyTitle, @NotNull @Size(max = 100) String storyDescription,
+			@NotNull @Size(max = 30) String assignee, @NotNull @Size(max = 50) String assigneeEmailId,
+			@NotNull Date assignmentDate, @NotNull Date targetDate, @NotNull @Size(max = 30) String status,
+			@Size(max = 100) String remarks) {
+		super();
+		this.storyId = storyId;
+		this.projectId = projectId;
+		this.storyTitle = storyTitle;
+		this.storyDescription = storyDescription;
+		this.assignee = assignee;
+		this.assigneeEmailId = assigneeEmailId;
+		this.assignmentDate = assignmentDate;
+		this.targetDate = targetDate;
+		this.status = status;
+		this.remarks = remarks;
+	}
+
+	public Story() {
+		super();
+	}
+	
 	
 	
 }

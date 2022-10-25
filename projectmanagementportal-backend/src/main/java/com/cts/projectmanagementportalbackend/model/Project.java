@@ -24,7 +24,7 @@ public class Project {
 	private String projectName;
 	
 	@Size(max = 100)
-	private String description;
+	private String projectDescription;
 	
 	@NotNull
 	@Size(max = 30)
@@ -81,13 +81,13 @@ public class Project {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-
-	public String getDescription() {
-		return description;
+	
+	public String getProjectDescription() {
+		return projectDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
 	}
 
 	public String getTeamName() {
@@ -179,7 +179,7 @@ public class Project {
 	}
 
 	public Project(@Size(max = 20) String projectId, @NotNull @Size(max = 30) String projectName,
-			@Size(max = 100) String description, @NotNull @Size(max = 30) String teamName,
+			@Size(max = 100) String projectDescription, @NotNull @Size(max = 30) String teamName,
 			@NotNull @Size(max = 30) String teamSize, @NotNull @Size(max = 30) String projectManagerName,
 			@NotNull @Size(max = 30) String projectManagerEmailId, @NotNull @Size(max = 30) String techLeadName,
 			@NotNull @Size(max = 50) String techLeadEmailId, @NotNull Date projectStartDate,
@@ -188,7 +188,7 @@ public class Project {
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
-		this.description = description;
+		this.projectDescription = projectDescription;
 		this.teamName = teamName;
 		this.teamSize = teamSize;
 		this.projectManagerName = projectManagerName;
