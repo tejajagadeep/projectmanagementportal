@@ -44,11 +44,11 @@ public class Project {
 	
 	@NotNull
 	@Size(max = 30)
-	private String teamLeadName;
+	private String techLeadName;
 	
 	@NotNull
 	@Size(max = 50)
-	private String teamLeadEmailId;
+	private String techLeadEmailId;
 	
 	@NotNull
 	private Date projectStartDate;
@@ -122,20 +122,20 @@ public class Project {
 		this.projectManagerEmailId = projectManagerEmailId;
 	}
 
-	public String getTeamLeadName() {
-		return teamLeadName;
+	public String getTechLeadName() {
+		return techLeadName;
 	}
 
-	public void setTeamLeadName(String teamLeadName) {
-		this.teamLeadName = teamLeadName;
+	public void setTechLeadName(String techLeadName) {
+		this.techLeadName = techLeadName;
 	}
 
-	public String getTeamLeadEmailId() {
-		return teamLeadEmailId;
+	public String getTechLeadEmailId() {
+		return techLeadEmailId;
 	}
 
-	public void setTeamLeadEmailId(String teamLeadEmailId) {
-		this.teamLeadEmailId = teamLeadEmailId;
+	public void setTechLeadEmailId(String techLeadEmailId) {
+		this.techLeadEmailId = techLeadEmailId;
 	}
 
 	public Date getProjectStartDate() {
@@ -177,6 +177,36 @@ public class Project {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
+	public Project(@Size(max = 20) String projectId, @NotNull @Size(max = 30) String projectName,
+			@Size(max = 100) String description, @NotNull @Size(max = 30) String teamName,
+			@NotNull @Size(max = 30) String teamSize, @NotNull @Size(max = 30) String projectManagerName,
+			@NotNull @Size(max = 30) String projectManagerEmailId, @NotNull @Size(max = 30) String techLeadName,
+			@NotNull @Size(max = 50) String techLeadEmailId, @NotNull Date projectStartDate,
+			@NotNull Date projectEndDate, @Size(max = 100) String techStack, @NotNull @Size(max = 30) String status,
+			@Size(max = 100) String remarks) {
+		super();
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.description = description;
+		this.teamName = teamName;
+		this.teamSize = teamSize;
+		this.projectManagerName = projectManagerName;
+		this.projectManagerEmailId = projectManagerEmailId;
+		this.techLeadName = techLeadName;
+		this.techLeadEmailId = techLeadEmailId;
+		this.projectStartDate = projectStartDate;
+		this.projectEndDate = projectEndDate;
+		this.techStack = techStack;
+		this.status = status;
+		this.remarks = remarks;
+	}
+
+	public Project() {
+		super();
+	}
+
+	
 	
 	
 }

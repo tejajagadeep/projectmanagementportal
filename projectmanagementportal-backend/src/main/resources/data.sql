@@ -1,0 +1,13 @@
+insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('ramanjun', 'Ramanjun', 'ram@gamil.com', 7894561230, '1978-07-27', 'USER', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'ADMIN', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'ADMIN', '789456123');
+
+
+insert into story(story_id, assignee, assignee_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date) values('story1', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project1', 'pending', 'ongoing', 'registration of employee', 'Policy Management', '2022-09-27');
+insert into story(story_id, assignee, assignee_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date) values('story2', 'Hari Krishna', '2022-06-18', 'harikrishna@gmail.com', 'project2', 'pending', 'hold', 'Authentication', 'Security', '2022-10-29');
+insert into story(story_id, assignee, assignee_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date) values('story3', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'ongoing', 'registration of cost', 'Policy Management', '2022-09-07');
+
+
+insert into project(project_id, description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) values('project1', 'registration of employee', '2022-07-27', '2022-09-27', 'shekar@gmail.com', 'shekar', 'project1', 'pending', 'ongoing', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1');
+insert into project(project_id, description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) values('project2', 'Authentication', '2022-06-18', '2022-10-29', 'srikar@gmail.com', 'srikar', 'project2', 'pending', 'hold', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1');
+insert into project(project_id, description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) values('project3', 'registration of cost', '2022-07-27', '2022-10-29', 'ranga@gmail.com', 'Ranga', 'project3', 'pending', 'ongoing', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1');

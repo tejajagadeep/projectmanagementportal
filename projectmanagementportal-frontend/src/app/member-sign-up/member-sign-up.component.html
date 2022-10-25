@@ -1,89 +1,53 @@
+
+
+<h1>Signup</h1>
+
 <div class="container">
 
+    
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>Name</label>
+        <!-- <input type="text" [(ngModel)]="userDetails.userFName" class="form-control" name="userFName" required="required"> -->
+        <input type="text" [(ngModel)]="user.name" class="form-control form-control-lg" name="name" required="required">
+    </fieldset>
 
+        <label>Email Id</label>
+    <fieldset class="form-group col-md-9 pe-5">
+        <label></label>
+        <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailId" required="required">
+        <!-- <input type="email" [(ngModel)]="userDetails.userEmailId" class="form-control" name="userEmailId" required="required"> -->
+    </fieldset>
+    
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>Mobile Number</label>
+        <input type="tel"  [(ngModel)]="user.contactNo" class="form-control" name="contactNumber" maxlength="10" required="required">
+        <!-- <input type="tel" [(ngModel)]="userDetails.userMobileNumber" class="form-control" name="userMobileNumber" maxlength="10" required="required"> -->
+    </fieldset>
 
-    <form class="card" style="border-radius: 15px;">
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>User Type</label>
+        <input type="text"  [(ngModel)]="user.userType" class="form-control" name="userType" min="1001" required="required">
+        <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
+    </fieldset>
 
-        <h1 class="text-center">SignUp</h1>
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>DOB</label>
+        <input type="date"  [(ngModel)]="user.dOB" class="form-control" name="dOB" required="required">
+       <!-- <input type="date" [ngModel]="userDetails.userCreatedDate | date : 'yyyy-MM-dd' " class="form-control" name="userCreatedDate" required="required"> -->
+    </fieldset>
 
-        <div class="card-body">
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>UserId</label>
+        <input type="text"  [(ngModel)]="user.userId" class="form-control" name="userId" min="1001" required="required">
+        <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
+    </fieldset>
 
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Name</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <!-- <input type="text" [(ngModel)]="userDetails.userFName" class="form-control" name="userFName" required="required"> -->
-                    <input type="text" [(ngModel)]="user.name" class="form-control form-control-lg" name="name" required="required">
-                </div>
-            </fieldset>
+    <fieldset class="form-group col-md-9 pe-5">
+        <label>Password</label>
+        <input type="password"  [(ngModel)]="user.password" class="form-control" name="password" min="1001" required="required">
+        <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
+    </fieldset>
 
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Email ID</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailId" required="required">
-                    <!-- <input type="email" [(ngModel)]="userDetails.userEmailId" class="form-control" name="userEmailId" required="required"> -->
-                </div>
-            </fieldset>
+        <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">Register</button>
 
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Contact Number</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="tel"  [(ngModel)]="user.contactNo" class="form-control" name="contactNumber" maxlength="10" required="required">
-                    <!-- <input type="tel" [(ngModel)]="userDetails.userMobileNumber" class="form-control" name="userMobileNumber" maxlength="10" required="required"> -->
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">User Type</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="text"  [(ngModel)]="user.userType" class="form-control" name="userType" min="1001" required="required">
-                    <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">DOB</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="date"  [(ngModel)]="user.dOB" class="form-control" name="dOB" required="required">
-                    <!-- <input type="date" [ngModel]="userDetails.userCreatedDate | date : 'yyyy-MM-dd' " class="form-control" name="userCreatedDate" required="required"> -->
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">User Id</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="text"  [(ngModel)]="user.userId" class="form-control" name="userId" min="1001" required="required">
-                    <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
-                </div>
-            </fieldset>
-
-            <fieldset class="form-group row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Password</h6>
-                </div>
-                <div class="col-md-9 pe-5">
-                    <input type="password"  [(ngModel)]="user.password" class="form-control" name="password" min="1001" required="required">
-                    <!-- <input type="number" [(ngModel)]="userDetails.userId" class="form-control" name="userId" min="1001" required="required"> -->
-                </div>
-            </fieldset>
-
-            <div class="d-flex justify-content-end pt-3">
-                <button type="button" class="btn btn-light" (onclick)="navLogin()">Login</button>
-                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="button" class="btn btn-warning btn-lg ms-2" (onclick)="saveUser()">Register</button>
-              </div>
-        </div>
-
-    </form>
 </div>

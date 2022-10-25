@@ -1,7 +1,9 @@
-<H1>Login!</H1>
+
 
 <div class="container">
+  <H1 class="text-center">Login!</H1>
   <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+  <div class="alert alert-warning" *ngIf='errorMessageResponse'>{{errorMessageResponse}}</div>
 
   <div>
     User Name : <input type="text" name="username" [(ngModel)]="username">
@@ -13,4 +15,49 @@
     
     
   </div>
+
+  <button (click)="helloWorld()">button</button>
+  <div class="container" *ngIf="helloWorldMessage">Welcome check 
+    
+    {{helloWorldMessage}}
+</div>
+
+<!-- <button (click)="helloWorldPathVariable(()">button</button>
+  <div class="container" *ngIf="helloWorldMessage">Welcome check 
+    
+    {{helloWorldMessage}}
+</div> -->
+</div>
+
+<h1 class="text-center">User List</h1>
+
+
+<div class="container">
+  <table class="table table-striped">
+      <caption>List User Details</caption>
+      <thead class="thead-light">
+          <tr>
+              <th>Name</th>
+              <th>Email Id</th>
+              <th>Contact</th>
+              <th>User Type</th>
+              <th>DOB</th>
+              <th>USER Id</th>
+              <th>Password</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- for (UserDetails userDetail: userDetails) -->
+          <tr *ngFor="let userDetail of user">
+              <td>{{userDetail.name}}</td>
+              <td>{{userDetail.emailAddress}}</td>
+              <td>{{userDetail.contactNo}}</td>
+              <td>{{userDetail.userType}}</td>
+              <td>{{userDetail.dOB | date : 'yyyy-MM-dd'}}</td>
+              <td>{{userDetail.userId}}</td>
+              <td>{{userDetail.password}}</td>
+          </tr>
+      </tbody>
+  </table>
+
 </div>
