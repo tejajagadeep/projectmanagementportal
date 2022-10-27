@@ -14,4 +14,8 @@ export class ProjectDataServiceService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getAllProjects`)
   }
 
+  saveProject(project: Project){
+    return this.http.post<Project>(`${PROJECT_API_URL}/projectRegiration`,project);
+  }
+
 }

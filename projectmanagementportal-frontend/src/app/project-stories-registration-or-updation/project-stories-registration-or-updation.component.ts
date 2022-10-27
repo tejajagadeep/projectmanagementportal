@@ -13,7 +13,7 @@ export class Story{
     public assignmentDate: Date,
     public targetDate: Date,
     public status: string,
-    public remarks: string,
+    public remarks: string
 
   ) {}
 }
@@ -25,7 +25,7 @@ export class Story{
 })
 export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
 
-  story!: Story[]
+  
 
   constructor(
     private router : Router, 
@@ -34,18 +34,9 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllStories();
 
   }
 
-  getAllStories(){
-    this.storyService.getAllStories().subscribe(
-      response => this.handleGetStories(response)
-    );
-   }
-
-   handleGetStories(response : any){
-    this.story = response
-   }
+  
 
 }

@@ -1,6 +1,6 @@
-insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'USER', '789456123');
-insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'ADMIN', '789456123');
-insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'ADMIN', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'USER', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'ADMIN', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'ADMIN', '789456123');
 
 
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date) values('story1', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project1', 'pending', 'ongoing', 'registration of employee', 'Policy Management', '2022-09-27');

@@ -13,7 +13,7 @@ public class ExceptionHandler {
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> hadleInvalidArgument(MethodArgumentNotValidException exMANV){
+	public Map<String, String> hadleMethodArgumentNotValidException(MethodArgumentNotValidException exMANV){
 		Map<String, String> errorMap = new HashMap<>();
 		exMANV.getBindingResult().getFieldErrors()
 		.forEach(
@@ -23,5 +23,7 @@ public class ExceptionHandler {
 				);
 		return errorMap;
 	}
+	
+	
 	
 }

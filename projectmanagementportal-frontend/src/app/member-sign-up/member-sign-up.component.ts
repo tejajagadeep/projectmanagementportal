@@ -10,7 +10,7 @@ export class User{
     public name: string,
     public emailAddress: string,
     public contactNo: number,
-    public dOB: Date,
+    public dateOfBirth: Date,
     public userType: string,
     public password: string,
 
@@ -51,6 +51,7 @@ export class MemberSignUpComponent implements OnInit {
       error => this.handleErrorMessage(error)
       
     )
+    this.navLogin();
  }
 
  handleErrorMessage(error: any){

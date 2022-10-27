@@ -2,6 +2,8 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.cts.projectmanagementportalbackend.model.Project;
 
 public interface ProjectService {
@@ -15,6 +17,8 @@ public interface ProjectService {
 	List<Project> getProjectsByProjectManagerName(String projectManagerName);
 
 	List<Project> getProjectsByStatus(String status);
+
+	Project postProject(Project project);
 
 	
 }

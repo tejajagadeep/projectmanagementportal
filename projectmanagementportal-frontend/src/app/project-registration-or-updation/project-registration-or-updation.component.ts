@@ -29,26 +29,38 @@ export class Project{
 })
 export class ProjectRegistrationOrUpdationComponent implements OnInit {
 
-  project!:Project[]
+  project!: Project
+  errorMessageResponse!: string
+  projectId!: string
 
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
-    private projectService: ProjectDataServiceService,
+    private projectDataService: ProjectDataServiceService,
   ) { }
 
   ngOnInit(): void {
-    this.getAllProjects();
+    // this.projectId = this.route.snapshot.params['userId'];
+    this.project = new Project('','','','','','','','','', new Date(), new Date(), '', '', '')
   }
 
-  getAllProjects(){
-    this.projectService.getAllProjects().subscribe(
-      response => this.handleGetProjects(response)
-    );
-   }
+  navLogin(){
+    this.router.navigate(['login']) ;
+  }
 
-   handleGetProjects(response : any){
-    this.project = response
-   }
+  saveUser(){
+    this.projectDataService.saveProject(this.project)
+    .subscribe(
+      response => this.project = response,
+      error => this.handleErrorMessage(error)
+      
+    )
+    this.navLogin();
+ }
+
+ handleErrorMessage(error: any){
+  // this.errorMessageResponse = error
+  this.errorMessageResponse = error.message
+ }
 
 }

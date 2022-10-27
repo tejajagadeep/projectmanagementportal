@@ -14,9 +14,18 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Table(name = "UserEmp")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -39,10 +48,10 @@ public class User {
 	@Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits")
 	private long contactNo;
 	
-	@NotNull(message = "dOB should not be Null")
+	@NotNull(message = "dateOfBirth should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@Past(message = "enter valid birth date")
-	private Date dOB;
+//	@NotEmpty(message = "projectEndDate should not be empty")
+	private Date dateOfBirth;
 	
 	@NotNull(message = "userType should not be Null")
 	@NotEmpty(message = "userType should not be Empty")
@@ -53,78 +62,7 @@ public class User {
 	@Size(max = 10)
 	private String password;
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
-
-	public long getContactNo() {
-		return contactNo;
-	}
-
-	public void setContactNo(long contactNo) {
-		this.contactNo = contactNo;
-	}
-
-	public Date getdOB() {
-		return dOB;
-	}
-
-	public void setdOB(Date dOB) {
-		this.dOB = dOB;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public User(@Size(max = 100) String userId, @NotNull @Size(max = 100) String name,
-			@NotNull @Size(max = 100) String emailAddress, @NotNull long contactNo, @NotNull Date dOB,
-			@NotNull @Size(max = 100) String userType, @NotNull @Size(max = 10) String password) {
-		super();
-		this.userId = userId;
-		this.name = name;
-		this.emailAddress = emailAddress;
-		this.contactNo = contactNo;
-		this.dOB = dOB;
-		this.userType = userType;
-		this.password = password;
-	}
-
-	public User() {
-		super();
-	}
+	
 	
 	
 }
