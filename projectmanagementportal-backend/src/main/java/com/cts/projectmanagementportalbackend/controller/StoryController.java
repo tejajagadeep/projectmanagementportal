@@ -13,7 +13,7 @@ import com.cts.projectmanagementportalbackend.service.StoryService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/story")
+@RequestMapping("/api/story")
 public class StoryController {
 
 	

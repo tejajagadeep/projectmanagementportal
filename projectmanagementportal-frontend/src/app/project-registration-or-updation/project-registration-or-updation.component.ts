@@ -4,20 +4,20 @@ import { ProjectDataServiceService } from '../service/data/project-data-service.
 
 export class Project{
   constructor(
-    public projectId: String,
-    public projectName: String,
-    public projectDescription: String,
-    public teamName: String,
-    public teamSize: String,
-    public projectManagerName: String,
-    public projectManagerEmailId: String,
-    public techLeadName: String,
-    public techLeadEmailId: String,
+    public projectId: string,
+    public projectName: string,
+    public projectDescription: string,
+    public teamName: string,
+    public teamSize: string,
+    public projectManagerName: string,
+    public projectManagerEmailId: string,
+    public techLeadName: string,
+    public techLeadEmailId: string,
     public projectStartDate: Date,
     public projectEndDate: Date,
-    public techStack: String,
-    public status: String,
-    public remarks: String,
+    public techStack: string,
+    public status: string,
+    public remarks: string,
 
   ) {}
 }

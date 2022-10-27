@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,25 +19,27 @@ public class User {
 	@Size(max = 100)
 	private String userId;
 	
-	@NotNull
+	@NotNull(message = "name should not be Null")
 	@Size(max = 100)
+	@NotEmpty(message = "name should not be Empty")
 	private String name;
 	
-	@NotNull
+	@NotNull(message = "emailAddress should not be Null")
 	@Size(max = 100)
+	@Email
 	private String emailAddress;
 	
-	@NotNull
+	@NotNull(message = "contactNo should not be Null")
 	private long contactNo;
 	
-	@NotNull
+	@NotNull(message = "dOB should not be Null")
 	private Date dOB;
 	
-	@NotNull
+	@NotNull(message = "userType should not be Null")
 	@Size(max = 100)
 	private String userType;
 	
-	@NotNull
+	@NotNull(message = "password should not be Null")
 	@Size(max = 10)
 	private String password;
 

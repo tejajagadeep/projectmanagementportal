@@ -1,6 +1,8 @@
 package com.cts.projectmanagementportalbackend.service;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,11 +13,11 @@ import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
@@ -25,7 +27,21 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
-		return userRepository.save(user);
+		Optional<User> userOptional = userRepository.findById(user.getUserId());
+		
+		if(userOptional.isEmpty()) {
+			return userRepository.save(user);
+		} else {
+			throw new RuntimeException();
+		}
+		
+	}
+
+	@Override
+	public User getUserById(String userId) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(userId).get();
+//		return userRepository.getById(userId);
 	}
 
 }

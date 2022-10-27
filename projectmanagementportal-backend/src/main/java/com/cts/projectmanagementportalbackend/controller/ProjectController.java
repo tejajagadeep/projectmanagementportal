@@ -15,7 +15,7 @@ import com.cts.projectmanagementportalbackend.service.ProjectService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/api/project")
 public class ProjectController {
 
 	@Autowired

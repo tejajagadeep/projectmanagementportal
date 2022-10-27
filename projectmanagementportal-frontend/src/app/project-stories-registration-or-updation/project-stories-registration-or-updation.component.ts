@@ -4,16 +4,16 @@ import { StoryDataServiceService } from '../service/data/story-data-service.serv
 
 export class Story{
   constructor(
-    public storyId: String,
-    public projectId: String,
-    public storyTitle: String,
-    public storyDescription: String,
-    public assignee: String,
-    public assigneeEmailId: String,
+    public storyId: string,
+    public projectId: string,
+    public storyTitle: string,
+    public storyDescription: string,
+    public assignee: string,
+    public assigneeEmailId: string,
     public assignmentDate: Date,
     public targetDate: Date,
-    public status: String,
-    public remarks: String,
+    public status: string,
+    public remarks: string,
 
   ) {}
 }
