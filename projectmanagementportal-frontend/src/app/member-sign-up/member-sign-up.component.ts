@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataServiceService } from '../service/data/user-data-service.service';
@@ -25,6 +26,7 @@ export class MemberSignUpComponent implements OnInit {
 
   user! : User
   userId! : number
+  errorMessageResponse!: string
 
   constructor(private userDataService: UserDataServiceService,
       private route : ActivatedRoute,
@@ -45,12 +47,15 @@ export class MemberSignUpComponent implements OnInit {
  saveUser(){
     this.userDataService.saveUser(this.user)
     .subscribe(
-      response => {
-        this.user = response;
-        // console.log(response)
-        // this.router.navigate(['login']);
-      }
+      response => this.user = response,
+      error => this.handleErrorMessage(error)
+      
     )
+ }
+
+ handleErrorMessage(error: any){
+  // this.errorMessageResponse = error
+  this.errorMessageResponse = error.message
  }
 
  getByUserId(userId: number){

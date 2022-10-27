@@ -1,4 +1,4 @@
-insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('ramanjun', 'Ramanjun', 'ram@gamil.com', 7894561230, '1978-07-27', 'USER', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'USER', '789456123');
 insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'ADMIN', '789456123');
 insert into User_Emp(user_id, name, email_address, contact_no, dob, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'ADMIN', '789456123');
 

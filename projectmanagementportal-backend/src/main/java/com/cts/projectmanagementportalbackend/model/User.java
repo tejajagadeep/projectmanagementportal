@@ -5,10 +5,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Table(name = "UserEmp")
@@ -16,26 +20,32 @@ import javax.validation.constraints.Size;
 public class User {
 
 	@Id
-	@Size(max = 100)
+	@Size(min = 5, max = 8, message = "userId shoud be between 5 and 8 characters")
 	private String userId;
 	
 	@NotNull(message = "name should not be Null")
+	@NotEmpty(message = "name shoudl not be Empty")
 	@Size(max = 100)
-	@NotEmpty(message = "name should not be Empty")
 	private String name;
 	
 	@NotNull(message = "emailAddress should not be Null")
+	@NotEmpty(message = "emailAddress should not be Empty")
 	@Size(max = 100)
-	@Email
+	@Email(message = "enter valid email address")
 	private String emailAddress;
 	
 	@NotNull(message = "contactNo should not be Null")
+//	@Size(min = 10, max = 10, message = "contactNo should be 10 digits")
+	@Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits")
 	private long contactNo;
 	
 	@NotNull(message = "dOB should not be Null")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Past(message = "enter valid birth date")
 	private Date dOB;
 	
 	@NotNull(message = "userType should not be Null")
+	@NotEmpty(message = "userType should not be Empty")
 	@Size(max = 100)
 	private String userType;
 	
