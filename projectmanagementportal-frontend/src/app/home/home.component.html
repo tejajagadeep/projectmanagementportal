@@ -1,1 +1,122 @@
 <p>Welcome {{message}}.</p>
+
+<h1 class="text-center">User List</h1>
+
+
+<div class="container">
+  <table class="table table-striped">
+      <caption>List User Details</caption>
+      <thead class="thead-light">
+          <tr>
+              <th>Name</th>
+              <th>Email Id</th>
+              <th>Contact</th>
+              <th>User Type</th>
+              <th>DOB</th>
+              <th>USER Id</th>
+              <th>Password</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- for (UserDetails userDetail: userDetails) -->
+          <tr *ngFor="let userDetail of user">
+              <td>{{userDetail.name}}</td>
+              <td>{{userDetail.emailAddress}}</td>
+              <td>{{userDetail.contactNo}}</td>
+              <td>{{userDetail.userType}}</td>
+              <td>{{userDetail.dateOfBirth | date : 'yyyy-MM-dd'}}</td>
+              <td>{{userDetail.userId}}</td>
+              <td>{{userDetail.password}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+</div>
+
+<p>project-registration-or-updation works!</p>
+<h1 class="text-center">project-registration-or-updation</h1>
+
+
+<div class="container">
+  <table class="table table-striped">
+      <caption>List project</caption>
+      <thead class="thead-light">
+          <tr>
+              <th>Project Id</th>
+              <th>ProjectName</th>
+              <th>Description</th>
+              <th>Team Name</th>
+              <th>Team Size</th>
+              <th>Project Manager Name</th>
+              <th>Project Manager Email Id</th>
+              <th>Tech Lead Name</th>
+              <th>Tech Lead Email Id</th>
+              <th>Project Start Date</th>
+              <th>Project End Date</th>
+              <th>Tech Stack</th>
+              <th>Status</th>
+              <th>Remarks</th>
+              
+          </tr>
+      </thead>
+      <tbody>
+          <!-- for (UserDetails userDetail: userDetails) -->
+          <tr *ngFor="let projectDetail of project">
+              <td>{{projectDetail.projectId}}</td>
+              <td>{{projectDetail.projectName}}</td>
+              <td>{{projectDetail.projectDescription}}</td>
+              <td>{{projectDetail.teamName}}</td>
+              <td>{{projectDetail.teamSize}}</td>
+              <td>{{projectDetail.projectManagerName}}</td>
+              <td>{{projectDetail.projectManagerEmailId}}</td>
+              <td>{{projectDetail.techLeadName}}</td>
+              <td>{{projectDetail.techLeadEmailId}}</td>
+              <td>{{projectDetail.projectStartDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{projectDetail.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{projectDetail.techStack}}</td>
+              <td>{{projectDetail.status}}</td>
+              <td>{{projectDetail.remarks}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+</div>
+
+
+<p>project-stories-registration-or-updation works!</p>
+<h1 class="text-center">project-stories-registration</h1>
+
+
+<div class="container">
+  <table class="table table-striped">
+      <caption>List project Stories</caption>
+      <thead class="thead-light">
+          <tr>
+              <th>Story Id</th>
+              <th>Project Id</th>
+              <th>Story Title</th>
+              <th>Story Description</th>
+              <th>Assignee</th>
+              <th>Assignee Email Id</th>
+              <th>Assignee Date</th>
+              <th>Target Date</th>
+              <th>Status</th>
+              <th>Remarks</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- for (UserDetails userDetail: userDetails) -->
+          <tr *ngFor="let storyDetail of story">
+              <td>{{storyDetail.storyId}}</td>
+              <td>{{storyDetail.projectId}}</td>
+              <td>{{storyDetail.storyDescription}}</td>
+              <td>{{storyDetail.assignee}}</td>
+              <td>{{storyDetail.assigneeEmailId}}</td>
+              <td>{{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</td>
+              <td>{{storyDetail.status}}</td>
+              <td>{{storyDetail.remarks}}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

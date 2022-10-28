@@ -35,9 +35,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
-    this.getAllProjects();
-    this.getAllStories();
+    
 
   }
 
@@ -81,41 +79,7 @@ export class LoginComponent implements OnInit {
     this.errorMessageResponse = error.error.message
    }
 
-   getAllUsers(){
-    this.userService.getAllUsers().subscribe(
-      response => this.handleGetUsers(response)
-      // {
-      //   // console.log(response);
-      //   this.user = response;
-      //   // console.log(this.user)
-      // }
-    );
-   }
-
-   handleGetUsers(response : any){
-    this.user = response
-   }
-
-   getAllProjects(){
-    this.projectService.getAllProjects().subscribe(
-      response => this.handleGetProjects(response)
-    );
-   }
-
-   handleGetProjects(response : any){
-    this.project = response
-   }
-
-   getAllStories(){
-    this.storyService.getAllStories().subscribe(
-      response => this.handleGetStories(response)
-    );
-   }
-
-   handleGetStories(response : any){
-    this.story = response
-    console.log(response)
-  }
+   
 
    
 }

@@ -48,14 +48,14 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
     this.router.navigate(['login']) ;
   }
 
-  saveUser(){
+  saveProject(){
     this.projectDataService.saveProject(this.project)
     .subscribe(
       response => this.project = response,
       error => this.handleErrorMessage(error)
       
     )
-    this.navLogin();
+    // this.navLogin();
  }
 
  handleErrorMessage(error: any){

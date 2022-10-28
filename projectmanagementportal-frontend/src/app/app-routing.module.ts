@@ -9,6 +9,7 @@ import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories
 const routes: Routes = [
   { path:'', component: LoginComponent},
   { path:'login', component: LoginComponent},
+  { path:'home', component: HomeComponent},
   { path:'home/:userId', component: HomeComponent},
   { path:'memberSignUp', component: MemberSignUpComponent},
   { path:'projectRegistration', component: ProjectRegistrationOrUpdationComponent},
