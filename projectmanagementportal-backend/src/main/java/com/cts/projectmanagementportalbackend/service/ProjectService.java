@@ -18,7 +18,7 @@ public interface ProjectService {
 
 	List<Project> getProjectsByStatus(String status);
 
-	Project postProject(Project project);
+	Project saveProject(Project project);
 
 	
 }

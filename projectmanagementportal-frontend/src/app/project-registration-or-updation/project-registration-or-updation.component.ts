@@ -32,6 +32,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
   project!: Project
   errorMessageResponse!: string
   projectId!: string
+  dateDummy! : Date
 
   constructor(
     private router : Router, 
@@ -41,7 +42,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
 
   ngOnInit(): void {
     // this.projectId = this.route.snapshot.params['userId'];
-    this.project = new Project('','','','','','','','','', new Date(), new Date(), '', '', '')
+    this.project = new Project('','','','','','','','','', this.dateDummy, this.dateDummy, '', '', '')
   }
 
   navLogin(){

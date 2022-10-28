@@ -2,7 +2,7 @@ package com.cts.projectmanagementportalbackend.model;
 
 
 
-public class HelloWorld {
+public class MessageResponse {
 	private String message;
 	private int id;
 	public String getMessage() {
@@ -17,7 +17,7 @@ public class HelloWorld {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public HelloWorld(String message, int id) {
+	public MessageResponse(String message, int id) {
 		super();
 		this.message = message;
 		this.id = id;

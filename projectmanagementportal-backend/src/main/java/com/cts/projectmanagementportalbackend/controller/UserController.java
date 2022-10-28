@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.projectmanagementportalbackend.model.HelloWorld;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.service.UserService;
@@ -30,15 +30,15 @@ public class UserController {
 	UserService userService;
 
 	@GetMapping("/helloWorld")
-	public HelloWorld helloWorld() {
+	public MessageResponse helloWorld() {
 //		throw new RuntimeException("runtime Exception");
-		return new HelloWorld("HelloWorld Back-End", 1);
+		return new MessageResponse("HelloWorld Back-End", 1);
 	}
 	
 	@GetMapping("/helloWorld/{name}")
-	public HelloWorld helloWorldPathVaraible(@PathVariable String name) {
+	public MessageResponse helloWorldPathVaraible(@PathVariable String name) {
 //		throw new RuntimeException("runtime Exception");
-		return new HelloWorld(name, 1);
+		return new MessageResponse(name, 1);
 	}
 	
 	@GetMapping("/getAllUsers")
@@ -53,8 +53,8 @@ public class UserController {
 	
 	@PostMapping("/userSignUp")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-		return new ResponseEntity<>(userService.createUser(user),HttpStatus.CREATED);
+	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
+		return new ResponseEntity<>(userService.saveUser(user),HttpStatus.CREATED);
 	}
 	
 	

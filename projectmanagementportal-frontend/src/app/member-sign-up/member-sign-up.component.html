@@ -11,9 +11,9 @@
             <div class="container alert alert-warning" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="name">
                     <h6 class="mb-0">Name</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.name" class="form-control form-control-lg" name="name"
                         required="required" />
@@ -21,29 +21,29 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="emailAddress">
                     <h6 class="mb-0">Email ID</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailId"
+                    <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailAddress"
                         required="required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="contactNo">
                     <h6 class="mb-0">Contact Number</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="tel" [(ngModel)]="user.contactNo" class="form-control" name="contactNumber"
+                    <input type="tel" [(ngModel)]="user.contactNo" class="form-control" name="contactNo"
                         maxlength="10" required="required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="userType">
                     <h6 class="mb-0">User Type</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.userType" class="form-control" name="userType"
                         required="required">
@@ -51,19 +51,19 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="dateOfBirth">
                     <h6 class="mb-0">DOB</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="date" [ngModel]="user.dateOfBirth | date : 'yyyy-MM-dd' " class="form-control" name="dateOfBirth"
                         required="required">
-                </fieldset>
+                </fieldset> 
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="userId">
                     <h6 class="mb-0">User Id</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.userId" class="form-control" name="userId"
                         minlength="5" maxlength="8" required="user Id should between 5 and 8 characters">
@@ -71,9 +71,9 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="password">
                     <h6 class="mb-0">Password</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="password" [(ngModel)]="user.password" class="form-control" name="password"
                         required="required">

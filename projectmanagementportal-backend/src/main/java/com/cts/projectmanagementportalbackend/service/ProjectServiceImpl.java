@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public Project postProject(Project project) {
+	public Project saveProject(Project project) {
 		// TODO Auto-generated method stub
 		return projectRepository.save(project);
 	}

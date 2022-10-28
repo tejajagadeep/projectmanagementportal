@@ -46,7 +46,7 @@ public class User {
 	@NotNull(message = "contactNo should not be Null")
 //	@Size(min = 10, max = 10, message = "contactNo should be 10 digits")
 	@Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits")
-	private long contactNo;
+	private Long contactNo;
 	
 	@NotNull(message = "dateOfBirth should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")

@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(User user) {
+	public User saveUser(User user) {
 		// TODO Auto-generated method stub
 		Optional<User> userOptional = userRepository.findById(user.getUserId());
 		

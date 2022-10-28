@@ -51,8 +51,8 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/projectRegiration")
-	public Project postProject(@Valid @RequestBody Project project) {
-		return projectService.postProject(project);
+	public Project saveProject(@Valid @RequestBody Project project) {
+		return projectService.saveProject(project);
 	}
 	
 }

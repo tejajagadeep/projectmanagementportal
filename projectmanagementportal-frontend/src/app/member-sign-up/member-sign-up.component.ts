@@ -27,6 +27,8 @@ export class MemberSignUpComponent implements OnInit {
   user! : User
   userId! : number
   errorMessageResponse!: string
+  dummyNumber!: number
+  dummyDate!: Date
 
   constructor(private userDataService: UserDataServiceService,
       private route : ActivatedRoute,
@@ -34,7 +36,7 @@ export class MemberSignUpComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.user = new User('','','',0,new Date(),'','');
+    this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
     // this.userId = this.route.snapshot.params['userId'];
 
 
@@ -49,9 +51,8 @@ export class MemberSignUpComponent implements OnInit {
     .subscribe(
       response => this.user = response,
       error => this.handleErrorMessage(error)
-      
+      // this.router.navigate(['login'])
     )
-    this.navLogin();
  }
 
  handleErrorMessage(error: any){
