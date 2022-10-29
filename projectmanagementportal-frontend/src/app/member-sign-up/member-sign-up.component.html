@@ -14,76 +14,76 @@
                 <label class="col-md-3 ps-5" for="name">
                     <h6 class="mb-0">Name</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.name" class="form-control form-control-lg" name="name"
-                        required="required" />
-                </fieldset>
+                         required />
+                </div>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="emailAddress">
                     <h6 class="mb-0">Email ID</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailAddress"
-                        required="required">
-                </fieldset>
+                         required />
+                </div>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="contactNo">
                     <h6 class="mb-0">Contact Number</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="tel" [(ngModel)]="user.contactNo" class="form-control" name="contactNo"
-                        maxlength="10" required="required">
-                </fieldset>
+                        maxlength="10"  required />
+                </div>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="userType">
                     <h6 class="mb-0">User Type</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.userType" class="form-control" name="userType"
-                        required="required">
-                </fieldset>
+                         required />
+                </div>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="dateOfBirth">
                     <h6 class="mb-0">DOB</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="date" [ngModel]="user.dateOfBirth | date : 'yyyy-MM-dd' " class="form-control" name="dateOfBirth"
-                        required="required">
-                </fieldset> 
+                         required />
+                </div> 
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="userId">
                     <h6 class="mb-0">User Id</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
+                <div class="form-group col-md-9 pe-5">
                     <input type="text" [(ngModel)]="user.userId" class="form-control" name="userId"
-                        minlength="5" maxlength="8" required="user Id should between 5 and 8 characters">
-                </fieldset>
+                        minlength="5" maxlength="8" pattern=".{5,8}" title="user Id should between 5 and 8 characters" required="user Id should between 5 and 8 characters">
+                </div>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="password">
                     <h6 class="mb-0">Password</h6>
                 </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="password" [(ngModel)]="user.password" class="form-control" name="password"
-                        required="required">
-                </fieldset>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="password" [(ngModel)]="user.password" class="form-control" name="password" id="pwd"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+                </div>
             </div>
 
             <div class="d-flex justify-content-end pt-3">
                 <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
                 <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">Register</button>
+                <input type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">
             </div>
         </div>
 

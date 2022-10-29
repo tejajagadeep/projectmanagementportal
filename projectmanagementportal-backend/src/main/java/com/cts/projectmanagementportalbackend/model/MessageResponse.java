@@ -1,26 +1,31 @@
 package com.cts.projectmanagementportalbackend.model;
 
+import java.util.Date;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Component
 public class MessageResponse {
+	private Date timeStamp;
 	private String message;
-	private int id;
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public MessageResponse(String message, int id) {
+	private HttpStatus status;
+	
+	public MessageResponse(String message, HttpStatus status) {
 		super();
 		this.message = message;
-		this.id = id;
+		this.status = status;
 	}
+	
+	
 	
 }

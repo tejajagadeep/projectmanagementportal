@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -56,6 +57,7 @@ class UserServiceImplTest {
 		userList.add(new User("jagadep3","jagadep3","jagadeep3@gmail.com",78945612313L,dateStatic,"ADMIN","789456123"));
 	}
 	
+	@DisplayName("JUnit test for getAllUsers method")
 	@Test
 	void testGetAllUsers() {
 		userRepository.saveAll(userList);
@@ -81,12 +83,12 @@ class UserServiceImplTest {
 	@Test
 	void testSaveUserException() {
 		
-		user=null;
-		
+//		user=null;
+		user.setUserId(null);
 		Optional<User> userOptional = userRepository.findById(user.getUserId());
 		
-		when(userServiceImpl.saveUser(user)).thenReturn(null);
-		assertThrows(RuntimeException.class, () -> userServiceImpl.saveUser(user));
+		when(userServiceImpl.saveUser(user)).thenReturn(user);
+		assertThrows(RuntimeException.class, () -> userServiceImpl.saveUser(null));
 		
 	}
 

@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,14 +33,14 @@ public class UserController {
 	@GetMapping("/helloWorld")
 	public MessageResponse helloWorld() {
 //		throw new RuntimeException("runtime Exception");
-		return new MessageResponse("HelloWorld Back-End", 1);
+		return new MessageResponse(new Date(),"HelloWorld Back-End", HttpStatus.OK);
 	}
 	
-	@GetMapping("/helloWorld/{name}")
-	public MessageResponse helloWorldPathVaraible(@PathVariable String name) {
-//		throw new RuntimeException("runtime Exception");
-		return new MessageResponse(name, 1);
-	}
+//	@GetMapping("/helloWorld/{name}")
+//	public MessageResponse helloWorldPathVaraible(@PathVariable String name) {
+////		throw new RuntimeException("runtime Exception");
+//		return new MessageResponse(name, 1);
+//	}
 	
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers(){
