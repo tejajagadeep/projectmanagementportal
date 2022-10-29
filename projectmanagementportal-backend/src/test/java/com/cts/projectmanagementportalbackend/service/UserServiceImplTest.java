@@ -46,15 +46,15 @@ class UserServiceImplTest {
 	String dateString = "1999/07/28";
 	Date date = new Date(dateString);
 	
-	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,date,"ADMIN","789456123");
+	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
 	User userNullObject = new User(); 
 	
 	static String dateStringStatic = "1999/07/28";
 	static Date dateStatic = new Date(dateStringStatic);
 	static {
-		userList.add(new User("jagadep1","jagadep1","jagadeep1@gmail.com",78945612311L,dateStatic,"ADMIN","789456123"));
-		userList.add(new User("jagadep2","jagadep2","jagadeep2@gmail.com",78945612312L,dateStatic,"ADMIN","789456123"));
-		userList.add(new User("jagadep3","jagadep3","jagadeep3@gmail.com",78945612313L,dateStatic,"ADMIN","789456123"));
+		userList.add(new User("jagadep1","jagadep1","jagadeep1@gmail.com",78945612311L,"dateStatic","ADMIN","789456123"));
+		userList.add(new User("jagadep2","jagadep2","jagadeep2@gmail.com",78945612312L,"dateStatic","ADMIN","789456123"));
+		userList.add(new User("jagadep3","jagadep3","jagadeep3@gmail.com",78945612313L,"dateStatic","ADMIN","789456123"));
 	}
 	
 	@DisplayName("JUnit test for getAllUsers method")

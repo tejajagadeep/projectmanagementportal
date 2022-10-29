@@ -29,6 +29,12 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@PostMapping("/loginUser")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<User> loginUser(@Valid @RequestBody User user) {
+		return new ResponseEntity<>(userService.loginUser(user),HttpStatus.CREATED);
+	}
 
 	@GetMapping("/helloWorld")
 	public MessageResponse helloWorld() {

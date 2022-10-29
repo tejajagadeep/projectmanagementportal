@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   helloWorldMessage =""
   errorMessageResponse=""
   name=''
-  user!:User[]
+  user = new User();
   story!: Story[]
   project!:Project[]
 
@@ -69,6 +69,19 @@ export class LoginComponent implements OnInit {
     );
    }
 
+   loginUser() {
+    this.userService.loginUser(this.user).subscribe(
+      data => {
+        console.log("Login Success");
+        this.router.navigate(["home"]);
+      },
+      error => {
+        console.log("Exception Occured");
+        this.errorMessage="Invalid Credentials"
+      }
+    )
+  }
+
    handleSuccessResponse(response: any){
     // console.log(response);
     this.helloWorldMessage = response.message
@@ -78,6 +91,7 @@ export class LoginComponent implements OnInit {
     // console.log(response);
     this.errorMessageResponse = error.error.message
    }
+
 
    
 

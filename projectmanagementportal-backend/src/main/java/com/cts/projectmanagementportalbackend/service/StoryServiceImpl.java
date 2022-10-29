@@ -19,4 +19,9 @@ public class StoryServiceImpl implements StoryService{
 		return storyReposiotry.findAll();
 	}
 
+	@Override
+	public Story saveStory(Story story) {
+		return storyReposiotry.save(story);
+	}
+
 }

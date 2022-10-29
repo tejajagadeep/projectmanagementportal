@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div class="container">
   <H1 class="text-center">Login!</H1>
@@ -25,9 +25,36 @@
     {{helloWorldMessage}}
 </div>
 
-<!-- <button (click)="helloWorldPathVariable(()">button</button>
-  <div class="container" *ngIf="helloWorldMessage">Welcome check 
-    
-    {{helloWorldMessage}}
 </div> -->
+
+<div class="container col-md-6 mt-5">
+  <h1 class="text-success">Welcome to Project Management Portal</h1>
+</div>
+
+<div class="container col-md-6 mt-5">
+
+  <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+    <!-- {{loginForm.form.valid}} -->
+    <small class="text-danger">{{errorMessage}}</small>
+    <div class="mb-3">
+      <label for="exampleInputEmployeeId" class="form-label">Email Id</label>
+      <input type="email" class="form-control" name="email" placeholder="abc@gmail.com" [(ngModel)]="user.emailAddress" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email Id is required field</small>
+
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputName" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="user.password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched">
+      <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required field</small>
+    </div>
+
+    <button [disabled]="loginForm.form.invalid" type="submit" class="btn btn-primary">Login</button>
+
+  </form>
+
+  
+  <div><li><a routerLink="/memberSignUp" class="nav-link loat-right">SignUp</a></li></div>
+    <div><li><a routerLink="/projectRegistration" class="nav-link">projectRegistration</a></li></div>
+    <div><li><a routerLink="/memberSignUp" class="nav-link">memberSignUp</a></li></div>
+    <div><li><a routerLink="/home" class="nav-link">home</a></li></div>
 </div>

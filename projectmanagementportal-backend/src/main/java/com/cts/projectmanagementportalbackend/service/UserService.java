@@ -14,4 +14,6 @@ public interface UserService {
 
 	User getUserById(String userId);
 
+	User loginUser(User user);
+
 }

@@ -14,4 +14,8 @@ export class StoryDataServiceService {
     return this.http.get<Story[]>(`${STORY_API_URL}/getAllStories`)
   }
 
+  saveStory(story: Story){
+    return this.http.post<Story>(`${STORY_API_URL}/storyRegistration`,story)
+  }
+
 }

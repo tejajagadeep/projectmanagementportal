@@ -1,6 +1,6 @@
 package com.cts.projectmanagementportalbackend.model;
 
-import java.util.Date;
+//import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,9 +49,9 @@ public class User {
 	private Long contactNo;
 	
 	@NotNull(message = "dateOfBirth should not be Null")
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+//	@DateTimeFormat(pattern = "yyyy/MM/dd")
 //	@NotEmpty(message = "projectEndDate should not be empty")
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	
 	@NotNull(message = "userType should not be Null")
 	@NotEmpty(message = "userType should not be Empty")
@@ -59,7 +59,7 @@ public class User {
 	private String userType;
 	
 	@NotNull(message = "password should not be Null")
-	@Size(max = 10)
+	@Size(min = 8)
 	private String password;
 
 	

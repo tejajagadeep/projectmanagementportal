@@ -44,4 +44,16 @@ public class UserServiceImpl implements UserService {
 //		return userRepository.getById(userId);
 	}
 
+	@Override
+	public User loginUser(User user) {
+		// TODO Auto-generated method stub
+Optional<User> userOptional = userRepository.findById(user.getUserId());
+		
+		if(userOptional.isEmpty()) {
+			return userRepository.save(user);
+		} else {
+			throw new RuntimeException();
+		}
+	}
+
 }

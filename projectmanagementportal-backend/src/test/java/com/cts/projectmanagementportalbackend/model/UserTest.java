@@ -19,7 +19,7 @@ class UserTest {
 	String dateString = "1999/07/28";
 	Date date = new Date(dateString);
 	
-	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,date,"ADMIN","789456123");
+	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
 
 	@Test
 	void testGetterSetterUserId() {
@@ -47,8 +47,8 @@ class UserTest {
 
 	@Test
 	void testGetterSetterDateOfBirth() {
-		user.setDateOfBirth(date);
-		assertEquals(date, user.getDateOfBirth());
+		user.setDateOfBirth("date");
+		assertEquals("date", user.getDateOfBirth());
 	}
 
 	@Test

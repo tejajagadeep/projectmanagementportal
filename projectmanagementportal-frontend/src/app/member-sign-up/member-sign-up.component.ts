@@ -4,15 +4,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataServiceService } from '../service/data/user-data-service.service';
 
 export class User{
+
+  userId!: string;
+    name!: string;
+    emailAddress!: string;
+    contactNo!: number;
+    dateOfBirth!: string;
+    userType!: string;
+    password!: string;
   constructor(
     
-    public userId: string,
-    public name: string,
-    public emailAddress: string,
-    public contactNo: number,
-    public dateOfBirth: Date,
-    public userType: string,
-    public password: string,
+    
 
   ){}
 }
@@ -24,7 +26,8 @@ export class User{
 })
 export class MemberSignUpComponent implements OnInit {
 
-  user! : User
+  user = new User()
+  // user! : User
   userId! : number
   errorMessageResponse!: string
   dummyNumber!: number
@@ -32,33 +35,48 @@ export class MemberSignUpComponent implements OnInit {
 
   constructor(private userDataService: UserDataServiceService,
       private route : ActivatedRoute,
-      private router: Router
+      private _router: Router
     ) { }
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
-    this.user = new User('','','',this.dummyNumber,new Date(),'','');
+    // this.user = new User('','','',this.dummyNumber,new Date(),'','');
+    // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];
 
 
   }
 
   navLogin(){
-    this.router.navigate(['login'])    
+    this._router.navigate(['login'])    
   }
 
- saveUser(){
+ registerUser(){
     this.userDataService.saveUser(this.user)
     .subscribe(
-      response => this.user = response,
-      error => this.handleErrorMessage(error)
-      // this.router.navigate(['login'])
+      response => {
+        console.log("Response Recieved")
+        this.navLogin()
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
     )
  }
 
+ saveUser(){
+  this.userDataService.saveUser(this.user)
+  .subscribe(
+    response => this.user = response,
+    error => this.handleErrorMessage(error),
+    // this._router.navigate(['/login'])
+  )
+}
+
  handleErrorMessage(error: any){
   // this.errorMessageResponse = error
-  this.errorMessageResponse = error.message
+  this.errorMessageResponse = error.error
  }
 
  getByUserId(userId: number){

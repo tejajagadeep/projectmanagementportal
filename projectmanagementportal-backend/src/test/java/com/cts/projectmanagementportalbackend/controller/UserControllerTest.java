@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -37,6 +38,9 @@ class UserControllerTest {
 	String dateString = "1999/07/28";
 	Date date = new Date(dateString);
 
+	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
+	
+	
 //	@Test
 //	void testHelloWorld() {
 //		fail("Not yet implemented");
@@ -59,7 +63,7 @@ class UserControllerTest {
 
 	@Test
 	void testSaveUser() throws Exception {
-		User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,date,"ADMIN","789456123");
+		User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
 		when(userService.saveUser(ArgumentMatchers.any())).thenReturn(userService.saveUser(userObject));
 		
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -76,6 +80,11 @@ class UserControllerTest {
 		int status = mockHttpServletResponse.getStatus();
 		
 		assertEquals(201, status);
+	}
+	
+	@Test
+	void testSaveUser2() throws Exception{
+//		ResponseEntity<User> responseEntityUser = new ResponseEntity<>(user.)
 	}
 
 }
