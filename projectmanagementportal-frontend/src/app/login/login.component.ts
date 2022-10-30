@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   user!: User
   story!: Story[]
   project!:Project[]
-
+  dummyNumber!: number;
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
@@ -36,8 +36,12 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
+    this.user = new User('','','',this.dummyNumber,new Date(),'','');
 
+  }
+
+  navHome(){
+    this.router.navigate(["home"]);
   }
 
   handleJWTAuthLogin() {
@@ -74,7 +78,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user).subscribe(
       data => {
         console.log("Login Success");
-        this.router.navigate(["home"]);
+        this.navHome();
       },
       error => {
         console.log("Exception Occured");

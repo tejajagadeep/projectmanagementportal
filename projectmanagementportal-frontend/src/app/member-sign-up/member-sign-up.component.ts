@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataServiceService } from '../service/data/user-data-service.service';
 
-export class User{
+export class User {
 
   // userId!: string;
   //   name!: string;
@@ -13,7 +13,7 @@ export class User{
   //   userType!: string;
   //   password!: string;
   constructor(
-    
+
     public userId: string,
     public name: string,
     public emailAddress: string,
@@ -22,7 +22,7 @@ export class User{
     public userType: string,
     public password: string
 
-  ){}
+  ) { }
 }
 
 @Component({
@@ -33,20 +33,20 @@ export class User{
 export class MemberSignUpComponent implements OnInit {
 
   // user = new User()
-  user! : User
-  userId! : number
+  user!: User
+  userId!: number
   errorMessageResponse!: string
   dummyNumber!: number
   dummyDate!: Date
 
   constructor(private userDataService: UserDataServiceService,
-      private route : ActivatedRoute,
-      private _router: Router
-    ) { }
+    private route: ActivatedRoute,
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
-    this.user = new User('','','',this.dummyNumber,new Date(),'','');
+    this.user = new User('', '', '', this.dummyNumber, new Date(), '', '');
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];
@@ -54,44 +54,44 @@ export class MemberSignUpComponent implements OnInit {
 
   }
 
-  navLogin(){
-    this._router.navigate(['login'])    
+  navLogin() {
+    this._router.navigate(['login'])
   }
 
- registerUser(){
+  registerUser() {
     this.userDataService.saveUser(this.user)
-    .subscribe(
-      response => {
-        console.log("Response Recieved")
-        // this.navLogin()
-      },
-      error => {
-        console.log("Exception Occured")
-        this.handleErrorMessage(error);
-      }
-    )
- }
+      .subscribe(
+        response => {
+          console.log("Response Recieved")
+          // this.navLogin()
+        },
+        error => {
+          console.log("Exception Occured")
+          this.handleErrorMessage(error);
+        }
+      )
+  }
 
- saveUser(){
-  this.userDataService.saveUser(this.user)
-  .subscribe(
-    response => this.user = response,
-    error => this.handleErrorMessage(error),
-    // this._router.navigate(['/login'])
-  )
-}
+  saveUser() {
+    this.userDataService.saveUser(this.user)
+      .subscribe(
+        response => this.user = response,
+        error => this.handleErrorMessage(error),
+        // this._router.navigate(['/login'])
+      )
+  }
 
- handleErrorMessage(error: any){
-  // this.errorMessageResponse = error
-  this.errorMessageResponse = error.error
- }
+  handleErrorMessage(error: any) {
+    // this.errorMessageResponse = error
+    this.errorMessageResponse = error.error
+  }
 
- getByUserId(userId: number){
-  this.userDataService.getUserById(userId)
-  .subscribe(
-    response => this.user = response
-  )
- }
- 
+  getByUserId(userId: number) {
+    this.userDataService.getUserById(userId)
+      .subscribe(
+        response => this.user = response
+      )
+  }
+
 
 }

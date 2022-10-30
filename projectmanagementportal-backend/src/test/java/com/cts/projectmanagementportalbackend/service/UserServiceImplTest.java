@@ -20,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
+import com.cts.projectmanagementportalbackend.exception.UsernameAlreadyExists;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
@@ -81,7 +82,7 @@ class UserServiceImplTest {
 	
 	
 	@Test
-	void testSaveUserException() {
+	void testSaveUserException() throws UsernameAlreadyExists {
 		
 //		user=null;
 		user.setUserId(null);

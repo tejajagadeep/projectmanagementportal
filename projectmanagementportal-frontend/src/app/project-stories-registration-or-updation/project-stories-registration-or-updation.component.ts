@@ -4,19 +4,31 @@ import { StoryDataServiceService } from '../service/data/story-data-service.serv
 
 export class Story{
 
-   storyId!: string;
-    projectId!: string;
-    storyTitle!: string;
-    storyDescription!: string;
-    assignee!: string;
-    assigneeEmailId!: string;
-    assignmentDate!: Date;
-    targetDate!: Date;
-    status!: string;
-    remarks!: string
+  //  storyId!: string;
+  //   projectId!: string;
+  //   storyTitle!: string;
+  //   storyDescription!: string;
+  //   assignee!: string;
+  //   assigneeEmailId!: string;
+  //   assignmentDate!: Date;
+  //   targetDate!: Date;
+  //   status!: string;
+  //   remarks!: string
 
 
   constructor(
+
+    public storyId: string,
+    public projectId: string,
+    public storyTitle: string,
+    public storyDescription: string,
+    public assignee: string,
+    public assigneeEmailId: string,
+    public assignmentDate: Date,
+    public targetDate: Date,
+    public status: string,
+    public remarks: string
+
   ) {}
 }
 

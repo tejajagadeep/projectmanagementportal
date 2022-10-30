@@ -31,7 +31,7 @@ export class UserDataServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public loginUser(user: User){
+  public loginUser(user: User): Observable<any>{
     return this.http.post<any>(`${USER_API_URL}/login`,user);
   }
 

@@ -1,157 +1,132 @@
-<div class="container">
+<!-- <div class="container">
 
 
 
     <form class="card" style="border-radius: 15px;">
 
-        <h1 class="text-center">Project Registration</h1>
+        <h1 class="text-center">story Registration</h1>
 
         <div class="card-body">
 
             <div class="container alert alert-warning" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="form-label col-md-3 ps-5" for="exampleInputUserId">
+                  <h6 class="mb-0">User Id</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                  <input type="text" class="form-control" id="userId" name="userId" placeholder="User Id"
+                    [(ngModel)]="user.userId" required #userId="ngModel" [class.is-invalid]="userId.invalid && userId.touched" 
+                    minlength="5" maxlength="8" pattern=".{5,8}"/>
+                  <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required and should have 5 to 8 charaters</small>
+                </div>
+              </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="storyId">
+                    <h6 class="mb-0">Story Id</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
+                    [(ngModel)]="project.projectId" required #projectId="ngModel" [class.is-invalid]="projectId.invalid && projectId.touched" />
+                  <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">projectId Id is required and should have 5 to 8 charaters</small>
+                </div>
+            </div>
+
+            div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="projectId">
                     <h6 class="mb-0">Project Id</h6>
-                </div>
+                </lable>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.projectId" class="form-control form-control-lg" name="projectId"
-                        required="required" />
+                    <input type="text" [(ngModel)]="story.projectId" class="form-control form-control-lg" name="projectId"
+                        required />
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project Name</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="storyTitle">
+                    <h6 class="mb-0">Story Title</h6>
+                </lable>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.projectName" class="form-control" name="projectName"
-                        required="required">
+                    <input type="text" [(ngModel)]="story.storyTitle" class="form-control" name="storyTitle"
+                        required />
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project Description</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="storyDescription">
+                    <h6 class="mb-0">Story Description</h6>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <textarea  [(ngModel)]="project.projectDescription" class="form-control" name="projectDescription"
-                        minlength="100" required="required"></textarea>
+                    <textarea  [(ngModel)]="story.storyDescription" class="form-control" name="storyDescription"
+                        minlength="100"  required ></textarea>
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Team Name</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="assignee">
+                    <h6 class="mb-0">Assignee</h6>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.teamName" class="form-control" name="teamName" 
-                        required="required">
+                    <input type="text" [(ngModel)]="story.assignee" class="form-control" name="assignee" 
+                        required />
                 </fieldset>
             </div>
            
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Team Size</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="assigneeEmailId">
+                    <h6 class="mb-0">Assignee Email Id</h6>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.teamSize" class="form-control" name="teamSize"
+                    <input type="text" [(ngModel)]="story.assigneeEmailId" class="form-control" name="assigneeEmailId"
                         minlength="5" maxlength="8" required=" required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project Manager Name</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="assignmentDate">
+                    <h6 class="mb-0">Assignment Date</h6>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.projectManagerName" class="form-control" name="projectManagerName"
-                        minlength="5" maxlength="8" required=" required">
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project Manager Email Id</h6>
-                </div>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" [(ngModel)]="project.projectManagerEmailId" class="form-control" name="projectManagerEmailId"
-                        required="required">
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Tech Lead Name</h6>
-                </div>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.techLeadName" class="form-control" name="techLeadName"
-                         required=" required">
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Tech Lead Email Id</h6>
-                </div>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" [(ngModel)]="project.techLeadEmailId" class="form-control" name="techLeadEmailId"
+                    <input type="date" [ngModel]="story.assignmentDate | date : 'yyyy-MM-dd' " class="form-control" name="assignmentDate" min="1001"
                         required=" required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project Start Date</h6>
-                </div>
+                <label class="col-md-3 ps-5" for="assignmentDate">
+                    <h6 class="mb-0">Assignment Date</h6>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" [ngModel]="project.projectStartDate | date : 'yyyy-MM-dd' " class="form-control" name="projectStartDate" min="1001"
-                        required=" required">
+                    <input type="date" [ngModel]="story.assignmentDate | date : 'yyyy-MM-dd' " class="form-control" name="assignmentDate"  required=" required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Project End Date</h6>
-                </div>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" [ngModel]="project.projectEndDate | date : 'yyyy-MM-dd' " class="form-control" name="projectEndDate"  required=" required">
-                </fieldset>
-            </div>
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
-                    <h6 class="mb-0">Tech Stack</h6>
-                </div>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.techStack" class="form-control" name="techStack"
-                        required="required">
-                </fieldset>
-            </div>
-            <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="status">
                     <h6 class="mb-0">Status</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.status" class="form-control" name="status"  required=" required">
+                    <input type="text" [(ngModel)]="story.status" class="form-control" name="status"  required=" required">
                 </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <div class="col-md-3 ps-5">
+                <label class="col-md-3 ps-5" for="remarks">
                     <h6 class="mb-0">Remarks</h6>
-                </div>
+                </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.remarks" class="form-control" name="remarks" min="1001"
-                        required="required">
+                    <input type="text" [(ngModel)]="story.remarks" class="form-control" name="remarks"
+                        required />
                 </fieldset>
             </div>
 
             <div class="d-flex justify-content-end pt-3">
                 <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
                 <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveProject()">Register</button>
+                <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="savestory()">Register</button>
             </div>
         </div>
 
     </form>
-</div>
+</div> -->

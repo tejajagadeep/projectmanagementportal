@@ -2,25 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectDataServiceService } from '../service/data/project-data-service.service';
 
-export class Project{
-  projectId!: string;
-    projectName!: string;
-    projectDescription!: string;
-    teamName!: string;
-    teamSize!: string;
-    projectManagerName!: string;
-    projectManagerEmailId!: string;
-    techLeadName!: string;
-    techLeadEmailId!: string;
-    projectStartDate!: Date;
-    projectEndDate!: Date;
-    techStack!: string;
-    status!: string;
-    remarks!: string;
+export class Project {
+  // projectId!: string;
+  // projectName!: string;
+  // projectDescription!: string;
+  // teamName!: string;
+  // teamSize!: string;
+  // projectManagerName!: string;
+  // projectManagerEmailId!: string;
+  // techLeadName!: string;
+  // techLeadEmailId!: string;
+  // projectStartDate!: Date;
+  // projectEndDate!: Date;
+  // techStack!: string;
+  // status!: string;
+  // remarks!: string;
   constructor(
-    
 
-  ) {}
+    public projectId: string,
+    public projectName: string,
+    public projectDescription: string,
+    public teamName: string,
+    public teamSize: string,
+    public projectManagerName: string,
+    public projectManagerEmailId: string,
+    public techLeadName: string,
+    public techLeadEmailId: string,
+    public projectStartDate: Date,
+    public projectEndDate: Date,
+    public techStack: string,
+    public status: string,
+    public remarks: string
+
+  ) { }
 }
 
 @Component({
@@ -33,36 +47,36 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
   project!: Project
   errorMessageResponse!: string
   projectId!: string
-  dateDummy! : Date
+  dateDummy!: Date
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private projectDataService: ProjectDataServiceService,
   ) { }
 
   ngOnInit(): void {
     // this.projectId = this.route.snapshot.params['userId'];
-    // this.project = new Project('','','','','','','','','', this.dateDummy, this.dateDummy, '', '', '')
+    this.project = new Project('','','','','','','','','', new Date(), new Date(), '', '', '')
   }
 
-  navLogin(){
-    this.router.navigate(['login']) ;
+  navLogin() {
+    this.router.navigate(['login']);
   }
 
-  saveProject(){
+  saveProject() {
     this.projectDataService.saveProject(this.project)
-    .subscribe(
-      response => this.project = response,
-      error => this.handleErrorMessage(error)
-      
-    )
-    // this.navLogin();
- }
+      .subscribe(
+        response => this.project = response,
+        error => this.handleErrorMessage(error)
 
- handleErrorMessage(error: any){
-  // this.errorMessageResponse = error
-  this.errorMessageResponse = error.message
- }
+      )
+    // this.navLogin();
+  }
+
+  handleErrorMessage(error: any) {
+    // this.errorMessageResponse = error
+    this.errorMessageResponse = error.error.message
+  }
 
 }

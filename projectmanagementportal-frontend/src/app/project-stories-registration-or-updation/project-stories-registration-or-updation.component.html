@@ -1,2 +1,157 @@
+<!-- <div class="container">
 
 
+
+    <form class="card" style="border-radius: 15px;">
+
+        <h1 class="text-center">Project Story Registration</h1>
+
+        <div class="card-body">
+
+            <div class="container alert alert-warning" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Id</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.projectId" class="form-control form-control-lg" name="projectId"
+                        required="required" />
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Name</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.projectName" class="form-control" name="projectName"
+                        required="required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Description</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <textarea  [(ngModel)]="project.projectDescription" class="form-control" name="projectDescription"
+                        minlength="100" required="required"></textarea>
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Team Name</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.teamName" class="form-control" name="teamName" 
+                        required="required">
+                </fieldset>
+            </div>
+           
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Team Size</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.teamSize" class="form-control" name="teamSize"
+                        minlength="5" maxlength="8" required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Manager Name</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.projectManagerName" class="form-control" name="projectManagerName"
+                        minlength="5" maxlength="8" required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Manager Email Id</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="email" [(ngModel)]="project.projectManagerEmailId" class="form-control" name="projectManagerEmailId"
+                        required="required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Tech Lead Name</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.techLeadName" class="form-control" name="techLeadName"
+                         required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Tech Lead Email Id</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="email" [(ngModel)]="project.techLeadEmailId" class="form-control" name="techLeadEmailId"
+                        required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project Start Date</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="date" [ngModel]="project.projectStartDate | date : 'yyyy-MM-dd' " class="form-control" name="projectStartDate" min="1001"
+                        required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Project End Date</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="date" [ngModel]="project.projectEndDate | date : 'yyyy-MM-dd' " class="form-control" name="projectEndDate"  required=" required">
+                </fieldset>
+            </div>
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Tech Stack</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.techStack" class="form-control" name="techStack"
+                        required="required">
+                </fieldset>
+            </div>
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Status</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.status" class="form-control" name="status"  required=" required">
+                </fieldset>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Remarks</h6>
+                </div>
+                <fieldset class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="project.remarks" class="form-control" name="remarks" min="1001"
+                        required="required">
+                </fieldset>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3">
+                <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
+                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveStory()">Register</button>
+            </div>
+        </div>
+
+    </form>
+</div> -->

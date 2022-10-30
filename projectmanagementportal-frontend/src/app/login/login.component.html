@@ -37,9 +37,9 @@
     <!-- {{loginForm.form.valid}} -->
     <small class="text-danger">{{errorMessage}}</small>
     <div class="mb-3">
-      <label for="exampleInputEmployeeId" class="form-label">Email Id</label>
-      <input type="email" class="form-control" name="email" placeholder="abc@gmail.com" [(ngModel)]="user.emailAddress" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
-      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email Id is required field</small>
+      <label for="exampleInputEmployeeId" class="form-label">User Id</label>
+      <input type="text" class="form-control" name="userId" placeholder="User ID" [(ngModel)]="user.userId" required #userId="ngModel" [class.is-invalid]="userId.invalid && userId.touched">
+      <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required field</small>
 
     </div>
     <div class="mb-3">
