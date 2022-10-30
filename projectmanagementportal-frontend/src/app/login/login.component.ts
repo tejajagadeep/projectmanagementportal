@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   helloWorldMessage =""
   errorMessageResponse=""
   name=''
-  user = new User();
+  // user = new User();
+  user!: User
   story!: Story[]
   project!:Project[]
 

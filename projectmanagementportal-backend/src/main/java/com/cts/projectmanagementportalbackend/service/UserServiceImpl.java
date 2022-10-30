@@ -17,6 +17,13 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+
+	@Override
+	public User getUserByEmailAddressAndPassword(String emailAddress, String password) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmailAddressAndPassword(emailAddress, password);
+	}
 
 	@Override
 	public List<User> getAllUsers() {
@@ -55,5 +62,6 @@ Optional<User> userOptional = userRepository.findById(user.getUserId());
 			throw new RuntimeException();
 		}
 	}
+
 
 }

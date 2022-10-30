@@ -8,4 +8,8 @@ import com.cts.projectmanagementportalbackend.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 
+	public User findByEmailAddress(String emailAddress);
+	public User findByPassword(String password);
+	public User findByEmailAddressAndPassword(String emailAddress, String password);
+	
 }

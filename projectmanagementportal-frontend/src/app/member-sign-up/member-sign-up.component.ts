@@ -5,16 +5,22 @@ import { UserDataServiceService } from '../service/data/user-data-service.servic
 
 export class User{
 
-  userId!: string;
-    name!: string;
-    emailAddress!: string;
-    contactNo!: number;
-    dateOfBirth!: string;
-    userType!: string;
-    password!: string;
+  // userId!: string;
+  //   name!: string;
+  //   emailAddress!: string;
+  //   contactNo!: number;
+  //   dateOfBirth!: string;
+  //   userType!: string;
+  //   password!: string;
   constructor(
     
-    
+    public userId: string,
+    public name: string,
+    public emailAddress: string,
+    public contactNo: number,
+    public dateOfBirth: Date,
+    public userType: string,
+    public password: string
 
   ){}
 }
@@ -26,8 +32,8 @@ export class User{
 })
 export class MemberSignUpComponent implements OnInit {
 
-  user = new User()
-  // user! : User
+  // user = new User()
+  user! : User
   userId! : number
   errorMessageResponse!: string
   dummyNumber!: number
@@ -40,7 +46,8 @@ export class MemberSignUpComponent implements OnInit {
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
-    // this.user = new User('','','',this.dummyNumber,new Date(),'','');
+    this.user = new User('','','',this.dummyNumber,new Date(),'','');
+    // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];
 
@@ -56,7 +63,7 @@ export class MemberSignUpComponent implements OnInit {
     .subscribe(
       response => {
         console.log("Response Recieved")
-        this.navLogin()
+        // this.navLogin()
       },
       error => {
         console.log("Exception Occured")

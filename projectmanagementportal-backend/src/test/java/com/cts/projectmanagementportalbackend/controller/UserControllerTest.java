@@ -38,7 +38,7 @@ class UserControllerTest {
 	String dateString = "1999/07/28";
 	Date date = new Date(dateString);
 
-	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
+//	User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
 	
 	
 //	@Test
@@ -61,26 +61,26 @@ class UserControllerTest {
 //		fail("Not yet implemented");
 //	}
 
-	@Test
-	void testSaveUser() throws Exception {
-		User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
-		when(userService.saveUser(ArgumentMatchers.any())).thenReturn(userService.saveUser(userObject));
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-		String userJson = objectMapper.writeValueAsString(userObject);
-		
-		MockHttpServletRequestBuilder mockHttpServletRequestBuilders = MockMvcRequestBuilders.post("/api/user/userSignUp").accept(MediaType.APPLICATION_JSON).content(userJson);
-		
-		ResultActions resultActions = mockMvc.perform(mockHttpServletRequestBuilders);
-		
-		MvcResult mvcResult = resultActions.andReturn();
-		
-		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-		
-		int status = mockHttpServletResponse.getStatus();
-		
-		assertEquals(201, status);
-	}
+//	@Test
+//	void testSaveUser() throws Exception {
+//		User userObject = new User("jagadep","jagadep","jagadeep@gmail.com",78945612310L,"date","ADMIN","789456123");
+//		when(userService.saveUser(ArgumentMatchers.any())).thenReturn(userService.saveUser(userObject));
+//		
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		String userJson = objectMapper.writeValueAsString(userObject);
+//		
+//		MockHttpServletRequestBuilder mockHttpServletRequestBuilders = MockMvcRequestBuilders.post("/api/user/userSignUp").accept(MediaType.APPLICATION_JSON).content(userJson);
+//		
+//		ResultActions resultActions = mockMvc.perform(mockHttpServletRequestBuilders);
+//		
+//		MvcResult mvcResult = resultActions.andReturn();
+//		
+//		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+//		
+//		int status = mockHttpServletResponse.getStatus();
+//		
+//		assertEquals(201, status);
+//	}
 	
 	@Test
 	void testSaveUser2() throws Exception{

@@ -30,10 +30,26 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("/loginUser")
+	@PostMapping("/login")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> loginUser(@Valid @RequestBody User user) {
-		return new ResponseEntity<>(userService.loginUser(user),HttpStatus.CREATED);
+	public ResponseEntity<User> loginUser(@Valid @RequestBody User user) throws Exception {
+
+		
+		String emailAddress = user.getEmailAddress();
+		String password = user.getPassword();
+		User userObj = null;
+		
+		if (emailAddress != null && password != null) {
+			userObj = userService.getUserByEmailAddressAndPassword(emailAddress, password);
+		}
+		
+		if (userObj == null) {
+			throw new Exception("Invalid Credentials");
+		}
+		
+//		return userObj;
+	
+		return new ResponseEntity<>(userService.loginUser(userObj),HttpStatus.CREATED);
 	}
 
 	@GetMapping("/helloWorld")
