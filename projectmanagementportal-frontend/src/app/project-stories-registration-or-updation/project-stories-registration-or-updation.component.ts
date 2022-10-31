@@ -51,19 +51,25 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.story = new Story('','','','','','',this.dateDummy,this.dateDummy,'','');
+    this.story = new Story('','','','','','',new Date(),new Date(),'','');
 
   }
 
-  navLogin(){
-    this.router.navigate(['login']) ;
+  navHome(){
+    this.router.navigate(['Home']) ;
   }
 
-  saveProject(){
+  saveProjectStory(){
     this.storyDataService.saveStory(this.story)
     .subscribe(
-      response => this.story = response,
-      error => this.handleErrorMessage(error)
+      response => {
+        console.log("Response Recieved")
+        // this.navHome()
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
       
     )
     // this.navLogin();

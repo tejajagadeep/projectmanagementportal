@@ -1,12 +1,15 @@
 package com.cts.projectmanagementportalbackend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
 
@@ -43,9 +46,27 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public Project saveProject(Project project) {
+	public Project saveProject(Project project) throws ElementAlreadyExistException {
 		// TODO Auto-generated method stub
-		return projectRepository.save(project);
+		Optional<Project> optionalProject = projectRepository.findById(project.getProjectId());
+		if(optionalProject.isEmpty()) {
+			return projectRepository.save(project);
+		} else {
+			throw new ElementAlreadyExistException("Project Id already Exist");
+		}
+		
+	}
+
+	@Override
+	public Project updateProject(@Valid Project project, String projectId)  throws NoSuchElementExistException{
+		// TODO Auto-generated method stub
+		Optional<Project> optionalProject = projectRepository.findById(projectId);
+		
+		if(optionalProject.isPresent()) {
+			return projectRepository.save(project);
+		} else {
+			throw new NoSuchElementExistException("Project Id Doesn't Exist");
+		}
 	}
 
 	

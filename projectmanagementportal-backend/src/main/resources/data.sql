@@ -1,6 +1,6 @@
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'Member', '789456123');
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'Admin', '789456123');
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'Admin', '789456123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'Member', 'Venkat@123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'Admin', 'Rajini@123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'Admin', 'Vinay@123');
 
 
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date) values('story1', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project1', 'pending', 'ongoing', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Policy Management', '2022-09-27');

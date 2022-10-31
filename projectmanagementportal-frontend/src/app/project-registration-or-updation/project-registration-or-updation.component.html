@@ -1,8 +1,8 @@
-<!-- <div class="container">
+<div class="container">
 
 
 
-    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveproject()">
+    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveProject()">
 
         <h1 class="text-center">project Registration</h1>
 
@@ -11,22 +11,9 @@
             <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
             </div>
 
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="form-label col-md-3 ps-5" for="exampleInputUserId">
-                    <h6 class="mb-0">User Id</h6>
-                </label>
-                <div class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="userId" name="userId" placeholder="User Id"
-                        [(ngModel)]="project.userId" required #userId="ngModel"
-                        [class.is-invalid]="userId.invalid && userId.touched" minlength="5" maxlength="8"
-                        pattern=".{5,8}" />
-                    <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required and
-                        should have 5 to 8 charaters</small>
-                </div>
-            </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectId">
+                <label class="col-md-3 ps-5" for="exampleInputprojectId">
                     <h6 class="mb-0">Project Id</h6>
                 </label>
                 <div class="form-group col-md-9 pe-5">
@@ -39,7 +26,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectName">
+                <label class="col-md-3 ps-5" for="exampleInputprojectName">
                     <h6 class="mb-0">Project Name</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -52,7 +39,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectDescription">
+                <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
                     <h6 class="mb-0">project Description</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -67,7 +54,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="teamName">
+                <label class="col-md-3 ps-5" for="exampleInputteamName">
                     <h6 class="mb-0">teamName</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -80,7 +67,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="teamSize">
+                <label class="col-md-3 ps-5" for="exampleInputteamSize">
                     <h6 class="mb-0">teamSize</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -93,7 +80,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectManagerName">
+                <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
                     <h6 class="mb-0">projectManagerName</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -106,7 +93,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectManagerEmailId">
+                <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
                     <h6 class="mb-0">projectManagerEmailId</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -119,7 +106,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="techLeadName">
+                <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
                     <h6 class="mb-0">techLeadName</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -132,7 +119,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="techLeadEmailId">
+                <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
                     <h6 class="mb-0">techLeadEmailId</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -145,7 +132,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectStartDate">
+                <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
                     <h6 class="mb-0">projectStartDate Date</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -159,7 +146,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="projectEndDate">
+                <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
                     <h6 class="mb-0">projectEndDate Date</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -173,7 +160,7 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="techStack">
+                <label class="col-md-3 ps-5" for="exampleInputtechStack">
                     <h6 class="mb-0">techStack</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -187,7 +174,7 @@
 
             To-Do In-Progress, Ready-For-Test, Completed
             <div class="row align-items-center pt-4 pb-3">
-                <label class="form-label col-md-3 ps-5" for="status">
+                <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
                   <h6 class="mb-0">status</h6>
                 </label>
                 <div class="form-group col-md-9 pe-5">
@@ -215,7 +202,7 @@
               </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="remarks">
+                <label class="col-md-3 ps-5" for="exampleInputremarks">
                     <h6 class="mb-0">Remarks</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
@@ -228,11 +215,11 @@
             </div>
 
             <div class="d-flex justify-content-end pt-3">
-                <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
+                <button type="button" class="btn btn-light" (click)="navHome()">Home</button>
                 <button type="reset" class="btn btn-light btn-lg">Reset all</button>
                 <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
             </div>
         </div>
 
     </form>
-</div> -->
+</div>

@@ -1,13 +1,13 @@
 package com.cts.projectmanagementportalbackend.exception;
 
-public class UsernameAlreadyExists extends Exception{
+public class ElementAlreadyExistException extends Exception{
 	
 	/**
 	 * UsernameAlreadyExists Exception
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UsernameAlreadyExists(String msg) {
+	public ElementAlreadyExistException(String msg) {
 
 		super(msg);
 	}

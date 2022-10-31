@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
-import com.cts.projectmanagementportalbackend.exception.UsernameAlreadyExists;
+import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
@@ -38,14 +38,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User saveUser(User user)  throws UsernameAlreadyExists{
+	public User saveUser(User user)  throws ElementAlreadyExistException{
 		// TODO Auto-generated method stub
 		Optional<User> userOptional = userRepository.findById(user.getUserId());
 		
 		if(userOptional.isEmpty()) {
 			return userRepository.save(user);
 		} else {
-			throw new UsernameAlreadyExists("UserId already Exists");
+			throw new ElementAlreadyExistException("User Id already Exists");
 		}
 		
 	}

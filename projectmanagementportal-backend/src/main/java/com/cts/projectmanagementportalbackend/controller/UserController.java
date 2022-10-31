@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
-import com.cts.projectmanagementportalbackend.exception.UsernameAlreadyExists;
+import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
@@ -107,7 +107,7 @@ public class UserController {
 	
 	@PostMapping("/userSignUp")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws UsernameAlreadyExists{
+	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws ElementAlreadyExistException{
 		return new ResponseEntity<>(userService.saveUser(user),HttpStatus.CREATED);
 	}
 	

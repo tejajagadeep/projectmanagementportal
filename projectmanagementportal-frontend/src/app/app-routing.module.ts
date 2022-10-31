@@ -11,9 +11,9 @@ const routes: Routes = [
   { path:'login', component: LoginComponent},
   { path:'home', component: HomeComponent},
   { path:'home/:userId', component: HomeComponent},
-  { path:'memberSignUp', component: MemberSignUpComponent},
-  { path:'projectRegistration', component: ProjectRegistrationOrUpdationComponent},
-  { path:'projectStoryRegistration', component: ProjectStoriesRegistrationOrUpdationComponent}
+  { path:'member-signUp', component: MemberSignUpComponent},
+  { path:'project-registration', component: ProjectRegistrationOrUpdationComponent},
+  { path:'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent}
   // { path:'**', component: LoginComponent}
 ];
 

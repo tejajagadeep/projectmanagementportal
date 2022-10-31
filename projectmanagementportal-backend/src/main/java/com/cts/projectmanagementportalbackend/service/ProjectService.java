@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 
 public interface ProjectService {
@@ -18,7 +20,9 @@ public interface ProjectService {
 
 	List<Project> getProjectsByStatus(String status);
 
-	Project saveProject(Project project);
+	Project saveProject(Project project) throws ElementAlreadyExistException;
+
+	Project updateProject(Project project, String projectId)  throws NoSuchElementExistException;
 
 	
 }

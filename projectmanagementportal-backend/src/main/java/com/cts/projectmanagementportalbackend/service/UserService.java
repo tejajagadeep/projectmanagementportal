@@ -8,13 +8,13 @@ import javax.validation.constraints.NotNull;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
-import com.cts.projectmanagementportalbackend.exception.UsernameAlreadyExists;
+import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 
 public interface UserService {
 
 	List<User> getAllUsers();
 
-	User saveUser(User user)  throws UsernameAlreadyExists;
+	User saveUser(User user)  throws ElementAlreadyExistException;
 
 	User getUserById(String userId);
 

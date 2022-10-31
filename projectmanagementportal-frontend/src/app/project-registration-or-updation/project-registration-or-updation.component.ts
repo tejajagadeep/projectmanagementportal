@@ -60,15 +60,21 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
     this.project = new Project('','','','','','','','','', new Date(), new Date(), '', '', '')
   }
 
-  navLogin() {
-    this.router.navigate(['login']);
+  navHome() {
+    this.router.navigate(['Home']);
   }
 
   saveProject() {
     this.projectDataService.saveProject(this.project)
       .subscribe(
-        response => this.project = response,
-        error => this.handleErrorMessage(error)
+        response => {
+          console.log("Response Recieved")
+          // this.navHome()
+        },
+        error => {
+          console.log("Exception Occured")
+          this.handleErrorMessage(error);
+        }
 
       )
     // this.navLogin();
