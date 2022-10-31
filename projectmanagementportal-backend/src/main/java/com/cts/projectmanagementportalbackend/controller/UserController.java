@@ -26,6 +26,11 @@ import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.service.UserService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import com.cts.projectmanagementportalbackend.model.ErrorMessages;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -95,7 +100,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/getUserById/{userId}")
-	public User getAllUsers(@PathVariable String userId){
+	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
+	public @ApiResponse(description = "Demo Object") User getAllUsers(@Parameter(description = "Id of the Demo") @PathVariable String userId){
 		return userService.getUserById(userId);
 	}
 	

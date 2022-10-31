@@ -22,7 +22,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-
+//	@Autowired
+//	TokenService tokenService;
+	
 	@Override
 	public User getUserByUserIdAndPassword(String userId, String password) {
 		// TODO Auto-generated method stub
@@ -79,7 +81,7 @@ public class UserServiceImpl implements UserService {
 					response.setUser(user.get());
 					response.setLoginStatus("success");
 					response.setErrorMessage("null");
-//					response.setToken(tokenService.createToken(user.getUserId()));
+//					response.setToken(tokenService.createToken(user.get().getUserId()));
 				}
 				else
 					throw new InvalidUserIdOrPasswordException("Invalid Username Or Password Exception1");
