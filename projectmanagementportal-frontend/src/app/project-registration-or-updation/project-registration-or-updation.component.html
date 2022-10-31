@@ -2,7 +2,7 @@
 
 
 
-    <form class="card" style="border-radius: 15px;">
+    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveproject()">
 
         <h1 class="text-center">project Registration</h1>
 
@@ -17,7 +17,7 @@
                 </label>
                 <div class="form-group col-md-9 pe-5">
                     <input type="text" class="form-control" id="userId" name="userId" placeholder="User Id"
-                        [(ngModel)]="user.userId" required #userId="ngModel"
+                        [(ngModel)]="project.userId" required #userId="ngModel"
                         [class.is-invalid]="userId.invalid && userId.touched" minlength="5" maxlength="8"
                         pattern=".{5,8}" />
                     <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required and
@@ -110,7 +110,7 @@
                     <h6 class="mb-0">projectManagerEmailId</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId" placeholder="projectManagerEmailId"
+                    <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId" placeholder="projectManagerEmailId"
                         [(ngModel)]="project.projectManagerEmailId" required #projectManagerEmailId="ngModel"
                         [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
                     <small class="text-danger" [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">projectManagerEmailId is
@@ -136,7 +136,7 @@
                     <h6 class="mb-0">techLeadEmailId</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="techLeadEmailId" name="techLeadEmailId" placeholder="techLeadEmailId"
+                    <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId" placeholder="techLeadEmailId"
                         [(ngModel)]="project.techLeadEmailId" required #techLeadEmailId="ngModel"
                         [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
                     <small class="text-danger" [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">techLeadEmailId is
@@ -150,7 +150,7 @@
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="date" class="form-control" id="projectStartDate" name="projectStartDate" placeholder="projectStartDate"
-                        (ngModel)="(user.projectStartDate)" required #projectStartDate="ngModel"
+                        (ngModel)="(project.projectStartDate)" required #projectStartDate="ngModel"
                         [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
                     <small class="text-danger" [class.d-none]="projectStartDate.valid || projectStartDate.untouched">projectStartDate
                         is a
@@ -164,7 +164,7 @@
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
                     <input type="date" class="form-control" id="projectEndDate" name="projectEndDate" placeholder="projectEndDate"
-                        (ngModel)="(user.projectEndDate)" required #projectEndDate="ngModel"
+                        (ngModel)="(project.projectEndDate)" required #projectEndDate="ngModel"
                         [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
                     <small class="text-danger" [class.d-none]="projectEndDate.valid || projectEndDate.untouched">projectEndDate
                         is a
@@ -173,28 +173,64 @@
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="status">
-                    <h6 class="mb-0">Status</h6>
+                <label class="col-md-3 ps-5" for="techStack">
+                    <h6 class="mb-0">techStack</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.status" class="form-control" name="status"
-                        required=" required">
+                    <input type="text" class="form-control" id="techStack" name="techStack" placeholder="techStack"
+                        [(ngModel)]="project.techStack" required #techStack="ngModel"
+                        [class.is-invalid]="techStack.invalid && techStack.touched" />
+                    <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">techStack is
+                        required</small>
                 </fieldset>
             </div>
+
+            To-Do In-Progress, Ready-For-Test, Completed
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="form-label col-md-3 ps-5" for="status">
+                  <h6 class="mb-0">status</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
+                      [(ngModel)]="project.status" />
+                    <label class="form-check-label" for="exampleRadios1">To-Do</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="In-Progress" value="In-Progress"
+                      [(ngModel)]="project.status" />
+                    <label class="form-check-label" for="exampleRadios2">In-Progress</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="Ready-For-Test" value="Ready-For-Test"
+                      [(ngModel)]="project.status" />
+                    <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
+                      [(ngModel)]="project.status" />
+                    <label class="form-check-label" for="exampleRadios4">Completed</label>
+                  </div>
+                </div>
+              </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="remarks">
                     <h6 class="mb-0">Remarks</h6>
                 </label>
                 <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" [(ngModel)]="project.remarks" class="form-control" name="remarks" required />
+                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
+                        [(ngModel)]="project.remarks" required #remarks="ngModel"
+                        [class.is-invalid]="remarks.invalid && remarks.touched" />
+                    <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">remarks is
+                        required</small>
                 </fieldset>
             </div>
 
             <div class="d-flex justify-content-end pt-3">
                 <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
                 <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveproject()">Register</button>
+                <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
             </div>
         </div>
 
