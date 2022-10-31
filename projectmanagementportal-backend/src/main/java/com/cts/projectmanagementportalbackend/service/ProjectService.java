@@ -19,10 +19,13 @@ public interface ProjectService {
 	List<Project> getProjectsByProjectManagerName(String projectManagerName);
 
 	List<Project> getProjectsByStatus(String status);
+	
+	Project getProjectById(String projectId) throws NoSuchElementExistException;
 
 	Project saveProject(Project project) throws ElementAlreadyExistException;
 
-	Project updateProject(Project project, String projectId)  throws NoSuchElementExistException;
+	Project updateProjectById(Project project, String projectId)  throws NoSuchElementExistException;
 
+	void deleteProjectById(String projectId) throws NoSuchElementExistException;
 	
 }

@@ -56,7 +56,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   }
 
   navHome(){
-    this.router.navigate(['Home']) ;
+    this.router.navigate(['home']) ;
   }
 
   saveProjectStory(){
@@ -77,7 +77,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
 
  handleErrorMessage(error: any){
   // this.errorMessageResponse = error
-  this.errorMessageResponse = error.message
+  this.errorMessageResponse = error.error.message
  }
 
 }

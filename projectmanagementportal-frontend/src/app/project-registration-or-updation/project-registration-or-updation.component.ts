@@ -61,7 +61,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
   }
 
   navHome() {
-    this.router.navigate(['Home']);
+    this.router.navigate(['home']);
   }
 
   saveProject() {

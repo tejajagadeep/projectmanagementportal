@@ -2,6 +2,7 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.lang.StackWalker.Option;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
+import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
@@ -25,49 +27,6 @@ public class UserServiceImpl implements UserService {
 //	@Autowired
 //	TokenService tokenService;
 	
-	@Override
-	public User getUserByUserIdAndPassword(String userId, String password) {
-		// TODO Auto-generated method stub
-		return userRepository.findByUserIdAndPassword(userId, password);
-	}
-
-	@Override
-	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return userRepository.findAll();
-	}
-
-	@Override
-	public User saveUser(User user)  throws ElementAlreadyExistException{
-		// TODO Auto-generated method stub
-		Optional<User> userOptional = userRepository.findById(user.getUserId());
-		
-		if(userOptional.isEmpty()) {
-			return userRepository.save(user);
-		} else {
-			throw new ElementAlreadyExistException("User Id already Exists");
-		}
-		
-	}
-
-	@Override
-	public User getUserById(String userId) {
-		// TODO Auto-generated method stub
-		return userRepository.findById(userId).get();
-//		return userRepository.getById(userId);
-	}
-
-//	@Override
-//	public User loginUser(User user) {
-//		// TODO Auto-generated method stub
-//Optional<User> userOptional = userRepository.findById(user.getUserId());
-//		
-//		if(userOptional.isEmpty()) {
-//			return userRepository.save(user);
-//		} else {
-//			throw new RuntimeException();
-//		}
-//	}
 
 	@Override
 	public UserResponse loginUser(String userId, String password)  throws InvalidUserIdOrPasswordException{
@@ -96,6 +55,60 @@ public class UserServiceImpl implements UserService {
 		}
 		return response;
 	}
+	
+	@Override
+	public User getUserByUserIdAndPassword(String userId, String password) {
+		// TODO Auto-generated method stub
+		return userRepository.findByUserIdAndPassword(userId, password);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userRepository.findAll();
+	}
+
+	@Override
+	public User getUserById(String userId) throws NoSuchElementExistException {
+		
+		Optional<User> optionalUser = userRepository.findById(userId);
+		
+		if(optionalUser.isPresent()) {
+			return userRepository.findById(userId).get();
+		} else {
+			throw new NoSuchElementExistException("User Id doesn't Exist");
+		}
+		
+		
+	}
+	
+	@Override
+	public User saveUser(User user)  throws ElementAlreadyExistException{
+		// TODO Auto-generated method stub
+		Optional<User> userOptional = userRepository.findById(user.getUserId());
+		
+		if(userOptional.isEmpty()) {
+			return userRepository.save(user);
+		} else {
+			throw new ElementAlreadyExistException("User Id already Exists");
+		}
+		
+	}
+
+	
+
+//	@Override
+//	public User loginUser(User user) {
+//		// TODO Auto-generated method stub
+//Optional<User> userOptional = userRepository.findById(user.getUserId());
+//		
+//		if(userOptional.isEmpty()) {
+//			return userRepository.save(user);
+//		} else {
+//			throw new RuntimeException();
+//		}
+//	}
+
 
 
 }

@@ -83,10 +83,10 @@ export class MemberSignUpComponent implements OnInit {
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-    this.errorMessageResponse = error.error
+    this.errorMessageResponse = error.error.message
   }
 
-  getByUserId(userId: number) {
+  getByUserId(userId: string) {
     this.userDataService.getUserById(userId)
       .subscribe(
         response => this.user = response

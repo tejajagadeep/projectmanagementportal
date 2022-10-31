@@ -52,7 +52,7 @@ export class UserDataServiceService {
     return this.http.get<User[]>(`${USER_API_URL}/getAllUsers`);
   }
 
-  getUserById(userId: number){
+  getUserById(userId: string){
     return this.http.get<User>(`${USER_API_URL}/getUserById/${userId}`);
   }
 

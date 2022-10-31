@@ -28,6 +28,17 @@ public class StoryServiceImpl implements StoryService {
 	public List<Story> getAllStories() {
 		return storyReposiotry.findAll();
 	}
+	
+	@Override
+	public Story getStoryById(String storyId) throws NoSuchElementExistException {
+		
+		Optional<Story> optionalProject = storyReposiotry.findById(storyId);
+		if(optionalProject.isPresent()) {
+			return storyReposiotry.findById(storyId).get();
+		} else {
+			throw new NoSuchElementExistException("Story Id Doesn't Exist");
+		}
+	}
 
 	@Override
 	public Story saveStory(Story story) throws ElementAlreadyExistException, NoSuchElementExistException {
@@ -65,11 +76,34 @@ public class StoryServiceImpl implements StoryService {
 
 			throw new NoSuchElementExistException("Project Id Doesn't Exist");
 
+		} else if (optionalProject.get().getProjectId()==story.getProjectId()) {
+			Story storyData = optionalStory.get();
+			storyData.setStoryTitle(story.getStoryTitle());
+			storyData.setStoryDescription(story.getStoryDescription());
+			storyData.setAssignee(story.getAssignee());
+			storyData.setAssigneeEmailId(story.getAssigneeEmailId());
+			storyData.setAssignmentDate(story.getAssignmentDate());
+			storyData.setTargetDate(story.getTargetDate());
+			storyData.setStatus(story.getStatus());
+			storyData.setRemarks(story.getRemarks());
+			return storyReposiotry.save(storyData);
 		} else {
-
-			return storyReposiotry.save(story);
-
+			throw new NoSuchElementExistException("This Story Id doesn't belong to this Project");
 		}
 	}
+
+	@Override
+	public void deleteStoryById(String storyId) throws NoSuchElementExistException {
+		
+		Optional<Story> optionalProject = storyReposiotry.findById(storyId);
+		if(optionalProject.isPresent()) {
+			storyReposiotry.deleteById(storyId);
+		} else {
+			throw new NoSuchElementExistException("Story Id Doesn't Exist");
+		}
+		
+	}
+
+	
 
 }

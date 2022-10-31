@@ -217,7 +217,8 @@
 
   <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
     <h1 class="text-success text-center">User SignUp</h1>
-    <small [class.text-danger]>{{errorMessageResponse}}</small>
+
+    <!-- <div class="container alert alert-warning text-center" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div> -->
 
     <div class="row align-items-center pt-4 pb-3">
       <label class="form-label col-md-3 ps-5" for="exampleInputName">
@@ -266,8 +267,7 @@
           (ngModel)="(user.dateOfBirth)" required #dateOfBirth="ngModel"
           [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" />
         <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date of Birth is a
-          required
-          field.</small>
+          required field.</small>
       </div>
     </div>
 
@@ -298,6 +298,7 @@
           [(ngModel)]="user.userId" required #userId="ngModel" [class.is-invalid]="userId.invalid && userId.touched" 
           minlength="5" maxlength="8" pattern=".{5,8}"/>
         <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required and should have 5 to 8 charaters</small>
+        <small class="text-danger" *ngIf = "errorMessageResponse">{{errorMessageResponse}}</small>
       </div>
     </div>
 
@@ -309,7 +310,7 @@
         <input type="password" class="form-control" id="password" name="password" placeholder="Password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="user.password" required #password="ngModel"
           [class.is-invalid]="password.invalid && password.touched" />
-        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is a should be greter than 8 chracters containing atleas one uppercase, one numeric and a special character</small>
+        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is a should be greater than 8 chracters containing atleas one uppercase, one numeric and a special character</small>
       </div>
     </div>
 

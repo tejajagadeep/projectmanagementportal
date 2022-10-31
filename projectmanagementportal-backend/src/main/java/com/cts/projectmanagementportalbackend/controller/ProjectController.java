@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,11 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getProjectsByStatus(status), HttpStatus.OK);
 	}
 	
+	@GetMapping("/getProjectById/{projectId}")
+	public ResponseEntity<Project> getProjectById(@PathVariable String projectId) throws NoSuchElementExistException{
+		return new ResponseEntity<>(projectService.getProjectById(projectId), HttpStatus.OK);
+	}
+	
 	@PostMapping("/projectRegiration")
 	@ResponseBody
 	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws ElementAlreadyExistException {
@@ -64,8 +70,14 @@ public class ProjectController {
 	
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
-	public ResponseEntity<Project> updateProject(@Valid @RequestBody Project project, @PathVariable String projectId) throws NoSuchElementExistException{
-		return new ResponseEntity<>(projectService.updateProject(project, projectId), HttpStatus.OK);
+	public ResponseEntity<Project> updateProjectById(@Valid @RequestBody Project project, @PathVariable String projectId) throws NoSuchElementExistException{
+		return new ResponseEntity<>(projectService.updateProjectById(project, projectId), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/deleteProjectById/{projectId}")
+	public ResponseEntity<List<Project>> deleteProjectById(@PathVariable String projectId) throws NoSuchElementExistException{
+		projectService.deleteProjectById(projectId);
+		return new ResponseEntity<>(projectService.getAllProjects(), HttpStatus.OK);
 	}
 	
 	
