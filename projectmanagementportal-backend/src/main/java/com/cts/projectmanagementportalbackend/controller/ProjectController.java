@@ -70,8 +70,8 @@ public class ProjectController {
 	
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
-	public ResponseEntity<Project> updateProjectById(@Valid @RequestBody Project project, @PathVariable String projectId) throws NoSuchElementExistException{
-		return new ResponseEntity<>(projectService.updateProjectById(project, projectId), HttpStatus.OK);
+	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException{
+		return new ResponseEntity<>(projectService.updateProjectById(projectId, project), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteProjectById/{projectId}")

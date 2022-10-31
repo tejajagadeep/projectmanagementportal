@@ -38,4 +38,12 @@ export class ProjectDataServiceService {
     return this.http.post<Project>(`${PROJECT_API_URL}/projectRegiration`,project);
   }
 
+  updateProjectById(projectId: string, project: Project){
+    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectById/${projectId}`,project);
+  }
+
+  deleteProjectById(projectId: string){
+    return this.http.delete<Project>(`${PROJECT_API_URL}/deleteProjectById/${projectId}`);
+  }
+
 }

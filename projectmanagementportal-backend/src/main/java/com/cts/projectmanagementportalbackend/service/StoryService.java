@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
+import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 
 public interface StoryService {
@@ -16,7 +17,7 @@ public interface StoryService {
 
 	Story saveStory(Story story)  throws ElementAlreadyExistException, NoSuchElementExistException ;
 
-	Story updateStory(@Valid Story story, String storyId) throws NoSuchElementExistException;
+	Story updateStory(String storyId, Story story) throws NoSuchElementExistException;
 
 	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
 

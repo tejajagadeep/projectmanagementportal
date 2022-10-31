@@ -24,7 +24,7 @@ public interface ProjectService {
 
 	Project saveProject(Project project) throws ElementAlreadyExistException;
 
-	Project updateProjectById(Project project, String projectId)  throws NoSuchElementExistException;
+	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException;
 
 	void deleteProjectById(String projectId) throws NoSuchElementExistException;
 	

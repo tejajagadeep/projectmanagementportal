@@ -63,7 +63,7 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public Story updateStory(@Valid Story story, String storyId) throws NoSuchElementExistException {
+	public Story updateStory(String storyId, Story story) throws NoSuchElementExistException {
 
 		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 		Optional<Project> optionalProject = projectRepository.findById(story.getProjectId());

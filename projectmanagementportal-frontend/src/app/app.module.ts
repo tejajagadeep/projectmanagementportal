@@ -12,6 +12,7 @@ import { ProjectRegistrationOrUpdationComponent } from './project-registration-o
 import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
+import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FooterComponent } from './footer/footer.component';
     ProjectRegistrationOrUpdationComponent,
     ProjectStoriesRegistrationOrUpdationComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    ViewProjectStatusComponent
   ],
   imports: [
     BrowserModule,

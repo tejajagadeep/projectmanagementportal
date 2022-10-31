@@ -79,7 +79,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public Project updateProjectById(Project project, String projectId)  throws NoSuchElementExistException{
+	public Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException{
 		// TODO Auto-generated method stub
 		Optional<Project> optionalProject = projectRepository.findById(projectId);
 		

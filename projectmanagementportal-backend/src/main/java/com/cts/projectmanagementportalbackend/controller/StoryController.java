@@ -50,8 +50,8 @@ public class StoryController {
 	}
 	
 	@PutMapping("updateStory/{storyId}")
-	public ResponseEntity<Story> update(@Valid @RequestBody Story story, @PathVariable String storyId) throws NoSuchElementExistException{
-		return new ResponseEntity<>(storyService.updateStory(story, storyId), HttpStatus.OK);
+	public ResponseEntity<Story> updateStory(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+		return new ResponseEntity<>(storyService.updateStory(storyId, story), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteStoryById/{storyId}")

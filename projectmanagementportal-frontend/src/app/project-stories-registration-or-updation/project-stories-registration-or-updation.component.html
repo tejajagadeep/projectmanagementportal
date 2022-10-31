@@ -15,26 +15,26 @@
                 <label class="col-md-3 ps-5" for="exampleInputStorytId">
                     <h6 class="mb-0">Story Id</h6>
                 </label>
-                <div class="form-group col-md-9 pe-5">
+                <fieldset class="form-group col-md-9 pe-5">
                     <input type="text" class="form-control" id="storyId" name="storyId" placeholder="storyId"
                         [(ngModel)]="story.storyId" required #storyId="ngModel"
                         [class.is-invalid]="storyId.invalid && storyId.touched" />
                     <small class="text-danger" [class.d-none]="storyId.valid || storyId.untouched">Story Id Id is
                         required</small>
-                </div>
+                </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
                 <label class="col-md-3 ps-5" for="exampleInputprojectId">
                     <h6 class="mb-0">Project Id</h6>
                 </label>
-                <div class="form-group col-md-9 pe-5">
+                <fieldset class="form-group col-md-9 pe-5">
                     <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
                         [(ngModel)]="story.projectId" required #projectId="ngModel"
                         [class.is-invalid]="projectId.invalid && projectId.touched" />
                     <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">projectId Id is
                         required</small>
-                </div>
+                </fieldset>
             </div>
 
             <div class="row align-items-center pt-4 pb-3">
@@ -124,7 +124,7 @@
                 <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
                   <h6 class="mb-0">status</h6>
                 </label>
-                <div class="form-group col-md-9 pe-5">
+                <fieldset class="form-group col-md-9 pe-5">
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
                       [(ngModel)]="story.status" />
@@ -145,7 +145,7 @@
                       [(ngModel)]="story.status" />
                     <label class="form-check-label" for="exampleRadios4">Completed</label>
                   </div>
-                </div>
+                </fieldset>
               </div>
 
             <div class="row align-items-center pt-4 pb-3">

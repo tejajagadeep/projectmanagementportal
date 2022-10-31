@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../member-sign-up/member-sign-up.component';
 import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
 import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
-import { ProjectDataServiceService } from '../service/data/project-data-service.service';
-import { StoryDataServiceService } from '../service/data/story-data-service.service';
 import { UserDataServiceService } from '../service/data/user-data-service.service';
 
 @Component({
@@ -24,15 +22,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
-    private userService: UserDataServiceService,
-    private projectService: ProjectDataServiceService,
-    private storyService: StoryDataServiceService
+    private userService: UserDataServiceService
   ) { }
 
   ngOnInit(): void {
     this.getAllUsers();
-    this.getAllProjects();
-    this.getAllStories();
+    
 
   }
 
@@ -51,24 +46,5 @@ export class HomeComponent implements OnInit {
     this.user = response
    }
 
-   getAllProjects(){
-    this.projectService.getAllProjects().subscribe(
-      response => this.handleGetProjects(response)
-    );
-   }
-
-   handleGetProjects(response : any){
-    this.project = response
-   }
-
-   getAllStories(){
-    this.storyService.getAllStories().subscribe(
-      response => this.handleGetStories(response)
-    );
-   }
-
-   handleGetStories(response : any){
-    this.story = response
-    console.log(response)
-  }
+   
 }
