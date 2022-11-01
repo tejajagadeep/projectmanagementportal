@@ -14,10 +14,10 @@ const routes: Routes = [
   { path: 'home/:userId', component: HomeComponent},
   { path: 'member-signUp', component: MemberSignUpComponent},
   { path: 'view-project-status', component: ViewProjectStatusComponent},
-  { path: 'view-project-status/:projectId', component: ProjectRegistrationOrUpdationComponent},
   { path: 'project-registration', component: ProjectRegistrationOrUpdationComponent},
-  { path: 'view-project-status/:storyId', component: ProjectStoriesRegistrationOrUpdationComponent},
-  { path: 'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent}
+  { path: 'project-registration/:projectId', component: ProjectRegistrationOrUpdationComponent},
+  { path: 'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent},
+  { path: 'project-story-registration/:storyId', component: ProjectStoriesRegistrationOrUpdationComponent}
   // { path:'**', component: LoginComponent}
 ];
 

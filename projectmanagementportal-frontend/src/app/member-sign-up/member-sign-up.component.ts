@@ -41,7 +41,7 @@ export class MemberSignUpComponent implements OnInit {
 
   constructor(private userDataService: UserDataServiceService,
     private route: ActivatedRoute,
-    private _router: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,8 +54,8 @@ export class MemberSignUpComponent implements OnInit {
 
   }
 
-  navLogin() {
-    this._router.navigate(['login'])
+  navLink(){
+    this.router.navigate(["login"]);
   }
 
   registerUser() {
@@ -75,15 +75,15 @@ export class MemberSignUpComponent implements OnInit {
   saveUser() {
     this.userDataService.saveUser(this.user)
       .subscribe(
-        response => this.user = response,
-        error => this.handleErrorMessage(error),
-        // this._router.navigate(['/login'])
+        response => {
+          this.user = response
+          this.navLink()
+        },
+        error => {
+          this.handleErrorMessage(error)
+        } 
+        
       )
-  }
-
-  handleErrorMessage(error: any) {
-    // this.errorMessageResponse = error
-    this.errorMessageResponse = error.error.message
   }
 
   getByUserId(userId: string) {
@@ -93,5 +93,9 @@ export class MemberSignUpComponent implements OnInit {
       )
   }
 
+  handleErrorMessage(error: any) {
+    // this.errorMessageResponse = error
+    this.errorMessageResponse = error.error.message
+  }
 
 }

@@ -15,23 +15,23 @@ export class ProjectDataServiceService {
   }
 
   getProjectsByProjectManagerEmailId(projectManagerEmailId: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getUserById/${projectManagerEmailId}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerEmailId/${projectManagerEmailId}`);
   }
 
   getProjectsByProjectName(projectName: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getUserById/${projectName}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectName/${projectName}`);
   }
 
   getProjectsByProjectManagerName(projectManagerName: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getUserById/${projectManagerName}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerName/${projectManagerName}`);
   }
 
   getProjectsByStatus(status: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getUserById/${status}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByStatus/${status}`);
   }
 
   getProjectById(projectId: string){
-    return this.http.get<Project>(`${PROJECT_API_URL}/getUserById/${projectId}`);
+    return this.http.get<Project>(`${PROJECT_API_URL}/getProjectById/${projectId}`);
   }
 
   saveProject(project: Project){

@@ -88,8 +88,8 @@
               <td>{{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</td>
               <td>{{storyDetail.status}}</td>
               <td>{{storyDetail.remarks}}</td>
-              <td><button (click) = "updateStory(storyDetail.projectId)" class="btn btn-info">Update</button></td>
-              <td><button (click) = "deleteStory(storyDetail.projectId)" class="btn btn-warning">Delete</button></td>
+              <td><button (click) = "updateStory(storyDetail.storyId)" class="btn btn-info">Update</button></td>
+              <td><button (click) = "deleteStory(storyDetail.storyId)" class="btn btn-warning">Delete</button></td>
           </tr>
       </tbody>
   </table>

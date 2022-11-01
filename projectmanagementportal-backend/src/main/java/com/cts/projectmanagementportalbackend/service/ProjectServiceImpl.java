@@ -62,7 +62,7 @@ public class ProjectServiceImpl implements ProjectService{
 		if(optionalProject.isPresent()) {
 			return projectRepository.findById(projectId).get();
 		} else {
-			throw new NoSuchElementExistException("Project Id doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 	}
 
@@ -73,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService{
 		if(optionalProject.isEmpty()) {
 			return projectRepository.save(project);
 		} else {
-			throw new ElementAlreadyExistException("Project Id already Exist");
+			throw new ElementAlreadyExistException("Project with Id " + project.getProjectId() + "  already Exist");
 		}
 		
 	}
@@ -100,7 +100,7 @@ public class ProjectServiceImpl implements ProjectService{
 			projectData.setRemarks(project.getRemarks());
 			return projectRepository.save(projectData);
 		} else {
-			throw new NoSuchElementExistException("Project Id Doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 	}
 
@@ -112,7 +112,7 @@ public class ProjectServiceImpl implements ProjectService{
 		if(optionalProject.isPresent()) {
 			projectRepository.deleteById(projectId);
 		} else {
-			throw new NoSuchElementExistException("Project Id Doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 		
 	}

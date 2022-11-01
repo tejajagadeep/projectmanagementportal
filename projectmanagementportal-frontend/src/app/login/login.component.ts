@@ -29,9 +29,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
-    private userService: UserDataServiceService,
-    private projectService: ProjectDataServiceService,
-    private storyService: StoryDataServiceService
+    private userService: UserDataServiceService
     
     ) { }
 
@@ -40,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  navHome(){
+  navLink(){
     this.router.navigate(["home"]);
   }
 
@@ -78,7 +76,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user).subscribe(
       data => {
         console.log("Login Success");
-        this.navHome();
+        this.navLink();
       },
       error => {
         console.log("Exception Occured");

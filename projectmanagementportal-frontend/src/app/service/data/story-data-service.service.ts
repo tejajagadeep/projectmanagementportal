@@ -15,7 +15,7 @@ export class StoryDataServiceService {
   }
 
   getStoryById(storyId: string){
-    return this.http.get<Story>(`${STORY_API_URL}/storyRegistration/${storyId}`)
+    return this.http.get<Story>(`${STORY_API_URL}/getStoryById/${storyId}`)
   }
 
   saveStory(story: Story){
@@ -23,11 +23,11 @@ export class StoryDataServiceService {
   }
 
   updateStory(storyId: string, story: Story){
-    return this.http.post<Story>(`${STORY_API_URL}/storyRegistration/${storyId}`,story)
+    return this.http.post<Story>(`${STORY_API_URL}/updateStory/${storyId}`,story)
   }
 
   deleteStoryById(storyId: string){
-    return this.http.delete<Story>(`${STORY_API_URL}/storyRegistration/${storyId}`)
+    return this.http.delete<Story>(`${STORY_API_URL}/deleteStoryById/${storyId}`)
   }
 
 }

@@ -14,9 +14,10 @@ export class ViewProjectStatusComponent implements OnInit {
 
   story!: Story[]
   project!:Project[]
-  projectId!: string
-  storyId!: string
+  projectData!:Project
+  storyData!: Story
   message!: string
+  errorMessage = ""
 
   constructor(
     private router : Router, 
@@ -26,8 +27,7 @@ export class ViewProjectStatusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.projectId = this.route.snapshot.params['projectId'];
-    this.storyId = this.route.snapshot.params['storyId'];
+    
     this.getAllProjects();
     this.getAllStories();
   }
@@ -38,7 +38,26 @@ export class ViewProjectStatusComponent implements OnInit {
     );
    }
 
-   handleGetProjects(response : any){
+  updateProject(projectId: string){
+    console.log(`update ${projectId}`);
+    this.router.navigate([`project-registration/${projectId}`])
+    // this.router.navigate([`view-project-status/${projectId}`])
+  }
+
+  deleteProject(projectId: string){
+    this.projectService.deleteProjectById(projectId).subscribe(
+      response =>  {
+        this.message = `Deleted Project with Id ${projectId}`;
+        console.log(this.message)
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
+    )
+  }
+
+  handleGetProjects(response : any){
     this.project = response
    }
 
@@ -48,30 +67,10 @@ export class ViewProjectStatusComponent implements OnInit {
     );
    }
 
-   handleGetStories(response : any){
-    this.story = response
-    console.log(response)
-  }
-
-  updateProject(projectId: string){
-    console.log(`update ${projectId}`);
-    this.router.navigate([`view-project-status/${projectId}`])
-    // this.router.navigate([`view-project-status/${projectId}`])
-  }
-
-  deleteProject(projectId: string){
-    this.projectService.deleteProjectById(projectId).subscribe(
-      response =>  {
-        this.message = `Deleted Project with Id ${projectId}`;
-        console.log(this.message)
-      }
-    )
-  }
-
   updateStory(storyId: string){
     console.log(`update ${storyId}`);
-    this.router.navigate(['view-project-status',storyId])
-    // this.router.navigate([`view-project-status/${storyId}`])
+    // this.router.navigate(['view-project-status/project-story-registration',storyId]);
+    this.router.navigate([`project-story-registration/${storyId}`])
   }
 
   deleteStory(storyId: string){
@@ -79,8 +78,21 @@ export class ViewProjectStatusComponent implements OnInit {
       response =>  {
         this.message = `Deleted Story with Id ${storyId}`;
         console.log(this.message)
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
       }
     )
+  }
+
+  handleGetStories(response : any){
+    this.story = response
+    console.log(response)
+  }
+
+  handleErrorMessage(error: any){
+    this.errorMessage = error.error.message;
   }
 
 }

@@ -1,172 +1,176 @@
-<div class="container">
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container">
 
+        <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveUpdateProjectStory()">
 
+            <h1 class="text-center">Project Story Registration</h1>
 
-    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveProjectStory()">
+            <div class="card-body">
 
-        <h1 class="text-center">Project Story Registration</h1>
+                <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+                </div>
 
-        <div class="card-body">
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputStorytId">
+                        <h6 class="mb-0">Story Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="storyId" name="storyId" placeholder="storyId"
+                            [(ngModel)]="story.storyId" required #storyId="ngModel"
+                            [class.is-invalid]="storyId.invalid && storyId.touched" />
+                        <small class="text-danger" [class.d-none]="storyId.valid || storyId.untouched">Story Id Id is
+                            required</small>
+                    </fieldset>
+                </div>
 
-            <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectId">
+                        <h6 class="mb-0">Project Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
+                            [(ngModel)]="story.projectId" required #projectId="ngModel"
+                            [class.is-invalid]="projectId.invalid && projectId.touched" />
+                        <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id Id
+                            is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="storyTitle">
+                        <h6 class="mb-0">Story Title</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="storyTitle" name="storyTitle"
+                            placeholder="storyTitle" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
+                            [class.is-invalid]="storyTitle.invalid && storyTitle.touched" />
+                        <small class="text-danger" [class.d-none]="storyTitle.valid || storyTitle.untouched">Story Title
+                            is required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="storyDescription">
+                        <h6 class="mb-0">Story Description</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
+                            placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100" required
+                            #storyDescription="ngModel"
+                            [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
+                        <small class="text-danger"
+                            [class.d-none]="storyDescription.valid || storyDescription.untouched">Story Description
+                            is required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assignee">
+                        <h6 class="mb-0">Assignee</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="assignee" name="assignee" placeholder="assignee"
+                            [(ngModel)]="story.assignee" required #assignee="ngModel"
+                            [class.is-invalid]="assignee.invalid && assignee.touched" />
+                        <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assigneeEmailId">
+                        <h6 class="mb-0">Assignee Email Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId"
+                            placeholder="assigneeEmailId" [(ngModel)]="story.assigneeEmailId" required
+                            #assigneeEmailId="ngModel"
+                            [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="assigneeEmailId.valid || assigneeEmailId.untouched">Assignee Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assignmentDate">
+                        <h6 class="mb-0">Assignment Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
+                            placeholder="assignmentDate" (ngModel)="(story.assignmentDate)" required
+                            #assignmentDate="ngModel"
+                            [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="assignmentDate.valid || assignmentDate.untouched">Assignment Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="targetDate">
+                        <h6 class="mb-0">Target Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="targetDate" name="targetDate"
+                            placeholder="targetDate" (ngModel)="(story.targetDate)" required #targetDate="ngModel"
+                            [class.is-invalid]="targetDate.invalid && targetDate.touched" />
+                        <small class="text-danger" [class.d-none]="targetDate.valid || targetDate.untouched">Target Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <!-- <div class="row align-items-center pt-4 pb-3">
+                    <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
+                        <h6 class="mb-0">Status</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
+                                [(ngModel)]="story.status" />
+                            <label class="form-check-label" for="exampleRadios1">To-Do</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="In-Progress"
+                                value="In-Progress" [(ngModel)]="story.status" />
+                            <label class="form-check-label" for="exampleRadios2">In-Progress</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Ready-For-Test"
+                                value="Ready-For-Test" [(ngModel)]="story.status" />
+                            <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
+                                [(ngModel)]="story.status" />
+                            <label class="form-check-label" for="exampleRadios4">Completed</label>
+                        </div>
+                        <small class="text-danger" [class.d-none]="status.valid || status.untouched">Status is
+                            required</small>
+                    </fieldset>
+                </div> -->
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputremarks">
+                        <h6 class="mb-0">Remarks</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
+                            [(ngModel)]="story.remarks" required #remarks="ngModel"
+                            [class.is-invalid]="remarks.invalid && remarks.touched" />
+                        <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-light" (click)="navLink()">Home</button>
+                    <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+                </div>
             </div>
 
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputStorytId">
-                    <h6 class="mb-0">Story Id</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="storyId" name="storyId" placeholder="storyId"
-                        [(ngModel)]="story.storyId" required #storyId="ngModel"
-                        [class.is-invalid]="storyId.invalid && storyId.touched" />
-                    <small class="text-danger" [class.d-none]="storyId.valid || storyId.untouched">Story Id Id is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectId">
-                    <h6 class="mb-0">Project Id</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
-                        [(ngModel)]="story.projectId" required #projectId="ngModel"
-                        [class.is-invalid]="projectId.invalid && projectId.touched" />
-                    <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">projectId Id is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="storyTitle">
-                    <h6 class="mb-0">storyTitle</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="storyTitle" name="storyTitle"
-                        placeholder="storyTitle" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
-                        [class.is-invalid]="storyTitle.invalid && storyTitle.touched" />
-                    <small class="text-danger" [class.d-none]="storyTitle.valid || storyTitle.untouched">storyTitle
-                        Id is required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="storyDescription">
-                    <h6 class="mb-0">Story Description</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
-                        placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100"
-                        required #storyDescription="ngModel"
-                        [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
-                    <small class="text-danger"
-                        [class.d-none]="storyDescription.valid || storyDescription.untouched">storyDescription Id
-                        is required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="assignee">
-                    <h6 class="mb-0">assignee</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="assignee" name="assignee" placeholder="assignee"
-                        [(ngModel)]="story.assignee" required #assignee="ngModel"
-                        [class.is-invalid]="assignee.invalid && assignee.touched" />
-                    <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">teamName is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="assigneeEmailId">
-                    <h6 class="mb-0">assigneeEmailId</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId" placeholder="assigneeEmailId"
-                        [(ngModel)]="story.assigneeEmailId" required #assigneeEmailId="ngModel"
-                        [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
-                    <small class="text-danger" [class.d-none]="assigneeEmailId.valid || assigneeEmailId.untouched">assigneeEmailId is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="assignmentDate">
-                    <h6 class="mb-0">assignmentDate Date</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" class="form-control" id="assignmentDate" name="assignmentDate" placeholder="assignmentDate"
-                        (ngModel)="(story.assignmentDate)" required #assignmentDate="ngModel"
-                        [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
-                    <small class="text-danger" [class.d-none]="assignmentDate.valid || assignmentDate.untouched">assignmentDate
-                        is a
-                        required field.</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="targetDate">
-                    <h6 class="mb-0">targetDate Date</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" class="form-control" id="targetDate" name="targetDate" placeholder="targetDate"
-                        (ngModel)="(story.targetDate)" required #targetDate="ngModel"
-                        [class.is-invalid]="targetDate.invalid && targetDate.touched" />
-                    <small class="text-danger" [class.d-none]="targetDate.valid || targetDate.untouched">targetDate
-                        is a
-                        required field.</small>
-                </fieldset>
-            </div>
-
-            To-Do In-Progress, Ready-For-Test, Completed
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
-                  <h6 class="mb-0">status</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
-                      [(ngModel)]="story.status" />
-                    <label class="form-check-label" for="exampleRadios1">To-Do</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="In-Progress" value="In-Progress"
-                      [(ngModel)]="story.status" />
-                    <label class="form-check-label" for="exampleRadios2">In-Progress</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="Ready-For-Test" value="Ready-For-Test"
-                      [(ngModel)]="story.status" />
-                    <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
-                      [(ngModel)]="story.status" />
-                    <label class="form-check-label" for="exampleRadios4">Completed</label>
-                  </div>
-                </fieldset>
-              </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputremarks">
-                    <h6 class="mb-0">Remarks</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
-                        [(ngModel)]="story.remarks" required #remarks="ngModel"
-                        [class.is-invalid]="remarks.invalid && remarks.touched" />
-                    <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">remarks is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="d-flex justify-content-end pt-3">
-                <button type="button" class="btn btn-light" (click)="navHome()">Home</button>
-                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
-            </div>
-        </div>
-
-    </form>
-</div>
+        </form>
+    </div>
+</section>

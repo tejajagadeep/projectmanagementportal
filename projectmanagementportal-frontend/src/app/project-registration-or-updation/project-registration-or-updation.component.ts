@@ -46,6 +46,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
 
   project!: Project
   errorMessageResponse!: string
+  temp!: string
   projectId!: string
   dateDummy!: Date
 
@@ -56,12 +57,37 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.projectId = this.route.snapshot.params['userId'];
-    this.project = new Project('','','','','','','','','', new Date(), new Date(), '', '', '')
+    this.projectId = this.route.snapshot.params['projectId'];
+    this.getProjectBId(this.projectId);
+
+    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', '', '')
   }
 
-  navHome() {
+  navLink() {
     this.router.navigate(['home']);
+  }
+
+  getProjectBId(projectId: string) {
+    this.projectDataService.getProjectById(projectId).subscribe(
+      response => {
+        console.log("response")
+        this.project = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
+  saveUpdateProject() {
+    if (this.projectId === this.project.projectId) {
+      this.updateProjectById()
+    } else {
+      this.saveProject
+    }
   }
 
   saveProject() {
@@ -69,7 +95,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
       .subscribe(
         response => {
           console.log("Response Recieved")
-          // this.navHome()
+          this.navLink()
         },
         error => {
           console.log("Exception Occured")
@@ -77,12 +103,28 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
         }
 
       )
-    // this.navLogin();
+  }
+
+  updateProjectById() {
+    this.projectDataService.updateProjectById(this.projectId, this.project).subscribe(
+      response => {
+        console.log(`updated project ${this.projectId}`)
+        this.navLink()
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
+    )
   }
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-    this.errorMessageResponse = error.error.message
+    if (this.projectId===undefined){
+      this.errorMessageResponse = this.temp
+    } else {
+      this.errorMessageResponse = error.error.message
+    }
   }
 
 }

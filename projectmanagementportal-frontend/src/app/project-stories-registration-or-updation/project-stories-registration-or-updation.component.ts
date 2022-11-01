@@ -40,8 +40,10 @@ export class Story{
 export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
 
   story! : Story
+  storyId!: string
   dateDummy!: Date
   errorMessageResponse!: string
+  temp!: string
 
   constructor(
     private router : Router, 
@@ -50,21 +52,42 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.storyId = this.route.snapshot.params['storyId'];
+    this.getStoryById(this.storyId);
     this.story = new Story('','','','','','',new Date(),new Date(),'','');
 
   }
 
-  navHome(){
+  navLink(){
     this.router.navigate(['home']) ;
   }
+
+  getStoryById(storyId: string){
+    this.storyDataService.getStoryById(storyId).subscribe(
+      response => {
+        this.story = response;
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
+    )
+   }
+
+   saveUpdateProjectStory(){
+    if( this.storyId===this.story.storyId){
+      this.updateProjctById()
+    } else {
+      this.saveProjectStory()
+    }
+   }
 
   saveProjectStory(){
     this.storyDataService.saveStory(this.story)
     .subscribe(
       response => {
         console.log("Response Recieved")
-        // this.navHome()
+        this.navLink()
       },
       error => {
         console.log("Exception Occured")
@@ -72,12 +95,29 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
       }
       
     )
-    // this.navLogin();
+ }
+
+ updateProjctById(){
+  this.storyDataService.updateStory(this.storyId, this.story)
+  .subscribe(
+    response => {
+      console.log(`updated story with Id ${this.storyId}`)
+      this.navLink()
+    },
+    error => {
+      console.log("Exception Occured")
+      this.handleErrorMessage(error);
+    }
+  )
  }
 
  handleErrorMessage(error: any){
   // this.errorMessageResponse = error
-  this.errorMessageResponse = error.error.message
+  if (this.storyId===undefined){
+    this.errorMessageResponse = this.temp
+  } else {
+    this.errorMessageResponse = error.error.message
+  }
  }
 
 }

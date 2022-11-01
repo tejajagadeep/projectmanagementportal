@@ -36,7 +36,7 @@ public class StoryServiceImpl implements StoryService {
 		if(optionalProject.isPresent()) {
 			return storyReposiotry.findById(storyId).get();
 		} else {
-			throw new NoSuchElementExistException("Story Id Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
 
@@ -52,7 +52,7 @@ public class StoryServiceImpl implements StoryService {
 
 		} else if (optionalProject.isEmpty()) {
 
-			throw new NoSuchElementExistException("Project Id Doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + story.getProjectId() + " Doesn't Exist");
 
 		} else {
 
@@ -70,11 +70,11 @@ public class StoryServiceImpl implements StoryService {
 
 		if (optionalStory.isEmpty()) {
 
-			throw new NoSuchElementExistException("Story Id Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 
 		} else if (optionalProject.isEmpty()) {
 
-			throw new NoSuchElementExistException("Project Id Doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + story.getProjectId() + " Doesn't Exist");
 
 		} else if (optionalProject.get().getProjectId()==story.getProjectId()) {
 			Story storyData = optionalStory.get();
@@ -88,7 +88,7 @@ public class StoryServiceImpl implements StoryService {
 			storyData.setRemarks(story.getRemarks());
 			return storyReposiotry.save(storyData);
 		} else {
-			throw new NoSuchElementExistException("This Story Id doesn't belong to this Project");
+			throw new NoSuchElementExistException("This Story with Id " + storyId + " Id doesn't belong to this Project");
 		}
 	}
 
@@ -99,7 +99,7 @@ public class StoryServiceImpl implements StoryService {
 		if(optionalProject.isPresent()) {
 			storyReposiotry.deleteById(storyId);
 		} else {
-			throw new NoSuchElementExistException("Story Id Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 		
 	}

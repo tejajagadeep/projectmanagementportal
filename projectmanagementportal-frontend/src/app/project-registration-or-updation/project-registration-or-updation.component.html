@@ -1,225 +1,240 @@
-<div class="container">
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container">
+
+        <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveUpdateProject()">
+
+            <h1 class="text-center">project Registration</h1>
+
+            <div class="card-body">
+
+                <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+                </div>
 
 
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectId">
+                        <h6 class="mb-0">Project Id</h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
+                            [(ngModel)]="project.projectId" required #projectId="ngModel"
+                            [class.is-invalid]="projectId.invalid && projectId.touched" />
+                        <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id Id
+                            is
+                            required</small>
+                    </div>
+                </div>
 
-    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveProject()">
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectName">
+                        <h6 class="mb-0">Project Name</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectName" name="projectName"
+                            placeholder="projectName" [(ngModel)]="project.projectName" required #projectName="ngModel"
+                            [class.is-invalid]="projectName.invalid && projectName.touched" />
+                        <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">Project
+                            Name
+                            Id is required</small>
+                    </fieldset>
+                </div>
 
-        <h1 class="text-center">project Registration</h1>
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
+                        <h6 class="mb-0">Project Description</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
+                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
+                            required #projectDescription="ngModel"
+                            [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
+                        <small class="text-danger"
+                            [class.d-none]="projectDescription.valid || projectDescription.untouched">Project
+                            Description Id
+                            is requiredand must be minimium 100 characters</small>
+                    </fieldset>
+                </div>
 
-        <div class="card-body">
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputteamName">
+                        <h6 class="mb-0">Team Name</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="teamName" name="teamName" placeholder="teamName"
+                            [(ngModel)]="project.teamName" required #teamName="ngModel"
+                            [class.is-invalid]="teamName.invalid && teamName.touched" />
+                        <small class="text-danger" [class.d-none]="teamName.valid || teamName.untouched">Team Name is
+                            required</small>
+                    </fieldset>
+                </div>
 
-            <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
-            </div>
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputteamSize">
+                        <h6 class="mb-0">Team Size</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
+                            [(ngModel)]="project.teamSize" required #teamSize="ngModel"
+                            [class.is-invalid]="teamSize.invalid && teamSize.touched" />
+                        <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
+                            required</small>
+                    </fieldset>
+                </div>
 
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
+                        <h6 class="mb-0">Project Manager Name</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectManagerName" name="projectManagerName"
+                            placeholder="projectManagerName" [(ngModel)]="project.projectManagerName" required
+                            #projectManagerName="ngModel"
+                            [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="projectManagerName.valid || projectManagerName.untouched">Project Manager
+                            Name is
+                            required</small>
+                    </fieldset>
+                </div>
 
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectId">
-                    <h6 class="mb-0">Project Id</h6>
-                </label>
-                <div class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
-                        [(ngModel)]="project.projectId" required #projectId="ngModel"
-                        [class.is-invalid]="projectId.invalid && projectId.touched" />
-                    <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">projectId Id is
-                        required</small>
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
+                        <h6 class="mb-0">Project Manager Email Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
+                            placeholder="projectManagerEmailId" [(ngModel)]="project.projectManagerEmailId" required
+                            #projectManagerEmailId="ngModel"
+                            [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">Project
+                            Manager Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
+                        <h6 class="mb-0">Tech Lead Name</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="techLeadName" name="techLeadName"
+                            placeholder="techLeadName" [(ngModel)]="project.techLeadName" required
+                            #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched" />
+                        <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">Tech
+                            Lead Name is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
+                        <h6 class="mb-0">Tech Lead Email Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
+                            placeholder="techLeadEmailId" [(ngModel)]="project.techLeadEmailId" required
+                            #techLeadEmailId="ngModel"
+                            [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">Tech Lead Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
+                        <h6 class="mb-0">Project Start Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="projectStartDate" name="projectStartDate"
+                            placeholder="projectStartDate" (ngModel)="(project.projectStartDate)" required
+                            #projectStartDate="ngModel"
+                            [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="projectStartDate.valid || projectStartDate.untouched">Project Start Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
+                        <h6 class="mb-0">Project End Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
+                            placeholder="projectEndDate" (ngModel)="(project.projectEndDate)" required
+                            #projectEndDate="ngModel"
+                            [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="projectEndDate.valid || projectEndDate.untouched">Project End Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechStack">
+                        <h6 class="mb-0">Tech Stack</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="techStack" name="techStack" placeholder="techStack"
+                            [(ngModel)]="project.techStack" required #techStack="ngModel"
+                            [class.is-invalid]="techStack.invalid && techStack.touched" />
+                        <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">Tech Stack is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <!-- <div class="row align-items-center pt-4 pb-3">
+                    <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
+                        <h6 class="mb-0">Status</h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
+                                [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios1">To-Do</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="In-Progress"
+                                value="In-Progress" [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios2">In-Progress</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Ready-For-Test"
+                                value="Ready-For-Test" [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
+                                [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios4">Completed</label>
+                        </div>
+                        <small class="text-danger" [class.d-none]="status.valid || status.untouched">Status is
+                            required</small>
+                    </div>
+                </div> -->
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputremarks">
+                        <h6 class="mb-0">Remarks</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
+                            [(ngModel)]="project.remarks" required #remarks="ngModel"
+                            [class.is-invalid]="remarks.invalid && remarks.touched" />
+                        <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-light" (click)="navLink()">Home</button>
+                    <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
                 </div>
             </div>
 
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectName">
-                    <h6 class="mb-0">Project Name</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="projectName" name="projectName"
-                        placeholder="projectName" [(ngModel)]="project.projectName" required #projectName="ngModel"
-                        [class.is-invalid]="projectName.invalid && projectName.touched" />
-                    <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">projectName
-                        Id is required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
-                    <h6 class="mb-0">project Description</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
-                        placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
-                        required #projectDescription="ngModel"
-                        [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
-                    <small class="text-danger"
-                        [class.d-none]="projectDescription.valid || projectDescription.untouched">projectDescription Id
-                        is required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputteamName">
-                    <h6 class="mb-0">teamName</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="teamName" name="teamName" placeholder="teamName"
-                        [(ngModel)]="project.teamName" required #teamName="ngModel"
-                        [class.is-invalid]="teamName.invalid && teamName.touched" />
-                    <small class="text-danger" [class.d-none]="teamName.valid || teamName.untouched">teamName is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputteamSize">
-                    <h6 class="mb-0">teamSize</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
-                        [(ngModel)]="project.teamSize" required #teamSize="ngModel"
-                        [class.is-invalid]="teamSize.invalid && teamSize.touched" />
-                    <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">teamSize is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
-                    <h6 class="mb-0">projectManagerName</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="projectManagerName" name="projectManagerName" placeholder="projectManagerName"
-                        [(ngModel)]="project.projectManagerName" required #projectManagerName="ngModel"
-                        [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched" />
-                    <small class="text-danger" [class.d-none]="projectManagerName.valid || projectManagerName.untouched">projectManagerName is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
-                    <h6 class="mb-0">projectManagerEmailId</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId" placeholder="projectManagerEmailId"
-                        [(ngModel)]="project.projectManagerEmailId" required #projectManagerEmailId="ngModel"
-                        [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
-                    <small class="text-danger" [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">projectManagerEmailId is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
-                    <h6 class="mb-0">techLeadName</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="techLeadName" name="techLeadName" placeholder="techLeadName"
-                        [(ngModel)]="project.techLeadName" required #techLeadName="ngModel"
-                        [class.is-invalid]="techLeadName.invalid && techLeadName.touched" />
-                    <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">techLeadName is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
-                    <h6 class="mb-0">techLeadEmailId</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId" placeholder="techLeadEmailId"
-                        [(ngModel)]="project.techLeadEmailId" required #techLeadEmailId="ngModel"
-                        [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
-                    <small class="text-danger" [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">techLeadEmailId is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
-                    <h6 class="mb-0">projectStartDate Date</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" class="form-control" id="projectStartDate" name="projectStartDate" placeholder="projectStartDate"
-                        (ngModel)="(project.projectStartDate)" required #projectStartDate="ngModel"
-                        [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
-                    <small class="text-danger" [class.d-none]="projectStartDate.valid || projectStartDate.untouched">projectStartDate
-                        is a
-                        required field.</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
-                    <h6 class="mb-0">projectEndDate Date</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="date" class="form-control" id="projectEndDate" name="projectEndDate" placeholder="projectEndDate"
-                        (ngModel)="(project.projectEndDate)" required #projectEndDate="ngModel"
-                        [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
-                    <small class="text-danger" [class.d-none]="projectEndDate.valid || projectEndDate.untouched">projectEndDate
-                        is a
-                        required field.</small>
-                </fieldset>
-            </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputtechStack">
-                    <h6 class="mb-0">techStack</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="techStack" name="techStack" placeholder="techStack"
-                        [(ngModel)]="project.techStack" required #techStack="ngModel"
-                        [class.is-invalid]="techStack.invalid && techStack.touched" />
-                    <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">techStack is
-                        required</small>
-                </fieldset>
-            </div>
-
-            To-Do In-Progress, Ready-For-Test, Completed
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
-                  <h6 class="mb-0">status</h6>
-                </label>
-                <div class="form-group col-md-9 pe-5">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
-                      [(ngModel)]="project.status" />
-                    <label class="form-check-label" for="exampleRadios1">To-Do</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="In-Progress" value="In-Progress"
-                      [(ngModel)]="project.status" />
-                    <label class="form-check-label" for="exampleRadios2">In-Progress</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="Ready-For-Test" value="Ready-For-Test"
-                      [(ngModel)]="project.status" />
-                    <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
-                      [(ngModel)]="project.status" />
-                    <label class="form-check-label" for="exampleRadios4">Completed</label>
-                  </div>
-                </div>
-              </div>
-
-            <div class="row align-items-center pt-4 pb-3">
-                <label class="col-md-3 ps-5" for="exampleInputremarks">
-                    <h6 class="mb-0">Remarks</h6>
-                </label>
-                <fieldset class="form-group col-md-9 pe-5">
-                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
-                        [(ngModel)]="project.remarks" required #remarks="ngModel"
-                        [class.is-invalid]="remarks.invalid && remarks.touched" />
-                    <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">remarks is
-                        required</small>
-                </fieldset>
-            </div>
-
-            <div class="d-flex justify-content-end pt-3">
-                <button type="button" class="btn btn-light" (click)="navHome()">Home</button>
-                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
-            </div>
-        </div>
-
-    </form>
-</div>
+        </form>
+    </div>
+</section>
