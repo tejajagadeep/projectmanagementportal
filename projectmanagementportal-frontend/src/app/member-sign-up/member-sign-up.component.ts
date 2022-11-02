@@ -46,7 +46,7 @@ export class MemberSignUpComponent implements OnInit {
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
-    this.user = new User('', '', '', this.dummyNumber, new Date(), '', '');
+    this.user = new User('', '', '', this.dummyNumber, new Date(), 'Admin', '');
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];

@@ -54,12 +54,12 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','','',new Date(),new Date(),'','');
+    this.story = new Story('','','','','','',new Date(),new Date(),'To-Do','');
 
   }
 
   navLink(){
-    this.router.navigate(['home']) ;
+    this.router.navigate(['view-project-status']) ;
   }
 
   getStoryById(storyId: string){

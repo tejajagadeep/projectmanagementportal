@@ -88,7 +88,7 @@ export class ViewProjectStatusComponent implements OnInit {
 
   handleGetStories(response : any){
     this.story = response
-    console.log(response)
+    // console.log(response)
   }
 
   handleErrorMessage(error: any){

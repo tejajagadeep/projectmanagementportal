@@ -60,11 +60,11 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
     this.projectId = this.route.snapshot.params['projectId'];
     this.getProjectBId(this.projectId);
 
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', '', '')
+    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '')
   }
 
   navLink() {
-    this.router.navigate(['home']);
+    this.router.navigate(['view-project-status']);
   }
 
   getProjectBId(projectId: string) {

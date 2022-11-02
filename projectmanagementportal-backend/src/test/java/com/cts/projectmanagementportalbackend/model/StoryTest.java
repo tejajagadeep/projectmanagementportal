@@ -19,7 +19,7 @@ class StoryTest {
 	
 	private String storyDescriptionDummy = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
 	
-	private Story storyObject = new Story("story1","Project1","storyTitle",storyDescriptionDummy,"Assignee","Assignee@gmail.com",date, date,"ongoing","done");
+//	private Story storyObject = new Story("story1","Project1","storyTitle",storyDescriptionDummy,"Assignee","Assignee@gmail.com",date, date,"ongoing","done");
 
 	@Test
 	void testGetterSetterStoryId() {
@@ -27,11 +27,11 @@ class StoryTest {
 		assertEquals("story1", story.getStoryId());
 	}
 
-	@Test
-	void testGetterSetterProjectId() {
-		story.setProjectId("Project1");
-		assertEquals("Project1", story.getProjectId());
-	}
+//	@Test
+//	void testGetterSetterProjectId() {
+//		story.setProjectId("Project1");
+//		assertEquals("Project1", story.getProjectId());
+//	}
 
 	@Test
 	void testGetterSetterStoryTitle() {
