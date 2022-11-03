@@ -7,10 +7,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.access.prepost.PostAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+//import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,33 +27,29 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/v1.0/userRole")
-@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class UserRoleController {
 	
 	@Autowired
 	UserRoleService userRoleService;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')") //authorizes the user before calling the method and authorizes based on the incoming arguments
 	@GetMapping("/getUserRoles")
 	public List<UserRole> getUserRoles(){
 		return userRoleService.getUserRoles();
 	}
 	
-	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 	@GetMapping("/getUserRoleById/{userId}")
 	public UserRole getUserRoleById(@PathVariable int userId) throws NoSuchElementExistException{
 		return userRoleService.getUserRoleById(userId);
 	}
 	
-	@GetMapping("/getUserRole/search")
-	@PostAuthorize("returnObject.body.userName==authencated.user") //helps you authorize based on the data that is being returned
-	public ResponseEntity<UserRole> getUserRole(Authentication authentication, @RequestParam String userName) throws NoSuchElementExistException{
-		UserRole userRole = userRoleService.getUserRoleByUserName(userName);
-		if(userRole==null) {
-			ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-		}
-		return ResponseEntity.ok().body(userRole);
-	}
+//	@GetMapping("/getUserRole/search")
+//	public ResponseEntity<UserRole> getUserRole(Authentication authentication, @RequestParam String userName) throws NoSuchElementExistException{
+//		UserRole userRole = userRoleService.getUserRoleByUserName(userName);
+//		if(userRole==null) {
+//			ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+//		}
+//		return ResponseEntity.ok().body(userRole);
+//	}
 	
 	@GetMapping("/getUserRoleByUserName/{userName}")
 	public UserRole getUserRoleByUserName(@PathVariable String userName)  throws NoSuchElementExistException{
@@ -70,9 +66,9 @@ public class UserRoleController {
 		return userRoleService.loginUser(userRole);
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<UserRole> login(@Valid @RequestBody UserRole userRole, Authentication auth)  throws NoSuchElementExistException {
-		return ResponseEntity.status(HttpStatus.OK).body(userRoleService.login(userRole));
-	}
+//	@PostMapping("/login")
+//	public ResponseEntity<UserRole> login(@Valid @RequestBody UserRole userRole, Authentication auth)  throws NoSuchElementExistException {
+//		return ResponseEntity.status(HttpStatus.OK).body(userRoleService.login(userRole));
+//	}
 	
 }

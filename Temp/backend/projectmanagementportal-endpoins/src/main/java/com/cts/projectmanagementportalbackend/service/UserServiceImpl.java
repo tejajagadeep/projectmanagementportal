@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
@@ -29,12 +28,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRoleRepository userRoleRepository;
-	
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
-//	@Autowired
-//	TokenService tokenService;
 	
 
 	@Override
@@ -102,7 +95,7 @@ public class UserServiceImpl implements UserService {
 			UserRole userRole = new UserRole();
 			
 				userRole.setUserName(user.getUserId());
-				userRole.setPassword(passwordEncoder.encode(user.getPassword()));
+				userRole.setPassword((user.getPassword()));
 				userRole.setRole(user.getUserType());
 			
 				userRoleRepository.save(userRole);

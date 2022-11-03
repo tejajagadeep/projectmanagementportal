@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -34,13 +35,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN","MEMBER")
-			.antMatchers(HttpMethod.POST,"/api/user/userSignUp").hasAnyRole("ADMIN","MEMBER")
-			.antMatchers(HttpMethod.POST,".api/project/**").hasAnyRole("ADMIN")
-			.antMatchers(HttpMethod.PUT,".api/project/**").hasAnyRole("ADMIN")
-			.antMatchers(HttpMethod.POST,"/api/story/**").hasAnyRole("ADMIN")
-			.antMatchers(HttpMethod.PUT,"/api/story/**").hasAnyRole("ADMIN","MEMBER")
-			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN");
+//			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN")
+//			.antMatchers(HttpMethod.POST).hasAnyRole("ADMIN")
+//			.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MEMBER")
+//			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
+			
+//			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN","MEMBER")
+			
+//			
+//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllProjects").hasAnyRole("ADMIN")
+//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getProjectById/{projectId}").hasAnyRole("ADMIN")
+//			.antMatchers(HttpMethod.POST,"/api/v1.0/project/registerProject").hasAnyRole("ADMIN")
+//			
+			.antMatchers(HttpMethod.GET,"/api/v1.0/story/getAllStories").hasAnyRole("ADMIN")
+			.antMatchers(HttpMethod.POST,"/api/v1.0/story/registerStory").hasAnyRole("ADMIN")
+			.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN")
+			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
+			
+//			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
+			.antMatchers(HttpMethod.POST,"/api/v1.0/user/userSignUp").permitAll()
+		;
 		
 		http.cors().disable();
 		http.csrf().disable();
@@ -52,6 +66,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
+	@Bean
+	public PasswordEncoder encoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	/*
 	 * This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
 	 */
@@ -59,7 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) throws Exception{
 		web
 			.ignoring()
-			.antMatchers("/h2-console/**");
+			.antMatchers("/h2-console/**")
+			.antMatchers("/swagger");
 	}
 	
 }

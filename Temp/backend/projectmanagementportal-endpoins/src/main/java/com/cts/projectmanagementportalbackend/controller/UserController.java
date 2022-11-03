@@ -9,9 +9,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostFilter;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +37,6 @@ import com.cts.projectmanagementportalbackend.model.ErrorMessages;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1.0/user")
-//@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class UserController {
 
 	@Autowired
@@ -99,14 +95,12 @@ public class UserController {
 //		return new MessageResponse(name, 1);
 //	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers(){
 		return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getUserById/{userId}")
-	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
 	public @ApiResponse(description = "Demo Object") User getAllUsers(@Parameter(description = "Id of the Demo") @PathVariable String userId) throws NoSuchElementExistException{
 		return userService.getUserById(userId);
