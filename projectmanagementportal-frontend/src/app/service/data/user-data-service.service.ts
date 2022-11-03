@@ -39,20 +39,20 @@ export class UserDataServiceService {
     return this.http.post<any>(`${USER_API_URL}/userSignUp`,user);
   }
 
-  helloWorldDataService(){
+  helloWorldDataService(): Observable<any>{
     // console.log("Hello World Front-End Data Service");
     return this.http.get<helloWorldBean>(`${USER_API_URL}/helloWorld`);
   }
 
-  helloWorldPathVariableDataService(username: String){
+  helloWorldPathVariableDataService(username: String): Observable<any>{
     return this.http.get<helloWorldBean>(`${USER_API_URL}/helloWorld/${username}`);
   }
 
-  getAllUsers(){
+  getAllUsers(): Observable<any>{
     return this.http.get<User[]>(`${USER_API_URL}/getAllUsers`);
   }
 
-  getUserById(userId: string){
+  getUserById(userId: string): Observable<any>{
     return this.http.get<User>(`${USER_API_URL}/getUserById/${userId}`);
   }
 
