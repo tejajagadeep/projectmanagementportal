@@ -1,4 +1,4 @@
-package com.cts.projectmanagementportalbackend.model;
+package com.cts.projectmanagementportalbackend.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.cts.projectmanagementportalbackend.model.UserRole;
 
 public class UserDetailsImpl implements UserDetails{
 

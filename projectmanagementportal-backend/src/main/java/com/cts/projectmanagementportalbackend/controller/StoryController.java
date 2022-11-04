@@ -44,7 +44,7 @@ public class StoryController {
 		return new ResponseEntity<>(storyService.getStoryById(storyId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/registerStory")
+	@PostMapping("/storyRegistration")
 	public ResponseEntity<Story> saveStory(@Valid @RequestBody Story story)  throws ElementAlreadyExistException, NoSuchElementExistException {
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
 	}

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,9 @@ public class UserRoleServiceImpl implements UserRoleService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<UserRole> getUserRoles(){
@@ -69,9 +73,18 @@ public class UserRoleServiceImpl implements UserRoleService{
 	}
 
 	@Override
-	public UserRole login(@Valid UserRole userRole) {
+	public UserRole login(@Valid UserRole userRole) throws NoSuchElementExistException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		UserRole optional = userRoleRepository.findByUserName(userRole.getUserName());
+		if(optional==null) {
+			throw new NoSuchElementExistException("User Id doesn't exist");
+			
+		} else if (passwordEncoder.encode(userRole.getPassword())==optional.getPassword()){
+			throw new NoSuchElementExistException("Password isn't correct");
+		}
+		
+		return userRoleRepository.findByUserName(userRole.getUserName());
 	}
 
 }

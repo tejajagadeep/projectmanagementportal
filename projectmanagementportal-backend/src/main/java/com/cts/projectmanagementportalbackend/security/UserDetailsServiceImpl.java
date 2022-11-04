@@ -1,4 +1,4 @@
-package com.cts.projectmanagementportalbackend.service;
+package com.cts.projectmanagementportalbackend.security;
 
 import java.util.Optional;
 
@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cts.projectmanagementportalbackend.model.UserDetailsImpl;
 import com.cts.projectmanagementportalbackend.model.UserRole;
 import com.cts.projectmanagementportalbackend.repository.UserRoleRepository;
 

@@ -21,6 +21,6 @@ public interface UserRoleService {
 
 	UserRole getUserRoleByUserName(String userName)  throws NoSuchElementExistException;
 
-	UserRole login(@Valid UserRole userRole);
+	UserRole login(@Valid UserRole userRole) throws NoSuchElementExistException ;
 
 }

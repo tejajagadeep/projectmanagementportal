@@ -1,6 +1,6 @@
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'Member', 'Venkat@123');
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'Admin', 'Rajini@123');
-insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'Admin', 'Vinay@123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1999-07-28', 'Member', 'Venkat@123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1999-07-28', 'Admin', 'Rajini@123');
+insert into User_Emp(user_id, name, email_address, contact_no, date_of_birth, user_type, password) values('vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1999-07-28', 'Admin', 'Vinay@123');
 
 
 insert into User_Role(user_id, user_name, password, role) values(1, 'venkat', '{bcrypt}$2a$12$NRgdzCG670pUS0HHWkgdn.p508B6m7eJbq6VXrbSqyJqBawpvRUdS', 'Member');

@@ -42,58 +42,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-//	@PostMapping("/login")
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public ResponseEntity<User> loginUser(@Valid @RequestBody User user) throws Exception {
-//
-//		
-//		String userId = user.getEmailAddress();
-//		String password = user.getPassword();
-//		User userObj = null;
-//		
-//		if (userId != null && password != null) {
-//			userObj = userService.getUserByUserIdAndPassword(userId, password);
-//		}
-//		
-//		if (userObj == null) {
-//			throw new Exception("Invalid Credentials");
-//		}
-//		
-////		return userObj;
-//	
-//		return new ResponseEntity<>(userService.loginUser(userObj),HttpStatus.CREATED);
-//	}
-	
-	@PostMapping("/login")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserResponse> loginUser(Model model, @RequestBody User user, HttpServletRequest request) throws InvalidUserIdOrPasswordException{
-		
-		try {
-			 UserResponse authUser = userService.loginUser(user.getUserId(), user.getPassword());
-			System.out.print(authUser);
-			if (authUser != null) {
-				request.getSession().setAttribute("user", user.getUserId());
-				return new ResponseEntity<UserResponse>(authUser, HttpStatus.OK);
-			} else {
-				throw new InvalidUserIdOrPasswordException(ErrorMessages.INVALID_CREDENTIALS.getMessage());
-			}
-		} catch (InvalidUserIdOrPasswordException e) {
-			throw new InvalidUserIdOrPasswordException(ErrorMessages.INVALID_CREDENTIALS.getMessage());
-		}
-		
-	}
-
-	@GetMapping("/helloWorld")
-	public MessageResponse helloWorld() {
-//		throw new RuntimeException("runtime Exception");
-		return new MessageResponse(new Date(),"HelloWorld Back-End", HttpStatus.OK);
-	}
-	
-//	@GetMapping("/helloWorld/{name}")
-//	public MessageResponse helloWorldPathVaraible(@PathVariable String name) {
-////		throw new RuntimeException("runtime Exception");
-//		return new MessageResponse(name, 1);
-//	}
 	
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers(){

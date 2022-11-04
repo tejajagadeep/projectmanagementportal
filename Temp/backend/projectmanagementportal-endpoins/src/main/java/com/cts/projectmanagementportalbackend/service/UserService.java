@@ -12,10 +12,6 @@ import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistExcept
 import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
 
 public interface UserService {
-
-	UserResponse loginUser(String userId, String password) throws InvalidUserIdOrPasswordException;
-	
-	User getUserByUserIdAndPassword(String userId, String password);
 	
 	List<User> getAllUsers();
 	
