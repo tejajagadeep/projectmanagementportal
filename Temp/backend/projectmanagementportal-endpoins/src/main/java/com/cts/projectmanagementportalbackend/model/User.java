@@ -25,10 +25,6 @@ import lombok.Setter;
 
 @Table(name = "UserEmp")
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
 
 	@Id
@@ -69,6 +65,83 @@ public class User {
 	@Size(min = 8, message = "size should 8 characters or more")
 	@Pattern(regexp="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",message="must contain one lower case, one upper case, one numeric and one symbol")
 	private String password;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public Long getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(Long contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public User(@Size(min = 5, max = 8, message = "userId shoud be between 5 and 8 characters") String userId,
+			@NotNull(message = "name should not be Null") @NotEmpty(message = "name shoudl not be Empty") @Size(max = 100) String name,
+			@NotNull(message = "emailAddress should not be Null") @NotEmpty(message = "emailAddress should not be Empty") @Size(max = 100) @Email(message = "enter valid email address") String emailAddress,
+			@NotNull(message = "contactNo should not be Null") @Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits") Long contactNo,
+			@NotNull(message = "dateOfBirth should not be Null") Date dateOfBirth,
+			@NotNull(message = "userType should not be Null") @NotEmpty(message = "userType should not be Empty") @Size(max = 100) String userType,
+			@NotNull(message = "password should not be Null") @Size(min = 8, message = "size should 8 characters or more") @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "must contain one lower case, one upper case, one numeric and one symbol") String password) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.contactNo = contactNo;
+		this.dateOfBirth = dateOfBirth;
+		this.userType = userType;
+		this.password = password;
+	}
+
+	public User() {
+		super();
+	}
 
 	
 	

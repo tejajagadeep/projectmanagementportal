@@ -23,10 +23,6 @@ import lombok.Setter;
 
 @Table
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Story {
 
 	@Id
@@ -80,6 +76,90 @@ public class Story {
 	@Size(max = 100)
 	@NotEmpty(message = "remarks should not be empty")
 	private String remarks;
+
+	public String getStoryId() {
+		return storyId;
+	}
+
+	public void setStoryId(String storyId) {
+		this.storyId = storyId;
+	}
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
+
+	public String getStoryTitle() {
+		return storyTitle;
+	}
+
+	public void setStoryTitle(String storyTitle) {
+		this.storyTitle = storyTitle;
+	}
+
+	public String getStoryDescription() {
+		return storyDescription;
+	}
+
+	public void setStoryDescription(String storyDescription) {
+		this.storyDescription = storyDescription;
+	}
+
+	public String getAssignee() {
+		return assignee;
+	}
+
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
+	}
+
+	public String getAssigneeEmailId() {
+		return assigneeEmailId;
+	}
+
+	public void setAssigneeEmailId(String assigneeEmailId) {
+		this.assigneeEmailId = assigneeEmailId;
+	}
+
+	public Date getAssignmentDate() {
+		return assignmentDate;
+	}
+
+	public void setAssignmentDate(Date assignmentDate) {
+		this.assignmentDate = assignmentDate;
+	}
+
+	public Date getTargetDate() {
+		return targetDate;
+	}
+
+	public void setTargetDate(Date targetDate) {
+		this.targetDate = targetDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public Story() {
+		super();
+	}
 	
 	
 }

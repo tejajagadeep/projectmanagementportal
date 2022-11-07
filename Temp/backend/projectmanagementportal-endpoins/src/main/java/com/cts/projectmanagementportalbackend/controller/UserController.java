@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
-import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
