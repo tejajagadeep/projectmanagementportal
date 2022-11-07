@@ -8,20 +8,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cts.projectmanagementportalbackend.model.UserRole;
-import com.cts.projectmanagementportalbackend.repository.UserRoleRepository;
+import com.cts.projectmanagementportalbackend.model.Role;
+import com.cts.projectmanagementportalbackend.model.User;
+import com.cts.projectmanagementportalbackend.repository.RoleRepository;
+import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
-	private UserRoleRepository userRoleRepository;
+	private UserRepository userRoleRepository;
+//	private RoleRepository userRoleRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 		
 		
-		UserRole user = userRoleRepository.findByUserName(username);
+		User user = userRoleRepository.findByUserName(username);
 		
 		if(user==null) {
 			throw new UsernameNotFoundException(username + " not found");

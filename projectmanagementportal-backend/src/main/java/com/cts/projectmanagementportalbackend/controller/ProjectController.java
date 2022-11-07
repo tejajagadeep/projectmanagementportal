@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
@@ -35,9 +35,9 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/getAllProjects")
-	@PostFilter("filterObject.projectManagerName==authentication.name")
+//	@PostFilter("filterObject.projectManagerName==authentication.name")
 	public ResponseEntity<List<Project>> getAllProjects(){
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
@@ -81,11 +81,11 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/projectRegistration")
 	@ResponseBody
-	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws ElementAlreadyExistException {
+	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException {
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMEBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') and @userSecurity.hasUserId(authentication,#userId)")
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
 	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException{

@@ -9,26 +9,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
-import com.cts.projectmanagementportalbackend.exception.ElementAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
-import com.cts.projectmanagementportalbackend.model.UserRole;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
-import com.cts.projectmanagementportalbackend.repository.UserRoleRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
-	@Autowired
-	UserRoleRepository userRoleRepository;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -38,15 +34,29 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
+	public User login(String userName, String password) throws PasswordIncorrectException {
+		
+		User user = userRepository.findByUserName(userName);
+		
+		if(user==null) {
+			throw new UsernameNotFoundException("userId is Invalid. please try again...");
+		} else if(password == userRepository.findByUserName(userName).getPassword()) {
+			throw new PasswordIncorrectException("password is incorrect. please try again...");
+		}
+		
+		return user;
+	}
+
+	@Override
 	public UserResponse loginUser(String userId, String password)  throws InvalidUserIdOrPasswordException{
 		// TODO Auto-generated method stub
 		UserResponse response = new UserResponse();
-		Optional<User> user = userRepository.findById(userId);
+		User user = userRepository.findByUserName(userId);
 		try {
 			
 			if(user!=null) {
-				if (user.get().getPassword().equals(password)) {
-					response.setUser(user.get());
+				if (user.getPassword().equals(password)) {
+					response.setUser(user);
 					response.setLoginStatus("success");
 					response.setErrorMessage("null");
 //					response.setToken(tokenService.createToken(user.get().getUserId()));
@@ -64,12 +74,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return response;
 	}
-	
-	@Override
-	public User getUserByUserIdAndPassword(String userId, String password) {
-		// TODO Auto-generated method stub
-		return userRepository.findByUserIdAndPassword(userId, password);
-	}
 
 	@Override
 	public List<User> getAllUsers() {
@@ -78,44 +82,38 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(String userId) throws NoSuchElementExistException {
+	public User getUserById(int userId){
 		
 		Optional<User> optionalUser = userRepository.findById(userId);
 		
 		if(optionalUser.isPresent()) {
 			return userRepository.findById(userId).get();
 		} else {
-			throw new NoSuchElementExistException("User Id doesn't Exist");
+			throw new UsernameNotFoundException("User Id doesn't Exist");
 		}
 		
 		
 	}
 	
 	@Override
-	public User saveUser(User user)  throws ElementAlreadyExistException{
+	public User saveUser(User user)  throws InvalidUserIdOrPasswordException{
 		// TODO Auto-generated method stub
-		Optional<User> optionalUser = userRepository.findById(user.getUserId());
+		User optionalUser = userRepository.findByUserName(user.getUserName());
 //		User optionalUserEmail = userRepository.findByEmailAddress(user.getEmailAddress());
 		
-		if(optionalUser.isEmpty()) {
+		if(optionalUser==null) {
 			
-			UserRole userRole = new UserRole();
-			
-				userRole.setUserName(user.getUserId());
-				userRole.setPassword(passwordEncoder.encode(user.getPassword()));
-				userRole.setRole(user.getUserType());
-			
-				userRoleRepository.save(userRole);
-				
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			return userRepository.save(user);
 //		} else if (optionalUserEmail==null) {
 //			throw new ElementAlreadyExistException("Email address already Exists");
 		
 		} else {
-			throw new ElementAlreadyExistException("User Id already Exists");
+			throw new InvalidUserIdOrPasswordException("User Id already Exists");
 		}
 		
 	}
+
 
 	
 

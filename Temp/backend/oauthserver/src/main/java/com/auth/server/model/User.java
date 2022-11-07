@@ -107,21 +107,31 @@ public class User implements Serializable {
 		
 		this.userName = userName;
 		this.password=password;
-		this.dateOfBirth = Calendar.getInstance().getTime();
-		this.contactNumber =54323L;
 	}
 
-	public User (User user) {
+	
+
+	public User(int userId,
+			@Size(min = 5, max = 8, message = "userId shoud be between 5 and 8 characters") @NotNull(message = "name should not be Null") @NotEmpty(message = "name shoudl not be Empty") String userName,
+			@NotNull(message = "name should not be Null") @NotEmpty(message = "name shoudl not be Empty") @Size(max = 100) String name,
+			@NotNull(message = "emailAddress should not be Null") @NotEmpty(message = "emailAddress should not be Empty") @Size(max = 100) @Email(message = "enter valid email address") String emailAddress,
+			@NotNull(message = "contactNo should not be Null") @Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits") Long contactNumber,
+			@NotNull(message = "userType should not be Null") @NotEmpty(message = "userType should not be Empty") @Size(max = 100) String userType,
+			@NotNull(message = "dateOfBirth should not be Null") Date dateOfBirth,
+			@NotNull(message = "password should not be Null") @NotEmpty(message = "password should not be Empty") String password,
+			Role role) {
 		super();
-		this.userId = user.getUserId();
-		this.userName = user.getUserName();
-		this.password=user.getPassword();
-		this.userType = user.getUserType();
-//		this.emailId = user.getEmailId();
-//		this.contactNumber = user.getContactNumber();
-		this.dateOfBirth = user.getDateOfBirth();
-		this.role=user.getRoles();
+		this.userId = userId;
+		this.userName = userName;
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.contactNumber = contactNumber;
+		this.userType = userType;
+		this.dateOfBirth = dateOfBirth;
+		this.password = password;
+		this.role = role;
 	}
+
 
 	public int getUserId() {
 		return userId;
@@ -207,5 +217,7 @@ public class User implements Serializable {
 	public void setRole(Role roles) {
 		this.role = roles;
 	}
+	
+	
 	
 }

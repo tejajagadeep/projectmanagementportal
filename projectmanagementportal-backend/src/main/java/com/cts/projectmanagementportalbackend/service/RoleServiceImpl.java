@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.User;
-import com.cts.projectmanagementportalbackend.model.UserRole;
+import com.cts.projectmanagementportalbackend.model.Role;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
-import com.cts.projectmanagementportalbackend.repository.UserRoleRepository;
+import com.cts.projectmanagementportalbackend.repository.RoleRepository;
 
 @Service
-public class UserRoleServiceImpl implements UserRoleService{
+public class RoleServiceImpl implements RoleService{
 	
 	@Autowired
-	UserRoleRepository userRoleRepository;
+	RoleRepository RoleRepository;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -30,16 +30,16 @@ public class UserRoleServiceImpl implements UserRoleService{
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public List<UserRole> getUserRoles(){
-		return userRoleRepository.findAll();
+	public List<Role> getRoles(){
+		return RoleRepository.findAll();
 	}
 	
 	@Override
-	public UserRole getUserRoleById(int userId) throws NoSuchElementExistException{
+	public Role getRoleById(int userId) throws NoSuchElementExistException{
 		
-		Optional<UserRole> optional = userRoleRepository.findById(userId);
+		Optional<Role> optional = RoleRepository.findById(userId);
 		if(optional.isPresent()) {
-			return userRoleRepository.findById(userId).get();
+			return RoleRepository.findById(userId).get();
 		} else {
 			throw new NoSuchElementExistException(userId + " doesn't exist");
 		}
@@ -47,44 +47,44 @@ public class UserRoleServiceImpl implements UserRoleService{
 	}
 	
 	@Override
-	public UserRole getUserRoleByUserName(String userName) throws NoSuchElementExistException{
+	public Role getRoleByUserName(String userName) throws NoSuchElementExistException{
 		
-		UserRole optional = userRoleRepository.findByUserName(userName);
+		Role optional = RoleRepository.findByUserName(userName);
 		if(optional==null) {
-			return userRoleRepository.findByUserName(userName);
+			return RoleRepository.findByUserName(userName);
 		} else {
 			throw new NoSuchElementExistException(userName + " doesn't exist");
 		}
 	}
 
 	@Override
-	public UserRole loginAdmin(@Valid UserRole userRole) {
+	public Role loginAdmin(@Valid Role Role) {
 		
-//		Optional<User> optional = userRepository.findById(userRole.getUserId());
+//		Optional<User> optional = userRepository.findById(Role.getUserId());
 		
 //		if(user)
 		return null;
 	}
 
 	@Override
-	public UserRole loginUser(@Valid UserRole userRole) {
+	public Role loginUser(@Valid Role Role) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UserRole login(@Valid UserRole userRole) throws NoSuchElementExistException {
+	public Role login(@Valid Role Role) throws NoSuchElementExistException {
 		// TODO Auto-generated method stub
 		
-		UserRole optional = userRoleRepository.findByUserName(userRole.getUserName());
+		Role optional = RoleRepository.findByUserName(Role.getUserName());
 		if(optional==null) {
 			throw new NoSuchElementExistException("User Id doesn't exist");
 			
-		} else if (passwordEncoder.encode(userRole.getPassword())==optional.getPassword()){
+		} else if (passwordEncoder.encode(Role.getPassword())==optional.getPassword()){
 			throw new NoSuchElementExistException("Password isn't correct");
 		}
 		
-		return userRoleRepository.findByUserName(userRole.getUserName());
+		return RoleRepository.findByUserName(Role.getUserName());
 	}
 
 }

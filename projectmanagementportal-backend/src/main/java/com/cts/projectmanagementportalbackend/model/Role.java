@@ -4,13 +4,10 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table
-public class UserRole {
+public class Role {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,17 +33,10 @@ public class UserRole {
 	private String password;
 	private String role;
 //	private String roleDescription;
+//	
+//	@OneToMany(cascade=CascadeType.ALL)
+//    @JoinColumn(name="role_Id")
+//	private Set<User> users;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "role_permission",
-            joinColumns = {@JoinColumn(name = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "permission_id")}
-    )
-	private Set<Permission> permissions;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="role_Id")
-	private Set<User> users;
 	
 }
