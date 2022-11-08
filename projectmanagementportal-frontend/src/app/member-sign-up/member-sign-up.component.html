@@ -275,7 +275,7 @@
           <h6 class="mb-0">User Type</h6>
         </label>
         <div class="form-group col-md-9 pe-5">
-            <select class="form-control" name="userType" id="userType" [(ngModel)]="user.userType" required>
+            <select class="form-control" name="role" id="role" [(ngModel)]="user.role" required>
               <option value="Admin" selected>Admin</option>
               <option value="Member">Member</option>
             </select>
@@ -287,10 +287,10 @@
           <h6 class="mb-0">User Id</h6>
         </label>
         <div class="form-group col-md-9 pe-5">
-          <input type="text" class="form-control" id="userId" name="userId" placeholder="User Id"
-            [(ngModel)]="user.userId" required #userId="ngModel" [class.is-invalid]="userId.invalid && userId.touched"
+          <input type="text" class="form-control" id="userName" name="userName" placeholder="User Id"
+            [(ngModel)]="user.userName" required #userName="ngModel" [class.is-invalid]="userName.invalid && userName.touched"
             minlength="5" maxlength="8" pattern=".{5,8}" />
-          <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required and should
+          <small class="text-danger" [class.d-none]="userName.valid || userName.untouched">User Id is required and should
             have 5 to 8 charaters</small>
           <small class="text-danger" *ngIf="errorMessageResponse">{{errorMessageResponse}}</small>
         </div>

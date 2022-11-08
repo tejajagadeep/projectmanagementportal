@@ -66,10 +66,10 @@
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="text" class="form-control form-control-lg" id="userId" name="userId"
-                  [(ngModel)]="user.userId" required #userId="ngModel"
-                  [class.is-invalid]="userId.invalid && userId.touched" minlength="5" maxlength="8" pattern=".{5,8}" />
-                <label class="form-label" for="exampleInputUserId">User Id</label>
+                <input type="text" class="form-control form-control-lg" id="userName" name="userName"
+                  [(ngModel)]="user.userName" required #userName="ngModel"
+                  [class.is-invalid]="userName.invalid && userName.touched" minlength="5" maxlength="8" pattern=".{5,8}" />
+                <label class="form-label" for="userName">User Id</label>
               </div>
 
               <div class="form-outline form-white mb-4">

@@ -14,12 +14,13 @@ export class User {
   //   password!: string;
   constructor(
 
-    public userId: string,
+    // public userId: string,
+    public userName: string,
     public name: string,
     public emailAddress: string,
     public contactNo: number,
     public dateOfBirth: Date,
-    public userType: string,
+    public role: string,
     public password: string
 
   ) { }
@@ -55,6 +56,10 @@ export class MemberSignUpComponent implements OnInit {
   }
 
   navLink(){
+    this.router.navigate(["home"]);
+  }
+
+  navLogin(){
     this.router.navigate(["login"]);
   }
 
@@ -63,7 +68,7 @@ export class MemberSignUpComponent implements OnInit {
       .subscribe(
         response => {
           console.log("Response Recieved")
-          // this.navLogin()
+          this.router.navigate(["login"]);
         },
         error => {
           console.log("Exception Occured")

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
+import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
@@ -41,15 +44,19 @@ import com.cts.projectmanagementportalbackend.model.ErrorMessages;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1.0/user")
-@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class UserController {
 
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("login/{userId}/{password}")
-	public ResponseEntity<User> login(@PathVariable String userId, @PathVariable String password) throws PasswordIncorrectException{
-		return new ResponseEntity<>(userService.login(userId, password),HttpStatus.OK);
+	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
+	
+//	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
+	@PostMapping("login/{userName}/{password}")
+	public ResponseEntity<User> login(@PathVariable String userName, @PathVariable String password) throws PasswordIncorrectException{
+		
+		log.info("inside login of User Controller");
+		return new ResponseEntity<>(userService.login(userName, password),HttpStatus.OK);
 	}
 
 	
@@ -71,30 +78,22 @@ public class UserController {
 //		}
 //		
 //	}
-
-	@GetMapping("/helloWorld")
-	public MessageResponse helloWorld() {
-//		throw new RuntimeException("runtime Exception");
-		return new MessageResponse(new Date(),"HelloWorld Back-End", HttpStatus.OK);
-	}
 	
-//	@GetMapping("/helloWorld/{name}")
-//	public MessageResponse helloWorldPathVaraible(@PathVariable String name) {
-////		throw new RuntimeException("runtime Exception");
-//		return new MessageResponse(name, 1);
-//	}
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<User>> getAllUsers(){
+		
+		log.info("inside getAllUsers of User Controller");
 		return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)")
+	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 	@GetMapping("/getUserById/{userId}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
 	public @ApiResponse(description = "Demo Object") User getAllUsers(@Parameter(description = "Id of the Demo") @PathVariable int userId) throws NoSuchElementExistException{
+		
+		log.info("inside getUserById of User Controller");
 		return userService.getUserById(userId);
 	}
 	
@@ -102,6 +101,8 @@ public class UserController {
 	@PostMapping("/userSignUp")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws InvalidUserIdOrPasswordException{
+		
+		log.info("inside saveUser of User Controller");
 		return new ResponseEntity<>(userService.saveUser(user),HttpStatus.CREATED);
 	}
 	

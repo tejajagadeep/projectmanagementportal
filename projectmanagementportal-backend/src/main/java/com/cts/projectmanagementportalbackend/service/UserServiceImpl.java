@@ -8,11 +8,14 @@ import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
@@ -20,7 +23,12 @@ import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+//import lombok.extern.slf4j.Slf4j;
+
 @Service
+//@Slf4j
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -29,6 +37,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
+	
 //	@Autowired
 //	TokenService tokenService;
 	
@@ -36,12 +46,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String userName, String password) throws PasswordIncorrectException {
 		
-		User user = userRepository.findByUserName(userName);
+		log.info("inside login of userServiceImpl");
 		
+		User user = userRepository.findByUserName(userName);
+		log.info("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
+		System.out.println("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
 		if(user==null) {
+			log.info("userId is Invalid. please try again..."+userName);
 			throw new UsernameNotFoundException("userId is Invalid. please try again...");
-		} else if(password == userRepository.findByUserName(userName).getPassword()) {
-			throw new PasswordIncorrectException("password is incorrect. please try again...");
+			
 		}
 		
 		return user;
@@ -78,6 +91,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
+		log.info("inside get all users");
 		return userRepository.findAll();
 	}
 
@@ -86,9 +100,11 @@ public class UserServiceImpl implements UserService {
 		
 		Optional<User> optionalUser = userRepository.findById(userId);
 		
-		if(optionalUser.isPresent()) {
+		try {
+			log.info("users" + optionalUser.get().toString());
 			return userRepository.findById(userId).get();
-		} else {
+		} catch (UsernameNotFoundException e) {
+			log.info("user Id " +userId+" dosem't exist");
 			throw new UsernameNotFoundException("User Id doesn't Exist");
 		}
 		
@@ -101,14 +117,20 @@ public class UserServiceImpl implements UserService {
 		User optionalUser = userRepository.findByUserName(user.getUserName());
 //		User optionalUserEmail = userRepository.findByEmailAddress(user.getEmailAddress());
 		
+		try {
 		if(optionalUser==null) {
-			
+			log.info("saved user " +user.toString());
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			return userRepository.save(user);
 //		} else if (optionalUserEmail==null) {
 //			throw new ElementAlreadyExistException("Email address already Exists");
 		
 		} else {
+			log.info("user Id alerady exist");
+			throw new InvalidUserIdOrPasswordException("User Id already Exists");
+		}
+		} catch (InvalidUserIdOrPasswordException e) {
+			log.info("catch user Id alerady exist");
 			throw new InvalidUserIdOrPasswordException("User Id already Exists");
 		}
 		

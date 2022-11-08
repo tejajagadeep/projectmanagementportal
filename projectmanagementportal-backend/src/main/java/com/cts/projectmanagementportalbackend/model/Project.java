@@ -26,12 +26,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Table
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Project {
 
 	@Id

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { USER_API_URL } from 'src/app/app.constants';
 import { User } from 'src/app/member-sign-up/member-sign-up.component';
@@ -13,12 +13,12 @@ export class helloWorldBean{
 
 export class userException{
   constructor(
-    public userId: string,
+    public userName: string,
     public name: string,
     public emailAddress: string,
     public contactNo: number,
-    public dOB: Date,
-    public userType: string,
+    public dateOBirth: Date,
+    public role: string,
     public password: string,
 
   ) {}
@@ -31,8 +31,13 @@ export class UserDataServiceService {
 
   constructor(private http: HttpClient) { }
 
+  public login(username: string, password : string){
+    const headers = new HttpHeaders({Authorization: 'Basic '+btoa(username+":"+password)});
+    this.http.get(`${USER_API_URL}/login`);
+  }
+
   public loginUser(user: User): Observable<any>{
-    return this.http.post<any>(`${USER_API_URL}/login`,user);
+    return this.http.post<any>(`${USER_API_URL}/userlogin`,user);
   }
 
   public saveUser(user: User): Observable<any>{

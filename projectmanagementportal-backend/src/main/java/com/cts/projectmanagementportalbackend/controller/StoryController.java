@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
@@ -30,32 +34,48 @@ import com.cts.projectmanagementportalbackend.service.StoryService;
 @RequestMapping("/api/v1.0/story")
 public class StoryController {
 
+	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	
 	@Autowired
 	StoryService storyService;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getAllStories")
 	public ResponseEntity<List<Story>> getAllStories(){
+		
+		log.info("inside getAllStories of Story Controller");
 		return new ResponseEntity<>(storyService.getAllStories(), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getStoryById/{storyId}")
 	public ResponseEntity<Story> getStoryById(@PathVariable String storyId) throws NoSuchElementExistException{
+		
+		log.info("inside getStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.getStoryById(storyId), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/storyRegistration")
 	public ResponseEntity<Story> saveStory(@Valid @RequestBody Story story)  throws IdAlreadyExistException, NoSuchElementExistException {
+		
+		log.info("inside storyRegistration of Story Controller");
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@PutMapping("updateStory/{storyId}")
-	public ResponseEntity<Story> updateStory(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+	public ResponseEntity<Story> updateStoryById(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+		
+		log.info("inside updateStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.updateStory(storyId, story), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/deleteStoryById/{storyId}")
 	public ResponseEntity<List<Story>> deleteStoryById(@PathVariable String storyId) throws NoSuchElementExistException{
+		
+		log.info("inside deleteStoryById of Story Controller");
 		storyService.deleteStoryById(storyId);
 		return new ResponseEntity<>(storyService.getAllStories(), HttpStatus.OK);
 	}
