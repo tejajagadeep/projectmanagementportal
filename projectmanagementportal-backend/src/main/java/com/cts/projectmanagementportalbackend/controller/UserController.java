@@ -58,6 +58,13 @@ public class UserController {
 		log.info("inside login of User Controller");
 		return new ResponseEntity<>(userService.login(userName, password),HttpStatus.OK);
 	}
+	
+	@PostMapping("/login1")
+	public ResponseEntity<User> login1(@RequestBody User user) throws PasswordIncorrectException{
+		
+		log.info("inside login1 of User Controller");
+		return new ResponseEntity<>(userService.login1(user),HttpStatus.OK);
+	}
 
 	
 //	@PostMapping("/loginuser")

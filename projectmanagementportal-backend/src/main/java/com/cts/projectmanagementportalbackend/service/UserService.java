@@ -23,5 +23,7 @@ public interface UserService {
 	User saveUser(User user)  throws InvalidUserIdOrPasswordException;
 
 	User login(String userName, String password) throws PasswordIncorrectException;
+
+	User login1(User user) throws PasswordIncorrectException;
 	
 }
