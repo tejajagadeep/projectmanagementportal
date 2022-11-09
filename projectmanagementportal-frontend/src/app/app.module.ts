@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
+import { LogoutComponent } from './logout/logout.component';
+import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ViewProjectStatusComponent } from './view-project-status/view-project-s
     ProjectStoriesRegistrationOrUpdationComponent,
     MenuComponent,
     FooterComponent,
-    ViewProjectStatusComponent
+    ViewProjectStatusComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,13 @@ import { ViewProjectStatusComponent } from './view-project-status/view-project-s
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpIntercepterBasicAuthService,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

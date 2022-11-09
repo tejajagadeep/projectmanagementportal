@@ -11,14 +11,13 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
-import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
@@ -33,8 +32,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	UserDetails userDetials;
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
+//	@Autowired
+//	UserDetails userDetials;
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	
@@ -43,28 +44,25 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public User login(String userName, String password) throws PasswordIncorrectException {
+	public User login(String userName, String password) throws InvalidUserIdOrPasswordException {
 		
 		log.info("inside login of userServiceImpl");
 		
 		User user = userRepository.findByUserName(userName);
-		log.info("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
-		System.out.println("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
 		if(user==null) {
 			log.info("userId is Invalid. please try again..."+userName);
-			throw new UsernameNotFoundException("userId is Invalid. please try again...");
-			
-//		}else if (password!=userDetail.getPassword()) {
-//			log.info("password is Invalid. please try again..."+userName);
-//			throw new PasswordIncorrectException("password is Invalid. please try again...");
-			
+			throw new InvalidUserIdOrPasswordException("userId is Invalid. please try again...");
+		} else if (!encoder.matches(password, user.getPassword().replace("{bcrypt}", ""))) {
+			log.info("password "+password+" is Invalid. please try again..."+user.getPassword().replace("{bcrypt}", "")+ " match :"+encoder.matches(password, user.getPassword()));
+			throw new InvalidUserIdOrPasswordException("password is Invalid. please try again...");
 		}
+		log.info("usernaem : "+userName);
 		
 		return user;
 	}
 	
 	@Override
-	public User login1(User user) throws PasswordIncorrectException {
+	public User login1(User user) throws InvalidUserIdOrPasswordException {
 		
 		log.info("inside login of userServiceImpl");
 		
@@ -73,11 +71,11 @@ public class UserServiceImpl implements UserService {
 //		System.out.println("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
 		if(userDummy==null) {
 			log.info("userId is Invalid. please try again..."+user.getUserName());
-			throw new UsernameNotFoundException("userId is Invalid. please try again...");
+			throw new InvalidUserIdOrPasswordException("userId is Invalid. please try again...");
 			
-		}else if (user.getPassword()!=userDetials.getPassword()) {
-			log.info("password is Invalid. please try again..."+user.getPassword());
-			throw new PasswordIncorrectException("password is Invalid. please try again...");
+//		}else if (user.getPassword()!=userDetials.getPassword()) {
+//			log.info("password is Invalid. please try again..."+user.getPassword());
+//			throw new PasswordIncorrectException("password is Invalid. please try again...");
 			
 		}
 		
@@ -113,7 +111,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers(String userName) {
 		// TODO Auto-generated method stub
 		log.info("inside get all users");
 		return userRepository.findAll();

@@ -9,21 +9,20 @@ import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
-import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 
 public interface UserService {
 
 	UserResponse loginUser(String user, String password) throws InvalidUserIdOrPasswordException;
 	
-	List<User> getAllUsers();
+	List<User> getAllUsers(String userName);
 	
 	User getUserById(int userId) throws NoSuchElementExistException;
 
 	User saveUser(User user)  throws InvalidUserIdOrPasswordException;
 
-	User login(String userName, String password) throws PasswordIncorrectException;
+	User login(String userName, String password) throws InvalidUserIdOrPasswordException;
 
-	User login1(User user) throws PasswordIncorrectException;
+	User login1(User user) throws InvalidUserIdOrPasswordException;
 	
 }

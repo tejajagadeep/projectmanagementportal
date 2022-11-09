@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StoryDataServiceService } from '../service/data/story-data-service.service';
+import { StoryDataService } from '../service/data/story-data.service';
 
 export class Story{
 
@@ -48,7 +48,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
-    private storyDataService: StoryDataServiceService
+    private storyDataService: StoryDataService
   ) { }
 
   ngOnInit(): void {

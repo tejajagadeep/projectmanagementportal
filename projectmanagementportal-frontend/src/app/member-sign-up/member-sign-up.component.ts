@@ -1,7 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserDataServiceService } from '../service/data/user-data-service.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 export class User {
 
@@ -40,7 +40,7 @@ export class MemberSignUpComponent implements OnInit {
   dummyNumber!: number
   dummyDate!: Date
 
-  constructor(private userDataService: UserDataServiceService,
+  constructor(private userDataService: UserDataService,
     private route: ActivatedRoute,
     private router: Router
   ) { }

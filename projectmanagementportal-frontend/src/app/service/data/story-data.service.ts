@@ -7,7 +7,7 @@ import { Story } from 'src/app/project-stories-registration-or-updation/project-
 @Injectable({
   providedIn: 'root'
 })
-export class StoryDataServiceService {
+export class StoryDataService {
 
   constructor(private http: HttpClient) { }
 

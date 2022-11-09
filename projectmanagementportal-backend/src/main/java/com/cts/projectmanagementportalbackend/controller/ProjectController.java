@@ -56,7 +56,7 @@ public class ProjectController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("getProjectsByProjectManagerEmailId/{projectManagerEmailId}")
+	@GetMapping("/getProjectsByProjectManagerEmailId/{projectManagerEmailId}")
 	public ResponseEntity<List<Project>> getProjectsByProjectManagerEmailId(@PathVariable String projectManagerEmailId){
 		
 		log.info("inside getProjectsByProjectManagerEmailId of project Controller");
@@ -64,7 +64,7 @@ public class ProjectController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("getProjectsByProjectName/{projectName}")
+	@GetMapping("/getProjectsByProjectName/{projectName}")
 	public ResponseEntity<List<Project>> getProjectsByProjectName(@PathVariable String projectName){
 
 		log.info("inside getProjectsByProjectName of project Controller");
@@ -72,7 +72,7 @@ public class ProjectController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("getProjectsByProjectManagerName/{projectManagerName}")
+	@GetMapping("/getProjectsByProjectManagerName/{projectManagerName}")
 	public ResponseEntity<List<Project>> getProjectsByProjectManagerName(@PathVariable String projectManagerName){
 
 		log.info("inside getProjectsByProjectManagerName of project Controller");
@@ -80,7 +80,7 @@ public class ProjectController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("getProjectsByStatus/{status}")
+	@GetMapping("/getProjectsByStatus/{status}")
 	public ResponseEntity<List<Project>> getProjectsByStatus(@PathVariable String status){
 
 		log.info("inside getProjectsByStatus of project Controller");

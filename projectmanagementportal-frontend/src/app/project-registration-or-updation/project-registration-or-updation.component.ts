@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectDataServiceService } from '../service/data/project-data-service.service';
+import { ProjectDataService } from '../service/data/project-data.service';
 
 export class Project {
   // projectId!: string;
@@ -53,7 +53,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private projectDataService: ProjectDataServiceService,
+    private projectDataService: ProjectDataService
   ) { }
 
   ngOnInit(): void {

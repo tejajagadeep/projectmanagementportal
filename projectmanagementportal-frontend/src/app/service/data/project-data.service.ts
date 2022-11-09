@@ -7,7 +7,7 @@ import { Project } from 'src/app/project-registration-or-updation/project-regist
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectDataServiceService {
+export class ProjectDataService {
 
   constructor(private http: HttpClient) { }
 
@@ -46,5 +46,4 @@ export class ProjectDataServiceService {
   deleteProjectById(projectId: string): Observable<any>{
     return this.http.delete<Project>(`${PROJECT_API_URL}/deleteProjectById/${projectId}`);
   }
-
 }

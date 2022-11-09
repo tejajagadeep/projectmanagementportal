@@ -73,15 +73,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
 			
 //			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
-			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login/**").permitAll()
+			.antMatchers(HttpMethod.GET,"/api/v1.0/user/helloWorld").permitAll()
+			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login1").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/userSignUp").permitAll()
-			
+			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login/**").permitAll()
+//			.anyRequest().authenticated().and().httpBasic()
 //			.and().formLogin().defaultSuccessUrl("/welcome",true)
 		;
 		
 		http.cors();
 		http.csrf().disable();
+//		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated().and().httpBasic();
 		super.configure(http);
 	}
 	

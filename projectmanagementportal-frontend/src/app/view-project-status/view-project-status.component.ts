@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
 import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
-import { ProjectDataServiceService } from '../service/data/project-data-service.service';
-import { StoryDataServiceService } from '../service/data/story-data-service.service';
+import { ProjectDataService } from '../service/data/project-data.service';
+import { StoryDataService } from '../service/data/story-data.service';
 
 @Component({
   selector: 'app-view-project-status',
@@ -22,8 +22,8 @@ export class ViewProjectStatusComponent implements OnInit {
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
-    private projectService: ProjectDataServiceService,
-    private storyService: StoryDataServiceService
+    private projectService: ProjectDataService,
+    private storyService: StoryDataService
   ) { }
 
   ngOnInit(): void {

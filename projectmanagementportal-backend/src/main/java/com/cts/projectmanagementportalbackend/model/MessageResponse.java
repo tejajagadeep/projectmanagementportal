@@ -25,6 +25,11 @@ public class MessageResponse {
 		this.message = message;
 		this.status = status;
 	}
+
+	public MessageResponse(String message) {
+		super();
+		this.message = message;
+	}
 	
 	
 	

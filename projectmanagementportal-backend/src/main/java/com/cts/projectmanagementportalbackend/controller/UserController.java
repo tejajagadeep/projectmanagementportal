@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
-import com.cts.projectmanagementportalbackend.exception.PasswordIncorrectException;
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
@@ -53,14 +52,14 @@ public class UserController {
 	
 //	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 	@PostMapping("login/{userName}/{password}")
-	public ResponseEntity<User> login(@PathVariable String userName, @PathVariable String password) throws PasswordIncorrectException{
+	public ResponseEntity<User> login(@PathVariable String userName, @PathVariable String password) throws InvalidUserIdOrPasswordException{
 		
 		log.info("inside login of User Controller");
 		return new ResponseEntity<>(userService.login(userName, password),HttpStatus.OK);
 	}
 	
 	@PostMapping("/login1")
-	public ResponseEntity<User> login1(@RequestBody User user) throws PasswordIncorrectException{
+	public ResponseEntity<User> login1(@RequestBody User user) throws InvalidUserIdOrPasswordException{
 		
 		log.info("inside login1 of User Controller");
 		return new ResponseEntity<>(userService.login1(user),HttpStatus.OK);
@@ -86,12 +85,18 @@ public class UserController {
 //		
 //	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
-	@GetMapping("/getAllUsers")
-	public ResponseEntity<List<User>> getAllUsers(){
+	@GetMapping("/helloWorld")
+	public MessageResponse hello() {
+		log.info("hello world");
+		return new MessageResponse("Hello World");
+	}
+	
+//	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
+	@GetMapping("/getAllUsers/{userName}")
+	public ResponseEntity<List<User>> getAllUsers(@PathVariable String userName){
 		
 		log.info("inside getAllUsers of User Controller");
-		return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
+		return new ResponseEntity<>(userService.getAllUsers(userName),HttpStatus.OK);
 	}
 	
 	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
