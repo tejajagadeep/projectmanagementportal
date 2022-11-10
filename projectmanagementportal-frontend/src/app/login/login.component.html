@@ -60,31 +60,32 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <form class="mb-md-5 mt-md-4 pb-5" #loginForm="ngForm" (ngSubmit)="loginUser()">
+            <form class="mb-md-5 mt-md-4 pb-5" >
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
-              <div class="form-outline form-white mb-4">
-                <input type="text" class="form-control form-control-lg" id="userName" name="userName"
-                  [(ngModel)]="user.userName" required #userName="ngModel"
-                  [class.is-invalid]="userName.invalid && userName.touched" minlength="5" maxlength="8" pattern=".{5,8}" />
-                  <!-- <input type="text" name="username" [(ngModel)] = "username"> -->
-                <label class="form-label" for="userName">User Id</label>
+              <!-- <small class="alert alert-warning " *ngIf='invalidLogin'>{{errorMessage}}</small> -->
+              <div class="alert alert-warning d-flex align-items-center" role="alert" *ngIf='invalidLogin'>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  {{errorMessage}}
+                </div>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" class="form-control form-control-lg" id="password" name="password"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="user.password"
-                  required #password="ngModel" [class.is-invalid]="password.invalid && password.touched" />
-                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Invalid
-                  password</small>
-                  <!-- <input type="password" name="password" [(ngModel)] ="password"> -->
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
+              name="username">
+                <label class="form-label" for="username">User Id</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
+              name="password">
                 <label class="form-label" for="exampleInputPassword">Password</label>
               </div>
 
 
-              <button [disabled]="loginForm.form.invalid" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              <button (click)=checkLogin1() class="btn btn-outline-light btn-lg px-5">Login</button>
 
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
                 <a routerLink="/home/in28minutes" class="text-white"><i class="fab fa-facebook-f fa-lg">home</i></a>
@@ -105,4 +106,30 @@
       </div>
     </div>
   </div>
-</section>
+</section> 
+
+<!-- <app-menu></app-menu>
+<div class="container col-lg-6">
+    <h1 class="text-center">Login</h1>
+    <div class="card">
+      <div class="card-body">
+        <form class="form-group">
+          <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+          <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+          <div class="form-group">
+            <label for="email">User Name :</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
+              name="username">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
+              name="password">
+          </div>
+          <button [disabled]="loginForm.form.invalid" class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+          <button (click)=checkLogin1() class="btn btn-success">Login</button>
+        </form>
+      </div>
+    </div>
+  </div> -->

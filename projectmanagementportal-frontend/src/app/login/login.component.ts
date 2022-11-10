@@ -13,27 +13,20 @@ import { UserDataService } from '../service/data/user-data.service';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'in28minutes'
-  password = ''
+  username!: string
+  password!: string
   errorMessage = 'Invalid Credentials'
+  successMessage!: string
   invalidLogin = false
-  helloWorldMessage = ""
-  errorMessageResponse = ""
-  name = ''
-  // user = new User();
-  user!: User
-  story!: Story[]
-  project!: Project[]
-  dummyNumber!: number;
+  loginSuccess = false
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserDataService,
     private authenticateLoginService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {
-    this.user = new User('', '', '', this.dummyNumber, new Date(), '', '');
 
   }
 
@@ -51,51 +44,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  helloWorld() {
-    // console.log("Hello World Front-End");
-    // console.log(this.userService.helloWorldDataService());
-    this.userService.helloWorldDataService().subscribe(
-      response => this.handleSuccessResponse(response),
-      error => this.handleErrorResponse(error)
-      // response => console.log(response.message)
-    );
-  }
-
-  helloWorldPathVariable() {
-    // console.log("Hello World Front-End");
-    // console.log(this.userService.helloWorldDataService());
-    this.userService.helloWorldPathVariableDataService(this.username).subscribe(
-      response => this.handleSuccessResponse(response),
-      error => this.handleErrorResponse(error)
-      // response => console.log(response.message)
-    );
-  }
-
-
-
-  loginUser(){
-    this.userService.login(this.username,this.password,this.user)
-    .subscribe(
-      (response: any) => {
-        console.log("Response Recieved")
-        this.navLink()
-      },
-      (      error: any) => {
-        console.log("Exception Occured")
-        this.handleErrorResponse(error);
-      }
-      
-    )
- }
 
   handleSuccessResponse(response: any) {
     // console.log(response);
-    this.helloWorldMessage = response.message
+    this.successMessage = response.message
   }
 
   handleErrorResponse(error: any) {
     // console.log(response);
-    this.errorMessageResponse = error.error.message
+    this.errorMessage= error.error.message
   }
 
 
@@ -107,6 +64,21 @@ export class LoginComponent implements OnInit {
     } else
       this.invalidLogin = true
   }
+
+  checkLogin1() {
+    this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(result=> {
+      console.log(result)
+      this.invalidLogin = false,
+      this.loginSuccess = true,
+      console.log(this.loginSuccess)
+      this.successMessage = 'Login Successful.',
+      this.router.navigate(['/home',this.username])
+    }, error => {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+    });
+  }
+
 
 
 }

@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	
 	@Override
+	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception{
 		return super.authenticationManagerBean();
 	}
@@ -60,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //			.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MEMBER")
 //			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
 			
-//			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN","MEMBER")
+			.antMatchers(HttpMethod.GET).permitAll()
 			
 //			
 //			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllProjects").hasAnyRole("ADMIN")
@@ -74,17 +75,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			
 //			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
 			.antMatchers(HttpMethod.GET,"/api/v1.0/user/helloWorld").permitAll()
+			.antMatchers(HttpMethod.POST,"/basicauth").permitAll()
+			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
-			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login1").permitAll()
+			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/userSignUp").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login/**").permitAll()
 //			.anyRequest().authenticated().and().httpBasic()
 //			.and().formLogin().defaultSuccessUrl("/welcome",true)
 		;
 		
-		http.cors();
+//		http.cors();
 		http.csrf().disable();
-//		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated().and().httpBasic();
+//		.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated().and().httpBasic();
 		super.configure(http);
 	}
 	
