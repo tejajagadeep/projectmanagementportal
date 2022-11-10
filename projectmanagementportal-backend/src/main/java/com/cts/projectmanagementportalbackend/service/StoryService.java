@@ -17,8 +17,12 @@ public interface StoryService {
 
 	Story saveStory(Story story)  throws IdAlreadyExistException, NoSuchElementExistException ;
 
-	Story updateStory(String storyId, Story story) throws NoSuchElementExistException;
+	Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException;
+	
+	Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException;
 
 	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
+
+	void assign(String projectId, String storyId)  throws NoSuchElementExistException;
 
 }

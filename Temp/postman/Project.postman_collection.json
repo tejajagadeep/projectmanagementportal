@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "68bd03c5-36bf-48c5-ae0e-b755a522212b",
+		"name": "Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "deleteProjectById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"projectId\": \"projectA\",\r\n        \"projectName\": \"project1\",\r\n        \"projectDescription\": \"The Bean Validation API is a Java specification which is used to apply constraints on object model via annotations. Here, we can validate a length, number, regular expression, etc. Apart from that, we can also provide custom validations.\",\r\n        \"teamName\": \"Team1\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"shekar\",\r\n        \"projectManagerEmailId\": \"shekar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"ongoing\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/deleteProjectById/projectBA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"deleteProjectById",
+						"projectBA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "projectRegistration",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"projectId\": \"projectBA\",\r\n        \"projectName\": \"projectBA\",\r\n        \"projectDescription\": \"TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"teamName\": \"Team2\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"srikar\",\r\n        \"projectManagerEmailId\": \"srikar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-06-17T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-10-28T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"To-Do\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/projectRegistration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"projectRegistration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProjectById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectById/project2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"getProjectById",
+						"project2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllProjects",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getAllProjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"getAllProjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProjectById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"projectId\": \"projectBA\",\r\n        \"projectName\": \"projectBA\",\r\n        \"projectDescription\": \"TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"teamName\": \"Team2\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"srikar\",\r\n        \"projectManagerEmailId\": \"srikar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-06-17T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-10-28T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"To-Do\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/updateProjectById/projectBA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"updateProjectById",
+						"projectBA"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

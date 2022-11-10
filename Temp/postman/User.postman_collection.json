@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "4f712b5a-5ed6-4a0b-9eda-d8661dd83f65",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUserById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/user/getUserById/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"user",
+						"getUserById",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/user/login/vinay/ABCabc@123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"user",
+						"login",
+						"vinay",
+						"ABCabc@123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/user/getAllUsers/qw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"user",
+						"getAllUsers",
+						"qw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "helloworld",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"projectId\": \"project5\",\r\n        \"projectName\": \"project1\",\r\n        \"projectDescription\": \"The Bean Validation API is a Java specification which is used to apply constraints on object model via annotations. Here, we can validate a length, number, regular expression, etc. Apart from that, we can also provide custom validations.\",\r\n        \"teamName\": \"Team1\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"shekar\",\r\n        \"projectManagerEmailId\": \"shekar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"ongoing\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/user/helloWorld",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"user",
+						"helloWorld"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userSignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"userName\": \"rmanju\",\r\n        \"name\": \"R Manju\",\r\n        \"emailAddress\": \"RManju@gamil.com\",\r\n        \"contactNo\": 7894561230,\r\n        \"dateOfBirth\": \"1978-07-26T18:30:00.000+00:00\",\r\n        \"role\": \"member\",\r\n        \"password\": \"ABCabc@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/user/userSignUp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"user",
+						"userSignUp"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

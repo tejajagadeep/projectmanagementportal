@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "19b94758-b54e-4387-b358-436cc3ef0224",
+		"name": "story",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "deleteStoryById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"storyId\": \"story1A\",\r\n        \"projectId\": \"project1\",\r\n        \"storyTitle\": \"Story1\",\r\n        \"storyDescription\": \"As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"assignee\": \"Rajan\",\r\n        \"assigneeEmailId\": \"rajan@gmail.com\",\r\n        \"assignmentDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"targetDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"status\": \"In-Progress\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/deleteStoryById/story1B",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"deleteStoryById",
+						"story1B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "storyRegistration",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"storyId\": \"storyBA2\",\r\n        \"storyTitle\": \"Story1\",\r\n        \"storyDescription\": \"As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"assignee\": \"Rajan\",\r\n        \"assigneeEmailId\": \"rajan@gmail.com\",\r\n        \"assignmentDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"targetDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"status\": \"In-Progress\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/storyRegistration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"storyRegistration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStoryById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "venkat",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/getStoryById/story2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"getStoryById",
+						"story2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllStories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/getAllStories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"getAllStories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/updateStoryAssignAdmin/projectBA/story/storyBA2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"updateStoryAssignAdmin",
+						"projectBA",
+						"story",
+						"storyBA2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoryAdmin",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"storyId\": \"storyBA2\",\r\n        \"storyTitle\": \"Story1\",\r\n        \"storyDescription\": \"As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"assignee\": \"Rajan\",\r\n        \"assigneeEmailId\": \"rajan@gmail.com\",\r\n        \"assignmentDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"targetDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"status\": \"In-Progress\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/updateStoryAdmin/story1B",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"updateStoryAdmin",
+						"story1B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoryMember",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"storyId\": \"storyBA2\",\r\n        \"storyTitle\": \"Story1\",\r\n        \"storyDescription\": \"As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"assignee\": \"Rajan\",\r\n        \"assigneeEmailId\": \"rajan@gmail.com\",\r\n        \"assignmentDate\": \"2022-07-26T18:30:00.000+00:00\",\r\n        \"targetDate\": \"2022-09-26T18:30:00.000+00:00\",\r\n        \"status\": \"In-Progress\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/story/updateStoryMember/story1B",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"story",
+						"updateStoryMember",
+						"story1B"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

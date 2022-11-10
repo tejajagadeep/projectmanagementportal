@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +15,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +29,7 @@ import lombok.ToString;
 
 @Table
 @Entity
-@Getter
+@Getter // 9 , project_id is for
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,12 +40,19 @@ public class Story {
 	@Size(max = 20)
 	private String storyId;
 	
-	@NotNull(message = "projectId should not be Null")
-	@Size(max = 20)
-	@NotEmpty(message = "projectId should not be Null")
-//	@ManyToOne
+	@ManyToOne
 //	@JoinColumn(name = "project_id")
-	private String projectId;
+	@JsonIgnore
+	private Project project;
+	
+//	@Size(max = 20)
+//	@NotEmpty(message = "projectId should not be Null")
+//	@NotNull(message = "projectId should not be Null")
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//	  @JoinColumn(name = "project_id")
+//	  @OnDelete(action = OnDeleteAction.CASCADE)
+//	  @JsonIgnore
+//	private Project projectId;
 	
 	@NotNull(message = "storyTitle should not be Null")
 	@Size(max = 50)

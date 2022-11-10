@@ -64,10 +64,10 @@ class UserServiceImplTest {
 	void testGetAllUsers() {
 		userRepository.saveAll(userList);
 //		Mockito.when(userServiceImpl.getAllUsers()).thenReturn(userRepository.findAll());
-		when(userServiceImpl.getAllUsers()).thenReturn(userRepository.findAll());
+		when(userServiceImpl.getAllUsers(dateString)).thenReturn(userRepository.findAll());
 //		System.out.println(userRepository.findAll());
 		log.debug(dateString, userRepository.findAll());
-		assertEquals(userRepository.findAll(),userServiceImpl.getAllUsers());
+		assertEquals(userRepository.findAll(),userServiceImpl.getAllUsers(dateString));
 	}
 
 //	@Test

@@ -63,12 +63,29 @@ public class StoryController {
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@PutMapping("updateStory/{storyId}")
-	public ResponseEntity<Story> updateStoryById(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("updateStoryAdmin/{storyId}")
+	public ResponseEntity<Story> updateStoryByIdAdmin(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
 		
 		log.info("inside updateStoryById of Story Controller");
-		return new ResponseEntity<>(storyService.updateStory(storyId, story), HttpStatus.OK);
+		return new ResponseEntity<>(storyService.updateStoryAdmin(storyId, story), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PutMapping("updateStoryMember/{storyId}")
+	public ResponseEntity<Story> updateStoryByIdMember(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+		
+		log.info("inside updateStoryById of Story Controller");
+		return new ResponseEntity<>(storyService.updateStoryMember(storyId, story), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("updateStoryAssignAdmin/{projectId}/story/{storyId}")
+	public String assign(@PathVariable String projectId, @PathVariable String storyId)  throws NoSuchElementExistException{
+		storyService.assign(projectId, storyId);
+		String msg= "story with Id " + storyId + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Controller "+msg);
+		return msg;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

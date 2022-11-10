@@ -2,9 +2,12 @@ package com.cts.projectmanagementportalbackend.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -30,7 +33,7 @@ import lombok.ToString;
 
 @Table
 @Entity
-@Getter
+@Getter //14 , 15th story
 @Setter
 @NoArgsConstructor
 @ToString
@@ -110,10 +113,20 @@ public class Project {
 
 //	@Getter(AccessLevel.NONE)
 //	@Setter(AccessLevel.NONE)
-//	@OneToMany(mappedBy = "project")
-//	private List<Story> stories = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "project_id")
+	private Set<Story> stories;
 	
-	
+	public void addStory(Story theStory) {
+		
+		if (stories == null) {
+//			stories = new ArrayList<>();
+			stories = new HashSet<>();
+		}
+		
+		stories.add(theStory);
+		
+	}
 
 	public Project(@NotNull(message = "projectId should not be Null") @Size(max = 20) String projectId,
 			@NotNull(message = "projectName should not be Null") @Size(max = 30) @NotEmpty(message = "projectName should not be empty") String projectName,
