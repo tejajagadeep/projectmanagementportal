@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -24,17 +25,21 @@ export class AuthenticationDataService {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
-    return !(user === null)
+    // let user = sessionStorage.getItem('username')
+    // console.log(!(user === null))
+    // return !(user === null)
+    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+    if (user === null) return false
+    return true
   }
 
   logOut() {
-    sessionStorage.removeItem('username')
+    // sessionStorage.removeItem('username')
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
   }
 
-  authenticationService(username: string, password: string) {
-    return this.http.post(`http://localhost:8093/project-management/basicauth`,
+  authenticationService(username: string, password: string): Observable<any> {
+    return this.http.get(`http://localhost:8093/project-management/basicauth`,
       { headers: { authorization: this.createBasicAuthToken1(username, password) } }).pipe(map((res) => {
         this.username = username;
         this.password = password;
@@ -62,7 +67,7 @@ export class AuthenticationDataService {
     return true
   }
 
-  getLoggedInUserName1() {
+  getLoggedInUserName() {
     let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
     if (user === null) return ''
     return user

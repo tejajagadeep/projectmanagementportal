@@ -9,6 +9,7 @@ import { AuthenticationDataService } from '../service/auth/authentication-data.s
 export class MenuComponent implements OnInit {
 
   isUserLoggedIn! : boolean
+  username!:string
 
   constructor(
     private authService : AuthenticationDataService
@@ -16,8 +17,11 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
+    this.getUsername();
   }
 
-  
+  getUsername(){
+    this.username=this.authService.getLoggedInUserName();
+  }
 
 }

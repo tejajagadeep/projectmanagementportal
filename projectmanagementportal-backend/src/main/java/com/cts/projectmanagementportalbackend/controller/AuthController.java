@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.model.User;
+import com.cts.projectmanagementportalbackend.model.UserResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -24,6 +26,9 @@ public class AuthController {
 
 	@Autowired
 	private AuthenticationManager auth;
+	
+	@Autowired
+	private UserDetailsService userDetails;
 	
 
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
@@ -37,11 +42,12 @@ public class AuthController {
 		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
 	
-	@PostMapping("/basicauth")
-	public ResponseEntity<String>  authenticateUser1() {
+	@GetMapping("/basicauth")
+	public ResponseEntity<UserResponse>  authenticateUser1() {
 		log.info("basicauth");
 		
-		return new ResponseEntity<>("success",HttpStatus.OK);
+		return new ResponseEntity<>(new UserResponse("vinay","ADMIN"),HttpStatus.OK);
+//		return new ResponseEntity<>("String",HttpStatus.OK);
 	}
 	
 }

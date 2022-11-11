@@ -1,10 +1,8 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../member-sign-up/member-sign-up.component';
-import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
-import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
-import { UserDataService } from '../service/data/user-data.service';
+import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   username!: string
   password!: string
-  errorMessage = 'Invalid Credentials'
+  errorMessage='invalidLogin'
   successMessage!: string
   invalidLogin = false
   loginSuccess = false
@@ -23,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authenticateLoginService: AuthenticationDataService
+    private authenticateLoginService: AuthenticationDataService,
+    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +56,7 @@ export class LoginComponent implements OnInit {
 
 
   checkLogin() {
-    if (this.authenticateLoginService.authenticate(this.username, this.password)
+    if (this.basicAuthService.executeAuthenticationService(this.username, this.password)
     ) {
       this.router.navigate(['home', this.username])
       this.invalidLogin = false
@@ -66,17 +65,21 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin1() {
-    this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(result=> {
-      console.log(result)
+    this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(
+      // {
+       response=> {
+      console.log(response)
       this.invalidLogin = false,
       this.loginSuccess = true,
       console.log(this.loginSuccess)
       this.successMessage = 'Login Successful.',
       this.router.navigate(['/home',this.username])
-    }, error => {
-      this.invalidLogin = true;
-      this.loginSuccess = false;
-    });
+    // }, error, () => {
+    //   this.invalidLogin = true;
+    //   this.loginSuccess = false;
+    }
+  
+  );
   }
 
 

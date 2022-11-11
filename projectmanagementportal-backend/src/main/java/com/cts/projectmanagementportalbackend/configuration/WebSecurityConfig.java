@@ -75,9 +75,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			
 //			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
 			.antMatchers(HttpMethod.GET,"/api/v1.0/user/helloWorld").permitAll()
-			.antMatchers(HttpMethod.POST,"/basicauth").permitAll()
+//			.antMatchers(HttpMethod.POST,"/basicauth").permitAll()
 			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
+//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/userSignUp").permitAll()
 			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login/**").permitAll()

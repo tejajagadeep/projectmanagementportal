@@ -41,7 +41,7 @@ export class BasicAuthenticationService {
       })
 
     return this.http.get<AuthenticationBean>(
-      `${USER_API_URL}/basicauth`,
+      `http://localhost:8093/project-management/basicauth`,
       {headers}).pipe(
         map(
           data => {

@@ -91,7 +91,7 @@ public class UserController {
 		return new MessageResponse("Hello World");
 	}
 	
-//	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
+	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
 	@GetMapping("/getAllUsers/{userName}")
 	public ResponseEntity<List<User>> getAllUsers(@PathVariable String userName){
 		

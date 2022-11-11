@@ -3,7 +3,7 @@
         <div><h2>CONVERTOR</h2></div>
 
         <ul class="navbar-nav">
-            <li><a *ngIf="isUserLoggedIn" routerLink="/home/in28minutes" class="nav-link">Home</a></li>
+            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
             <li><a *ngIf="isUserLoggedIn" routerLink="/view-project-status" class="nav-link">Projects</a></li>
         </ul>
 
