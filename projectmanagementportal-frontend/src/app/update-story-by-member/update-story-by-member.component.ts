@@ -1,43 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { StoryDataService } from '../service/data/story-data.service';
 
-export class Story{
-
-  //  storyId!: string;
-  //   projectId!: string;
-  //   storyTitle!: string;
-  //   storyDescription!: string;
-  //   assignee!: string;
-  //   assigneeEmailId!: string;
-  //   assignmentDate!: Date;
-  //   targetDate!: Date;
-  //   status!: string;
-  //   remarks!: string
-
-
-  constructor(
-
-    public storyId: string,
-    public projectId: string,
-    public storyTitle: string,
-    public storyDescription: string,
-    public assignee: string,
-    public assigneeEmailId: string,
-    public assignmentDate: Date,
-    public targetDate: Date,
-    public status: string,
-    public remarks: string
-
-  ) {}
-}
-
 @Component({
-  selector: 'app-project-stories-registration-or-updation',
-  templateUrl: './project-stories-registration-or-updation.component.html',
-  styleUrls: ['./project-stories-registration-or-updation.component.css']
+  selector: 'app-update-story-by-member',
+  templateUrl: './update-story-by-member.component.html',
+  styleUrls: ['./update-story-by-member.component.css']
 })
-export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
+export class UpdateStoryByMemberComponent implements OnInit {
 
   story! : Story
   storyId!: string
@@ -98,7 +69,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
  }
 
  updateProjctById(){
-  this.storyDataService.updateStoryAdmin(this.storyId, this.story)
+  this.storyDataService.updateStoryMember(this.storyId, this.story)
   .subscribe(
     response => {
       console.log(`updated story with Id ${this.storyId}`)
@@ -119,5 +90,4 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
     this.errorMessageResponse = error.error.message
   }
  }
-
 }

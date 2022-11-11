@@ -12,7 +12,9 @@ export class LogoutComponent implements OnInit {
     private AuthGaurdService: AuthenticationDataService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(
+    
+  ): void {
 
     this.AuthGaurdService.logOut();
 

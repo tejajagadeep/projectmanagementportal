@@ -15,6 +15,10 @@ import { FooterComponent } from './footer/footer.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
+import { UpdateStoryByMemberComponent } from './update-story-by-member/update-story-by-member.component';
+import { ErrorComponent } from './error/error.component';
+import { ProfilesComponent } from './profiles/profiles.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
     MenuComponent,
     FooterComponent,
     ViewProjectStatusComponent,
-    LogoutComponent
+    LogoutComponent,
+    UpdateStoryByMemberComponent,
+    ErrorComponent,
+    ProfilesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -52,6 +52,7 @@ export class MemberSignUpComponent implements OnInit {
     // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];
 
+    console.log('memeber-sign-up.compenent.ts')
 
   }
 

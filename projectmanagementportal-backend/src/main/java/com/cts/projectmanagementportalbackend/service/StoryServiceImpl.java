@@ -43,15 +43,13 @@ public class StoryServiceImpl implements StoryService {
 
 		log.info(" inside getStoryById of StoryServiceImpl");
 
-		Optional<Story> optionalProject = storyReposiotry.findById(storyId);
+		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 
-		String projectId = optionalProject.get().getProject().getProjectId();
-
-		if (optionalProject.isPresent()) {
+		if (optionalStory.isPresent()) {
 			log.info(" inside getStoryById of StoryServiceImpl : " + storyId);
-			return storyReposiotry.findById(storyId).get();
+			return optionalStory.get();
 		} else {
-			log.info("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
@@ -65,7 +63,7 @@ public class StoryServiceImpl implements StoryService {
 //		Optional<Project> optionalProject = projectRepository.findById(story.getProjectId());
 
 		if (optionalStory.isPresent()) {
-			log.info("Story Id " + story.getStoryId() + " Already Exist");
+			log.warn("Story Id " + story.getStoryId() + " Already Exist");
 			throw new IdAlreadyExistException("Story Id Already Exist");
 
 //		} else if (optionalProject.isEmpty()) {
@@ -87,11 +85,7 @@ public class StoryServiceImpl implements StoryService {
 
 		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 
-		if (optionalStory.isEmpty()) {
-			log.info("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
-
-		} else {
+		if (optionalStory.isPresent()) {
 			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
 			Story storyData = optionalStory.get();
 			storyData.setStoryTitle(story.getStoryTitle());
@@ -103,6 +97,11 @@ public class StoryServiceImpl implements StoryService {
 			storyData.setStatus(story.getStatus());
 			storyData.setRemarks(story.getRemarks());
 			return storyReposiotry.save(storyData);
+
+		} else {
+
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
 
@@ -113,11 +112,7 @@ public class StoryServiceImpl implements StoryService {
 
 		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 
-		if (optionalStory.isEmpty()) {
-			log.info("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
-
-		} else {
+		if (optionalStory.isPresent()) {
 			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
 			Story storyData = optionalStory.get();
 			storyData.setStoryTitle(story.getStoryTitle());
@@ -126,6 +121,12 @@ public class StoryServiceImpl implements StoryService {
 			storyData.setStatus(story.getStatus());
 			storyData.setRemarks(story.getRemarks());
 			return storyReposiotry.save(storyData);
+			
+
+		} else {
+
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
 
@@ -139,7 +140,7 @@ public class StoryServiceImpl implements StoryService {
 			log.info(" deleted Story with id : " + storyId);
 			storyReposiotry.deleteById(storyId);
 		} else {
-			log.info("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 
@@ -155,8 +156,13 @@ public class StoryServiceImpl implements StoryService {
 		Story story = storyReposiotry.findById(storyId).get();
 		
 		if (project == null) {
+			
+			log.warn("project Id does'nt exist " + projectId);
 			throw new NoSuchElementExistException("project Id doesn't exist");
+			
 		} else if (story==  null) {
+			
+			log.warn("story Id does'nt exist " + storyId);
 			throw new NoSuchElementExistException("story Id doesn't exist");
 		}
 		

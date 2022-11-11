@@ -17,7 +17,7 @@ export class ViewProjectStatusComponent implements OnInit {
   projectData!:Project
   storyData!: Story
   message!: string
-  errorMessage = ""
+  errorMessage!: string
 
   constructor(
     private router : Router, 
@@ -49,6 +49,8 @@ export class ViewProjectStatusComponent implements OnInit {
       response =>  {
         this.message = `Deleted Project with Id ${projectId}`;
         console.log(this.message)
+        this.getAllProjects();
+        this.getAllStories();
       },
       error => {
         console.log("Exception Occured")
@@ -78,6 +80,7 @@ export class ViewProjectStatusComponent implements OnInit {
       response =>  {
         this.message = `Deleted Story with Id ${storyId}`;
         console.log(this.message)
+        this.getAllStories();
       },
       error => {
         console.log("Exception Occured")

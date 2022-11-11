@@ -1,6 +1,9 @@
 package com.cts.projectmanagementportalbackend.model;
 
 import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 
 //import java.util.Date;
 
@@ -8,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -80,5 +85,9 @@ public class User {
 	@Pattern(regexp="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",message="must contain one lower case, one upper case, one numeric and one symbol")
 	private String password;
 
-	
+	@OneToMany(cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	})
+	@JoinColumn(name = "user_id")
+	private Set<Project> projects;
 }

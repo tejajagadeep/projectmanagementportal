@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { STORY_API_URL } from 'src/app/app.constants';
 import { Story } from 'src/app/project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 
@@ -11,23 +10,27 @@ export class StoryDataService {
 
   constructor(private http: HttpClient) { }
 
-  getAllStories(): Observable<any>{
+  getAllStories(){
     return this.http.get<Story[]>(`${STORY_API_URL}/getAllStories`)
   }
 
-  getStoryById(storyId: string): Observable<any>{
+  getStoryById(storyId: string){
     return this.http.get<Story>(`${STORY_API_URL}/getStoryById/${storyId}`)
   }
 
-  saveStory(story: Story): Observable<any>{
+  saveStory(story: Story){
     return this.http.post<Story>(`${STORY_API_URL}/storyRegistration`,story)
   }
 
-  updateStory(storyId: string, story: Story): Observable<any>{
-    return this.http.post<Story>(`${STORY_API_URL}/updateStory/${storyId}`,story)
+  updateStoryAdmin(storyId: string, story: Story){
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAdmin/${storyId}`,story)
   }
 
-  deleteStoryById(storyId: string): Observable<any>{
+  updateStoryMember(storyId: string, story: Story){
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryMember/${storyId}`,story)
+  }
+
+  deleteStoryById(storyId: string){
     return this.http.delete<Story>(`${STORY_API_URL}/deleteStoryById/${storyId}`)
   }
 

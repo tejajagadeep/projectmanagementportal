@@ -118,16 +118,32 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int userId){
+	public User getByUserName(String userName)  throws InvalidUserIdOrPasswordException{
 		
-		Optional<User> optionalUser = userRepository.findById(userId);
+		User optionalUser = userRepository.findByUserName(userName);
 		
-		try {
-			log.info("users" + optionalUser.get().toString());
-			return userRepository.findById(userId).get();
-		} catch (UsernameNotFoundException e) {
-			log.info("user Id " +userId+" dosem't exist");
-			throw new UsernameNotFoundException("User Id doesn't Exist");
+		if(optionalUser!=null ) {
+			log.info("users" + optionalUser.toString());
+			return optionalUser;
+		} else{
+			log.warn("user Id " +userName+" dosem't exist");
+			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
+		}
+		
+		
+	}
+	
+	@Override
+	public User getByUserId(int userId)  throws InvalidUserIdOrPasswordException{
+		
+		User optionalUser = userRepository.findById(userId).get();
+	
+		if(optionalUser!=null ) {
+			log.info("users" + optionalUser.toString());
+			return optionalUser;
+		} else{
+			log.warn("user Id " +userId+" dosem't exist");
+			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
 		}
 		
 		

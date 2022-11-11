@@ -34,4 +34,16 @@ public class UserSecurity {
 		
 	}
 	
+public boolean hasUserName(Authentication authentication, String userName) {
+		
+		String username = userRoleRepository.findByUserName(authentication.getName()).getUserName();
+		logg.info("inside hasUserName: "+username+" of UserSecurity. userId: "+userName+". Authication: "+authentication);
+		
+		if(username == userName) {
+			return true;
+		}
+		
+		return false;
+		
+	}
 }

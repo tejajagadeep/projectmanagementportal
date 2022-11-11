@@ -104,13 +104,22 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
 	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException{
 
 		log.info("inside updateProjectById of project Controller");
 		return new ResponseEntity<>(projectService.updateProjectById(projectId, project), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("updateProjectAssign/{userName}/story/{projectId}")
+	public String assign(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
+		projectService.assign(userName, projectId);
+		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Controller "+msg);
+		return msg;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

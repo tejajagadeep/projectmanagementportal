@@ -12,7 +12,7 @@ import { BasicAuthenticationService } from '../service/auth/basic-authentication
 export class LoginComponent implements OnInit {
 
   username!: string
-  password!: string
+  password: string ='ABCabc@123'
   errorMessage='invalidLogin'
   successMessage!: string
   invalidLogin = false
@@ -26,10 +26,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('login.component.ts')
+
 
   }
 
   navLink() {
+      console.log('navLink')
     this.router.navigate(["home"]);
   }
 

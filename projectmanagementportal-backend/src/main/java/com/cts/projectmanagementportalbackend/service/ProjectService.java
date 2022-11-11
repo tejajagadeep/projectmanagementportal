@@ -27,5 +27,7 @@ public interface ProjectService {
 	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException;
 
 	void deleteProjectById(String projectId) throws NoSuchElementExistException;
+
+	void assign(String userName, String projectId)  throws NoSuchElementExistException;
 	
 }

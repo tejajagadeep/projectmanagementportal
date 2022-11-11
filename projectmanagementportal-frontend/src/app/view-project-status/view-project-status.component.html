@@ -1,55 +1,56 @@
 <app-menu></app-menu>
-<p>view-project-status works!</p>
 
-
-<p>project-registration-or-updation works!</p>
 <h1 class="text-center">project-registration-or-updation</h1>
 
 
 <div class="container">
-  <table class="table table-striped">
-      <caption>List project</caption>
-      <thead class="thead-light">
-          <tr>
-              <th>Project Id</th>
-              <th>ProjectName</th>
-              <th>Description</th>
-              <th>Team Name</th>
-              <th>Team Size</th>
-              <th>Project Manager Name</th>
-              <th>Project Manager Email Id</th>
-              <th>Tech Lead Name</th>
-              <th>Tech Lead Email Id</th>
-              <th>Project Start Date</th>
-              <th>Project End Date</th>
-              <th>Tech Stack</th>
-              <th>Status</th>
-              <th>Remarks</th>
-              <th>Update</th>
-              <th>Delete</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let projectDetail of project">
-              <td>{{projectDetail.projectId}}</td>
-              <td>{{projectDetail.projectName}}</td>
-              <td>{{projectDetail.projectDescription}}</td>
-              <td>{{projectDetail.teamName}}</td>
-              <td>{{projectDetail.teamSize}}</td>
-              <td>{{projectDetail.projectManagerName}}</td>
-              <td>{{projectDetail.projectManagerEmailId}}</td>
-              <td>{{projectDetail.techLeadName}}</td>
-              <td>{{projectDetail.techLeadEmailId}}</td>
-              <td>{{projectDetail.projectStartDate | date : 'yyyy-MM-dd'}}</td>
-              <td>{{projectDetail.projectEndDate | date : 'yyyy-MM-dd'}}</td>
-              <td>{{projectDetail.techStack}}</td>
-              <td>{{projectDetail.status}}</td>
-              <td>{{projectDetail.remarks}}</td>
-              <td><button (click) = "updateProject(projectDetail.projectId)" class="btn btn-info">Update</button></td>
-              <td><button (click) = "deleteProject(projectDetail.projectId)" class="btn btn-warning">Delete</button></td>
-          </tr>
-      </tbody>
-  </table>
+    <div class="alert alert-success" role="alert" *ngIf="message">{{message}}</div>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+    <table class="table table-striped">
+        <caption>List project</caption>
+        <thead class="thead-light">
+            <tr>
+                <th>Project Id</th>
+                <th>ProjectName</th>
+                <th>Description</th>
+                <th>Team Name</th>
+                <th>Team Size</th>
+                <th>Project Manager Name</th>
+                <th>Project Manager Email Id</th>
+                <th>Tech Lead Name</th>
+                <th>Tech Lead Email Id</th>
+                <th>Project Start Date</th>
+                <th>Project End Date</th>
+                <th>Tech Stack</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let projectDetail of project">
+                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+                <td>{{projectDetail.projectId}}</td>
+                <td>{{projectDetail.projectName}}</td>
+                <td>{{projectDetail.projectDescription}}</td>
+                <td>{{projectDetail.teamName}}</td>
+                <td>{{projectDetail.teamSize}}</td>
+                <td>{{projectDetail.projectManagerName}}</td>
+                <td>{{projectDetail.projectManagerEmailId}}</td>
+                <td>{{projectDetail.techLeadName}}</td>
+                <td>{{projectDetail.techLeadEmailId}}</td>
+                <td>{{projectDetail.projectStartDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{projectDetail.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{projectDetail.techStack}}</td>
+                <td>{{projectDetail.status}}</td>
+                <td>{{projectDetail.remarks}}</td>
+                <td><button (click)="updateProject(projectDetail.projectId)" class="btn btn-info">Update</button></td>
+                <td><button (click)="deleteProject(projectDetail.projectId)" class="btn btn-warning">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>
 
@@ -59,39 +60,40 @@
 
 
 <div class="container">
-  <table class="table table-striped">
-      <caption>List project Stories</caption>
-      <thead class="thead-light">
-          <tr>
-              <th>Story Id</th>
-              <th>Project Id</th>
-              <th>Story Title</th>
-              <th>Story Description</th>
-              <th>Assignee</th>
-              <th>Assignee Email Id</th>
-              <th>Assignee Date</th>
-              <th>Target Date</th>
-              <th>Status</th>
-              <th>Remarks</th>
-              <th>Update</th>
-              <th>Delete</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let storyDetail of story">
-              <td>{{storyDetail.storyId}}</td>
-              <td>{{storyDetail.projectId}}</td>
-              <td>{{storyDetail.storyTitle}}</td>
-              <td>{{storyDetail.storyDescription}}</td>
-              <td>{{storyDetail.assignee}}</td>
-              <td>{{storyDetail.assigneeEmailId}}</td>
-              <td>{{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</td>
-              <td>{{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</td>
-              <td>{{storyDetail.status}}</td>
-              <td>{{storyDetail.remarks}}</td>
-              <td><button (click) = "updateStory(storyDetail.storyId)" class="btn btn-info">Update</button></td>
-              <td><button (click) = "deleteStory(storyDetail.storyId)" class="btn btn-warning">Delete</button></td>
-          </tr>
-      </tbody>
-  </table>
-</div> 
+    <div class="alert alert-success" role="alert" *ngIf="message">{{message}}</div>
+    <table class="table table-striped">
+        <caption>List project Stories</caption>
+        <thead class="thead-light">
+            <tr>
+                <th>Story Id</th>
+                <!-- <th>Project Id</th> -->
+                <th>Story Title</th>
+                <th>Story Description</th>
+                <th>Assignee</th>
+                <th>Assignee Email Id</th>
+                <th>Assignee Date</th>
+                <th>Target Date</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let storyDetail of story">
+                <td>{{storyDetail.storyId}}</td>
+                <!-- <td>{{storyDetail.projectId}}</td> -->
+                <td>{{storyDetail.storyTitle}}</td>
+                <td>{{storyDetail.storyDescription}}</td>
+                <td>{{storyDetail.assignee}}</td>
+                <td>{{storyDetail.assigneeEmailId}}</td>
+                <td>{{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{storyDetail.status}}</td>
+                <td>{{storyDetail.remarks}}</td>
+                <td><button (click)="updateStory(storyDetail.storyId)" class="btn btn-info">Update</button></td>
+                <td><button (click)="deleteStory(storyDetail.storyId)" class="btn btn-warning">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -8,12 +8,12 @@ insert into User_Emp(user_id, user_name, name, email_address, contact_no, date_o
  
 
 
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) 
-values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gamil.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1');
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) 
-values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'vinay@gamil.com', 'Vinay', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1');
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack) 
-values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gamil.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1');
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
+values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gamil.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1',3);
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
+values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'vinay@gamil.com', 'Vinay', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1',3);
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
+values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gamil.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1',2);
 
 
 

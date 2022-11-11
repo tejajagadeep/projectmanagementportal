@@ -2,6 +2,7 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -14,7 +15,10 @@ import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendAppl
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
+import com.cts.projectmanagementportalbackend.model.Story;
+import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
+import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +28,9 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	@Autowired
 	ProjectRepository projectRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
@@ -82,7 +89,7 @@ public class ProjectServiceImpl implements ProjectService{
 			log.info("project with Id: "+ projectId);
 			return projectRepository.findById(projectId).get();
 		} else {
-			log.info("Project with Id " + projectId + " doesn't Exist");
+			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 	}
@@ -99,7 +106,7 @@ public class ProjectServiceImpl implements ProjectService{
 			log.info("saved project "+ project.toString());
 			return projectRepository.save(project);
 		} else {
-			log.info("Project with Id " + project.getProjectId() + "  already Exist");
+			log.warn("Project with Id " + project.getProjectId() + "  already Exist");
 			throw new IdAlreadyExistException("Project with Id " + project.getProjectId() + "  already Exist");
 		}
 		
@@ -132,7 +139,7 @@ public class ProjectServiceImpl implements ProjectService{
 			projectData.setRemarks(project.getRemarks());
 			return projectRepository.save(projectData);
 		} else {
-			log.info("Project with Id " + projectId + " doesn't Exist");
+			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 	}
@@ -147,9 +154,45 @@ public class ProjectServiceImpl implements ProjectService{
 			log.info("deleted project with Id :"+projectId);
 			projectRepository.deleteById(projectId);
 		} else {
-			log.info("Project with Id " + projectId + " doesn't Exist");
+			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
+		
+	}
+
+	@Override
+	public void assign(String userName, String projectId) throws NoSuchElementExistException {
+		
+        Set<Project> projectSet = null;
+		
+		User user = userRepository.findByUserName(userName);
+		
+		Project project = projectRepository.findById(projectId).get();
+		
+		if (project == null) {
+			
+			log.warn("project Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("project Id doesn't exist");
+			
+		} else if (user==  null) {
+			
+			log.warn("story Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("user doesn't exist " +userName);
+		}
+		
+		int userId= user.getUserId();
+		
+		projectSet = user.getProjects();
+		
+		projectSet.add(project);
+		
+		user.setProjects(projectSet);
+		
+		
+		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Servcie Impl "+msg);
+		
+		projectRepository.save(project);
 		
 	}
 

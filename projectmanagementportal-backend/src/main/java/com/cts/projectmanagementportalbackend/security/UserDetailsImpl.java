@@ -43,14 +43,14 @@ public class UserDetailsImpl implements UserDetails{
 	@Override
 	public String getPassword() {
 		
-		log.info("inside getPassword of UserDetailsImpl" + this.user.getPassword());
+		log.info("inside getPassword of UserDetailsImpl " + this.user.getPassword());
 		return this.user.getPassword();
 	}
 	
 	@Override
 	public String getUsername() {
 		
-		log.info("inside getUsername of UserDetailsImpl" + this.user.getUserName());
+		log.info("inside getUsername of UserDetailsImpl " + this.user.getUserName());
 		return this.user.getUserName();
 	}
 	
