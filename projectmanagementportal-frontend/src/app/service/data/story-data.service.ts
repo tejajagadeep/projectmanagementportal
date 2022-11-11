@@ -34,4 +34,8 @@ export class StoryDataService {
     return this.http.delete<Story>(`${STORY_API_URL}/deleteStoryById/${storyId}`)
   }
 
+  StoryAssign(projectId:string, storyId: string, project: Story){
+    return this.http.put<Story>(`${STORY_API_URL}/project/updateStoryAssignAdmin/${projectId}/story/${storyId}`,Story);
+  }
+
 }

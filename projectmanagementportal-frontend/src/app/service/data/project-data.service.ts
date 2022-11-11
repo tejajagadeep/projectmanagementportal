@@ -45,4 +45,8 @@ export class ProjectDataService {
   deleteProjectById(projectId: string){
     return this.http.delete<Project>(`${PROJECT_API_URL}/deleteProjectById/${projectId}`);
   }
+
+  ProjectAssign(username: string, projectId:string, project: Project){
+    return this.http.put<Project>(`${PROJECT_API_URL}/project/updateProjectAssign/${username}/story/${projectId}`,Project);
+  }
 }
