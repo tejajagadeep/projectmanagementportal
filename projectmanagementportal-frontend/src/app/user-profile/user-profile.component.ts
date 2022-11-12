@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../member-sign-up/member-sign-up.component';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { UserDataService } from '../service/data/user-data.service';
 
@@ -12,7 +13,10 @@ export class UserProfileComponent implements OnInit {
 
 
   username!: string
+  errorMessageResponse!: string
+  temp!: string
   isUserLoggedIn!: boolean
+  user!:User
 
   constructor(
     private router : Router, 
@@ -22,14 +26,40 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.username = this.route.snapshot.params['userName'];
+    this.username=this.authService.getLoggedInUserName();
     console.log(this.username)
     console.log('home.component.ts')
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
+    this.getUserByUserName(this.username)
   }
 
   getUsername(){
     this.username=this.authService.getLoggedInUserName();
+    this.getUserByUserName(this.username);
+  }
+
+  getUserByUserName(userName: string) {
+    this.userService.getUserByUserName(userName).subscribe(
+      response => {
+        console.log("response")
+        this.user = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
+  handleErrorMessage(error: any) {
+    // this.errorMessageResponse = error
+    if (this.username===undefined){
+      this.errorMessageResponse = this.temp
+    } else {
+      this.errorMessageResponse = error.error.message
+    }
   }
 
 }

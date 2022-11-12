@@ -13,11 +13,12 @@ import { StoryDataService } from '../service/data/story-data.service';
 export class ViewProjectStatusComponent implements OnInit {
 
   story!: Story[]
-  project!:Project[]
-  projectData!:Project
+  // projects!:Project[]
+  project!:Project
   storyData!: Story
   message!: string
   errorMessage!: string
+  projectId!: string 
 
   constructor(
     private router : Router, 
@@ -27,16 +28,34 @@ export class ViewProjectStatusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
-    this.getAllProjects();
+    this.projectId = this.route.snapshot.params['projectId']
+    console.log(this.route.snapshot.params['projectId'])
+    this.getProejctsById(this.projectId);
+    // this.getAllProjects();
     this.getAllStories();
   }
 
-  getAllProjects(){
-    this.projectService.getAllProjects().subscribe(
-      response => this.handleGetProjects(response)
-    );
-   }
+  getProejctsById(projectId: string) {
+    this.projectService.getProjectById(projectId).subscribe(
+      response => {
+        console.log("response")
+        this.handleGetProject(response)
+        // this.project = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
+  // getAllProjects(){
+  //   this.projectService.getAllProjects().subscribe(
+  //     response => this.handleGetProjects(response)
+  //   );
+  //  }
 
   updateProject(projectId: string){
     console.log(`update ${projectId}`);
@@ -49,7 +68,7 @@ export class ViewProjectStatusComponent implements OnInit {
       response =>  {
         this.message = `Deleted Project with Id ${projectId}`;
         console.log(this.message)
-        this.getAllProjects();
+        // this.getAllProjects();
         this.getAllStories();
       },
       error => {
@@ -59,7 +78,11 @@ export class ViewProjectStatusComponent implements OnInit {
     )
   }
 
-  handleGetProjects(response : any){
+  // handleGetProjects(response : any){
+  //   this.projects = response
+  //  }
+
+   handleGetProject(response : any){
     this.project = response
    }
 

@@ -61,4 +61,8 @@ export class UserDataService {
     return this.http.get<User>(`${USER_API_URL}/getUserById/${userId}`);
   }
 
+  getUserByUserName(username: string){
+    return this.http.get<User>(`${USER_API_URL}/getUserByUserName/${username}`);
+  }
+
 }

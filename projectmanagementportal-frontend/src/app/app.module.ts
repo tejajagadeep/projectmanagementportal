@@ -19,6 +19,7 @@ import { UpdateStoryByMemberComponent } from './update-story-by-member/update-st
 import { ErrorComponent } from './error/error.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UpdateStoryByMemberComponent,
     ErrorComponent,
     ProfilesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ViewProjectStoryStatusComponent
   ],
   imports: [
     BrowserModule,

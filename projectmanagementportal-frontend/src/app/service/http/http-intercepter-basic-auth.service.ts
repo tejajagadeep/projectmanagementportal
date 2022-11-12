@@ -14,31 +14,31 @@ export class HttpIntercepterBasicAuthService implements HttpInterceptor{
     private authDataService: AuthenticationDataService
   ) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler){
-    let basicAuthHeaderString = this.basicAuthenticationService.getAuthenticatedToken();
-    let username = this.basicAuthenticationService.getAuthenticatedUser()
+  // intercept(request: HttpRequest<any>, next: HttpHandler){
+  //   let basicAuthHeaderString = this.basicAuthenticationService.getAuthenticatedToken();
+  //   let username = this.basicAuthenticationService.getAuthenticatedUser()
 
-    if(basicAuthHeaderString && username) { 
-      request = request.clone({
-        setHeaders : {
-            Authorization : basicAuthHeaderString
-          }
-        }) 
+  //   if(basicAuthHeaderString && username) { 
+  //     request = request.clone({
+  //       setHeaders : {
+  //           Authorization : basicAuthHeaderString
+  //         }
+  //       }) 
+  //   }
+  //   return next.handle(request);
+  // }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.authDataService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {
+        const authReq = req.clone({
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${window.btoa(this.authDataService.username + ":" + this.authDataService.password)}`
+            })
+        });
+        return next.handle(authReq);
+    } else {
+        return next.handle(req);
     }
-    return next.handle(request);
-  }
-
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//     if (this.authDataService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {
-//         const authReq = req.clone({
-//             headers: new HttpHeaders({
-//                 'Content-Type': 'application/json',
-//                 'Authorization': `Basic ${window.btoa(this.authDataService.username + ":" + this.authDataService.password)}`
-//             })
-//         });
-//         return next.handle(authReq);
-//     } else {
-//         return next.handle(req);
-//     }
-// }
+}
 }

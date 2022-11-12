@@ -173,6 +173,7 @@ public class StoryServiceImpl implements StoryService {
 		
 		project.setStories(storySet);
 		
+		story.setProjectIdName(project.getProjectId());
 		
 		String msg= "story with Id " + storyId + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);

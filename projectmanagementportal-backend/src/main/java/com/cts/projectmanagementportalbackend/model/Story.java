@@ -53,6 +53,7 @@ public class Story {
 //	  @OnDelete(action = OnDeleteAction.CASCADE)
 //	  @JsonIgnore
 //	private Project projectId;
+	private String projectIdName;
 	
 	@NotNull(message = "storyTitle should not be Null")
 	@Size(max = 50)

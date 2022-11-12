@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.service.StoryService;
@@ -81,11 +82,11 @@ public class StoryController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("updateStoryAssignAdmin/{projectId}/story/{storyId}")
-	public String assign(@PathVariable String projectId, @PathVariable String storyId)  throws NoSuchElementExistException{
+	public ResponseEntity<MessageResponse> assign(@PathVariable String projectId, @PathVariable String storyId)  throws NoSuchElementExistException{
 		storyService.assign(projectId, storyId);
 		String msg= "story with Id " + storyId + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
-		return msg;
+		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
