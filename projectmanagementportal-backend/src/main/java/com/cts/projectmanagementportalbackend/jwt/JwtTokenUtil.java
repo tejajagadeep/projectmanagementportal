@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -23,6 +27,8 @@ public class JwtTokenUtil implements Serializable {
 
 	@Value("${jwt.secret}")
 	private String secret;
+	
+	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
 	//retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
@@ -35,22 +41,26 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+		log.info("inside getClaimFromToken of JwtTokenUtil");
 		final Claims claims = getAllClaimsFromToken(token);
 		return claimsResolver.apply(claims);
 	}
     //for retrieveing any information from token we will need the secret key
 	private Claims getAllClaimsFromToken(String token) {
+		log.info("inside getAllClaimsFromToken of JwtTokenUtil");
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
 
 	//check if the token has expired
 	private Boolean isTokenExpired(String token) {
+		log.info("inside isTokenExpired of JwtTokenUtil");
 		final Date expiration = getExpirationDateFromToken(token);
 		return expiration.before(new Date());
 	}
 
 	//generate token for user
 	public String generateToken(UserDetails userDetails) {
+		log.info("inside generateToken of JwtTokenUtil");
 		Map<String, Object> claims = new HashMap<>();
 		return doGenerateToken(claims, userDetails.getUsername());
 	}
@@ -61,6 +71,7 @@ public class JwtTokenUtil implements Serializable {
 	//3. According to JWS Compact Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
 	//   compaction of the JWT to a URL-safe string 
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
+		log.info("inside doGenerateToken of JwtTokenUtil");
 
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
@@ -69,6 +80,7 @@ public class JwtTokenUtil implements Serializable {
 
 	//validate token
 	public Boolean validateToken(String token, UserDetails userDetails) {
+		log.info("inside validateToken of JwtTokenUtil");
 		final String username = getUsernameFromToken(token);
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}

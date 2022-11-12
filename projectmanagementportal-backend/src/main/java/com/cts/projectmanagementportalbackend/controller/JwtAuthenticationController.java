@@ -2,6 +2,8 @@ package com.cts.projectmanagementportalbackend.controller;
 
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.jwt.JwtRequest;
 import com.cts.projectmanagementportalbackend.jwt.JwtResponse;
 import com.cts.projectmanagementportalbackend.jwt.JwtTokenUtil;
@@ -32,11 +35,16 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
+	
+	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
+
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		
+		log.info("inside createAuthenticationToken of JwtAuthenticationController class");
 
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
@@ -48,10 +56,13 @@ public class JwtAuthenticationController {
 
 	private void authenticate(String username, String password) throws Exception {
 		try {
+			log.info("inside authenticate of JwtAuthenticationController class");
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
+			log.info("inside authenticate DisabledException of JwtAuthenticationController class");
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
+			log.info("inside authenticate  DisabledException of JwtAuthenticationController class");
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 	}
