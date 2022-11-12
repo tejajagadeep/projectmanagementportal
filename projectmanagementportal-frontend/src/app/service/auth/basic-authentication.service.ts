@@ -16,7 +16,7 @@ export class BasicAuthenticationService {
   executeJWTAuthenticationService(username: string, password: string) {
     
     return this.http.post<any>(
-      `${USER_API_URL}/authenticate`,{
+      `http://localhost:8093/project-management/authenticate`,{
         username,
         password
       }).pipe(
@@ -40,8 +40,8 @@ export class BasicAuthenticationService {
         Authorization: basicAuthHeaderString
       })
 
-    return this.http.get<AuthenticationBean>(
-      `http://localhost:8093/project-management/basicauth`,
+    return this.http.get<any>(
+      `http://localhost:8093/project-management/**`,
       {headers}).pipe(
         map(
           data => {
@@ -58,10 +58,11 @@ export class BasicAuthenticationService {
     return sessionStorage.getItem(AUTHENTICATED_USER)
   }
 
-  // getAuthenticatedToken() {
-  //   if(this.getAuthenticatedUser())
-  //     return sessionStorage.getItem(TOKEN)
-  // }
+  getAuthenticatedToken() {
+    if(this.getAuthenticatedUser())
+      return sessionStorage.getItem(TOKEN)
+    return ;
+  }
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem(AUTHENTICATED_USER)

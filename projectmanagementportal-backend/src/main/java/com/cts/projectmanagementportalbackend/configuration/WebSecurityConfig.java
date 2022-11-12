@@ -14,55 +14,65 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
+import com.cts.projectmanagementportalbackend.jwt.JwtAuthenticationEntryPoint;
+import com.cts.projectmanagementportalbackend.jwt.JwtRequestFilter;
 import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
 import com.cts.projectmanagementportalbackend.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true, securedEnabled=true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-	
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	UserDetailsService userDetailsService;
-	
+
 //	@Autowired
 //	UserService userService;
-	
+
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
-	
+
+	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
+
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
 	@Override
 	@Bean
-	public AuthenticationManager authenticationManagerBean() throws Exception{
+	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		log.info("inside HttpSecurity configure of WebSecurityConfig");
-		
+
 		auth.inMemoryAuthentication().withUser("Sam").password(passwordEncoder().encode("aaaa")).roles("admin");
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 //		auth.authenticationProvider(authProvider());
 	}
-	
+
 	@Override
-	protected void configure(HttpSecurity http) throws Exception{
+	protected void configure(HttpSecurity http) throws Exception {
 		log.info("inside HttpSecurity configure of WebSecurityConfig");
 		http.authorizeRequests()
 //			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN")
 //			.antMatchers(HttpMethod.POST).hasAnyRole("ADMIN")
 //			.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MEMBER")
 //			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
-			
-			.antMatchers(HttpMethod.GET).permitAll()
-			
+				.antMatchers("/authenticate").permitAll()
+				.antMatchers(HttpMethod.GET).permitAll()
+
 //			
 //			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllProjects").hasAnyRole("ADMIN")
 //			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getProjectById/{projectId}").hasAnyRole("ADMIN")
@@ -72,37 +82,48 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //			.antMatchers(HttpMethod.POST,"/api/v1.0/story/registerStory").hasAnyRole("ADMIN")
 //			.antMatchers(HttpMethod.PUT,"/api/v1.0/story/updateStory/**").hasAnyRole("ADMIN","MEMBER")
 //			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
-			
+
 //			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
-			.antMatchers(HttpMethod.GET,"/api/v1.0/user/helloWorld").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/v1.0/user/helloWorld").permitAll()
 //			.antMatchers(HttpMethod.POST,"/basicauth").permitAll()
-			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 //			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
-			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login").permitAll()
-			.antMatchers(HttpMethod.POST,"/api/v1.0/user/userSignUp").permitAll()
-			.antMatchers(HttpMethod.POST,"/api/v1.0/user/login/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/v1.0/user/userSignUp").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login/**").permitAll()
 //			.anyRequest().authenticated().and().httpBasic()
 //			.and().formLogin().defaultSuccessUrl("/welcome",true)
 		;
-		
+
 //		http.cors();
 		http.csrf().disable();
 //		.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated().and().httpBasic();
+//		// dont authenticate this particular request
+//		http.authorizeRequests().antMatchers("/authenticate").permitAll()
+//		// all other requests need to be authenticated
+//				.anyRequest().authenticated().and().
+//				// make sure we use stateless session; session won't be used to
+//				// store user's state.
+				http.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+				// Add a filter to validate the tokens with every request
+				http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		super.configure(http);
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		log.info("inside PasswordEncoder passwordEncoder of WebSecurityConfig");
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-	
+
 	@Bean
 	public PasswordEncoder encoder() {
 		log.info("inside PasswordEncoder encoder BCryptPasswordEncoder of WebSecurityConfig");
 		return new BCryptPasswordEncoder();
 	}
-	
+
 //	@Bean
 //	public DaoAuthenticationProvider authProvider() {
 //		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -110,22 +131,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //		authProvider.setPasswordEncoder(passwordEncoder());
 //		return authProvider;
 //	}
-	
+
 //	@Bean
 //	public UserDetailsService getUserDetailsService() {
 //		return new UserDetailsServiceImpl();
 //	}
-	
-	
+
 	/*
-	 * This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+	 * This is not recommended -- please use permitAll via
+	 * HttpSecurity#authorizeHttpRequests instead.
 	 */
 	@Override
-	public void configure(WebSecurity web) throws Exception{
+	public void configure(WebSecurity web) throws Exception {
 		log.info("inside WebSecurity configure of WebSecurityConfig");
-		web
-			.ignoring()
-			.antMatchers("/h2-console/**")
-			.antMatchers("/swagger");
+		web.ignoring().antMatchers("/h2-console/**").antMatchers("/swagger");
 	}
+
 }

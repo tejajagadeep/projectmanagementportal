@@ -34,10 +34,10 @@ public class UserSecurity {
 		
 	}
 	
-public boolean hasUserName(Authentication authentication, String userName) {
+public boolean hasUsername(Authentication authentication, String username) {
 		
-		String username = userRoleRepository.findByUserName(authentication.getName()).getUserName();
-		logg.info("inside hasUserName: "+username+" of UserSecurity. userId: "+userName+". Authication: "+authentication);
+		String userName = userRoleRepository.findByUserName(authentication.getName()).getUserName();
+		logg.info("inside hasUsername: "+username+" of UserSecurity. userId: "+userName+". Authication: "+authentication + "repo authentication.getName()).getUserName() : "+userName);
 		
 		if(username == userName) {
 			return true;
