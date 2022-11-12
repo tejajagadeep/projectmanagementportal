@@ -95,7 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.and().formLogin().defaultSuccessUrl("/welcome",true)
 		;
 
-//		http.cors();
+		http.cors();
 		http.csrf().disable();
 //		.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated().and().httpBasic();
 //		// dont authenticate this particular request

@@ -180,8 +180,6 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new NoSuchElementExistException("user doesn't exist " +userName);
 		}
 		
-		int userId= user.getUserId();
-		
 		projectSet = user.getProjects();
 		
 		projectSet.add(project);
@@ -192,7 +190,8 @@ public class ProjectServiceImpl implements ProjectService{
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
-		projectRepository.save(project);
+//		projectRepository.save(project);
+		userRepository.save(user);
 		
 	}
 
