@@ -7,7 +7,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { MemberSignUpComponent } from './member-sign-up/member-sign-up.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProjectRegistrationComponent } from './project-registration/project-registration.component';
-import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories-registration-or-updation/project-stories-registration-or-updation.component';
+import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
+import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { AuthGuardDataService } from './service/auth/auth-guard-data.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -35,9 +36,8 @@ const routes: Routes = [
   { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-story-status/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService]},
   { path: 'project-registration/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService]},
-  { path: 'view-project-status/:projectId/project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-story-registration/:storyId', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-story-registration', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-story-registration/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService]},
 
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
   { path: '**', component: ErrorComponent }

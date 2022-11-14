@@ -1,0 +1,136 @@
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container">
+
+        <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="updateStoryById()">
+
+            <h1 class="text-center">{{story.storyId}} Updation</h1>
+
+            <div class="card-body">
+
+                <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+                </div>
+
+        
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="storyTitle">
+                        <h6 class="mb-0">Story Title</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="storyTitle" name="storyTitle"
+                            placeholder="storyTitle" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
+                            [class.is-invalid]="storyTitle.invalid && storyTitle.touched" />
+                        <small class="text-danger" [class.d-none]="storyTitle.valid || storyTitle.untouched">Story Title
+                            is required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="storyDescription">
+                        <h6 class="mb-0">Story Description</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
+                            placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100" required
+                            #storyDescription="ngModel"
+                            [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
+                        <small class="text-danger"
+                            [class.d-none]="storyDescription.valid || storyDescription.untouched">Story Description
+                            is required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assignee">
+                        <h6 class="mb-0">Assignee</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="assignee" name="assignee" placeholder="assignee"
+                            [(ngModel)]="story.assignee" required #assignee="ngModel"
+                            [class.is-invalid]="assignee.invalid && assignee.touched" />
+                        <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assigneeEmailId">
+                        <h6 class="mb-0">Assignee Email Id</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId"
+                            placeholder="assigneeEmailId" [(ngModel)]="story.assigneeEmailId" required
+                            #assigneeEmailId="ngModel"
+                            [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="assigneeEmailId.valid || assigneeEmailId.untouched">Assignee Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="assignmentDate">
+                        <h6 class="mb-0">Assignment Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
+                            placeholder="assignmentDate" [ngModel]="(story.assignmentDate)  | date: 'yyyy-MM-dd'" required
+                            #assignmentDate="ngModel"
+                            [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
+                        <small class="text-danger"
+                            [class.d-none]="assignmentDate.valid || assignmentDate.untouched">Assignment Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="targetDate">
+                        <h6 class="mb-0">Target Date</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="targetDate" name="targetDate"
+                            placeholder="targetDate" [ngModel]="(story.targetDate) | date: 'yyyy-MM-dd' " required #targetDate="ngModel"
+                            [class.is-invalid]="targetDate.invalid && targetDate.touched" />
+                        <small class="text-danger" [class.d-none]="targetDate.valid || targetDate.untouched">Target Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
+                      <h6 class="mb-0">Status</h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <select class="form-control" name="status" id="status" [(ngModel)]="story.status" required>
+                          <option value="To-Do" selected>To-Do</option>
+                          <option value="In-Progress">In-Progress</option>
+                          <option value="Ready-For-Test">Ready-For-Test</option>
+                          <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                  </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputremarks">
+                        <h6 class="mb-0">Remarks</h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
+                            [(ngModel)]="story.remarks" required #remarks="ngModel"
+                            [class.is-invalid]="remarks.invalid && remarks.touched" />
+                        <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-light" [routerLink]="['/home/',username]">Home</button>
+                    <button type="reset" class="btn btn-light btn-lg" (click)="navBack()">Back</button>
+                    <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

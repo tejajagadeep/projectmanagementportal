@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MemberSignUpComponent } from './member-sign-up/member-sign-up.component';
-import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
@@ -21,6 +20,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
 import { ProjectRegistrationComponent } from './project-registration/project-registration.component';
 import { ProjectUpdateComponent } from './project-update/project-update.component';
+import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
+import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
     LoginComponent,
     HomeComponent,
     MemberSignUpComponent,
-    ProjectStoriesRegistrationOrUpdationComponent,
     MenuComponent,
     FooterComponent,
     ViewProjectStatusComponent,
@@ -39,7 +39,9 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
     UserProfileComponent,
     ViewProjectStoryStatusComponent,
     ProjectRegistrationComponent,
-    ProjectUpdateComponent
+    ProjectUpdateComponent,
+    ProjectStoryRegistrationComponent,
+    ProjectStoryUpdateComponent
   ],
   imports: [
     BrowserModule,
