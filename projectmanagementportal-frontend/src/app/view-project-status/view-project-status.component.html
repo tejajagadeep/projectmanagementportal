@@ -114,13 +114,13 @@
 
 
 <div class="row" style="width:90%;margin:auto">
-    <div *ngFor="let storyDetail of story">
+    <ng-container *ngFor="let storyDetail of story">
         <div *ngIf="storyDetail.projectIdName == projectId" class="offer-content">
             <h6 class="card-title align-center" style="background:rgba(3, 33, 201, 0.87);color:white;padding:10px; ">
                 {{storyDetail.storyTitle}}</h6>
             <p class="card-text ">
             <div class="d-flex flex-column ">
-                <div class="p-2 "><b>Project Id:</b> {{storyDetail.storyId}}</div>
+                <div class="p-2 "><b>Story Id:</b> {{storyDetail.storyId}}</div>
                 <div class="p-2 "><b>Project Manager Name:</b> {{storyDetail.assignee}}
                 </div>
                 <div class="p-2"><b>Team Name:</b> {{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</div>
@@ -130,7 +130,7 @@
             <a [routerLink]="['/view-project-story-status/',storyDetail.storyId]" class="btn btn-success">Story
                 Details</a>
         </div>
-    </div>
+    </ng-container>
 </div>
 
 <!-- <div class="container">
@@ -225,3 +225,6 @@
         </tbody>
     </table>
 </div> -->
+
+<app-footer></app-footer>
+

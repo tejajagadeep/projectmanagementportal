@@ -42,7 +42,7 @@ export class ProjectRegistrationComponent implements OnInit {
             response => console.log("usename: "+ this.username + "assigned : "+ this.project.projectId)
           )
           console.log("Response Recieved")
-          this.navLink()
+          this.router.navigate(['view-project-status/',response.projectId]);
         },
         error => {
           console.log("Exception Occured")
