@@ -99,14 +99,14 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAllUsers(userName),HttpStatus.OK);
 	}
 	
-//	@PreAuthorize("@userSecurity.hasUsername(authentication,#username)")
-	@GetMapping("/getUserByUserName/{username}")
+	@PreAuthorize("@userSecurity.hasUserName(authentication,#userName)")
+	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") User getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String username) throws InvalidUserIdOrPasswordException{
+	public @ApiResponse(description = "Demo Object") User getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName) throws InvalidUserIdOrPasswordException{
 		
 		log.info("inside getByUserName of User Controller");
-		return userService.getByUserName(username);
+		return userService.getByUserName(userName);
 	}
 	
 	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")

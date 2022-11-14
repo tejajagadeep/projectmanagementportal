@@ -42,11 +42,11 @@ import lombok.ToString;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
-	
-	@NotNull(message = "username should not be Null")
-	@NotEmpty(message = "username shoudl not be Empty")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int userId;
+//	
+//	@NotNull(message = "username should not be Null")
+//	@NotEmpty(message = "username shoudl not be Empty")
 	@Size(min = 5, max = 8, message = "userId shoud be between 5 and 8 characters")
 	private String userName;
 	
@@ -88,6 +88,6 @@ public class User {
 	@OneToMany(cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
 	})
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_name")
 	private Set<Project> projects;
 }

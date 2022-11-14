@@ -22,6 +22,7 @@ import { ProjectRegistrationComponent } from './project-registration/project-reg
 import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ProjectStoryUpdateComponent } from './project-story-update/project-stor
     ProjectRegistrationComponent,
     ProjectUpdateComponent,
     ProjectStoryRegistrationComponent,
-    ProjectStoryUpdateComponent
+    ProjectStoryUpdateComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

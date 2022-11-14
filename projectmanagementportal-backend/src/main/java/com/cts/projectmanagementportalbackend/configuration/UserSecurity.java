@@ -21,7 +21,7 @@ public class UserSecurity {
 	
 	static Logger logg = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	
-	public boolean hasUsername(Authentication authentication, String username) {
+	public boolean hasUserName(Authentication authentication, String username) {
 		
 		String userName = userRoleRepository.findByUserName(authentication.getName()).getUserName();
 		logg.info("inside hasUsername: "+username+" of UserSecurity. userId: "+userName+". Authication: "+authentication + " repo authentication.getName()).getUserName() : "+userName);
@@ -34,18 +34,18 @@ public class UserSecurity {
 		
 	}
 
-	public boolean hasUserId(Authentication authentication, Integer userId) {
-		
-		int userID = userRoleRepository.findByUserName(authentication.getName()).getUserId();
-		logg.info("inside hasUserId of UserSecurity. userId: "+userId+". Authication: "+authentication);
-		
-		if(userID == userId) {
-			return true;
-		}
-		
-		return false;
-		
-	}
+//	public boolean hasUserId(Authentication authentication, Integer userId) {
+//		
+//		int userID = userRoleRepository.findByUserName(authentication.getName()).getUserId();
+//		logg.info("inside hasUserId of UserSecurity. userId: "+userId+". Authication: "+authentication);
+//		
+//		if(userID == userId) {
+//			return true;
+//		}
+//		
+//		return false;
+//		
+//	}
 	
 
 }
