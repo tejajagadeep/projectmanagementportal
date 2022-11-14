@@ -20,6 +20,8 @@ import { ErrorComponent } from './error/error.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
+import { ProjectRegistrationComponent } from './project-registration/project-registration.component';
+import { ProjectUpdateComponent } from './project-update/project-update.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ViewProjectStoryStatusComponent } from './view-project-story-status/vie
     ErrorComponent,
     ProfilesComponent,
     UserProfileComponent,
-    ViewProjectStoryStatusComponent
+    ViewProjectStoryStatusComponent,
+    ProjectRegistrationComponent,
+    ProjectUpdateComponent
   ],
   imports: [
     BrowserModule,

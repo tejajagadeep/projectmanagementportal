@@ -4,6 +4,7 @@ import { Story } from '../project-stories-registration-or-updation/project-stori
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -17,10 +18,12 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   storyId!: string;
   errorMessageResponse!: string;
   temp!: string;
+  message!: string
 
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
+    private location: Location,
     private projectService: ProjectDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService
@@ -52,4 +55,38 @@ export class ViewProjectStoryStatusComponent implements OnInit {
       this.errorMessageResponse = error.error.message
     }
    }
+
+   updateStory(storyId: string){
+    console.log(`update ${storyId}`);
+    // this.router.navigate(['view-project-status/project-story-registration',storyId]);
+    this.router.navigate([`project-story-registration/${storyId}`])
+  }
+
+  
+  deleteStory(storyId: string){
+    this.storyService.deleteStoryById(storyId).subscribe(
+      response =>  {
+        this.message = `Deleted Story with Id ${storyId}`;
+        console.log(this.message)
+
+        this.getAllStories();
+        this.location.back()
+      },
+      error => {
+        console.log("Exception Occured")
+        this.handleErrorMessage(error);
+      }
+    )
+  }
+
+  getAllStories(){
+    this.storyService.getAllStories().subscribe(
+      response => this.handleGetStories(response)
+    );
+   }
+
+   handleGetStories(response : any){
+    this.story = response
+    // console.log(response)
+  }
 }

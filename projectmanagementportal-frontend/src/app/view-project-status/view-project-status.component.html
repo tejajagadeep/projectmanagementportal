@@ -14,65 +14,100 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><h6>Project Id</h6></td>
+                    <td>
+                        <h6>Project Id</h6>
+                    </td>
                     <td>{{project.projectId}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project Name</h6></td>
+                    <td>
+                        <h6>Project Name</h6>
+                    </td>
                     <td>{{project.projectName}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project Description</h6></td>
+                    <td>
+                        <h6>Project Description</h6>
+                    </td>
                     <td>{{project.projectDescription}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Team Name</h6></td>
+                    <td>
+                        <h6>Team Name</h6>
+                    </td>
                     <td>{{project.teamName}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Team Size</h6></td>
+                    <td>
+                        <h6>Team Size</h6>
+                    </td>
                     <td>{{project.teamSize}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project Manager Name</h6></td>
+                    <td>
+                        <h6>Project Manager Name</h6>
+                    </td>
                     <td>{{project.projectManagerName}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project Manager Email Id</h6></td>
+                    <td>
+                        <h6>Project Manager Email Id</h6>
+                    </td>
                     <td>{{project.projectManagerEmailId}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Tech Lead Name</h6></td>
+                    <td>
+                        <h6>Tech Lead Name</h6>
+                    </td>
                     <td>{{project.techLeadName}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Tech Lead Email Id</h6></td>
+                    <td>
+                        <h6>Tech Lead Email Id</h6>
+                    </td>
                     <td>{{project.techLeadEmailId}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project Start Date</h6></td>
+                    <td>
+                        <h6>Project Start Date</h6>
+                    </td>
                     <td>{{project.projectStartDate | date : 'yyyy-MM-dd'}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Project End Date</h6></td>
+                    <td>
+                        <h6>Project End Date</h6>
+                    </td>
                     <td>{{project.projectEndDate | date : 'yyyy-MM-dd'}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Tech Stack</h6></td>
+                    <td>
+                        <h6>Tech Stack</h6>
+                    </td>
                     <td>{{project.techStack}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Status</h6></td>
+                    <td>
+                        <h6>Status</h6>
+                    </td>
                     <td>{{project.status}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Remarks</h6></td>
+                    <td>
+                        <h6>Remarks</h6>
+                    </td>
                     <td>{{project.remarks}}</td>
                 </tr>
-                
+
             </tbody>
         </table>
         <br>
+        <div>
+            <button (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
+            <button (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
+            <a [routerLink]="[project.projectId,'/view-project-story-status/']"
+                class="btn btn-success d-flex align-content-end flex-wrap mb-2">New Story For
+                {{project.projectName}}</a>
+        </div>
     </div>
 </div>
 
@@ -80,9 +115,11 @@
 
 
 <div class="row" style="width:90%;margin:auto">
-    <div *ngFor="let storyDetail of story" class="offer-content">
-        <h6 class="card-title align-center" style="background:rgba(3, 33, 201, 0.87);color:white;padding:10px; ">{{storyDetail.storyTitle}}</h6>
-        <p class="card-text ">
+    <div *ngFor="let storyDetail of story">
+        <div *ngIf="storyDetail.projectIdName == projectId" class="offer-content">
+            <h6 class="card-title align-center" style="background:rgba(3, 33, 201, 0.87);color:white;padding:10px; ">
+                {{storyDetail.storyTitle}}</h6>
+            <p class="card-text ">
             <div class="d-flex flex-column ">
                 <div class="p-2 "><b>Project Id:</b> {{storyDetail.storyId}}</div>
                 <div class="p-2 "><b>Project Manager Name:</b> {{storyDetail.assignee}}
@@ -91,7 +128,9 @@
                 <div class="p-2"><b>Tech Stack:</b> {{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</div>
                 <div class="p-2"><b>Status:</b> {{storyDetail.status}}</div>
             </div><br>
-            <a [routerLink]="['/view-project-story-status/',storyDetail.storyId]" class="btn btn-success">Story Details</a>
+            <a [routerLink]="['/view-project-story-status/',storyDetail.storyId]" class="btn btn-success">Story
+                Details</a>
+        </div>
     </div>
 </div>
 

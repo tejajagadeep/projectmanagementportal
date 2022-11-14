@@ -23,7 +23,7 @@ export class BasicAuthenticationService {
         map(
           data => {
             sessionStorage.setItem(AUTHENTICATED_USER, username);
-            sessionStorage.setItem(TOKEN, `${data.token}`);
+            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
             return data;
           }
         )

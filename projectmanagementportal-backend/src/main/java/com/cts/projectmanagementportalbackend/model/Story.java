@@ -40,10 +40,10 @@ public class Story {
 	@Size(max = 20)
 	private String storyId;
 	
-	@ManyToOne
+//	@ManyToOne
 //	@JoinColumn(name = "project_id")
-	@JsonIgnore
-	private Project project;
+//	@JsonIgnore
+//	private Project project;
 	
 //	@Size(max = 20)
 //	@NotEmpty(message = "projectId should not be Null")

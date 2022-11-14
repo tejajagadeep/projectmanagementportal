@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
@@ -58,7 +59,7 @@ public class StoryController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/storyRegistration")
-	public ResponseEntity<Story> saveStory(@Valid @RequestBody Story story)  throws IdAlreadyExistException, NoSuchElementExistException {
+	public ResponseEntity<Story> saveStory(@Valid @RequestBody Story story)  throws IdAlreadyExistException, NoSuchElementExistException, InvalidUserIdOrPasswordException {
 		
 		log.info("inside storyRegistration of Story Controller");
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
@@ -66,7 +67,7 @@ public class StoryController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("updateStoryAdmin/{storyId}")
-	public ResponseEntity<Story> updateStoryByIdAdmin(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+	public ResponseEntity<Story> updateStoryByIdAdmin(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
 		
 		log.info("inside updateStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.updateStoryAdmin(storyId, story), HttpStatus.OK);
@@ -74,7 +75,7 @@ public class StoryController {
 	
 	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PutMapping("updateStoryMember/{storyId}")
-	public ResponseEntity<Story> updateStoryByIdMember(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException{
+	public ResponseEntity<Story> updateStoryByIdMember(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
 		
 		log.info("inside updateStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.updateStoryMember(storyId, story), HttpStatus.OK);

@@ -46,9 +46,11 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
 
   project!: Project
   errorMessageResponse!: string
+  userNameError!: string
   temp!: string
   projectId!: string
   dateDummy!: Date
+  assign!:string
 
   constructor(
     private router: Router,
@@ -86,7 +88,7 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
     if (this.projectId === this.project.projectId) {
       this.updateProjectById()
     } else {
-      this.saveProject
+      this.saveProject()
     }
   }
 
@@ -115,6 +117,18 @@ export class ProjectRegistrationOrUpdationComponent implements OnInit {
         console.log("Exception Occured")
         this.handleErrorMessage(error);
       }
+    )
+  }
+
+  assignProject(username: string, projectId: string){
+    this.projectDataService.ProjectAssign(username,this.projectId, this.project).subscribe(
+      resposne => {
+        console.log(resposne)
+      },
+      error => {this.userNameError = error.error.message}
+      
+      
+      
     )
   }
 

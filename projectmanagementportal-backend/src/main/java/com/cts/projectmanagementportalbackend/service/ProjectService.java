@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 
@@ -22,9 +23,9 @@ public interface ProjectService {
 	
 	Project getProjectById(String projectId) throws NoSuchElementExistException;
 
-	Project saveProject(Project project) throws IdAlreadyExistException;
+	Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException ;
 
-	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException;
+	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
 
 	void deleteProjectById(String projectId) throws NoSuchElementExistException;
 

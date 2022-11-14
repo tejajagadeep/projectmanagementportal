@@ -13,11 +13,14 @@ import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
+import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
 import com.cts.projectmanagementportalbackend.repository.StoryReposiotry;
+import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 @Service
 public class StoryServiceImpl implements StoryService {
@@ -27,6 +30,9 @@ public class StoryServiceImpl implements StoryService {
 
 	@Autowired
 	ProjectRepository projectRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
@@ -55,10 +61,12 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public Story saveStory(Story story) throws IdAlreadyExistException, NoSuchElementExistException {
+	public Story saveStory(Story story) throws IdAlreadyExistException, NoSuchElementExistException, InvalidUserIdOrPasswordException {
 
 		log.info(" inside saveStory of StoryServiceImpl : " + story.toString());
 
+		User userAssignee = userRepository.findByName(story.getAssignee());
+		
 		Optional<Story> optionalStory = storyReposiotry.findById(story.getStoryId());
 //		Optional<Project> optionalProject = projectRepository.findById(story.getProjectId());
 
@@ -66,10 +74,17 @@ public class StoryServiceImpl implements StoryService {
 			log.warn("Story Id " + story.getStoryId() + " Already Exist");
 			throw new IdAlreadyExistException("Story Id Already Exist");
 
-//		} else if (optionalProject.isEmpty()) {
-//
-//			throw new NoSuchElementExistException("Project with Id " + story.getProjectId() + " Doesn't Exist");
+		} else if (userAssignee==null) {
 
+			String assigneNotFound = "user doesn't exist. please enter exist user...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+
+		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+			String assigneNotFound = "assignee " + userAssignee.getName()+ "   email doesn't exist. please re-enter...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			
 		} else {
 			log.info("saved story " + story.toString());
 			return storyReposiotry.save(story);
@@ -79,13 +94,34 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException {
+	public Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException {
 
 		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
 
+		User userAssignee = userRepository.findByName(story.getAssignee());
+		
 		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 
-		if (optionalStory.isPresent()) {
+		if (optionalStory.isEmpty()) {
+
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+			
+		} else if (userAssignee==null) {
+
+			String assigneNotFound = "user doesn't exist. please enter exist user...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+
+		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+			String assigneNotFound = "assignee " + userAssignee.getName()+ "   email doesn't exist. please re-enter...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			
+		
+
+		} else {
+
 			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
 			Story storyData = optionalStory.get();
 			storyData.setStoryTitle(story.getStoryTitle());
@@ -97,36 +133,43 @@ public class StoryServiceImpl implements StoryService {
 			storyData.setStatus(story.getStatus());
 			storyData.setRemarks(story.getRemarks());
 			return storyReposiotry.save(storyData);
-
-		} else {
-
-			log.warn("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
 
 	@Override
-	public Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException {
+	public Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException {
 
 		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
-
+		User userAssignee = userRepository.findByName(story.getAssignee());
+		
 		Optional<Story> optionalStory = storyReposiotry.findById(storyId);
 
-		if (optionalStory.isPresent()) {
+		if (optionalStory.isEmpty()) {
+
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+			
+		} else if (userAssignee==null) {
+
+			String assigneNotFound = "user doesn't exist. please enter exist user...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+
+		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+			String assigneNotFound = "assignee " + userAssignee.getName()+ "   email doesn't exist. please re-enter...";
+			log.warn(assigneNotFound);
+			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			
+			
+		} else {
+			
 			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
 			Story storyData = optionalStory.get();
-			storyData.setStoryTitle(story.getStoryTitle());
 			storyData.setStoryDescription(story.getStoryDescription());
 			storyData.setTargetDate(story.getTargetDate());
 			storyData.setStatus(story.getStatus());
 			storyData.setRemarks(story.getRemarks());
 			return storyReposiotry.save(storyData);
-			
-
-		} else {
-
-			log.warn("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		}
 	}
 

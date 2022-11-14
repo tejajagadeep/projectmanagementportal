@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
@@ -15,11 +16,11 @@ public interface StoryService {
 	
 	Story getStoryById(String storyId)  throws NoSuchElementExistException;
 
-	Story saveStory(Story story)  throws IdAlreadyExistException, NoSuchElementExistException ;
+	Story saveStory(Story story)  throws IdAlreadyExistException, NoSuchElementExistException, InvalidUserIdOrPasswordException ;
 
-	Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException;
+	Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
 	
-	Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException;
+	Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
 
 	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
 

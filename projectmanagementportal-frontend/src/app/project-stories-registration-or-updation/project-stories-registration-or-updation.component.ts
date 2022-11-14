@@ -27,8 +27,8 @@ export class Story{
     public assignmentDate: Date,
     public targetDate: Date,
     public status: string,
-    public remarks: string
-
+    public remarks: string,
+    public projectIdName: string
   ) {}
 }
 
@@ -54,7 +54,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','','',new Date(),new Date(),'To-Do','');
+    this.story = new Story('','','','','','',new Date(),new Date(),'To-Do','','');
 
   }
 

@@ -1,19 +1,25 @@
 
 insert into User_Emp(user_id,user_name, name, email_address, contact_no, date_of_birth, role, password)
- values(1,'venkat', 'Venkat', 'venkat@gamil.com', 7894561230, '1978-07-27', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+ values(1,'venkat', 'Venkat', 'venkat@gmail.com', 7894561230, '1978-07-27', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_id,user_name, name, email_address, contact_no, date_of_birth, role, password)
- values(2,'rajini', 'Rajini', 'rajini@gamil.com', 7894561231, '1968-08-01', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+ values(2,'rajini', 'Rajini', 'rajini@gmail.com', 7894561231, '1968-08-01', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_id, user_name, name, email_address, contact_no, date_of_birth, role, password)
- values(3,'vinay', 'Vinay', 'vinay@gamil.com', 7894561232, '1987-12-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
- 
+ values(3,'vinay', 'Vinay', 'vinay@gmail.com', 7894561232, '1987-12-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_id, user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values(4,'ramesh', 'Ramesh', 'ramesh@gmail.com', 7894561233, '1987-10-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_id, user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values(5,'harish', 'Harish', 'harish@gmail.com', 7894561234, '1987-12-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_id, user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values(6,'rajesh', 'Rajesh', 'rajesh@gmail.com', 7894561235, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 
 
+
 insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
-values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gamil.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1',3);
+values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gmail.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1',3);
 insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
-values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'vinay@gamil.com', 'Vinay', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1',3);
+values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'vinay@gmail.com', 'Vinay', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1',3);
 insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_id) 
-values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gamil.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1',2);
+values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gmail.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1',2);
 
 
 
@@ -24,8 +30,8 @@ insert into story(story_id, assignee, assignment_date, assignee_email_id, projec
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
  values('story3', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'Completed', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story3', '2022-09-07', 'project3');
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
- values('story4', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'To-Do', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story3', '2022-09-07', 'project3');
+ values('story4', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'To-Do', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story4', '2022-09-07', 'project3');
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
- values('story5', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'Ready-For-Test', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story3', '2022-09-07', 'project3');
+ values('story5', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'Ready-For-Test', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story5', '2022-09-07', 'project3');
 
 

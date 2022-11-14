@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
@@ -99,7 +100,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/projectRegistration")
 	@ResponseBody
-	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException {
+	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException {
 
 		log.info("inside saveProject of project Controller");
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);
@@ -108,7 +109,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
-	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException{
+	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
 
 		log.info("inside updateProjectById of project Controller");
 		return new ResponseEntity<>(projectService.updateProjectById(projectId, project), HttpStatus.OK);

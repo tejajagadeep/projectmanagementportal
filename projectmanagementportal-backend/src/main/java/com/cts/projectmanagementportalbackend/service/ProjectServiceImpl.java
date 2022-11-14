@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
@@ -95,33 +96,97 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public Project saveProject(Project project) throws IdAlreadyExistException {
+	public Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException {
 
 		log.info(" inside saveProject of ProjectServiceImpl : "+ project.toString());
 		
+		User userProjectManager = userRepository.findByName(project.getProjectManagerName());
+		User userTechLead = userRepository.findByName(project.getTechLeadName());
 		
-		// TODO Auto-generated method stub
 		Optional<Project> optionalProject = projectRepository.findById(project.getProjectId());
-		if(optionalProject.isEmpty()) {
-			log.info("saved project "+ project.toString());
-			return projectRepository.save(project);
-		} else {
+		
+		if (optionalProject.isPresent()) {
+			
 			log.warn("Project with Id " + project.getProjectId() + "  already Exist");
 			throw new IdAlreadyExistException("Project with Id " + project.getProjectId() + "  already Exist");
+			
+			
+		} else if (userProjectManager==null) {
+			
+			String projectManagerNotFound = "project Manager doesn't exist. please enter existing user...";
+			log.warn(projectManagerNotFound);
+			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			
+		} else if (!userProjectManager.getEmailAddress().equals(project.getProjectManagerEmailId())) {
+			String projectManagerNotFound = "project Manager EmailId doesn't match with project manager "+ userProjectManager.getName() +" please re-enter... ";
+			log.warn(projectManagerNotFound);
+			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+		
+		} else if (userTechLead==null) {
+			
+			String techLeadNotFound = "Tech Lead doesn't exist. please enter existing user...";
+			log.warn(techLeadNotFound);
+			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+		
+		} else if (!userTechLead.getEmailAddress().equals(project.getTechLeadEmailId())) {
+			String techLeadNotFound = "Tech Lead Email Id doesn't match please re-enter...";
+			log.warn(techLeadNotFound);
+			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+			
+		} else {
+			log.info("saved project "+ project.toString());
+			return projectRepository.save(project);
+			
+			
 		}
+		
+		
 		
 	}
 
 	@Override
-	public Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException{
+	public Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
 
 		log.info(" inside updateProjectById of ProjectServiceImpl : ");
 		
+		User userProjectManager = userRepository.findByName(project.getProjectManagerName());
+		User userTechLead = userRepository.findByName(project.getTechLeadName());
+		
+		User userProjectManagerMail = userRepository.findByEmailAddress(project.getProjectManagerEmailId());
+		User userTechLeadMail = userRepository.findByEmailAddress(project.getTechLeadEmailId());
 		
 		// TODO Auto-generated method stub
 		Optional<Project> optionalProject = projectRepository.findById(projectId);
 		
-		if(optionalProject.isPresent()) {
+		if(optionalProject.isEmpty()) {
+			log.warn("Project with Id " + projectId + " doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
+		} else if (userProjectManager==null) {
+			
+			String projectManagerNotFound = "project Manager doesn't exist. please enter existing user";
+			log.warn(projectManagerNotFound);
+			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			
+		} else if (!userProjectManager.getEmailAddress().equals(project.getProjectManagerEmailId())) {
+			
+			String projectManagerNotFound = "project Manager EmailId doesn't match with project manager "+ userProjectManager.getName() +" please re-enter ";
+			log.warn(projectManagerNotFound);
+			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+		
+		} else if (userTechLead==null) {
+			
+			String techLeadNotFound = "Tech Lead doesn't exist. please enter existing user";
+			log.warn(techLeadNotFound);
+			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+		
+		} else if (!userTechLead.getEmailAddress().equals(project.getTechLeadEmailId())) {
+			String techLeadNotFound = "Tech Lead Email Id doesn't match please re-enter";
+			log.warn(techLeadNotFound);
+			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+		
+		} else {
+			
+			
 			log.info("udpated project with id"+projectId + project.toString());
 			Project projectData = optionalProject.get();
 			projectData.setProjectName(project.getProjectName());
@@ -138,9 +203,6 @@ public class ProjectServiceImpl implements ProjectService{
 			projectData.setStatus(project.getStatus());
 			projectData.setRemarks(project.getRemarks());
 			return projectRepository.save(projectData);
-		} else {
-			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}
 	}
 

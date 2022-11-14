@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td><h6>Assignment Date</h6></td>
-                    <td>{{story.assignmentDate | date : 'yyyy-MM-dd'}}}}</td>
+                    <td>{{story.assignmentDate | date : 'yyyy-MM-dd'}}</td>
                 </tr>
                 <tr>
                     <td><h6>Target Date</h6></td>
@@ -46,10 +46,10 @@
                     <td><h6>Remarks</h6></td>
                     <td>{{story.remarks}}</td>
                 </tr>
-                <!-- <tr>
-                <td><button (click)="updateStory(storyDetail.storyId)" class="btn btn-info">Update</button></td>
-                <td><button (click)="deleteStory(storyDetail.storyId)" class="btn btn-warning">Delete</button></td>
-                </tr> -->
+                <tr>
+                <td><button (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
+                <td><button (click)="deleteStory(story.storyId)" class="btn btn-warning">Delete</button></td>
+                </tr>
             </tbody>
         </table>
         <br>

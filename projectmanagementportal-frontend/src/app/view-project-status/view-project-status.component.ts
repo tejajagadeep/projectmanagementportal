@@ -35,6 +35,10 @@ export class ViewProjectStatusComponent implements OnInit {
     this.getAllStories();
   }
 
+  navLink() {
+    this.router.navigate(['view-project-status']);
+  }
+
   getProejctsById(projectId: string) {
     this.projectService.getProjectById(projectId).subscribe(
       response => {
@@ -68,6 +72,7 @@ export class ViewProjectStatusComponent implements OnInit {
       response =>  {
         this.message = `Deleted Project with Id ${projectId}`;
         console.log(this.message)
+        this.navLink();
         // this.getAllProjects();
         this.getAllStories();
       },
@@ -92,25 +97,7 @@ export class ViewProjectStatusComponent implements OnInit {
     );
    }
 
-  updateStory(storyId: string){
-    console.log(`update ${storyId}`);
-    // this.router.navigate(['view-project-status/project-story-registration',storyId]);
-    this.router.navigate([`project-story-registration/${storyId}`])
-  }
-
-  deleteStory(storyId: string){
-    this.storyService.deleteStoryById(storyId).subscribe(
-      response =>  {
-        this.message = `Deleted Story with Id ${storyId}`;
-        console.log(this.message)
-        this.getAllStories();
-      },
-      error => {
-        console.log("Exception Occured")
-        this.handleErrorMessage(error);
-      }
-    )
-  }
+  
 
   handleGetStories(response : any){
     this.story = response
