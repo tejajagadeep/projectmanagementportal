@@ -23,7 +23,7 @@ public interface ProjectService {
 	
 	Project getProjectById(String projectId) throws NoSuchElementExistException;
 
-	Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException ;
+	Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException , NoSuchElementExistException ;
 
 	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
-import { Location } from '@angular/common';
+import { Location} from '@angular/common';
+import { Story } from '../model/story';
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -33,6 +33,10 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
     this.username=this.authService.getLoggedInUserName();
+  }
+
+  navBack(){
+    this.location.back();
   }
 
   getStoryById(storyId: string){
@@ -70,7 +74,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
         console.log(this.message)
 
         this.getAllStories();
-        this.location.back()
+        this.navBack()
       },
       error => {
         console.log("Exception Occured")

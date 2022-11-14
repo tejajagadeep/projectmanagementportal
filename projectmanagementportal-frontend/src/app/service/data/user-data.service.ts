@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { USER_API_URL } from 'src/app/app.constants';
-import { User } from 'src/app/member-sign-up/member-sign-up.component';
+import { User } from 'src/app/model/user';
 
 export class MessageResponse{
   constructor(

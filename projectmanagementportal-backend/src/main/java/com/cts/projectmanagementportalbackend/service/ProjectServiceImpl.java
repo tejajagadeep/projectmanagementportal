@@ -96,7 +96,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException {
+	public Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException, NoSuchElementExistException {
 
 		log.info(" inside saveProject of ProjectServiceImpl : "+ project.toString());
 		
@@ -134,10 +134,12 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
 			
 		} else {
+			
+			
+			assign(project.getProjectManagerName(), project.getProjectId());
+			
 			log.info("saved project "+ project.toString());
 			return projectRepository.save(project);
-			
-			
 		}
 		
 		
@@ -152,8 +154,6 @@ public class ProjectServiceImpl implements ProjectService{
 		User userProjectManager = userRepository.findByName(project.getProjectManagerName());
 		User userTechLead = userRepository.findByName(project.getTechLeadName());
 		
-		User userProjectManagerMail = userRepository.findByEmailAddress(project.getProjectManagerEmailId());
-		User userTechLeadMail = userRepository.findByEmailAddress(project.getTechLeadEmailId());
 		
 		// TODO Auto-generated method stub
 		Optional<Project> optionalProject = projectRepository.findById(projectId);
@@ -222,7 +222,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 	}
 
-	@Override
+//	@Override
 	public void assign(String userName, String projectId) throws NoSuchElementExistException {
 		
         Set<Project> projectSet = null;

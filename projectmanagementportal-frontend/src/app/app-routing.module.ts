@@ -9,6 +9,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { ProjectRegistrationOrUpdationComponent } from './project-registration-or-updation/project-registration-or-updation.component';
 import { ProjectRegistrationComponent } from './project-registration/project-registration.component';
 import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories-registration-or-updation/project-stories-registration-or-updation.component';
+import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { AuthGuardDataService } from './service/auth/auth-guard-data.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
@@ -32,10 +33,11 @@ const routes: Routes = [
   { path: 'user-profile/:userName', component: UserProfileComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-status', component: HomeComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-registration', component: ProjectRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-story-status/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-registration/:projectId', component: ProjectRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
-  { path: ':projectId/project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-registration/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService]},
+  { path: 'view-project-status/:projectId/project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
   { path: 'project-story-registration/:storyId', component: ProjectStoriesRegistrationOrUpdationComponent, canActivate: [AuthGuardDataService]},
 
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },

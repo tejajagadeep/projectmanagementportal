@@ -1,36 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Story } from '../model/story';
 import { StoryDataService } from '../service/data/story-data.service';
-
-export class Story{
-
-  //  storyId!: string;
-  //   projectId!: string;
-  //   storyTitle!: string;
-  //   storyDescription!: string;
-  //   assignee!: string;
-  //   assigneeEmailId!: string;
-  //   assignmentDate!: Date;
-  //   targetDate!: Date;
-  //   status!: string;
-  //   remarks!: string
-
-
-  constructor(
-
-    public storyId: string,
-    public projectId: string,
-    public storyTitle: string,
-    public storyDescription: string,
-    public assignee: string,
-    public assigneeEmailId: string,
-    public assignmentDate: Date,
-    public targetDate: Date,
-    public status: string,
-    public remarks: string,
-    public projectIdName: string
-  ) {}
-}
 
 @Component({
   selector: 'app-project-stories-registration-or-updation',
@@ -54,7 +25,7 @@ export class ProjectStoriesRegistrationOrUpdationComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','','',new Date(),new Date(),'To-Do','','');
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','');
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
+import { Story } from '../model/story';
 import { StoryDataService } from '../service/data/story-data.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class UpdateStoryByMemberComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','','',new Date(),new Date(),'To-Do','','');
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','');
 
   }
 

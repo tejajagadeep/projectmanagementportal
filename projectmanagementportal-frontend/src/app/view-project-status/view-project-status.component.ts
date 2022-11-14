@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
-import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
+import { Project } from '../model/project';
+import { Story } from '../model/story';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
 

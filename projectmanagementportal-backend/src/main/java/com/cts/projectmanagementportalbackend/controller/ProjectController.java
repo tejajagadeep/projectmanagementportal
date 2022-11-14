@@ -100,7 +100,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/projectRegistration")
 	@ResponseBody
-	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException {
+	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException, NoSuchElementExistException  {
 
 		log.info("inside saveProject of project Controller");
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);

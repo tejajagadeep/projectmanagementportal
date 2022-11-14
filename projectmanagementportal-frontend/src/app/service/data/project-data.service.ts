@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PROJECT_API_URL } from 'src/app/app.constants';
-import { Project } from 'src/app/project-registration-or-updation/project-registration-or-updation.component';
+import { Project } from 'src/app/model/project';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class ProjectDataService {
   }
 
   saveProject(project: Project){
-    return this.http.post<Project>(`${PROJECT_API_URL}/projectRegiration`,project);
+    return this.http.post<Project>(`${PROJECT_API_URL}/projectRegistration`,project);
   }
 
   updateProjectById(projectId: string, project: Project){

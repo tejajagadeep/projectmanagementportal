@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorComponent } from '../error/error.component';
-import { User } from '../member-sign-up/member-sign-up.component';
-import { Project } from '../project-registration-or-updation/project-registration-or-updation.component';
-import { Story } from '../project-stories-registration-or-updation/project-stories-registration-or-updation.component';
+import { Project } from '../model/project';
+import { Story } from '../model/story';
+import { User } from '../model/user';
 import { MessageResponse, UserDataService } from '../service/data/user-data.service';
 
 @Component({
