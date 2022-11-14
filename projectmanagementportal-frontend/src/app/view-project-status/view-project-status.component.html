@@ -103,7 +103,7 @@
         <div>
             <button (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
             <button (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
-            <a [routerLink]="['/project-story-registration']"
+            <a [routerLink]="['/project-story-registration/',project.projectId]"
                 class="btn btn-success d-flex align-content-end flex-wrap mb-2">New Story For
                 {{project.projectName}}</a>
         </div>

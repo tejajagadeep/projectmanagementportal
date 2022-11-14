@@ -47,6 +47,6 @@ export class ProjectDataService {
   }
 
   ProjectAssign(username: string, projectId:string, project: Project){
-    return this.http.put<Project>(`${PROJECT_API_URL}/project/updateProjectAssign/${username}/story/${projectId}`,Project);
+    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectAssign/${username}/project/${projectId}`,Project);
   }
 }

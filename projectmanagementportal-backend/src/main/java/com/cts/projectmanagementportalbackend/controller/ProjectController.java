@@ -116,7 +116,7 @@ public class ProjectController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("updateProjectAssign/{userName}/story/{projectId}")
+	@PutMapping("updateProjectAssign/{userName}/project/{projectId}")
 	public ResponseEntity<MessageResponse> assign(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
 		projectService.assign(userName, projectId);
 		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;

@@ -35,7 +35,7 @@ export class StoryDataService {
   }
 
   StoryAssign(projectId:string, storyId: string, project: Story){
-    return this.http.put<Story>(`${STORY_API_URL}/project/updateStoryAssignAdmin/${projectId}/story/${storyId}`,Story);
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAssignAdmin/${projectId}/story/${storyId}`,Story);
   }
 
 }

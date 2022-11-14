@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
+import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 
 @Component({
@@ -13,16 +14,19 @@ export class ProjectRegistrationComponent implements OnInit {
   project!: Project
   errorMessageResponse!: string
   projectId!: string
+  username!: string
 
   constructor(
     
     private router: Router,
     private route: ActivatedRoute,
-    private projectDataService: ProjectDataService
+    private projectDataService: ProjectDataService,
+    private authService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {
     this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '')
+    this.username = this.authService.getLoggedInUserName();
   }
 
   navLink() {
@@ -33,7 +37,10 @@ export class ProjectRegistrationComponent implements OnInit {
     this.projectDataService.saveProject(this.project)
       .subscribe(
         response => {
-          this.projectId = response.projectId
+          this.project = response,
+          this.projectDataService.ProjectAssign(this.username, this.project.projectId, this.project).subscribe(
+            response => console.log("usename: "+ this.username + "assigned : "+ this.project.projectId)
+          )
           console.log("Response Recieved")
           this.navLink()
         },

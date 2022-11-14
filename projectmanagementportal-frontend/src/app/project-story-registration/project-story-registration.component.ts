@@ -14,6 +14,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
 
   story! : Story
   storyId!: string
+  projectId!: string
   dateDummy!: Date
   errorMessageResponse!: string
   temp!: string
@@ -28,7 +29,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.projectId = this.route.snapshot.params['projectId']
     this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','');
     this.username = this.authService.getLoggedInUserName();
   }
@@ -41,7 +42,12 @@ export class ProjectStoryRegistrationComponent implements OnInit {
     this.storyDataService.saveStory(this.story)
     .subscribe(
       response => {
-        console.log("Response Recieved")
+        console.log("Response Recieved" + response.storyId)
+        this.storyDataService.StoryAssign(this.projectId, this.story.storyId,this.story).subscribe(
+          response => {
+            console.log("projectId"+this.projectId+"is assigned"+response.storyId)
+          }
+        )
         this.navBack()
       },
       error => {
