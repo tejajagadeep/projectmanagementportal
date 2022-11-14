@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MemberSignUpComponent } from './member-sign-up/member-sign-up.component';
-import { ProjectRegistrationOrUpdationComponent } from './project-registration-or-updation/project-registration-or-updation.component';
 import { ProjectStoriesRegistrationOrUpdationComponent } from './project-stories-registration-or-updation/project-stories-registration-or-updation.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
@@ -29,7 +28,6 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
     LoginComponent,
     HomeComponent,
     MemberSignUpComponent,
-    ProjectRegistrationOrUpdationComponent,
     ProjectStoriesRegistrationOrUpdationComponent,
     MenuComponent,
     FooterComponent,

@@ -136,7 +136,7 @@ public class ProjectServiceImpl implements ProjectService{
 		} else {
 			
 			
-			assign(project.getProjectManagerName(), project.getProjectId());
+//			assign(project.getProjectManagerName(), project.getProjectId());
 			
 			log.info("saved project "+ project.toString());
 			return projectRepository.save(project);
@@ -222,7 +222,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 	}
 
-//	@Override
+	@Override
 	public void assign(String userName, String projectId) throws NoSuchElementExistException {
 		
         Set<Project> projectSet = null;
@@ -252,7 +252,7 @@ public class ProjectServiceImpl implements ProjectService{
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
-//		projectRepository.save(project);
+//		projectRepository.save(project); 
 		userRepository.save(user);
 		
 	}
