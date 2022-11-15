@@ -110,6 +110,8 @@ public class Project {
 	@Size(max = 100)
 	@NotEmpty(message = "remarks should not be empty")
 	private String remarks;
+	
+	private String projectOwner;
 
 //	@Getter(AccessLevel.NONE)
 //	@Setter(AccessLevel.NONE)

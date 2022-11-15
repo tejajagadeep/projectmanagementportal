@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MemberSignUpComponent } from './member-sign-up/member-sign-up.component';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProjectRegistrationComponent } from './project-registration/project-registration.component';
 import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'profiles/:userName', component: ProfilesComponent, canActivate: [AuthGuardDataService]},
   { path: 'user-profile/:userName', component: UserProfileComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-status', component: HomeComponent, canActivate: [AuthGuardDataService]},
+  { path: 'my-projects', component: MyProjectsComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService]},
   { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-story-status/:projectId/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService]},

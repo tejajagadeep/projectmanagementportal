@@ -14,6 +14,8 @@ public interface ProjectRepository extends JpaRepository<Project, String>{
 	
 	public List<Project> findByProjectName(String projectName);
 	
+	public List<Project> findByProjectOwner(String projectOwner);
+	
 	public List<Project> findByProjectManagerName(String projectManagerName);
 	
 	public List<Project> findByStatus(String status);

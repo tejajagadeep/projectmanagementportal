@@ -86,7 +86,6 @@ class UserServiceImplTest {
 	void testSaveUserException() throws InvalidUserIdOrPasswordException {
 		
 //		user=null;
-		user.setUserId(1);
 		User userOptional = userRepository.findByUserName(user.getUserName());
 		
 		when(userServiceImpl.saveUser(user)).thenReturn(user);

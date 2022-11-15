@@ -66,6 +66,14 @@ public class ProjectController {
 //		return new ResponseEntity<>(projectService.getProjectsByProjectName(projectName), HttpStatus.OK);
 //	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/getProjectsByProjectOwner/{projectOwner}")
+	public ResponseEntity<List<Project>> getProjectsByProjectOwner(@PathVariable String projectOwner){
+
+		log.info("inside getProjectsByProjectOwner of project Controller");
+		return new ResponseEntity<>(projectService.getProjectsByProjectOwner(projectOwner), HttpStatus.OK);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByProjectManagerName/{projectManagerName}")
 	public ResponseEntity<List<Project>> getProjectsByProjectManagerName(@PathVariable String projectManagerName){

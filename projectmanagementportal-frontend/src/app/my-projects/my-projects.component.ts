@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
 import { User } from '../model/user';
@@ -8,27 +8,18 @@ import { StoryDataService } from '../service/data/story-data.service';
 import { MessageResponse, UserDataService } from '../service/data/user-data.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-my-projects',
+  templateUrl: './my-projects.component.html',
+  styleUrls: ['./my-projects.component.css']
 })
-export class HomeComponent implements OnInit {
+export class MyProjectsComponent implements OnInit {
 
   username!: string
   message!: string
   errorMessageResponse=""
   helloWorldMessage!: MessageResponse
-
-  // projectIdName!: string
   project!:Project[]
-  isUserLoggedIn! : boolean
   user!: User
-  errorMessage!: string
-
-  // to get by value
-  @ViewChild("status") status!: ElementRef
-  @ViewChild("projectIdName") projectIdName!: ElementRef
-
 
   constructor(
     private router : Router, 
@@ -40,21 +31,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUsername();
+    this.username=this.authService.getLoggedInUserName();
     console.log(this.username)
     console.log('home.component.ts')
-    this.getAllProjects();
-    this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.getUser(this.username);
-
-    this.getByProjectStatus();
-    // this.helloWorld();
+    this.getAllProjects(this.username);
   }
-
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
-  }
-
   getUser(userName: string) {
     this.userService.getUserByUserName(userName).subscribe(
       response => {
@@ -70,35 +52,20 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  getAllProjects(){
-    this.projectService.getAllProjects().subscribe(
-      response => this.handleGetProjects(response)
+  handleErrorMessage(error: any){
+    // this.errorMessageResponse = error
+      this.errorMessageResponse = error.error.message
+   }
+
+  getAllProjects(projectOwner: string){
+    this.projectService.getProjectsByProjectOwner(projectOwner).subscribe(
+      response => console.log(this.handleGetProjects(response))
+      // console.log(projectOwner)
     );
-   }
-
-   getByProjectStatus(){
-    let status = this.status.nativeElement.value;
-    if(status == 'Filter by status'){
-      this.getAllProjects();
-    }
-    this.projectService.getProjectsByStatus(status).subscribe(
-      response => this.handleGetProjects(response)
-    )
-   }
-
-   getByProjectByIdOrManagerName(){
-    let projectIdName = this.status.nativeElement.value;
-      this.projectService.getProjectById(projectIdName).subscribe(
-        response => this.handleGetProjects(response)
-      )
    }
    
    handleGetProjects(response : any){
     this.project = response
    }
 
-   handleErrorMessage(error: any) {
-    // this.errorMessageResponse = error
-      this.errorMessage = error.error.message
-  }
 }

@@ -17,6 +17,8 @@ public interface ProjectService {
 	
 	List<Project> getProjectsByProjectName(String projectName);
 
+	List<Project> getProjectsByProjectOwner(String projectOwner);
+
 	List<Project> getProjectsByProjectManagerName(String projectManagerName);
 
 	List<Project> getProjectsByStatus(String status);
@@ -30,5 +32,6 @@ public interface ProjectService {
 	void deleteProjectById(String projectId) throws NoSuchElementExistException;
 
 	void assign(String userName, String projectId)  throws NoSuchElementExistException;
+
 	
 }

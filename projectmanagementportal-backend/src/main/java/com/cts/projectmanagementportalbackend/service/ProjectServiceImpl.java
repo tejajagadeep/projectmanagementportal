@@ -50,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return projectRepository.findByProjectManagerEmailId(projectManagerEmailId);
 	}
-
+	
 	@Override
 	public List<Project> getProjectsByProjectName(String projectName) {
 
@@ -58,6 +58,15 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 		return projectRepository.findByProjectName(projectName);
+	}
+	
+	@Override
+	public List<Project> getProjectsByProjectOwner(String projectOwner) {
+
+		log.info(" inside getProjectsByProjectOwner of ProjectServiceImpl : "+ projectOwner);
+		
+		
+		return projectRepository.findByProjectOwner(projectOwner);
 	}
 
 	@Override
@@ -242,11 +251,14 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new NoSuchElementExistException("user doesn't exist " +userName);
 		}
 		
+		project.setProjectOwner(user.getUserName());
+		
 		projectSet = user.getProjects();
 		
 		projectSet.add(project);
 		
 		user.setProjects(projectSet);
+		
 		
 		
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;

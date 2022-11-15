@@ -22,6 +22,10 @@ export class ProjectDataService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectName/${projectName}`);
   }
 
+  getProjectsByProjectOwner(projectOwner: string){
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectOwner/${projectOwner}`);
+  }
+
   getProjectsByProjectManagerName(projectManagerName: string){
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerName/${projectManagerName}`);
   }

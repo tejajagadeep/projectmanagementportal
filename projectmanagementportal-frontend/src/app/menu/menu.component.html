@@ -5,7 +5,7 @@
         <ul class="navbar-nav">
             <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
             <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
-            <li><a *ngIf="isUserLoggedIn" routerLink="/view-project-status" class="nav-link">Projects</a></li>
+            <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
         </ul>
 
         <ul class="navbar-nav navbar-collapse justify-content-end">

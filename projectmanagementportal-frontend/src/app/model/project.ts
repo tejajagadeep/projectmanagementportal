@@ -28,7 +28,8 @@ export class Project {
       public projectEndDate: Date,
       public techStack: string,
       public status: string,
-      public remarks: string
+      public remarks: string,
+      public projectOwner: string
   
     ) { }
   }

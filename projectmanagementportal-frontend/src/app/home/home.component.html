@@ -1,4 +1,34 @@
-<app-menu></app-menu>
+<header>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #97d2fc;">
+        <span>Project Management</span>
+
+        <ul class="navbar-nav">
+            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
+            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
+            <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
+
+            <!-- filter by category-->
+            <div class="p-2 " style="color:rgba(23, 119, 14, 0.87)">
+                <select class="form-control" (change)="getByProjectStatus()" #status>
+                    <option selected class="btn btn-outline-success" value="Filter by status"><small>Filter by status</small></option>
+                        <option value="To-Do">To-Do</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Ready-For-Test">Ready-For-Test</option>
+                        <option value="Completed">Completed</option>
+                </select>
+            </div>
+        </ul>
+
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="projectIdName" #projectIdName>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (change)="getByProjectByIdOrManagerName()">Search</button>
+              </form> -->
+                <li><a *ngIf="isUserLoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New Project</a></li>
+                <li><a *ngIf="isUserLoggedIn" routerLink="/logout" class="nav-link">logout</a></li>
+        </ul>
+    </nav>
+</header>
 <div class="row" style="width:90%;margin:auto">
     <div *ngFor="let projectDetail of project" class="offer-content">
         <h6 class="card-title align-center" style="background:rgba(23, 119, 14, 0.87);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
