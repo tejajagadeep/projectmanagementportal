@@ -4,7 +4,7 @@
 
         <ul class="navbar-nav">
             <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
-            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
+            <li><a *ngIf="isUserLoggedIn" routerLink="/home" class="nav-link">Home</a></li>
             <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
 
             <!-- filter by category-->
@@ -24,13 +24,15 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="projectIdName" #projectIdName>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (change)="getByProjectByIdOrManagerName()">Search</button>
               </form> -->
-                <li><a *ngIf="isUserLoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New Project</a></li>
+              
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search...">
+        <li><a *ngIf="isUserLoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New Project</a></li>
                 <li><a *ngIf="isUserLoggedIn" routerLink="/logout" class="nav-link">logout</a></li>
         </ul>
     </nav>
 </header>
 <div class="row" style="width:90%;margin:auto">
-    <div *ngFor="let projectDetail of project" class="offer-content">
+    <div *ngFor="let projectDetail of project | filter: searchText" class="offer-content">
         <h6 class="card-title align-center" style="background:rgba(23, 119, 14, 0.87);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
         <p class="card-text ">
             <div class="d-flex flex-column ">

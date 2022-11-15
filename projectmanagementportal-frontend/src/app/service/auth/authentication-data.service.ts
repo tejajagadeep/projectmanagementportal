@@ -67,6 +67,12 @@ export class AuthenticationDataService {
     return true
   }
 
+  isNavBar(){
+    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+    if (user) {return false} else {
+    return true}
+  }
+
   getLoggedInUserName() {
     let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
     if (user === null) return ''

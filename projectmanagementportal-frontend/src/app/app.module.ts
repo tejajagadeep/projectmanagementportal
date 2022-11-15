@@ -3,6 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,8 +27,8 @@ import { ProjectRegistrationComponent } from './project-registration/project-reg
 import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { NavBarHandlerComponent } from './nav-bar-handler/nav-bar-handler.component';
 
 @NgModule({
   declarations: [
@@ -44,14 +49,15 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
     ProjectUpdateComponent,
     ProjectStoryRegistrationComponent,
     ProjectStoryUpdateComponent,
-    ChangePasswordComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    NavBarHandlerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     {

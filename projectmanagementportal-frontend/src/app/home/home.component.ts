@@ -20,10 +20,12 @@ export class HomeComponent implements OnInit {
   helloWorldMessage!: MessageResponse
 
   // projectIdName!: string
-  project!:Project[]
   isUserLoggedIn! : boolean
   user!: User
   errorMessage!: string
+
+  searchText: any;
+  project!:Project[]
 
   // to get by value
   @ViewChild("status") status!: ElementRef
