@@ -14,7 +14,7 @@ import { UserDataService } from '../service/data/user-data.service';
 export class LoginComponent implements OnInit {
 
   username!: string
-  password: string ='ABCabc@123'
+  password!: string
   errorMessage!: string
   successMessage!: string
   invalidLogin = false
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
     error => this.handleErrorResponse(error)
   )
   }
-  
+
   }
 
 

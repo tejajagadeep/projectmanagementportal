@@ -22,6 +22,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   temp!: string;
   message!: string
   user!: User
+  projectId!: string
 
   constructor(
     private router : Router, 
@@ -66,6 +67,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.storyService.getStoryById(storyId).subscribe(
       response => {
         this.story = response;
+        this.projectId = response.projectIdName
       },
       error => {
         console.log("Exception Occured")

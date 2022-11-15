@@ -50,28 +50,21 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
-	@GetMapping("/getAllProjects1")
-	public ResponseEntity<List<Project>> getAllProjects1(){
-		log.info("inside getAllProjects1 of project Controller");
-		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
-	}
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+//	@GetMapping("/getProjectsByProjectManagerEmailId/{projectManagerEmailId}")
+//	public ResponseEntity<List<Project>> getProjectsByProjectManagerEmailId(@PathVariable String projectManagerEmailId){
+//		
+//		log.info("inside getProjectsByProjectManagerEmailId of project Controller");
+//		return new ResponseEntity<>(projectService.getProjectsByProjectManagerEmailId(projectManagerEmailId),HttpStatus.OK);
+//	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getProjectsByProjectManagerEmailId/{projectManagerEmailId}")
-	public ResponseEntity<List<Project>> getProjectsByProjectManagerEmailId(@PathVariable String projectManagerEmailId){
-		
-		log.info("inside getProjectsByProjectManagerEmailId of project Controller");
-		return new ResponseEntity<>(projectService.getProjectsByProjectManagerEmailId(projectManagerEmailId),HttpStatus.OK);
-	}
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getProjectsByProjectName/{projectName}")
-	public ResponseEntity<List<Project>> getProjectsByProjectName(@PathVariable String projectName){
-
-		log.info("inside getProjectsByProjectName of project Controller");
-		return new ResponseEntity<>(projectService.getProjectsByProjectName(projectName), HttpStatus.OK);
-	}
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+//	@GetMapping("/getProjectsByProjectName/{projectName}")
+//	public ResponseEntity<List<Project>> getProjectsByProjectName(@PathVariable String projectName){
+//
+//		log.info("inside getProjectsByProjectName of project Controller");
+//		return new ResponseEntity<>(projectService.getProjectsByProjectName(projectName), HttpStatus.OK);
+//	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByProjectManagerName/{projectManagerName}")
