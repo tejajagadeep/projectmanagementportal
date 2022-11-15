@@ -34,7 +34,6 @@ export class ProjectUpdateComponent implements OnInit {
     this.projectId = this.route.snapshot.params['projectId'];
     this.getProjectBId(this.projectId);
     this.username=this.authService.getLoggedInUserName();
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '')
   }
 
   navBack(){

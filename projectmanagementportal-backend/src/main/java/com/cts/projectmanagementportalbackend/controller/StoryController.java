@@ -65,7 +65,7 @@ public class StoryController {
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@PutMapping("updateStoryAdmin/{storyId}")
 	public ResponseEntity<Story> updateStoryByIdAdmin(@PathVariable String storyId, @Valid @RequestBody Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
 		

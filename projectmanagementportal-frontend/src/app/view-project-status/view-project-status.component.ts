@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
 import { Story } from '../model/story';
+import { User } from '../model/user';
+import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
   selector: 'app-view-project-status',
@@ -19,12 +22,16 @@ export class ViewProjectStatusComponent implements OnInit {
   message!: string
   errorMessage!: string
   projectId!: string 
+  user!: User
+  username!: string
 
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
+    private userService: UserDataService,
     private projectService: ProjectDataService,
-    private storyService: StoryDataService
+    private storyService: StoryDataService,
+    private authService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {
@@ -33,10 +40,31 @@ export class ViewProjectStatusComponent implements OnInit {
     this.getProejctsById(this.projectId);
     // this.getAllProjects();
     this.getAllStories();
+    this.getUsername();
+    this.getUser(this.username);
+  }
+
+  getUsername(){
+    this.username=this.authService.getLoggedInUserName();
   }
 
   navLink() {
     this.router.navigate(['view-project-status']);
+  }
+
+  getUser(userName: string) {
+    this.userService.getUserByUserName(userName).subscribe(
+      response => {
+        console.log("response")
+        this.user = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
   }
 
   getProejctsById(projectId: string) {
@@ -63,7 +91,7 @@ export class ViewProjectStatusComponent implements OnInit {
 
   updateProject(projectId: string){
     console.log(`update ${projectId}`);
-    this.router.navigate([`project-registration/${projectId}`])
+    this.router.navigate([`project-update/${projectId}`])
     // this.router.navigate([`view-project-status/${projectId}`])
   }
 

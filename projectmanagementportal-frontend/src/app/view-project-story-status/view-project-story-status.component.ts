@@ -5,6 +5,8 @@ import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
 import { Location} from '@angular/common';
 import { Story } from '../model/story';
+import { UserDataService } from '../service/data/user-data.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -19,12 +21,13 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   errorMessageResponse!: string;
   temp!: string;
   message!: string
+  user!: User
 
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
     private location: Location,
-    private projectService: ProjectDataService,
+    private userService: UserDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService
   ) { }
@@ -32,7 +35,27 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
+    this.getUsername();
+    this.getUser(this.username);
+  }
+
+  getUsername(){
     this.username=this.authService.getLoggedInUserName();
+  }
+
+  getUser(userName: string) {
+    this.userService.getUserByUserName(userName).subscribe(
+      response => {
+        console.log("response")
+        this.user = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
   }
 
   navBack(){
@@ -63,7 +86,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
    updateStory(storyId: string){
     console.log(`update ${storyId}`);
     // this.router.navigate(['view-project-status/project-story-registration',storyId]);
-    this.router.navigate([`project-story-registration/${storyId}`])
+    this.router.navigate([`project-story-update/${storyId}`])
   }
 
   

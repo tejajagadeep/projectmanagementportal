@@ -101,9 +101,9 @@
         </table>
         <br>
         <div>
-            <button (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
-            <button (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
-            <a [routerLink]="['/project-story-registration/',project.projectId]"
+            <button *ngIf="user.role === 'Admin' " (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
+            <button *ngIf="user.role === 'Admin' " (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
+            <a *ngIf="user.role === 'Admin' " [routerLink]="['/project-story-registration/',project.projectId]"
                 class="btn btn-success d-flex align-content-end flex-wrap mb-2">New Story For
                 {{project.projectName}}</a>
         </div>
@@ -127,7 +127,7 @@
                 <div class="p-2"><b>Tech Stack:</b> {{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</div>
                 <div class="p-2"><b>Status:</b> {{storyDetail.status}}</div>
             </div><br>
-            <a [routerLink]="['/view-project-story-status/',storyDetail.storyId]" class="btn btn-success">Story
+            <a [routerLink]="['/view-project-story-status/',project.projectId,storyDetail.storyId]" class="btn btn-success">Story
                 Details</a>
         </div>
     </ng-container>

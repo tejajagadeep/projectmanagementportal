@@ -48,7 +48,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
             console.log("projectId"+this.projectId+"is assigned"+response.storyId)
           }
         )
-        this.navBack()
+        this.router.navigate(['view-project-story-status/',this.projectId,response.storyId])
       },
       error => {
         console.log("Exception Occured")

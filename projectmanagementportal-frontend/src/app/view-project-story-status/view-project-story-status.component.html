@@ -47,7 +47,7 @@
                     <td>{{story.remarks}}</td>
                 </tr>
                 <tr>
-                <td><button (click)="deleteStory(story.storyId)" class="btn btn-warning">Delete</button></td>
+                <td><button *ngIf="user.role === 'Admin' " (click)="deleteStory(story.storyId)" class="btn btn-warning">Delete</button></td>
                 <td><button (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
                 </tr>
             </tbody>

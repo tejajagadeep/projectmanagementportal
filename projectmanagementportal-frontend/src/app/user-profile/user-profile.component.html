@@ -142,7 +142,7 @@
                 </table>
                 <td><a [routerLink]="['/home/',username]" class="btn btn-primary">Back</a></td>
                 <div class="d-flex justify-content-end pt-3">
-                <td ><a *ngIf="isUserLoggedIn" [routerLink]="['/profiles/',username]" class="btn btn-primary">Profiles</a></td>
+                <td ><a *ngIf="isUserLoggedIn && user.role == 'Admin' " [routerLink]="['/profiles/',username]" class="btn btn-primary">Profiles</a></td>
             </div>
             </div>
         </div>

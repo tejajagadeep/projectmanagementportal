@@ -99,7 +99,7 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAllUsers(userName),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("@userSecurity.hasUserName(authentication,#userName)")
+//	@PreAuthorize("@userSecurity.hasUserName(authentication,#userName)")
 	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level

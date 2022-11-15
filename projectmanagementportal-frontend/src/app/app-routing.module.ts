@@ -35,9 +35,9 @@ const routes: Routes = [
   { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService]},
   { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService]},
   { path: 'view-project-story-status/:projectId/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-registration/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService]},
   { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-story-registration/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService]},
+  { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService]},
 
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
   { path: '**', component: ErrorComponent }

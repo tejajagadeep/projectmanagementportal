@@ -25,7 +25,7 @@ export class UserDataService {
   }
 
   public login(username: string, password : string,user:User){
-    this.http.post<User>(`${USER_API_URL}/login/${username}/${password}`,user);
+    return this.http.post<User>(`${USER_API_URL}/login/${username}/${password}`,user);
   }
 
   // public login(username: string, password : string){
