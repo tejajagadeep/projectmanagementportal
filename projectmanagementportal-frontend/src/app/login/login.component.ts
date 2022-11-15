@@ -67,12 +67,14 @@ export class LoginComponent implements OnInit {
 
 
   checkLogin() {
-    if (this.basicAuthService.executeAuthenticationService(this.username, this.password)
+    if (this.basicAuthService.executeJWTAuthenticationService(this.username, this.password)
     ) {
       this.router.navigate(['home', this.username])
+      // this.checkLogin1()
       this.invalidLogin = false
     } else
       this.invalidLogin = true
+    
   }
 
   checkLogin1() {

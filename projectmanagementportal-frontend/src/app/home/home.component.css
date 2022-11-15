@@ -1,3 +1,20 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.service-small option {
+    font-size: 14px;
+    padding: 5px;
+    background: #5c5c5c;
+}
+
 .offer-content a {
     width: 100%;
 }
@@ -45,7 +62,7 @@ input.form-control {
 }
 
 .offer-content a {
-    background-color: rgba(23, 119, 14, 0.87)!important;
+    background-color: rgba(23, 119, 14, 0.87) !important;
 }
 
 button.material-icons {
@@ -59,28 +76,29 @@ button.material-icons {
     padding-top: 50px;
     padding-bottom: 10px;
     color: #405065;
-  }
-  
-  .search-hero {
+}
+
+.search-hero {
     max-width: 500px;
     padding-bottom: 50px;
-    margin:auto;
-  }
-  
-  .form-control {
-    box-shadow: 0 10px 40px 0 #B0C1D9;
-  }
-  .form-control::placeholder  {
-    font-family: FontAwesome;
-  }
+    margin: auto;
+}
 
-  input {
+.form-control {
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+
+.form-control::placeholder {
+    font-family: FontAwesome;
+}
+
+input {
     resize: horizontal;
     width: 200px;
 }
 
 input:active {
-    width: auto;   
+    width: auto;
 }
 
 input:focus {

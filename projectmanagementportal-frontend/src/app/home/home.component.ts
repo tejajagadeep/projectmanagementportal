@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
+import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
 import { MessageResponse, UserDataService } from '../service/data/user-data.service';
@@ -38,7 +39,8 @@ export class HomeComponent implements OnInit {
     private projectService: ProjectDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService,
-    private userService: UserDataService
+    private userService: UserDataService,
+    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit(): void {

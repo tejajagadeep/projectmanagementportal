@@ -1,23 +1,23 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #97d2fc;">
+    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #5a6fa8;">
         <span>Project Management</span>
-
+        <div class="p-2 " style="color:rgba(23, 119, 14, 0.87)">
         <ul class="navbar-nav">
             <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
             <li><a *ngIf="isUserLoggedIn" routerLink="/home" class="nav-link">Home</a></li>
             <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
 
-            <!-- filter by category-->
-            <div class="p-2 " style="color:rgba(23, 119, 14, 0.87)">
-                <select class="form-control" (change)="getByProjectStatus()" #status>
+            <!-- filter by status-->
+            
+                <select class="service-small form-control" (change)="getByProjectStatus()" #status>
                     <option selected class="btn btn-outline-success" value="Filter by status"><small>Filter by status</small></option>
                         <option value="To-Do">To-Do</option>
                         <option value="In-Progress">In-Progress</option>
                         <option value="Ready-For-Test">Ready-For-Test</option>
                         <option value="Completed">Completed</option>
                 </select>
-            </div>
         </ul>
+    </div>
 
         <ul class="navbar-nav navbar-collapse justify-content-end">
             <!-- <form class="form-inline my-2 my-lg-0">

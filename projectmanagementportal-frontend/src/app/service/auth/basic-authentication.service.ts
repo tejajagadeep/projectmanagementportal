@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { USER_API_URL } from 'src/app/app.constants';
 
-export const TOKEN = 'token'
-export const AUTHENTICATED_USER = 'authenticaterUser'
+// export const TOKEN = 'token'
+// export const AUTHENTICATED_USER = 'authenticaterUser'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasicAuthenticationService {
+
+  
+ public TOKEN = 'token'
+ public AUTHENTICATED_USER = 'authenticaterUser'
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +26,8 @@ export class BasicAuthenticationService {
       }).pipe(
         map(
           data => {
-            sessionStorage.setItem(AUTHENTICATED_USER, username);
-            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+            sessionStorage.setItem(this.AUTHENTICATED_USER, username);
+            sessionStorage.setItem(this.TOKEN, `Bearer ${data.token}`);
             return data;
           }
         )
@@ -45,8 +49,8 @@ export class BasicAuthenticationService {
       {headers}).pipe(
         map(
           data => {
-            sessionStorage.setItem(AUTHENTICATED_USER, username);
-            sessionStorage.setItem(TOKEN, basicAuthHeaderString);
+            sessionStorage.setItem(this.AUTHENTICATED_USER, username);
+            sessionStorage.setItem(this.TOKEN, basicAuthHeaderString);
             return data;
           }
         )
@@ -54,25 +58,27 @@ export class BasicAuthenticationService {
     //console.log("Execute Hello World Bean Service")
   }
 
-  getAuthenticatedUser() {
-    return sessionStorage.getItem(AUTHENTICATED_USER)
+  getLoggedInUserName() {
+    let user = sessionStorage.getItem(this.AUTHENTICATED_USER)
+    if (user === null) return ''
+    return user
   }
 
   getAuthenticatedToken() {
-    if(this.getAuthenticatedUser())
-      return sessionStorage.getItem(TOKEN)
+    if(this.getLoggedInUserName())
+      return sessionStorage.getItem(this.TOKEN)
     return ;
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(AUTHENTICATED_USER)
+    let user = sessionStorage.getItem(this.AUTHENTICATED_USER)
     if (user === null) return false
     return true
   }
 
   logout(){
-    sessionStorage.removeItem(AUTHENTICATED_USER)
-    sessionStorage.removeItem(TOKEN)
+    sessionStorage.removeItem(this.AUTHENTICATED_USER)
+    sessionStorage.removeItem(this.TOKEN)
   }
 
 }
