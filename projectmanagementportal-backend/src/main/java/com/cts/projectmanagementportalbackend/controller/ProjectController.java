@@ -50,23 +50,7 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
 	
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-//	@GetMapping("/getProjectsByProjectManagerEmailId/{projectManagerEmailId}")
-//	public ResponseEntity<List<Project>> getProjectsByProjectManagerEmailId(@PathVariable String projectManagerEmailId){
-//		
-//		log.info("inside getProjectsByProjectManagerEmailId of project Controller");
-//		return new ResponseEntity<>(projectService.getProjectsByProjectManagerEmailId(projectManagerEmailId),HttpStatus.OK);
-//	}
-	
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-//	@GetMapping("/getProjectsByProjectName/{projectName}")
-//	public ResponseEntity<List<Project>> getProjectsByProjectName(@PathVariable String projectName){
-//
-//		log.info("inside getProjectsByProjectName of project Controller");
-//		return new ResponseEntity<>(projectService.getProjectsByProjectName(projectName), HttpStatus.OK);
-//	}
-	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByProjectOwner/{projectOwner}")
 	public ResponseEntity<List<Project>> getProjectsByProjectOwner(@PathVariable String projectOwner){
 
@@ -80,6 +64,14 @@ public class ProjectController {
 
 		log.info("inside getProjectsByProjectManagerName of project Controller");
 		return new ResponseEntity<>(projectService.getProjectsByProjectManagerName(projectManagerName), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getProjectsByTechLeadName/{techLeadName}")
+	public ResponseEntity<List<Project>> getProjectsByTechLeadName(@PathVariable String techLeadName){
+
+		log.info("inside getProjectsByProjectManagerName of project Controller");
+		return new ResponseEntity<>(projectService.getProjectsByTechLeadName(techLeadName), HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
@@ -120,6 +112,15 @@ public class ProjectController {
 	@PutMapping("updateProjectAssign/{userName}/project/{projectId}")
 	public ResponseEntity<MessageResponse> assign(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
 		projectService.assign(userName, projectId);
+		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Controller "+msg);
+		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("assignProjectToUser/{userName}/project/{projectId}")
+	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
+		projectService.assignProjectToUser(userName, projectId);
 		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);

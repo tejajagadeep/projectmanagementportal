@@ -112,6 +112,7 @@ public class Project {
 	private String remarks;
 	
 	private String projectOwner;
+	private String projectAssignedTo;
 
 //	@Getter(AccessLevel.NONE)
 //	@Setter(AccessLevel.NONE)
@@ -129,6 +130,8 @@ public class Project {
 		stories.add(theStory);
 		
 	}
+	
+//	private String[] projectAssignedTo;
 
 	public Project(@NotNull(message = "projectId should not be Null") @Size(max = 20) String projectId,
 			@NotNull(message = "projectName should not be Null") @Size(max = 30) @NotEmpty(message = "projectName should not be empty") String projectName,

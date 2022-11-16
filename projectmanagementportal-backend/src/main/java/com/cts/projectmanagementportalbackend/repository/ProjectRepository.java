@@ -10,13 +10,13 @@ import com.cts.projectmanagementportalbackend.model.Project;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, String>{
 
-	public List<Project> findByProjectManagerEmailId(String projectManagerEmailId);
-	
-	public List<Project> findByProjectName(String projectName);
+//	public List<Project> findByProjectName(String projectName);
 	
 	public List<Project> findByProjectOwner(String projectOwner);
 	
 	public List<Project> findByProjectManagerName(String projectManagerName);
+	
+	public List<Project> findByTechLeadName(String teachLeadName);
 	
 	public List<Project> findByStatus(String status);
 	

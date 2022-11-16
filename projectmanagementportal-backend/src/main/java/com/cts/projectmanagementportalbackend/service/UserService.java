@@ -13,8 +13,6 @@ import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 
 public interface UserService {
 
-	UserResponse loginUser(String user, String password) throws InvalidUserIdOrPasswordException;
-	
 	List<User> getAllUsers(String userName);
 	
 	User getByUserName(String userName) throws InvalidUserIdOrPasswordException;
@@ -25,6 +23,6 @@ public interface UserService {
 
 	User login(String userName, String password) throws InvalidUserIdOrPasswordException;
 
-	User login1(User user) throws InvalidUserIdOrPasswordException;
+	User getUserByName(String name)  throws InvalidUserIdOrPasswordException;
 	
 }

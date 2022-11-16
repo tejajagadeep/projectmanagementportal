@@ -61,54 +61,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	@Override
-	public User login1(User user) throws InvalidUserIdOrPasswordException {
-		
-		log.info("inside login of userServiceImpl");
-		
-		User userDummy = userRepository.findByUserName(user.getUserName());
-//		log.info("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
-//		System.out.println("passwordEncoder.encode(password)"+passwordEncoder.encode(password));
-		if(userDummy==null) {
-			log.info("userId is Invalid. please try again..."+user.getUserName());
-			throw new InvalidUserIdOrPasswordException("userId is Invalid. please try again...");
-			
-//		}else if (user.getPassword()!=userDetials.getPassword()) {
-//			log.info("password is Invalid. please try again..."+user.getPassword());
-//			throw new PasswordIncorrectException("password is Invalid. please try again...");
-			
-		}
-		
-		return user;
-	}
-
-	@Override
-	public UserResponse loginUser(String userId, String password)  throws InvalidUserIdOrPasswordException{
-		// TODO Auto-generated method stub
-		UserResponse response = new UserResponse();
-		User user = userRepository.findByUserName(userId);
-		try {
-			
-			if(user!=null) {
-				if (user.getPassword().equals(password)) {
-					response.setUser(user);
-					response.setLoginStatus("success");
-					response.setErrorMessage("null");
-//					response.setToken(tokenService.createToken(user.get().getUserId()));
-				}
-				else
-					throw new InvalidUserIdOrPasswordException("Invalid Username Or Password Exception1");
-			}
-			else
-				throw new InvalidUserIdOrPasswordException("Invalid Username Or Password Exception2");
-		}
-		catch (InvalidUserIdOrPasswordException invalidUsernameOrPasswordException){
-			response.setLoginStatus("failed");
-			response.setErrorMessage("Invalid Credentials");
-			invalidUsernameOrPasswordException.printStackTrace();
-		}
-		return response;
-	}
+	
 
 	@Override
 	public List<User> getAllUsers(String userName) {
@@ -128,6 +81,21 @@ public class UserServiceImpl implements UserService {
 		} else{
 			log.warn("user Id " +userName+" dosem't exist");
 			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
+		}
+		
+		
+	}
+	@Override
+	public User getUserByName(String name)  throws InvalidUserIdOrPasswordException{
+		
+		User optionalUser = userRepository.findByName(name);
+		
+		if(optionalUser!=null ) {
+			log.info("users" + optionalUser.toString());
+			return optionalUser;
+		} else{
+			log.warn("user name " +name+" dosem't exist");
+			throw new InvalidUserIdOrPasswordException("User name doesn't Exist");
 		}
 		
 		

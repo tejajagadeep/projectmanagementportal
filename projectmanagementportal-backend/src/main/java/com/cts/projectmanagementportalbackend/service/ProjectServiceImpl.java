@@ -42,22 +42,21 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	@Override
-	public List<Project> getProjectsByProjectManagerEmailId(String projectManagerEmailId) {
+	public List<Project> getProjectsByProjectManagerName(String techLeadName) {
 
-		log.info(" inside getProjectsByProjectManagerEmailId of ProjectServiceImpl : "+ projectManagerEmailId);
+		log.info(" inside getProjectsByProjectName of ProjectServiceImpl : "+ techLeadName);
 		
-		List<Project> optionalProject = projectRepository.findByProjectManagerEmailId(projectManagerEmailId);
 		
-		return projectRepository.findByProjectManagerEmailId(projectManagerEmailId);
+		return projectRepository.findByProjectManagerName(techLeadName);
 	}
 	
 	@Override
-	public List<Project> getProjectsByProjectName(String projectName) {
+	public List<Project> getProjectsByTechLeadName(String projectName) {
 
 		log.info(" inside getProjectsByProjectName of ProjectServiceImpl : "+ projectName);
 		
 		
-		return projectRepository.findByProjectName(projectName);
+		return projectRepository.findByProjectManagerName(projectName);
 	}
 	
 	@Override
@@ -68,16 +67,6 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return projectRepository.findByProjectOwner(projectOwner);
 	}
-
-	@Override
-	public List<Project> getProjectsByProjectManagerName(String projectManagerName) {
-
-		log.info(" inside getProjectsByProjectManagerName of ProjectServiceImpl : "+ projectManagerName);
-		
-		
-		return projectRepository.findByProjectManagerName(projectManagerName);
-	}
-
 	@Override
 	public List<Project> getProjectsByStatus(String status) {
 
@@ -268,9 +257,45 @@ public class ProjectServiceImpl implements ProjectService{
 		userRepository.save(user);
 		
 	}
-
 	
-	
+	@Override
+	public void assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
+		
+        Set<Project> projectSet = null;
+		
+		User user = userRepository.findByUserName(userName);
+		
+		Project project = projectRepository.findById(projectId).get();
+		
+		if (project == null) {
+			
+			log.warn("project Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("project Id doesn't exist");
+			
+		} else if (user==  null) {
+			
+			log.warn("story Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("user doesn't exist " +userName);
+		}
+		
+//		project.setProjectAssignedTo(add(userName));
+		project.setProjectAssignedTo(user.getUserName());
+		
+		projectSet = user.getProjects();
+		
+		projectSet.add(project);
+		
+		user.setProjects(projectSet);
+		
+		
+		
+		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Servcie Impl "+msg);
+		
+//		projectRepository.save(project);
+		userRepository.save(user);
+		
+	}
 	
 	
 	

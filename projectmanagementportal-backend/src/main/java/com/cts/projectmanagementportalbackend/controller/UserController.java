@@ -58,33 +58,6 @@ public class UserController {
 		return new ResponseEntity<>(userService.login(userName, password),HttpStatus.OK);
 	}
 	
-	@PostMapping("/login1")
-	public ResponseEntity<User> login1(@RequestBody User user) throws InvalidUserIdOrPasswordException{
-		
-		log.info("inside login1 of User Controller");
-		return new ResponseEntity<>(userService.login1(user),HttpStatus.OK);
-	}
-
-	
-//	@PostMapping("/loginuser")
-//	@ResponseStatus(HttpStatus.OK)
-//	public ResponseEntity<UserResponse> loginUser(Model model, @RequestBody User user, HttpServletRequest request) throws InvalidUserIdOrPasswordException{
-//		
-//		try {
-//			 UserResponse authUser = userService.loginUser(user.getUserId(), user.getPassword());
-//			System.out.print(authUser);
-//			if (authUser != null) {
-//				request.getSession().setAttribute("user", user.getUserId());
-//				return new ResponseEntity<UserResponse>(authUser, HttpStatus.OK);
-//			} else {
-//				throw new InvalidUserIdOrPasswordException(ErrorMessages.INVALID_CREDENTIALS.getMessage());
-//			}
-//		} catch (InvalidUserIdOrPasswordException e) {
-//			throw new InvalidUserIdOrPasswordException(ErrorMessages.INVALID_CREDENTIALS.getMessage());
-//		}
-//		
-//	}
-	
 	@GetMapping("/helloWorld")
 	public MessageResponse hello() {
 		log.info("hello world");
@@ -107,6 +80,13 @@ public class UserController {
 		
 		log.info("inside getByUserName of User Controller");
 		return userService.getByUserName(userName);
+	}
+	
+	@GetMapping("/getUserByName/{name}")
+	public @ApiResponse(description = "Demo Object") User getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name) throws InvalidUserIdOrPasswordException{
+		
+		log.info("inside getByUserName of User Controller");
+		return userService.getUserByName(name);
 	}
 	
 	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
