@@ -3,6 +3,4 @@
     <app-home></app-home>
     <h4 class="alert alert-warning">{{errorMessage}}</h4>
 </div>
-<div *ngIf="!isUserLoggedIn"> 
-    <app-login></app-login>
-</div>
+    <app-login *ngIf="username"></app-login>>

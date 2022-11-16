@@ -63,6 +63,7 @@
                             [class.is-invalid]="assignee.invalid && assignee.touched" />
                         <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
                             required</small>
+                            <!-- <input class="form-control" id="assignee" name="assignee" [(ngModel)]="story.assignee" required #assignee="ngModel" readonly> -->
                     </fieldset>
                 </div>
 
@@ -78,6 +79,7 @@
                         <small class="text-danger"
                             [class.d-none]="assigneeEmailId.valid || assigneeEmailId.untouched">Assignee Email Id is
                             required</small>
+                            <!-- <input class="form-control" id="assigneeEmailId" name="assigneeEmailId" [(ngModel)]="story.assigneeEmailId" required #assigneeEmailId="ngModel" readonly> -->
                     </fieldset>
                 </div>
 

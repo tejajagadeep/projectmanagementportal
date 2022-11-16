@@ -22,7 +22,10 @@ export class ViewProjectStatusComponent implements OnInit {
   message!: string
   errorMessage!: string
   projectId!: string 
+
   user!: User
+  userByName!: User
+  public  name!: string
   username!: string
 
   constructor(
@@ -35,17 +38,27 @@ export class ViewProjectStatusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+    this.getUsername();
+    this.getUser(this.username);
+
     this.projectId = this.route.snapshot.params['projectId']
     console.log(this.route.snapshot.params['projectId'])
     this.getProejctsById(this.projectId);
-    // this.getAllProjects();
+
+    console.log(this.username)
+
     this.getAllStories();
-    this.getUsername();
-    this.getUser(this.username);
+
+    console.log(1)
+    console.log(4)
+
+
   }
 
   getUsername(){
     this.username=this.authService.getLoggedInUserName();
+
   }
 
   navLink() {
@@ -53,10 +66,14 @@ export class ViewProjectStatusComponent implements OnInit {
   }
 
   getUser(userName: string) {
+    console.log()
     this.userService.getUserByUserName(userName).subscribe(
       response => {
         console.log("response")
         this.user = response;
+        // this.name = response.name
+        this.getuserByName(response.name)
+        console.log(response.name)
       },
       error => {
         console.log("error")
@@ -67,7 +84,27 @@ export class ViewProjectStatusComponent implements OnInit {
     )
   }
 
+  getuserByName(name: string) {
+    console.log()
+    this.userService.getUserByName(name).subscribe(
+      response => {
+        console.log("response")
+        this.userByName = response;
+
+        console.log(this.userByName.name)
+      },
+
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
   getProejctsById(projectId: string) {
+    console.log()
     this.projectService.getProjectById(projectId).subscribe(
       response => {
         console.log("response")
@@ -120,6 +157,7 @@ export class ViewProjectStatusComponent implements OnInit {
    }
 
    getAllStories(){
+    console.log()
     this.storyService.getAllStories().subscribe(
       response => this.handleGetStories(response)
     );

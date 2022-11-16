@@ -7,6 +7,7 @@ import { Location} from '@angular/common';
 import { Story } from '../model/story';
 import { UserDataService } from '../service/data/user-data.service';
 import { User } from '../model/user';
+import { Project } from '../model/project';
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -22,22 +23,33 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   temp!: string;
   message!: string
   user!: User
+  userByName!: User
+  name!: string
+
   projectId!: string
+  project!: Project
 
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 
     private location: Location,
     private userService: UserDataService,
+    private projectService: ProjectDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
+    // this.projectId = this.route.snapshot.params['projectId'];
+    console.log(this.projectId)
+
     this.getStoryById(this.storyId);
+    // this.getProjectsById(this.projectId)
     this.getUsername();
     this.getUser(this.username);
+
+    // this.getuserByName(this.name)
   }
 
   getUsername(){
@@ -49,6 +61,24 @@ export class ViewProjectStoryStatusComponent implements OnInit {
       response => {
         console.log("response")
         this.user = response;
+        this.name = response.name
+        console.log(this.name)
+        this.getuserByName(this.name)
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
+  getuserByName(name: string) {
+    this.userService.getUserByName(name).subscribe(
+      response => {
+        console.log("response")
+        this.userByName = response;
       },
       error => {
         console.log("error")
@@ -68,6 +98,8 @@ export class ViewProjectStoryStatusComponent implements OnInit {
       response => {
         this.story = response;
         this.projectId = response.projectIdName
+        this.getProjectsById(this.projectId)
+        console.log("projectIdName:"+this.projectId)
       },
       error => {
         console.log("Exception Occured")
@@ -118,4 +150,25 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.story = response
     // console.log(response)
   }
+
+  getProjectsById(projectId: string) {
+    this.projectService.getProjectById(projectId).subscribe(
+      response => {
+        console.log("response")
+        this.handleGetProject(response)
+        this.name = response.projectManagerName
+        // this.project = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
+  }
+
+  handleGetProject(response : any){
+    this.project = response
+   }
 }

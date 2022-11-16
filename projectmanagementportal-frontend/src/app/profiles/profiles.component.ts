@@ -22,6 +22,8 @@ export class ProfilesComponent implements OnInit {
   project!:Project[]
   helloWorldMessage!: MessageResponse
 
+  searchText!: string
+
   constructor(
     private router : Router, 
     private route: ActivatedRoute, 

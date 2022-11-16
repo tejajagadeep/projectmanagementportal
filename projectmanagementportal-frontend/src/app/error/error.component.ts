@@ -12,6 +12,7 @@ export class ErrorComponent implements OnInit {
 
   isUserLoggedIn! : boolean
   username!:string
+  userNull!: boolean
 
   constructor(
     private authService : AuthenticationDataService
@@ -20,5 +21,12 @@ export class ErrorComponent implements OnInit {
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
 
+    this.username = this.authService.getLoggedInUserName();
+
+    if(this.username == null){
+      this.userNull = true
+    } else {
+      this.userNull = false
+    }
   }
 }

@@ -2,10 +2,15 @@
 <p>Welcome {{message}}.</p>
 
 <h1 class="text-center">User List</h1>
-
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a user...">
+  </div>
 <div class="container">
 <table class="table table-striped">
       <caption>List User Details</caption>
+
+      
+
       <thead class="thead-light">
           <tr>
               <th>USER Id</th>
@@ -17,7 +22,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let userDetail of user">
+          <tr *ngFor="let userDetail of user | filter: searchText">
               <td>{{userDetail.userName}}</td>
               <td>{{userDetail.name}}</td>
               <td>{{userDetail.emailAddress}}</td>

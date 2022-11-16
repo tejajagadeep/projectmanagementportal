@@ -48,7 +48,7 @@ export class UserDataService {
   helloWorldPathVariableDataService(username: String): Observable<any>{
     return this.http.get<MessageResponse>(`${USER_API_URL}/helloWorld/${username}`);
   }
-
+  
   getAllUsers(name: string): Observable<any>{
     // let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
     // let headers = new HttpHeaders({
@@ -63,6 +63,10 @@ export class UserDataService {
 
   getUserByUserName(username: string){
     return this.http.get<User>(`${USER_API_URL}/getUserByUserName/${username}`);
+  }
+
+  getUserByName(name: string){
+    return this.http.get<User>(`${USER_API_URL}/getUserByName/${name}`);
   }
 
 }
