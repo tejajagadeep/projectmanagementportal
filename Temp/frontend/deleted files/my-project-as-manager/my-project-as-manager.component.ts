@@ -19,7 +19,10 @@ export class MyProjectAsManagerComponent implements OnInit {
   errorMessageResponse=""
   helloWorldMessage!: MessageResponse
   project!:Project[]
+  projectMN!: Project[]
   user!: User
+
+  h2Show!: any
 
   constructor(
     private router : Router, 
@@ -43,6 +46,7 @@ export class MyProjectAsManagerComponent implements OnInit {
         console.log("response")
         this.user = response;
         this.getAllProjects(response.name)
+        this.getAllProjectsMN(response.name)
       },
       error => {
         console.log("error")
@@ -58,9 +62,18 @@ export class MyProjectAsManagerComponent implements OnInit {
       this.errorMessageResponse = error.error.message
    }
 
-  getAllProjects(projectOwner: string){
-    this.projectService.getProjectsByProjectManagerName(projectOwner).subscribe(
-      response => console.log(this.handleGetProjects(response))
+  getAllProjects(projectManagerName: string){
+    this.projectService.getProjectsByProjectManagerName(projectManagerName).subscribe(
+      response => this.project = response
+    // console.log(projectOwner)
+    );
+   }
+
+   getAllProjectsMN(techLeadName: string){
+    this.projectService.getProjectsByTechLeadName(techLeadName).subscribe(
+      response => 
+    this.projectMN = response
+    // this.handleGetProjects(response)
       // console.log(projectOwner)
     );
    }

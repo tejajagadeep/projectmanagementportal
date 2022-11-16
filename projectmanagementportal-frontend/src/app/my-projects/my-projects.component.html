@@ -1,11 +1,12 @@
 <app-menu></app-menu>
 
-<h3>My Projects As Owner</h3>
+<h2 *ngIf="project">My Projects</h2>
 
 <div class="row" id="divStyle">
 
     <div *ngFor="let projectDetail of project" class="offer-content">
-        <h6 class="card-title align-center" style="background:rgba(23, 119, 14, 0.87);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
+        <h4 id="h4O">Project Owner</h4>
+        <h6 class="card-title align-center" id="pMO">{{projectDetail.projectName}}</h6>
         <p class="card-text ">
             <div class="d-flex flex-column ">
                 <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
@@ -17,9 +18,55 @@
             </div><br>
             <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project Details</a>
     </div>
+
+
+    <div *ngFor="let projectDetail of projectMN" class="offer-contentPM">
+        <h4 id="h4PM">Project Manager</h4>
+        <h6 class="card-title align-center" id="pMPM">{{projectDetail.projectName}}</h6>
+        <p class="card-text ">
+            <div class="d-flex flex-column ">
+                <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
+                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetail.projectManagerName}}
+                </div>
+                <div class="p-2"><b>Team Name:</b> {{projectDetail.teamName}}</div>
+                <div class="p-2"><b>Tech Stack:</b> {{projectDetail.techStack}}</div>
+                <div class="p-2"><b>Status:</b> {{projectDetail.status}}</div>
+            </div><br>
+            <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project Details</a>
+    </div>
+
+
+    <div *ngFor="let projectDetail of projectTL" class="offer-contentTL">
+        <h4 id="h4TL">Tech Lead</h4>
+        <h6 class="card-title align-center" id="pMTL">{{projectDetail.projectName}}</h6>
+        <p class="card-text ">
+            <div class="d-flex flex-column ">
+                <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
+                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetail.projectManagerName}}
+                </div>
+                <div class="p-2"><b>Team Name:</b> {{projectDetail.teamName}}</div>
+                <div class="p-2"><b>Tech Stack:</b> {{projectDetail.techStack}}</div>
+                <div class="p-2"><b>Status:</b> {{projectDetail.status}}</div>
+            </div><br>
+            <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project Details</a>
+    </div>
+
+    <div *ngFor="let projectDetail of projectAT" class="offer-contentAT">
+        <h4 id="h4AT">Project Assigned</h4>
+        <h6 class="card-title align-center" id="pMAT">{{projectDetail.projectName}}</h6>
+        <p class="card-text ">
+            <div class="d-flex flex-column ">
+                <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
+                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetail.projectManagerName}}
+                </div>
+                <div class="p-2"><b>Team Name:</b> {{projectDetail.teamName}}</div>
+                <div class="p-2"><b>Tech Stack:</b> {{projectDetail.techStack}}</div>
+                <div class="p-2"><b>Status:</b> {{projectDetail.status}}</div>
+            </div><br>
+            <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project Details</a>
+    </div>
+
 </div>
 
-<app-my-project-as-manager></app-my-project-as-manager>
-<app-my-project-as-tech-lead></app-my-project-as-tech-lead>
 
 <app-footer></app-footer>

@@ -35,7 +35,7 @@
 <h3> Projects </h3>
 <div class="row" id="divStyle">
     <div *ngFor="let projectDetail of project | filter: searchText" class="offer-content">
-        <h6 class="card-title align-center" style="background:rgba(23, 119, 14, 0.87);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
+        <h6 class="card-title align-center" id="h6">{{projectDetail.projectName}}</h6>
         <p class="card-text ">
             <div class="d-flex flex-column ">
                 <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>

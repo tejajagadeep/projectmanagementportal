@@ -22,6 +22,10 @@ export class ProjectDataService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerName/${projectManagerName}`);
   }
 
+  getProjectByAssignedTo(getProjectByAssignedTo: string){
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectByAssignedTo/${getProjectByAssignedTo}`);
+  }
+
   getProjectsByTechLeadName(techLeadName: string){
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByTechLeadName/${techLeadName}`);
   }

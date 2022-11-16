@@ -25,7 +25,7 @@ export class ViewProjectStatusComponent implements OnInit {
 
   user!: User
   userByName!: User
-  public  name!: string
+  name!: string
   username!: string
 
   constructor(

@@ -1,8 +1,8 @@
 
-<h3>Projects As Project Manager</h3>
+<h3 *ngIf="project">Projects As Tech Lead</h3>
 <div class="row" id="divStyle">
     <div *ngFor="let projectDetail of project" class="offer-content">
-        <h6 class="card-title align-center" style="background:rgba(51, 204, 204);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
+        <h6 class="card-title align-center" style="background:rgba(204, 102, 0);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
         <p class="card-text ">
             <div class="d-flex flex-column ">
                 <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>

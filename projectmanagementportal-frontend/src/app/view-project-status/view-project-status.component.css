@@ -62,3 +62,11 @@ button.material-icons {
     margin:auto;
     padding-bottom: 50px;
 }
+
+#h6 {
+    background:rgba(3, 33, 201, 0.87);
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    padding:10px;
+}

@@ -133,3 +133,11 @@ h3 {
   .main {
     margin-top: 30px; /* Add a top margin to avoid content overlay */
   }
+
+  #h6 {
+    background:rgba(23, 119, 14, 0.87);
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    padding:10px;
+}

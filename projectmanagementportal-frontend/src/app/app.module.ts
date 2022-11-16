@@ -28,9 +28,6 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
 import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
-import { NavBarHandlerComponent } from './nav-bar-handler/nav-bar-handler.component';
-import { MyProjectAsManagerComponent } from './my-project-as-manager/my-project-as-manager.component';
-import { MyProjectAsTechLeadComponent } from './my-project-as-tech-lead/my-project-as-tech-lead.component';
 
 @NgModule({
   declarations: [
@@ -51,10 +48,7 @@ import { MyProjectAsTechLeadComponent } from './my-project-as-tech-lead/my-proje
     ProjectUpdateComponent,
     ProjectStoryRegistrationComponent,
     ProjectStoryUpdateComponent,
-    MyProjectsComponent,
-    NavBarHandlerComponent,
-    MyProjectAsManagerComponent,
-    MyProjectAsTechLeadComponent
+    MyProjectsComponent
   ],
   imports: [
     BrowserModule,

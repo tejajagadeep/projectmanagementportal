@@ -70,7 +70,6 @@ export class LoginComponent implements OnInit {
     if (this.basicAuthService.executeJWTAuthenticationService(this.username, this.password)
     ) {
       this.router.navigate(['home', this.username])
-      // this.checkLogin1()
       this.invalidLogin = false
     } else
       this.invalidLogin = true
@@ -80,12 +79,15 @@ export class LoginComponent implements OnInit {
   checkLogin1() {
     this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(
       // {
-       response=> {
-      console.log(response)
-      this.invalidLogin = false,
-      this.loginSuccess = true,
-      console.log(this.loginSuccess)
-      this.successMessage = 'Login Successful.',
+       response=> { this.user= response
+        this.userService.login(this.username, this.password, this.user).subscribe( 
+          (data: User) =>{ this.user=data},
+              error=> this.errorMessage = "invalid credentials"
+        )
+      // this.invalidLogin = false,
+      // this.loginSuccess = true,
+      // console.log(this.loginSuccess)
+      // this.successMessage = 'Login Successful.',
       this.router.navigate(['/home',this.username])
       
     // }, error, () => {
@@ -96,26 +98,23 @@ export class LoginComponent implements OnInit {
   );
   
   }
+  }
 
-  checkLogin2() {
-    this.authenticateLoginService.authenticationService(this.username, this.password).subscribe({
-      next: (n: any) =>  console.log(n),
-      error: (e: any) => this.handleErrorResponse(e),
-    }
-      // {
-    // }, error, () => {
-    //   this.invalidLogin = true;
-    //   this.loginSuccess = false;
+  // checkLogin2() {
+  //   this.authenticateLoginService.authenticationService(this.username, this.password).subscribe({
+  //     next: (n: any) =>  console.log(n),
+  //     error: (e: any) => this.handleErrorResponse(e),
+  //   }
+  //     // {
+  //   // }, error, () => {
+  //   //   this.invalidLogin = true;
+  //   //   this.loginSuccess = false;
     
   
-  );
-  this.userService.login(this.username, this.password, this.user).subscribe( 
-    response => console.log(response),
-    error => this.handleErrorResponse(error)
-  )
-  }
+  // );
+  
 
-  }
+  // }
 
 
 

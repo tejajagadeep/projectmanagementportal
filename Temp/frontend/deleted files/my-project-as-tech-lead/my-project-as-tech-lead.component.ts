@@ -56,9 +56,11 @@ export class MyProjectAsTechLeadComponent implements OnInit {
       this.errorMessageResponse = error.error.message
    }
 
-  getAllProjects(projectOwner: string){
-    this.projectService.getProjectsByTechLeadName(projectOwner).subscribe(
-      response => console.log(this.handleGetProjects(response))
+  getAllProjects(techLeadName: string){
+    this.projectService.getProjectsByTechLeadName(techLeadName).subscribe(
+      response => 
+    this.project = response
+    // this.handleGetProjects(response)
       // console.log(projectOwner)
     );
    }

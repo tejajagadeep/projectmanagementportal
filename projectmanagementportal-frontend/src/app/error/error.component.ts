@@ -23,10 +23,10 @@ export class ErrorComponent implements OnInit {
 
     this.username = this.authService.getLoggedInUserName();
 
-    if(this.username == null){
-      this.userNull = true
-    } else {
-      this.userNull = false
-    }
+    // if(this.username == null){
+    //   this.userNull = true
+    // } else {
+    //   this.userNull = false
+    // }
   }
 }
