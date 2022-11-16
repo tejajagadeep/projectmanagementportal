@@ -1,11 +1,8 @@
-<app-menu></app-menu>
 
-<h3>My Projects As Owner</h3>
-
+<h3>Projects As Tech Lead</h3>
 <div class="row" id="divStyle">
-
     <div *ngFor="let projectDetail of project" class="offer-content">
-        <h6 class="card-title align-center" style="background:rgba(23, 119, 14, 0.87);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
+        <h6 class="card-title align-center" style="background:rgba(204, 102, 0);color:white;padding:10px; ">{{projectDetail.projectName}}</h6>
         <p class="card-text ">
             <div class="d-flex flex-column ">
                 <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
@@ -19,7 +16,3 @@
     </div>
 </div>
 
-<app-my-project-as-manager></app-my-project-as-manager>
-<app-my-project-as-tech-lead></app-my-project-as-tech-lead>
-
-<app-footer></app-footer>

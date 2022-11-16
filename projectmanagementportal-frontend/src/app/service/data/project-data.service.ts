@@ -14,14 +14,6 @@ export class ProjectDataService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getAllProjects`)
   }
 
-  getProjectsByProjectManagerEmailId(projectManagerEmailId: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerEmailId/${projectManagerEmailId}`);
-  }
-
-  getProjectsByProjectName(projectName: string){
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectName/${projectName}`);
-  }
-
   getProjectsByProjectOwner(projectOwner: string){
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectOwner/${projectOwner}`);
   }
@@ -30,6 +22,9 @@ export class ProjectDataService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerName/${projectManagerName}`);
   }
 
+  getProjectsByTechLeadName(techLeadName: string){
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByTechLeadName/${techLeadName}`);
+  }
   getProjectsByStatus(status: string){
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByStatus/${status}`);
   }

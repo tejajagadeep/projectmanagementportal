@@ -29,6 +29,8 @@ import { ProjectStoryRegistrationComponent } from './project-story-registration/
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { NavBarHandlerComponent } from './nav-bar-handler/nav-bar-handler.component';
+import { MyProjectAsManagerComponent } from './my-project-as-manager/my-project-as-manager.component';
+import { MyProjectAsTechLeadComponent } from './my-project-as-tech-lead/my-project-as-tech-lead.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NavBarHandlerComponent } from './nav-bar-handler/nav-bar-handler.compon
     ProjectStoryRegistrationComponent,
     ProjectStoryUpdateComponent,
     MyProjectsComponent,
-    NavBarHandlerComponent
+    NavBarHandlerComponent,
+    MyProjectAsManagerComponent,
+    MyProjectAsTechLeadComponent
   ],
   imports: [
     BrowserModule,

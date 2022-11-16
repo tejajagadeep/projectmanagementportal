@@ -2,6 +2,13 @@
     margin-top: 30px;
 }
 
+
+h2 {
+    text-align: center;
+    color: rgba(51, 204, 51);
+    text-decoration: #333;
+}
+
 /* Import Font Dancing Script */
 @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 

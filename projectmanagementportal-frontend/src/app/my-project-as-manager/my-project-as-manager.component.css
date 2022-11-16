@@ -45,7 +45,7 @@ input.form-control {
 }
 
 .offer-content a {
-    background-color: rgba(23, 119, 14, 0.87)!important;
+    background-color: rgba(51, 204, 204)!important;
 }
 
 button.material-icons {
@@ -55,8 +55,7 @@ button.material-icons {
 
 h3 {
     text-align: center;
-    color: rgba(51, 204, 51);
-    padding-top: 50px;
+    color:rgb(77, 124, 131);
 }
 
 #divStyle {
