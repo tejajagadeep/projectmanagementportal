@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageResponse } from '../model/message-response';
 import { Project } from '../model/project';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
-import { MessageResponse, UserDataService } from '../service/data/user-data.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
   selector: 'app-home',

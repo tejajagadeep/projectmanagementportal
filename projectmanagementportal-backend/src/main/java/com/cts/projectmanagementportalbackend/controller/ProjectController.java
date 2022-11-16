@@ -50,6 +50,9 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByProjectOwner/{projectOwner}")
 	public ResponseEntity<List<Project>> getProjectsByProjectOwner(@PathVariable String projectOwner){
@@ -66,6 +69,9 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getProjectsByProjectManagerName(projectManagerName), HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByTechLeadName/{techLeadName}")
 	public ResponseEntity<List<Project>> getProjectsByTechLeadName(@PathVariable String techLeadName){
@@ -74,6 +80,9 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getProjectsByTechLeadName(techLeadName), HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectByAssignedTo/{projectAssignedTo}")
 	public ResponseEntity<List<Project>> getProjectByAssignedTo(@PathVariable String projectAssignedTo) throws NoSuchElementExistException{
@@ -127,6 +136,9 @@ public class ProjectController {
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("assignProjectToUser/{userName}/project/{projectId}")
 	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
@@ -136,6 +148,9 @@ public class ProjectController {
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/deleteProjectById/{projectId}")
 	public ResponseEntity<List<Project>> deleteProjectById(@PathVariable String projectId) throws NoSuchElementExistException{

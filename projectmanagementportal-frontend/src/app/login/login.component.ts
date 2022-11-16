@@ -1,6 +1,7 @@
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageResponse } from '../model/message-response';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
   loginSuccess = false
   user!: User
+  messageResponse!: MessageResponse
 
   constructor(
     private router: Router,
@@ -82,7 +84,7 @@ export class LoginComponent implements OnInit {
        response=> { this.user= response
         this.userService.login(this.username, this.password, this.user).subscribe( 
           (data: User) =>{ this.user=data},
-              error=> this.errorMessage = "invalid credentials"
+              error=> this.errorMessage = error.message
         )
       // this.invalidLogin = false,
       // this.loginSuccess = true,

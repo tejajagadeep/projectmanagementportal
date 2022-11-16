@@ -25,7 +25,7 @@ export class ProjectRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '','')
+    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '','','')
     this.username = this.authService.getLoggedInUserName();
   }
 

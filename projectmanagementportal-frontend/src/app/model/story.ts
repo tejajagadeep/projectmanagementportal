@@ -23,6 +23,7 @@ export class Story{
       public targetDate: Date,
       public status: string,
       public remarks: string,
-      public projectIdName: string
+      public projectIdName: string,
+      public storyAssignedTo: string
     ) {}
   }

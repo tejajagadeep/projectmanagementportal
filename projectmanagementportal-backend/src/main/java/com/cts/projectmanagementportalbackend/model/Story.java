@@ -96,5 +96,6 @@ public class Story {
 	@NotEmpty(message = "remarks should not be empty")
 	private String remarks;
 	
+	private String storyAssignedTo;
 	
 }

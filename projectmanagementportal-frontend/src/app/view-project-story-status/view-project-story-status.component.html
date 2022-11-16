@@ -47,8 +47,8 @@
                     <td>{{story.remarks}}</td>
                 </tr>
                 <tr>
-                <td><button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == name" (click)="deleteStory(story.storyId)" class="btn btn-warning">Delete</button></td>
-                <td><button  (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
+                <td><button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-warning">Delete</button></td>
+                <td><button *ngIf="project.projectOwner == username || story.assignee == name || story.storyAssignedTo == username || project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
                 </tr>
             </tbody>
         </table>
@@ -56,3 +56,5 @@
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>
 </div>
+
+<app-footer></app-footer>

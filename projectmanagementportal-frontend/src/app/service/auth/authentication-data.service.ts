@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MessageResponse } from 'src/app/model/message-response';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class AuthenticationDataService {
 
   public username!: string
   public password!: string;
+
+  messageResponse!: MessageResponse
 
   constructor(private http: HttpClient) { }
 

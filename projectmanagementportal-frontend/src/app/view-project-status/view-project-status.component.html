@@ -109,10 +109,26 @@
         <div>
             <button *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
             <button *ngIf="user.role === 'Admin' && project.projectOwner === username" (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
-            <a *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" [routerLink]="['/project-story-registration/',project.projectId]"
-                class="btn btn-success d-flex align-content-end flex-wrap mb-2">New Story For
-                {{project.projectName}}</a>
+           <div class="container"> <a *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" [routerLink]="['/project-story-registration/',project.projectId]"
+                class="btn btn-secondary d-flex align-content-end flex-wrap mb-2">New Story For
+                {{project.projectName}}</a></div>
         </div>
+
+        <div class="container">
+        <form  *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" class="row align-items-center pt-4 pb-3"#RegisterForm="ngForm" (ngSubmit)="projectAssign()" >
+           
+        <small class="container alert alert-info" *ngIf="messageAssigned">Message: {{messageAssigned}}</small>
+            <label class="col-md-3 ps-5" for="assignedTo">
+                <h6 class="mb-0">Story Title</h6>
+            </label>
+            <fieldset class="form-group col-md-9 pe-5">
+                <input type="text" class="form-control" id="assignedTo" name="assignedTo"
+                    placeholder="assignedTo" [(ngModel)]="assignedTo" required>
+                
+            </fieldset>
+            <button type="submit" class="btn btn-success">assignedToUser</button>
+        </form>
+    </div>
     </div>
 </div>
 

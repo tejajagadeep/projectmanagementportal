@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorComponent } from '../error/error.component';
+import { MessageResponse } from '../model/message-response';
 import { Project } from '../model/project';
 import { Story } from '../model/story';
 import { User } from '../model/user';
-import { MessageResponse, UserDataService } from '../service/data/user-data.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
   selector: 'app-profiles',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageResponse } from '../model/message-response';
 import { Project } from '../model/project';
 import { Story } from '../model/story';
 import { User } from '../model/user';
@@ -27,6 +28,11 @@ export class ViewProjectStatusComponent implements OnInit {
   userByName!: User
   name!: string
   username!: string
+
+  messageAssigned!: string
+  assignedTo!: string
+
+  messageResponse!: MessageResponse
 
   constructor(
     private router : Router, 
@@ -83,6 +89,13 @@ export class ViewProjectStatusComponent implements OnInit {
       }
     )
   }
+
+  projectAssign(){
+    this.projectService.assignProjectToUser(this.assignedTo, this.projectId,this.messageResponse).subscribe(
+      response => this.messageAssigned = response.message,
+      error => this.messageAssigned = error.error.message
+    )
+  }  
 
   getuserByName(name: string) {
     console.log()

@@ -19,6 +19,7 @@ import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
+import com.cts.projectmanagementportalbackend.repository.StoryReposiotry;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,9 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	StoryReposiotry storyRepository;
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
@@ -50,6 +54,9 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.findByProjectManagerName(techLeadName);
 	}
 	
+	/*
+	 * 
+	 */
 	@Override
 	public List<Project> getProjectByAssignedTo(String projectAssignedTo) {
 
@@ -59,6 +66,9 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.findByProjectAssignedTo(projectAssignedTo);
 	}
 	
+	/*
+	 * 
+	 */
 	@Override
 	public List<Project> getProjectsByTechLeadName(String projectName) {
 
@@ -68,6 +78,9 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.findByProjectManagerName(projectName);
 	}
 	
+	/*
+	 * 
+	 */
 	@Override
 	public List<Project> getProjectsByProjectOwner(String projectOwner) {
 
@@ -76,6 +89,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return projectRepository.findByProjectOwner(projectOwner);
 	}
+	
 	@Override
 	public List<Project> getProjectsByStatus(String status) {
 
@@ -229,6 +243,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 	}
 
+	/*
+	 * 
+	 */
 	@Override
 	public void assign(String userName, String projectId) throws NoSuchElementExistException {
 		
@@ -267,6 +284,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 	}
 	
+	/*
+	 * 
+	 */
 	@Override
 	public void assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
 		
@@ -284,7 +304,7 @@ public class ProjectServiceImpl implements ProjectService{
 		} else if (user==  null) {
 			
 			log.warn("story Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("user doesn't exist " +userName);
+			throw new NoSuchElementExistException("user with Id "+userName+" doesn't exist ");
 		}
 		
 //		project.setProjectAssignedTo(add(userName));
@@ -296,7 +316,11 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		user.setProjects(projectSet);
 		
+		List<Story> storySetAssign =storyRepository.findByProjectIdName(projectId);
 		
+		storySetAssign.forEach(storyEach -> {
+			storyEach.setStoryAssignedTo(userName);
+		});
 		
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);

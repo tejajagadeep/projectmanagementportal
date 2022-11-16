@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PROJECT_API_URL } from 'src/app/app.constants';
+import { MessageResponse } from 'src/app/model/message-response';
 import { Project } from 'src/app/model/project';
 
 @Injectable({
@@ -8,7 +9,11 @@ import { Project } from 'src/app/model/project';
 })
 export class ProjectDataService {
 
-  constructor(private http: HttpClient) { }
+  messageRespone!: MessageResponse
+
+
+  constructor(private http: HttpClient,
+    ) { }
 
   getAllProjects(){
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getAllProjects`)
@@ -50,6 +55,10 @@ export class ProjectDataService {
   }
 
   ProjectAssign(username: string, projectId:string, project: Project){
-    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectAssign/${username}/project/${projectId}`,Project);
+    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectAssign/${username}/project/${projectId}`,project);
+  }
+
+  assignProjectToUser(username: string, projectId:string, messageResponse: MessageResponse){
+    return this.http.put<MessageResponse>(`${PROJECT_API_URL}/assignProjectToUser/${username}/project/${projectId}`,messageResponse);
   }
 }

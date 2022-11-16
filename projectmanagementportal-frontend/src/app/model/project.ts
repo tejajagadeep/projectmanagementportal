@@ -29,7 +29,7 @@ export class Project {
       public techStack: string,
       public status: string,
       public remarks: string,
-      public projectOwner: string
-  
+      public projectOwner: string,
+      public projectAssignedTo: string
     ) { }
   }

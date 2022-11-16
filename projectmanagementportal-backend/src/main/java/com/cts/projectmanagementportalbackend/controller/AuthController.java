@@ -1,5 +1,7 @@
 package com.cts.projectmanagementportalbackend.controller;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.model.UserResponse;
 
@@ -43,11 +46,14 @@ public class AuthController {
 	}
 	
 	@GetMapping("/basicauth")
-	public ResponseEntity<UserResponse>  authenticateUser1() {
+	public ResponseEntity<MessageResponse>  authenticateUser1() {
 		log.info("basicauth");
-		
-		return new ResponseEntity<>(new UserResponse("vinay","ADMIN"),HttpStatus.OK);
+//		try {
+		return new ResponseEntity<>(new MessageResponse(new Date(),"ADMIN",HttpStatus.OK),HttpStatus.OK);
 //		return new ResponseEntity<>("String",HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(new MessageResponse(new Date(),"Invalid Credentials",HttpStatus.UNAUTHORIZED),HttpStatus.UNAUTHORIZED);
+//		}
 	}
 	
 }
