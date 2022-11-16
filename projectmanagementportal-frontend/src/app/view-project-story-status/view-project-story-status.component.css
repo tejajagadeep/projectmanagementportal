@@ -62,3 +62,7 @@ button.material-icons {
     margin:auto;
     padding-bottom: 50px;
 }
+
+td, th {
+    text-align: center;
+  }

@@ -17,6 +17,7 @@ export class ProjectStoryUpdateComponent implements OnInit {
   dateDummy!: Date
   errorMessageResponse!: string
   temp!: string
+  storyAssigned!:  string[]
   username!: string
 
   constructor(
@@ -31,7 +32,7 @@ export class ProjectStoryUpdateComponent implements OnInit {
     console.log('project-story-update.component.ts')
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','');
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','',this.storyAssigned);
     this.username = this.authService.getLoggedInUserName();
   }
 

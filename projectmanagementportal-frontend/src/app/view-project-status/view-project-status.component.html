@@ -102,6 +102,14 @@
                     </td>
                     <td>{{project.projectOwner}}</td>
                 </tr>
+                <tr>
+                    <td>
+                        <h6>Users Assigned</h6>
+                    </td>
+                    <td>
+                     <div *ngFor="let assign of project.projectAssignedToUsers" class="btn-light">Id: {{assign}} </div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>

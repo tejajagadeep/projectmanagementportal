@@ -70,3 +70,14 @@ button.material-icons {
     color:white;
     padding:10px;
 }
+
+td, th {
+    text-align: center;
+  }
+
+  .garage-title {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}

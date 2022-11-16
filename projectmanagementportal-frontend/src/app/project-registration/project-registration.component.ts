@@ -15,6 +15,7 @@ export class ProjectRegistrationComponent implements OnInit {
   errorMessageResponse!: string
   projectId!: string
   username!: string
+projectAssigned!: string[]
 
   constructor(
     
@@ -25,7 +26,7 @@ export class ProjectRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '','','')
+    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '','','',this.projectAssigned)
     this.username = this.authService.getLoggedInUserName();
     console.log('projects-reistration.component.ts')
   }

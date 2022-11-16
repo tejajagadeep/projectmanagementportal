@@ -47,6 +47,10 @@
                     <td>{{story.remarks}}</td>
                 </tr>
                 <tr>
+                    <td><h6>Users Assigned</h6></td>
+                    <td><div *ngFor="let assign of story.storyAssignedToUsers">Id: {{assign}} </div></td>
+                </tr>
+                <tr>
                 <td><button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button></td>
                 <td><button *ngIf="project.projectOwner == username || story.assignee == name || story.storyAssignedTo == username || project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
                 </tr>

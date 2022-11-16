@@ -21,6 +21,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   errorMessageResponse!: string
   temp!: string
   username!: string
+  storyAssigned!:  string[]
 
   user!: User
   
@@ -36,7 +37,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   ngOnInit(): void {
     console.log('project-story-registration.component.ts')
     this.projectId = this.route.snapshot.params['projectId']
-    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','');
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','',this.storyAssigned);
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     this.story.assignee = this.user.name

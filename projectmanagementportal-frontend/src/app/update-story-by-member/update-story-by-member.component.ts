@@ -14,6 +14,7 @@ export class UpdateStoryByMemberComponent implements OnInit {
   storyId!: string
   dateDummy!: Date
   errorMessageResponse!: string
+  storyAssigned!:  string[]
   temp!: string
 
   constructor(
@@ -25,7 +26,7 @@ export class UpdateStoryByMemberComponent implements OnInit {
   ngOnInit(): void {
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','');
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','',this.storyAssigned);
 
   }
 

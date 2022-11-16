@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -220,6 +221,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		Project project = projectRepository.findById(projectId).get();
 		
+		
 		if (project == null) {
 			
 			log.warn("project Id does'nt exist " + userName);
@@ -230,6 +232,9 @@ public class ProjectServiceImpl implements ProjectService{
 			log.warn("story Id does'nt exist " + userName);
 			throw new NoSuchElementExistException("user doesn't exist " +userName);
 		}
+		
+
+		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
 		
 		project.setProjectOwner(user.getUserName());
 		
@@ -275,6 +280,9 @@ public class ProjectServiceImpl implements ProjectService{
 //		project.setProjectAssignedTo(add(userName));
 		project.setProjectAssignedTo(user.getUserName());
 		
+
+		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
+		
 		projectSet = user.getProjects();
 		
 		projectSet.add(project);
@@ -283,9 +291,14 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		List<Story> storySetAssign =storyRepository.findByProjectIdName(projectId);
 		
+		project.addProjectAssignedToUsers(userName);
+			
 		storySetAssign.forEach(storyEach -> {
 			storyEach.setStoryAssignedTo(userName);
+			storyEach.addStoryAssignedToUsers(userName);
 		});
+		
+		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);

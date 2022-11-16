@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -97,5 +98,17 @@ public class Story {
 	private String remarks;
 	
 	private String storyAssignedTo;
+	private ArrayList<String> storyAssignedToUsers;
+	
+	public void addStoryAssignedToUsers(String theStoryAssignedToUsers) {
+
+		if (storyAssignedToUsers == null) {
+			storyAssignedToUsers = new ArrayList<>();
+//			stories = new HashSet<>();
+		}
+
+		storyAssignedToUsers.add(theStoryAssignedToUsers);
+
+	}
 	
 }
