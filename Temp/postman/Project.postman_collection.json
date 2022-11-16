@@ -107,13 +107,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "ABCabc@123",
+							"key": "username",
+							"value": "vinay",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "vinay",
+							"key": "password",
+							"value": "ABCabc@123",
 							"type": "string"
 						}
 					]
@@ -121,7 +121,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectById/project2",
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectById/projectBA",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -133,7 +133,7 @@
 						"v1.0",
 						"project",
 						"getProjectById",
-						"project2"
+						"projectBA"
 					]
 				}
 			},
@@ -146,13 +146,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "ABCabc@123",
+							"key": "username",
+							"value": "vinay",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "vinay",
+							"key": "password",
+							"value": "ABCabc@123",
 							"type": "string"
 						}
 					]
@@ -185,7 +185,7 @@
 					"basic": [
 						{
 							"key": "username",
-							"value": "vinay",
+							"value": "venkat",
 							"type": "string"
 						},
 						{
@@ -199,7 +199,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"projectId\": \"projectBA\",\r\n        \"projectName\": \"projectBA\",\r\n        \"projectDescription\": \"TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"teamName\": \"Team2\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"srikar\",\r\n        \"projectManagerEmailId\": \"srikar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-06-17T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-10-28T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"To-Do\",\r\n        \"remarks\": \"pending\"\r\n    }",
+					"raw": "{\r\n        \"projectId\": \"project1\",\r\n        \"projectName\": \"projectBA\",\r\n        \"projectDescription\": \"TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.\",\r\n        \"teamName\": \"Team2\",\r\n        \"teamSize\": \"3\",\r\n        \"projectManagerName\": \"srikar\",\r\n        \"projectManagerEmailId\": \"srikar@gmail.com\",\r\n        \"techLeadName\": \"Ram\",\r\n        \"techLeadEmailId\": \"ram@gmail.com\",\r\n        \"projectStartDate\": \"2022-06-17T18:30:00.000+00:00\",\r\n        \"projectEndDate\": \"2022-10-28T18:30:00.000+00:00\",\r\n        \"techStack\": \"stack1\",\r\n        \"status\": \"To-Do\",\r\n        \"remarks\": \"pending\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -207,7 +207,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8093/project-management/api/v1.0/project/updateProjectById/projectBA",
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/updateProjectById/project1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,7 +219,206 @@
 						"v1.0",
 						"project",
 						"updateProjectById",
+						"project1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assignProject",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/updateProjectAssign/rmanju/project/projectBA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"updateProjectAssign",
+						"rmanju",
+						"project",
 						"projectBA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign member",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/assignProjectToUser/rajan/project/projectBA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"assignProjectToUser",
+						"rajan",
+						"project",
+						"projectBA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProjectByStatus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectsByStatus/Completed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"getProjectsByStatus",
+						"Completed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByProjectOwner",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectsByProjectOwner/vinay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"getProjectsByProjectOwner",
+						"vinay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProjectById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "vinay",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ABCabc@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/project-management/api/v1.0/project/getProjectsByProjectName/Vinay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"project-management",
+						"api",
+						"v1.0",
+						"project",
+						"getProjectsByProjectName",
+						"Vinay"
 					]
 				}
 			},
