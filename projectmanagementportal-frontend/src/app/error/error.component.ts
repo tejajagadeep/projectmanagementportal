@@ -19,6 +19,7 @@ export class ErrorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('error.component.ts')
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
 
     this.username = this.authService.getLoggedInUserName();

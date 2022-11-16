@@ -53,6 +53,7 @@ export class ViewProjectStatusComponent implements OnInit {
     this.getProejctsById(this.projectId);
 
     console.log(this.username)
+    console.log('view-project-status.component.ts')
 
     this.getAllStories();
 

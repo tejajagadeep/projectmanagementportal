@@ -43,6 +43,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.storyId = this.route.snapshot.params['storyId'];
     // this.projectId = this.route.snapshot.params['projectId'];
     console.log(this.projectId)
+    console.log('view-project-story-status.component.ts')
 
     this.getStoryById(this.storyId);
     // this.getProjectsById(this.projectId)

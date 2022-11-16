@@ -35,7 +35,7 @@ export class ProfilesComponent implements OnInit {
     this.username = this.route.snapshot.params['userName'];
     this.getAllUsers();
     console.log(this.username)
-    console.log('home.component.ts')
+    console.log('profiles.component.ts')
     // this.helloWorld();
   }
 

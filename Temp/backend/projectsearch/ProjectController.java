@@ -50,6 +50,17 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getProjectsByProjectOwner/{projectOwner}")
+	public ResponseEntity<List<Project>> getProjectsByProjectOwner(@PathVariable String projectOwner){
+
+		log.info("inside getProjectsByProjectOwner of project Controller");
+		return new ResponseEntity<>(projectService.getProjectsByProjectOwner(projectOwner), HttpStatus.OK);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectsByProjectManagerName/{projectManagerName}")
 	public ResponseEntity<List<Project>> getProjectsByProjectManagerName(@PathVariable String projectManagerName){
@@ -58,6 +69,27 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.getProjectsByProjectManagerName(projectManagerName), HttpStatus.OK);
 	}
 	
+	/*
+	 * 
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getProjectsByTechLeadName/{techLeadName}")
+	public ResponseEntity<List<Project>> getProjectsByTechLeadName(@PathVariable String techLeadName){
+
+		log.info("inside getProjectsByProjectManagerName of project Controller");
+		return new ResponseEntity<>(projectService.getProjectsByTechLeadName(techLeadName), HttpStatus.OK);
+	}
+	
+	/*
+	 * 
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getProjectByAssignedTo/{projectAssignedTo}")
+	public ResponseEntity<List<Project>> getProjectByAssignedTo(@PathVariable String projectAssignedTo) throws NoSuchElementExistException{
+
+		log.info("inside getProjectById of project Controller");
+		return new ResponseEntity<>(projectService.getProjectByAssignedTo(projectAssignedTo), HttpStatus.OK);
+	}
 	
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")

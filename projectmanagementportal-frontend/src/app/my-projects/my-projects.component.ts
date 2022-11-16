@@ -21,9 +21,11 @@ export class MyProjectsComponent implements OnInit {
   helloWorldMessage!: MessageResponse
 
   project!:Project[]
-  projectMN!:Project[]
-  projectTL!:Project[]
-  projectAT!:Project[]
+  projectC!: number
+  // projectO!:Project[]
+  // projectMN!:Project[]
+  // projectTL!:Project[]
+  // projectAT!:Project[]
   user!: User
 
   constructor(
@@ -38,18 +40,20 @@ export class MyProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.username=this.authService.getLoggedInUserName();
     console.log(this.username)
-    console.log('home.component.ts')
+    console.log('my-projects.component.ts')
     this.getUser(this.username);
-    this.getAllProjects(this.username);
-    this.getAllProjectsAT(this.username)
+    this.getAllProjects()
+    // this.getAllProjectsO(this.username);
+    // this.getAllProjectsAT(this.username)
+    console.log(typeof this.project.length)
   }
   getUser(userName: string) {
     this.userService.getUserByUserName(userName).subscribe(
       response => {
         console.log("response")
         this.user = response;
-        this.getAllProjectsMN(response.name)
-        this.getAllProjectsTL(response.name)
+        // this.getAllProjectsMN(response.name)
+        // this.getAllProjectsTL(response.name)
       },
       error => {
         console.log("error")
@@ -65,32 +69,48 @@ export class MyProjectsComponent implements OnInit {
       this.errorMessageResponse = error.error.message
    }
 
-  getAllProjects(projectOwner: string){
-    this.projectService.getProjectsByProjectOwner(projectOwner).subscribe(
+  getAllProjects(){
+    this.projectService.getAllProjects().subscribe(
       response =>     this.project = response
       // console.log(projectOwner)
     );
+
    }
 
-   getAllProjectsMN(projectManagerName: string){
-    this.projectService.getProjectsByProjectManagerName(projectManagerName).subscribe(
-      response => this.projectMN = response
-    );
-   }
+   getAllProjectsC(){
+     this.projectService.getAllProjects().subscribe(
+      response =>    { this.projectC = response.length,
+      console.log(this.projectC) }
 
-   getAllProjectsTL(techLeadName: string){
-    this.projectService.getProjectsByTechLeadName(techLeadName).subscribe(
-      response => 
-    this.projectTL = response
     );
-   }
+    return this.projectC
 
-   getAllProjectsAT(projectAssignedTo: string){
-    this.projectService.getProjectByAssignedTo(projectAssignedTo).subscribe(
-      response => 
-    this.projectAT = response
-    );
    }
+  //  getAllProjectsO(projectOwner: string){
+  //   this.projectService.getProjectsByProjectOwner(projectOwner).subscribe(
+  //     response =>     this.projectO = response
+  //     // console.log(projectOwner)
+  //   );
+  //  }
+  //  getAllProjectsMN(projectManagerName: string){
+  //   this.projectService.getProjectsByProjectManagerName(projectManagerName).subscribe(
+  //     response => this.projectMN = response
+  //   );
+  //  }
+
+  //  getAllProjectsTL(techLeadName: string){
+  //   this.projectService.getProjectsByTechLeadName(techLeadName).subscribe(
+  //     response => 
+  //   this.projectTL = response
+  //   );
+  //  }
+
+  //  getAllProjectsAT(projectAssignedTo: string){
+  //   this.projectService.getProjectByAssignedTo(projectAssignedTo).subscribe(
+  //     response => 
+  //   this.projectAT = response
+  //   );
+  //  }
    
    handleGetProjects(response : any){
     this.project = response

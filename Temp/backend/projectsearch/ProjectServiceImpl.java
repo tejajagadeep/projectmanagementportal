@@ -54,6 +54,41 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.findByProjectManagerName(techLeadName);
 	}
 	
+	/*
+	 * 
+	 */
+	@Override
+	public List<Project> getProjectByAssignedTo(String projectAssignedTo) {
+
+		log.info(" inside getProjectByAssignedTo of ProjectServiceImpl : "+ projectAssignedTo);
+		
+		
+		return projectRepository.findByProjectAssignedTo(projectAssignedTo);
+	}
+	
+	/*
+	 * 
+	 */
+	@Override
+	public List<Project> getProjectsByTechLeadName(String projectName) {
+
+		log.info(" inside getProjectsByTechLeadName of ProjectServiceImpl : "+ projectName);
+		
+		
+		return projectRepository.findByProjectManagerName(projectName);
+	}
+	
+	/*
+	 * 
+	 */
+	@Override
+	public List<Project> getProjectsByProjectOwner(String projectOwner) {
+
+		log.info(" inside getProjectsByProjectOwner of ProjectServiceImpl : "+ projectOwner);
+		
+		
+		return projectRepository.findByProjectOwner(projectOwner);
+	}
 	
 	@Override
 	public List<Project> getProjectsByStatus(String status) {

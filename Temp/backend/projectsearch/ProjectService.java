@@ -13,8 +13,14 @@ public interface ProjectService {
 
 	List<Project> getAllProjects();
 
+	List<Project> getProjectsByProjectOwner(String projectOwner);
+
 	List<Project> getProjectsByProjectManagerName(String projectManagerName);
 	
+	List<Project> getProjectByAssignedTo(String projectAssignedTo);
+	
+	List<Project> getProjectsByTechLeadName(String techLeadName);
+
 	List<Project> getProjectsByStatus(String status);
 	
 	Project getProjectById(String projectId) throws NoSuchElementExistException;

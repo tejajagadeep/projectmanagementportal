@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.username=this.authService.getLoggedInUserName();
     console.log(this.username)
-    console.log('home.component.ts')
+    console.log('user-profile.component.ts')
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.getUserByUserName(this.username)
   }

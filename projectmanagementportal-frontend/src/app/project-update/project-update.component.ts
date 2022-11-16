@@ -31,6 +31,7 @@ export class ProjectUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('project-update.component.ts')
     this.projectId = this.route.snapshot.params['projectId'];
     this.getProjectBId(this.projectId);
     this.username=this.authService.getLoggedInUserName();

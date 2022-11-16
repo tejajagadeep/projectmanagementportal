@@ -108,7 +108,7 @@
         <br>
         <div>
             <button *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
-            <button *ngIf="user.role === 'Admin' && project.projectOwner === username" (click)="deleteProject(project.projectId)" class="btn btn-warning">Delete</button>
+            <button *ngIf="user.role === 'Admin' && project.projectOwner === username" (click)="deleteProject(project.projectId)" class="btn btn-danger">Delete</button>
            <div class="container"> <a *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" [routerLink]="['/project-story-registration/',project.projectId]"
                 class="btn btn-secondary d-flex align-content-end flex-wrap mb-2">New Story For
                 {{project.projectName}}</a></div>
