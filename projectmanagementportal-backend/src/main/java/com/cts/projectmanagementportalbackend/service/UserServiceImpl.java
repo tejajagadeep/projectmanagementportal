@@ -127,6 +127,7 @@ public class UserServiceImpl implements UserService {
 		if(optionalUser==null) {
 			log.info("saved user " +user.toString());
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+//			user.setDateOfBirth(new SimpleDateFormat("yyyy/MM/dd").parse(user.getDateOfBirth());
 			return userRepository.save(user);
 //		} else if (optionalUserEmail==null) {
 //			throw new ElementAlreadyExistException("Email address already Exists");
@@ -144,19 +145,6 @@ public class UserServiceImpl implements UserService {
 
 
 	
-
-//	@Override
-//	public User loginUser(User user) {
-//		// TODO Auto-generated method stub
-//Optional<User> userOptional = userRepository.findById(user.getUserId());
-//		
-//		if(userOptional.isEmpty()) {
-//			return userRepository.save(user);
-//		} else {
-//			throw new RuntimeException();
-//		}
-//	}
-
 
 
 }

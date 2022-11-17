@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.TeamSizeExcedsException;
@@ -281,10 +282,32 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new NoSuchElementExistException("User with Id "+userName+" doesn't exist ");
 		}
 		
-//		project.setProjectAssignedTo(add(userName));
-		
 
 		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
+		
+		boolean projectPMEqualsTL = project.getProjectManagerName().equals(project.getTechLeadName()); 
+		boolean projectTLEqualsPO = userRepository.findByName(project.getProjectManagerName()).getUserName().equals(project.getProjectOwner());
+		boolean projectPOEqualsPM = userRepository.findByName(project.getTechLeadName()).getUserName().equals(project.getProjectOwner());
+			
+		if (projectPMEqualsTL || projectTLEqualsPO || projectPOEqualsPM) {
+			--projectSizeParseInt;
+		}
+		
+		if (projectPMEqualsTL && projectTLEqualsPO && projectPOEqualsPM) {
+			--projectSizeParseInt;
+		}
+		
+		
+		if (user.getName().equals(project.getProjectManagerName())) {
+			
+			throw new InvalidUserException("User already Assigned As Project Manager");
+		} else if (user.getName().equals(project.getTechLeadName())) {
+			
+			throw new InvalidUserException("User already Assigned As Tech Lead");
+		} else if (userName.equals(project.getProjectOwner())) {
+			
+			throw new InvalidUserException("User already Assigned As Project Owner");
+		}
 		
 		projectSet = user.getProjects();
 		
@@ -294,30 +317,32 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		List<Story> storySetAssign =storyRepository.findByProjectIdName(projectId);
 		
+		
+		
+		if(project.getProjectAssignedToUsers()!=null) {
+			project.getProjectAssignedToUsers().forEach( assignProjectUser -> {
+				
+				if(assignProjectUser.contentEquals(userName)) {
+					throw new InvalidUserException("User already Assigned.");
+				} 
+			});
+		}
+//		else if (project.getProjectAssignedToUsers().size()>projectSizeParseInt) {
+//			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
+//		}
+		System.out.println(project.getProjectAssignedToUsers().size());
+//		System.out.println(project.getProjectAssignedToUsersSize());
+		System.out.println(projectSizeParseInt);
 		project.addProjectAssignedToUsers(userName);
 			
 		storySetAssign.forEach(storyEach -> {
-//			if(storyEach.getStoryAssignedToUsers().size()+2 > projectSizeParseInt){
-//				
-//				log.warn("Size excides please update the Team Size");
-//				
-//				
-//				throw new NoSuchElementException("Size excides please update the Team Size please");
-//			} 
-//			
-//			storyEach.getStoryAssignedToUsers().forEach(i -> {
-//				if(i.equals(userName)) {
-//					throw new UsernameNotFoundException("Size excides please update the Team Size please");
-//				};
-//			});
-//			storyEach.getStoryAssignedToUsers().iterator().forEachRemaining(storyEach.getStoryAssignedToUsers().);
 			
 			storyEach.addStoryAssignedToUsers(userName);
 		});
 		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
-		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
+		String msg= "User with Id : " + userName + " is assigned to project with Id : " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
 //		projectRepository.save(project);

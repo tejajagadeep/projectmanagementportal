@@ -1,6 +1,6 @@
 package com.cts.projectmanagementportalbackend.exception;
 
-public class IdAlreadyExistException extends Exception{
+public class IdAlreadyExistException extends RuntimeException{
 	
 	/**
 	 * UsernameAlreadyExists Exception

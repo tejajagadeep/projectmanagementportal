@@ -31,7 +31,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
-                            placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100" required
+                            placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100" maxlength="255" required
                             #storyDescription="ngModel"
                             [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
                         <small class="text-danger"
@@ -76,12 +76,12 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
-                            placeholder="assignmentDate" [ngModel]="(story.assignmentDate)  | date: 'yyyy-MM-dd'" required
-                            #assignmentDate="ngModel"
+                            placeholder="assignmentDate" [ngModel]="story.assignmentDate  | date:'dd-MM-yyyy' " required> 
+                            <!-- #assignmentDate="ngModel"
                             [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
                         <small class="text-danger"
                             [class.d-none]="assignmentDate.valid || assignmentDate.untouched">Assignment Date
-                            is a required field.</small>
+                            is a required field.</small> -->
                     </fieldset>
                 </div>
 
@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between pt-3">
-                    <button type="button" class="btn btn-info btn-lg" (click)="navBack()">Back</button>
+                    <button type="button" class="btn btn-primary btn-lg" (click)="navBack()">Back</button>
                     <button type="button" class="btn btn-light" [routerLink]="['/home/',username]">Home</button>
                     <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
                 </div>

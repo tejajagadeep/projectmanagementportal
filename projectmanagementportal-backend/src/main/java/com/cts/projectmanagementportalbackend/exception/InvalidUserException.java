@@ -1,10 +1,12 @@
 package com.cts.projectmanagementportalbackend.exception;
 
-public class TeamSizeExcedsException extends RuntimeException{
+public class InvalidUserException extends RuntimeException {
 
+	
 	private static final long serialVersionUID = 1L;
 
-	public TeamSizeExcedsException(String msg){
+	public InvalidUserException(String msg) {
+
 		super(msg);
 	}
 }

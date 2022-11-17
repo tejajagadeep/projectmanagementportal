@@ -76,10 +76,15 @@ public class User {
 //	@NotEmpty(message = "projectEndDate should not be empty")
 	private Date dateOfBirth;
 	
-	@NotNull(message = "userType should not be Null")
-	@NotEmpty(message = "userType should not be Empty")
+	@NotNull(message = "Role should not be Null")
+	@NotEmpty(message = "Role should not be Empty")
 	@Size(max = 100)
 	private String role;
+	
+//	@NotNull(message = "userType should not be Null")
+//	@NotEmpty(message = "userType should not be Empty")
+//	@Size(max = 100)
+	private String userType;
 	
 	@NotNull(message = "password should not be Null")
 	@Size(min = 8, message = "size should 8 characters or more")

@@ -31,7 +31,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
-                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
+                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100" maxlength="255"
                             required #projectDescription="ngModel"
                             [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
                         <small class="text-danger"
@@ -232,7 +232,7 @@
 
 
                 <div class="d-flex justify-content-between pt-3">
-                    <button type="button" class="btn btn-info" (click)="navBack()">Back</button>
+                    <button type="button" class="btn btn-primary" (click)="navBack()">Back</button>
                     <button type="button" class="btn btn-light" routerLink="['/home',username]">Home</button>
                     <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
                 </div>

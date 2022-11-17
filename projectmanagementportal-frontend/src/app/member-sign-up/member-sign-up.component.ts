@@ -36,6 +36,14 @@ export class MemberSignUpComponent implements OnInit {
 
   }
 
+  // controllerPare(dateString: string): Date {
+  //   if (dateString) {
+  //     return new Date(dateString);
+  //   } else {
+  //   return null
+  // }
+  // }
+
   navLink(){
     this.router.navigate(["home"]);
   }

@@ -1,7 +1,5 @@
 
 insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
- values('venkat', 'Venkat', 'venkat@gmail.com', 8794561230, '1978-07-27', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
-insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('rajini', 'Rajini', 'rajini@gmail.com', 8794561231, '1968-08-01', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp( user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('vinay', 'Vinay', 'vinay@gmail.com', 8794561232, '1987-12-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
@@ -10,17 +8,19 @@ insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, 
 insert into User_Emp( user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('harish', 'Harish', 'harish@gmail.com', 8794561234, '1987-12-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
- values('rajesh', 'Rajesh', 'rajesh@gmail.com', 8794561235, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
-insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('krisha', 'Hari Krishna', 'harikrishna@gmail.com', 8794561236, '1987-06-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values('ramraju', 'Ram', 'ram@gmail.com', 8794561239, '1987-06-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values('venkat', 'Venkat', 'venkat@gmail.com', 8794561230, '1978-07-27', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
+insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
+ values('rajesh', 'Rajesh', 'rajesh@gmail.com', 8794561235, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('ramani', 'Roja Ramani', 'ramani@gmail.com', 8894561236, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('poorna', 'Poorna Teja', 'poorna@gmail.com', 8794561237, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
  values('subbaiah', 'Venkata Subbaiah', 'subbaiah@gmail.com', 8794561238, '1987-06-19', 'Member', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
-insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, role, password)
- values('ramraju', 'Ram', 'ram@gmail.com', 8794561239, '1987-06-19', 'Admin', '{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm');
 
 
 

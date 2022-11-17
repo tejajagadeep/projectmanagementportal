@@ -46,6 +46,7 @@
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
                             placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
+                            maxlength="255"
                             required #projectDescription="ngModel"
                             [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
                         <small class="text-danger"
@@ -74,7 +75,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
-                            [(ngModel)]="project.teamSize" required #teamSize="ngModel"
+                            min="5"  [(ngModel)]="project.teamSize" required #teamSize="ngModel"
                             [class.is-invalid]="teamSize.invalid && teamSize.touched" />
                         <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
                             required</small>
