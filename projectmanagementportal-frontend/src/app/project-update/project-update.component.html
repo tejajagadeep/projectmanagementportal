@@ -60,7 +60,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
-                            [(ngModel)]="project.teamSize" required #teamSize="ngModel"
+                          min="1"  [(ngModel)]="project.teamSize" required #teamSize="ngModel"
                             [class.is-invalid]="teamSize.invalid && teamSize.touched" />
                         <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
                             required</small>
@@ -234,7 +234,7 @@
                 <div class="d-flex justify-content-between pt-3">
                     <button type="button" class="btn btn-primary" (click)="navBack()">Back</button>
                     <button type="button" class="btn btn-light" routerLink="['/home',username]">Home</button>
-                    <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Update</button>
                 </div>
             </div>
 

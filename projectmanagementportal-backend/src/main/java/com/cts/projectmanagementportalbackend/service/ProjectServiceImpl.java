@@ -291,12 +291,13 @@ public class ProjectServiceImpl implements ProjectService{
 			
 		if (projectPMEqualsTL || projectTLEqualsPO || projectPOEqualsPM) {
 			--projectSizeParseInt;
-		}
+		} else
 		
 		if (projectPMEqualsTL && projectTLEqualsPO && projectPOEqualsPM) {
 			--projectSizeParseInt;
 		}
 		
+		--projectSizeParseInt;
 		
 		if (user.getName().equals(project.getProjectManagerName())) {
 			
@@ -317,7 +318,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		List<Story> storySetAssign =storyRepository.findByProjectIdName(projectId);
 		
-		
+		ArrayList<String> dummy = new ArrayList<>();
 		
 		if(project.getProjectAssignedToUsers()!=null) {
 			project.getProjectAssignedToUsers().forEach( assignProjectUser -> {
@@ -325,14 +326,24 @@ public class ProjectServiceImpl implements ProjectService{
 				if(assignProjectUser.contentEquals(userName)) {
 					throw new InvalidUserException("User already Assigned.");
 				} 
+				
+				dummy.add(assignProjectUser);
 			});
 		}
 //		else if (project.getProjectAssignedToUsers().size()>projectSizeParseInt) {
 //			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
 //		}
-		System.out.println(project.getProjectAssignedToUsers().size());
+//		System.out.println(project.getProjectAssignedToUsers().size());
 //		System.out.println(project.getProjectAssignedToUsersSize());
 		System.out.println(projectSizeParseInt);
+		System.out.println(dummy.size());
+		
+		if (projectSizeParseInt<=dummy.size()) {
+			
+			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
+		}
+		
+		
 		project.addProjectAssignedToUsers(userName);
 			
 		storySetAssign.forEach(storyEach -> {

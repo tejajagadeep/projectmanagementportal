@@ -34,5 +34,55 @@ public class PortalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<>(messageResponse, HttpStatus.BAD_REQUEST);
 
 	}
+	
+	/**invalid user exception handler
+	 * @param IdAlreadyExistException
+	 * @return ResponseEntity<MessageResponse>
+	 * 
+	 * @author Kollimarla Jagadeep
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(IdAlreadyExistException.class)
+	public ResponseEntity<MessageResponse> handleIdAlreadyExistException(IdAlreadyExistException ie) {
+		MessageResponse messageResponse = new MessageResponse();
+		messageResponse.setMessage(ie.getMessage());
+		messageResponse.setStatus(HttpStatus.BAD_REQUEST);
+		messageResponse.setTimeStamp(new Date());
+		return new ResponseEntity<>(messageResponse, HttpStatus.BAD_REQUEST);
 
+	}
+	
+	/**invalid user exception handler
+	 * @param TeamSizeExcedsException
+	 * @return ResponseEntity<MessageResponse>
+	 * 
+	 * @author Kollimarla Jagadeep
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(TeamSizeExcedsException.class)
+	public ResponseEntity<MessageResponse> handleTeamSizeExcedsException(TeamSizeExcedsException ie) {
+		MessageResponse messageResponse = new MessageResponse();
+		messageResponse.setMessage(ie.getMessage());
+		messageResponse.setStatus(HttpStatus.BAD_REQUEST);
+		messageResponse.setTimeStamp(new Date());
+		return new ResponseEntity<>(messageResponse, HttpStatus.BAD_REQUEST);
+
+	}
+
+	/**invalid user exception handler
+	 * @param NoSuchElementExistException
+	 * @return ResponseEntity<MessageResponse>
+	 * 
+	 * @author Kollimarla Jagadeep
+	 */
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ExceptionHandler(NoSuchElementExistException.class)
+	public ResponseEntity<MessageResponse> handleNoSuchElementExistException(NoSuchElementExistException ie) {
+		MessageResponse messageResponse = new MessageResponse();
+		messageResponse.setMessage(ie.getMessage());
+		messageResponse.setStatus(HttpStatus.NOT_FOUND);
+		messageResponse.setTimeStamp(new Date());
+		return new ResponseEntity<>(messageResponse, HttpStatus.NOT_FOUND);
+
+	}
 }

@@ -1,6 +1,6 @@
 package com.cts.projectmanagementportalbackend.exception;
 
-public class NoSuchElementExistException extends Exception {
+public class NoSuchElementExistException extends RuntimeException {
 	
 	/**
 	 * 

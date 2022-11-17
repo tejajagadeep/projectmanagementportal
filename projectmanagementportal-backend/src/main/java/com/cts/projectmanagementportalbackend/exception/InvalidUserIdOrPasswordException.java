@@ -1,6 +1,6 @@
 package com.cts.projectmanagementportalbackend.exception;
 
-public class InvalidUserIdOrPasswordException extends Exception {
+public class InvalidUserIdOrPasswordException extends RuntimeException {
 	
 	/**
 	 * 

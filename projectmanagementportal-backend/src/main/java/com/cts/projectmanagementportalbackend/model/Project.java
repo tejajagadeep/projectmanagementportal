@@ -126,15 +126,6 @@ public class Project {
 
 	}
 	
-	public int getProjectAssignedToUsersSize() {
-		int ic=0;
-		for(String i: projectAssignedToUsers) {
-			ic++;
-		}
-		
-		return ic;
-	}
-
 //	@Getter(AccessLevel.NONE)
 //	@Setter(AccessLevel.NONE)
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
