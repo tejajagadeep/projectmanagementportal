@@ -112,7 +112,6 @@ public class Project {
 	private String remarks;
 
 	private String projectOwner;
-	private String projectAssignedTo;
 
 	private ArrayList<String> projectAssignedToUsers;
 

@@ -111,8 +111,8 @@ public class ProjectController {
 	@PutMapping("assignProjectToUser/{userName}/project/{projectId}")
 	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
 		projectService.assignProjectToUser(userName, projectId);
-		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
-		log.info("inside assign of Story Controller "+msg);
+		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assignProjectToUser of Story Controller "+msg);
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	

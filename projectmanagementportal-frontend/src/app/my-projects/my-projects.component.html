@@ -60,23 +60,25 @@
         </div>
     </ng-container>
 
-    <ng-container *ngFor="let projectDetail of project">
-        <div *ngIf="projectDetail.projectAssignedTo == username" class="offer-contentAT">
+    <ng-container *ngFor="let projectDetailATU of project">
+        <ng-container *ngFor="let projectDetail of projectDetailATU.projectAssignedToUsers">
+        <div *ngIf="projectDetail == username" class="offer-contentAT">
             <h4 id="h4AT">Project Assigned</h4>
-            <h6 class="card-title align-center" id="pMAT">{{projectDetail.projectName}}</h6>
+            <h6 class="card-title align-center" id="pMAT">{{projectDetailATU.projectName}}</h6>
             <p class="card-text ">
             <div class="d-flex flex-column ">
-                <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
-                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetail.projectManagerName}}
+                <div class="p-2 "><b>Project Id:</b> {{projectDetailATU.projectId}}</div>
+                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetailATU.projectManagerName}}
                 </div>
-                <div class="p-2"><b>Team Name:</b> {{projectDetail.teamName}}</div>
-                <div class="p-2"><b>Tech Stack:</b> {{projectDetail.techStack}}</div>
-                <div class="p-2"><b>Status:</b> {{projectDetail.status}}</div>
+                <div class="p-2"><b>Team Name:</b> {{projectDetailATU.teamName}}</div>
+                <div class="p-2"><b>Tech Stack:</b> {{projectDetailATU.techStack}}</div>
+                <div class="p-2"><b>Status:</b> {{projectDetailATU.status}}</div>
             </div><br>
-            <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project
+            <a [routerLink]="['/view-project-status/',projectDetailATU.projectId]" class="btn btn-success">Project
                 Details</a>
         </div>
     </ng-container>
+</ng-container>
 </div>
 
 

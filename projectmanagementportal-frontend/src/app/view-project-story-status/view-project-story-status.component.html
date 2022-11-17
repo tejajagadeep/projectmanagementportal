@@ -2,7 +2,7 @@
 <div class="container">
     <div class="profile-details-content">
         <h1 class="text-center">{{story.storyTitle}} Details</h1>
-        <table class="table table-striped table-bordered table-light">
+        <table class="table table-striped table-bordered table-light" id="test">
             <thead>
                 <tr>
                     <th>Properties</th>
@@ -50,13 +50,17 @@
                     <td><h6>Users Assigned</h6></td>
                     <td><div *ngFor="let assign of story.storyAssignedToUsers">Id: {{assign}} </div></td>
                 </tr>
-                <tr>
-                <td><button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button></td>
-                <td><button *ngIf="project.projectOwner == username || story.assignee == name || story.storyAssignedTo == username || project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button></td>
-                </tr>
+                
             </tbody>
         </table>
         <br>
+        <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
+                
+                <button *ngIf="project.projectOwner == username || story.assignee == name|| project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
+                <ng-container *ngFor="let assign of story.storyAssignedToUsers">
+                <button *ngIf="assign == username" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
+            </ng-container>
+            <br>
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>
 </div>

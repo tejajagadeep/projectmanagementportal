@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
 
 public interface ProjectService {
@@ -27,7 +28,7 @@ public interface ProjectService {
 
 	void assign(String userName, String projectId)  throws NoSuchElementExistException;
 
-	void assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException;
+	MessageResponse assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException;
 
 
 	

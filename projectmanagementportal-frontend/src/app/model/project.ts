@@ -30,7 +30,6 @@ export class Project {
       public status: string,
       public remarks: string,
       public projectOwner: string,
-      public projectAssignedTo: string,
       public projectAssignedToUsers: string[]
     ) { }
   }

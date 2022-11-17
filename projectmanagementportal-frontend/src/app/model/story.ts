@@ -24,7 +24,6 @@ export class Story{
       public status: string,
       public remarks: string,
       public projectIdName: string,
-      public storyAssignedTo: string,
       public storyAssignedToUsers: string[]
     ) {}
   }

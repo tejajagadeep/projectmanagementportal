@@ -22,15 +22,12 @@ insert into User_Emp(user_name, name, email_address, contact_no, date_of_birth, 
 
 
 
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner,project_assigned_to) 
-values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gmail.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1','vinay', 'vinay','subbaiah');
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner,project_assigned_to) 
-values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'rajesh@gmail.com', 'Rajesh', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1','vinay','vinay','ramani');
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner,project_assigned_to) 
-values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gmail.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1','rajini','rajini','poorna');
-insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner,project_assigned_to) 
-values('Oculus', 'The word Oculus is often associated with an eye-like design, which makes it a great choice for a VR reality company.', '2021-09-27', '2022-11-29', 'rajini@gmail.com', 'Rajini', 'Oculus', 'pending', 'In-Progress', 'harish@gmail.com', 'Harish', 'Ireka', '7', 'Ireka','rajini','rajini','vinay');
-
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner) 
+values('project1', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-09-27', 'vinay@gmail.com', 'Vinay', 'project1', 'pending', 'Completed', 'ram@gmail.com', 'Ram', 'Team1', '3', 'stack1','vinay', 'vinay');
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner) 
+values('project2', 'TAs Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-06-18', '2022-10-29', 'rajesh@gmail.com', 'Rajesh', 'project2', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1','vinay','vinay');
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner) 
+values('project3', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', '2022-07-27', '2022-10-29', 'rajini@gmail.com', 'Rajini', 'project3', 'pending', 'Ready-For-Test', 'ram@gmail.com', 'Ram', 'Team3', '3', 'stack1','rajini','rajini');
 
 
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
@@ -43,6 +40,10 @@ insert into story(story_id, assignee, assignment_date, assignee_email_id, projec
  values('story4', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'To-Do', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story4', '2022-09-07', 'project3');
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
  values('story5', 'Rajan', '2022-07-27', 'rajan@gmail.com', 'project3', 'green', 'Ready-For-Test', 'As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.', 'Story5', '2022-09-07', 'project3');
+
+
+insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner) 
+values('Oculus', 'The word Oculus is often associated with an eye-like design, which makes it a great choice for a VR reality company.', '2021-09-27', '2022-11-29', 'rajini@gmail.com', 'Rajini', 'Oculus', 'pending', 'In-Progress', 'harish@gmail.com', 'Harish', 'Ireka', '7', 'Ireka','rajini','rajini');
 
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
  values('Houzz', 'Rajini', '2021-10-27', 'rajini@gmail.com', 'Oculus', 'green', 'Completed', 'The project was initially formed as a way to elevate the lack of online resources available for those wishing to renovate their houses and now is a billion-dollar company.', 'Houzz', '2022-01-07', 'Oculus');

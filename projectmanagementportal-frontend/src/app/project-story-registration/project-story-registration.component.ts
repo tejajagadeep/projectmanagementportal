@@ -37,12 +37,12 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   ngOnInit(): void {
     console.log('project-story-registration.component.ts')
     this.projectId = this.route.snapshot.params['projectId']
-    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','','',this.storyAssigned);
+    this.story = new Story('','','','','',new Date(),new Date(),'To-Do','','',this.storyAssigned);
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     this.story.assignee = this.user.name
     console.log(this.story.assignee)
-    this.story.assigneeEmailId = this.user.name
+    this.story.assigneeEmailId = this.user.emailAddress
   }
 
   navBack(){

@@ -86,6 +86,7 @@ public class StoryServiceImpl implements StoryService {
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 			
 		} else {
+			story.setStoryAssignedToUsers(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
 			log.info("saved story " + story.toString());
 			return storyReposiotry.save(story);
 

@@ -2,6 +2,7 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -10,12 +11,15 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
+import com.cts.projectmanagementportalbackend.exception.TeamSizeExcedsException;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
@@ -258,7 +262,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * 
 	 */
 	@Override
-	public void assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
+	public MessageResponse assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
 		
         Set<Project> projectSet = null;
 		
@@ -273,12 +277,11 @@ public class ProjectServiceImpl implements ProjectService{
 			
 		} else if (user==  null) {
 			
-			log.warn("story Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("user with Id "+userName+" doesn't exist ");
+			log.warn("User with Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("User with Id "+userName+" doesn't exist ");
 		}
 		
 //		project.setProjectAssignedTo(add(userName));
-		project.setProjectAssignedTo(user.getUserName());
 		
 
 		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
@@ -294,18 +297,33 @@ public class ProjectServiceImpl implements ProjectService{
 		project.addProjectAssignedToUsers(userName);
 			
 		storySetAssign.forEach(storyEach -> {
-			storyEach.setStoryAssignedTo(userName);
+			if(storyEach.getStoryAssignedToUsers().size()+2 > projectSizeParseInt){
+				
+				log.warn("Size excides please update the Team Size");
+				
+				
+				throw new NoSuchElementException("Size excides please update the Team Size please");
+			} 
+//			
+//			storyEach.getStoryAssignedToUsers().forEach(i -> {
+//				if(i.equals(userName)) {
+//					throw new UsernameNotFoundException("Size excides please update the Team Size please");
+//				};
+//			});
+			
+			
 			storyEach.addStoryAssignedToUsers(userName);
 		});
 		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
-		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
+		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
 //		projectRepository.save(project);
 		userRepository.save(user);
 		
+		return new MessageResponse(msg);
 	}
 	
 	
