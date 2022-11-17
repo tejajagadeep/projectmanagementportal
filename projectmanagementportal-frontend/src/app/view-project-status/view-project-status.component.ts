@@ -57,8 +57,6 @@ export class ViewProjectStatusComponent implements OnInit {
 
     this.getAllStories();
 
-    console.log(1)
-    console.log(4)
 
 
   }
@@ -93,8 +91,10 @@ export class ViewProjectStatusComponent implements OnInit {
 
   projectAssign(){
     this.projectService.assignProjectToUser(this.assignedTo, this.projectId,this.messageResponse).subscribe(
-      response => this.messageAssigned = response.message,
+      response => {this.messageAssigned = response.message,
+      this.getProejctsById(this.projectId)},
       error => this.messageAssigned = error.error.message
+
     )
   }  
 

@@ -53,14 +53,16 @@
                 
             </tbody>
         </table>
-        <br>
+        <div class="d-flex justify-content-between">
         <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
                 
                 <button *ngIf="project.projectOwner == username || story.assignee == name|| project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
                 <ng-container *ngFor="let assign of story.storyAssignedToUsers">
                 <button *ngIf="assign == username" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
             </ng-container>
-            <br>
+        </div>
+        <br>
+        <br>
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>
 </div>

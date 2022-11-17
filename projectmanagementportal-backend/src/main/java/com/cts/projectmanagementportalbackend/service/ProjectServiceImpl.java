@@ -297,20 +297,20 @@ public class ProjectServiceImpl implements ProjectService{
 		project.addProjectAssignedToUsers(userName);
 			
 		storySetAssign.forEach(storyEach -> {
-			if(storyEach.getStoryAssignedToUsers().size()+2 > projectSizeParseInt){
-				
-				log.warn("Size excides please update the Team Size");
-				
-				
-				throw new NoSuchElementException("Size excides please update the Team Size please");
-			} 
+//			if(storyEach.getStoryAssignedToUsers().size()+2 > projectSizeParseInt){
+//				
+//				log.warn("Size excides please update the Team Size");
+//				
+//				
+//				throw new NoSuchElementException("Size excides please update the Team Size please");
+//			} 
 //			
 //			storyEach.getStoryAssignedToUsers().forEach(i -> {
 //				if(i.equals(userName)) {
 //					throw new UsernameNotFoundException("Size excides please update the Team Size please");
 //				};
 //			});
-			
+//			storyEach.getStoryAssignedToUsers().iterator().forEachRemaining(storyEach.getStoryAssignedToUsers().);
 			
 			storyEach.addStoryAssignedToUsers(userName);
 		});

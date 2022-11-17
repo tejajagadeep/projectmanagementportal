@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -86,7 +87,13 @@ public class StoryServiceImpl implements StoryService {
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 			
 		} else {
-			story.setStoryAssignedToUsers(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
+			
+//			ArrayList<String> projectAssignedUsers = projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers();
+//			
+//			if(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers()!=null) {
+//				
+//			story.setStoryAssignedToUsers(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
+//			}
 			log.info("saved story " + story.toString());
 			return storyReposiotry.save(story);
 
@@ -218,6 +225,8 @@ public class StoryServiceImpl implements StoryService {
 		project.setStories(storySet);
 		
 		story.setProjectIdName(project.getProjectId());
+		
+		story.setStoryAssignedToUsers(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
 		
 		String msg= "story with Id " + storyId + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);

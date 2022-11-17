@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
@@ -22,7 +23,8 @@ projectAssigned!: string[]
     private router: Router,
     private route: ActivatedRoute,
     private projectDataService: ProjectDataService,
-    private authService: AuthenticationDataService
+    private authService: AuthenticationDataService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,9 @@ projectAssigned!: string[]
     console.log('projects-reistration.component.ts')
   }
 
+  navBack(){
+    this.location.back();
+  }
   navLink() {
     this.router.navigate(['view-project-status',this.projectId]);
   }
