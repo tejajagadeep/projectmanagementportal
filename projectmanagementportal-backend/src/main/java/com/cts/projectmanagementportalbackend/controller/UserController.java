@@ -30,7 +30,6 @@ import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendAppl
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
-import com.cts.projectmanagementportalbackend.model.UserResponse;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.service.UserService;
 

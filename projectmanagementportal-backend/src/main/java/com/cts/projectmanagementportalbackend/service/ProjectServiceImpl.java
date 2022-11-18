@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,9 @@ import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
-import com.cts.projectmanagementportalbackend.repository.StoryReposiotry;
+import com.cts.projectmanagementportalbackend.repository.StoryRepositry;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
+import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,7 +43,10 @@ public class ProjectServiceImpl implements ProjectService{
 	UserRepository userRepository;
 	
 	@Autowired
-	StoryReposiotry storyRepository;
+	StoryRepositry storyRepository;
+	
+	@Autowired
+	UserDetailsServiceImpl userDeatils;
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 

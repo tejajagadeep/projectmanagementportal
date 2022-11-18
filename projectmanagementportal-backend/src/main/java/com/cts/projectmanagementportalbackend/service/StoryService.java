@@ -25,5 +25,5 @@ public interface StoryService {
 	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
 
 	void assign(String projectId, String storyId)  throws NoSuchElementExistException;
-
+	
 }

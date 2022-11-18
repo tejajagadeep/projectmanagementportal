@@ -1,0 +1,79 @@
+
+
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("assignStoryToUsers/{userName}/story/{storyId}")
+	public ResponseEntity<MessageResponse> assignStoryTo(@PathVariable String userName, @PathVariable String storyId)  throws NoSuchElementExistException{
+		storyService.assignStoryToUsers(userName, storyId);
+		String msg= "story with Id " + storyId + " is assigned to User with Id " + userName;
+		log.info("inside assign of Story Controller "+msg);
+		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
+	}
+
+
+
+	@Override
+	public void assignStoryToUsers(String userName, String storyId) throws NoSuchElementExistException {
+
+		Set<Story> storySet = null;
+
+		User user = userRepository.findByUserName(userName);
+		Story story = storyRepositry.findById(storyId).get();
+		Project project = projectRepository.findById(story.getProjectIdName()).get();
+
+		if (project == null) {
+
+			log.warn("User Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist");
+		}
+
+		storySet = project.getStories();
+
+		storySet.add(story);
+
+		project.setStories(storySet);
+
+		story.setProjectIdName(project.getProjectId());
+
+		boolean assignProjectUserCheck = false;
+		
+		story.setStoryAssignedToUsers(
+				projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
+
+		if (!(user.getName().equals(project.getProjectManagerName()))
+				&& !(user.getName().equals(project.getTechLeadName()))
+				&& (!userName.equals(project.getProjectOwner()))
+				&& project.getProjectAssignedToUsers()==null) {
+
+			throw new InvalidUserException("User is Not Part of this Project equals");
+		} else {
+			project.getProjectAssignedToUsers().forEach(assignProjectUser -> {
+
+				if (!assignProjectUser.contentEquals(userName)) {
+					throw new InvalidUserException("User is Not Part of this Project assign");
+//					assignProjectUserCheck = true;
+				}
+
+			});
+		
+		}
+		
+//		if (story.getStoryAssignedToUsers() != null) {
+			story.getStoryAssignedToUsers().forEach(assignStoryUser -> {
+
+				if (assignStoryUser.contentEquals(userName)) {
+					System.out.println(userName);
+					throw new InvalidUserException("User already Assigned to This Story");
+				}
+
+			});
+//		}
+
+		story.addStoryAssignedToUsers(userName);
+
+		String msg = "story with Id " + storyId + " is assigned to user with Id " + userName;
+		log.info("inside assignStoryTo of Story Servcie Impl " + msg);
+
+		projectRepository.save(project);
+
+	}

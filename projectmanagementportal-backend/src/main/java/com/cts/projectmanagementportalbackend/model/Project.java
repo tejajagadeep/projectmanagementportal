@@ -33,10 +33,10 @@ import lombok.ToString;
 
 @Table
 @Entity
-@Getter // 14 , 15th story
-@Setter
-@NoArgsConstructor
-@ToString
+//@Getter // 14 , 15th story
+//@Setter
+//@NoArgsConstructor
+//@ToString
 public class Project {
 
 	@Id
@@ -126,8 +126,6 @@ public class Project {
 
 	}
 	
-//	@Getter(AccessLevel.NONE)
-//	@Setter(AccessLevel.NONE)
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "project_id")
 	private Set<Story> stories;
@@ -143,7 +141,232 @@ public class Project {
 
 	}
 
+	
+	
+public Project() {
+		super();
+	}
+
+
+
 //	private String[] projectAssignedTo;
+
+	@Override
+	public String toString() {
+		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", projectDescription="
+				+ projectDescription + ", teamName=" + teamName + ", teamSize=" + teamSize + ", projectManagerName="
+				+ projectManagerName + ", projectManagerEmailId=" + projectManagerEmailId + ", techLeadName="
+				+ techLeadName + ", techLeadEmailId=" + techLeadEmailId + ", projectStartDate=" + projectStartDate
+				+ ", projectEndDate=" + projectEndDate + ", techStack=" + techStack + ", status=" + status
+				+ ", remarks=" + remarks + ", projectOwner=" + projectOwner + ", projectAssignedToUsers="
+				+ projectAssignedToUsers + ", stories=" + stories + "]";
+	}
+
+
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
+
+
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+
+
+	public String getProjectDescription() {
+		return projectDescription;
+	}
+
+
+
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
+	}
+
+
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
+
+
+	public String getTeamSize() {
+		return teamSize;
+	}
+
+
+
+	public void setTeamSize(String teamSize) {
+		this.teamSize = teamSize;
+	}
+
+
+
+	public String getProjectManagerName() {
+		return projectManagerName;
+	}
+
+
+
+	public void setProjectManagerName(String projectManagerName) {
+		this.projectManagerName = projectManagerName;
+	}
+
+
+
+	public String getProjectManagerEmailId() {
+		return projectManagerEmailId;
+	}
+
+
+
+	public void setProjectManagerEmailId(String projectManagerEmailId) {
+		this.projectManagerEmailId = projectManagerEmailId;
+	}
+
+
+
+	public String getTechLeadName() {
+		return techLeadName;
+	}
+
+
+
+	public void setTechLeadName(String techLeadName) {
+		this.techLeadName = techLeadName;
+	}
+
+
+
+	public String getTechLeadEmailId() {
+		return techLeadEmailId;
+	}
+
+
+
+	public void setTechLeadEmailId(String techLeadEmailId) {
+		this.techLeadEmailId = techLeadEmailId;
+	}
+
+
+
+	public Date getProjectStartDate() {
+		return projectStartDate;
+	}
+
+
+
+	public void setProjectStartDate(Date projectStartDate) {
+		this.projectStartDate = projectStartDate;
+	}
+
+
+
+	public Date getProjectEndDate() {
+		return projectEndDate;
+	}
+
+
+
+	public void setProjectEndDate(Date projectEndDate) {
+		this.projectEndDate = projectEndDate;
+	}
+
+
+
+	public String getTechStack() {
+		return techStack;
+	}
+
+
+
+	public void setTechStack(String techStack) {
+		this.techStack = techStack;
+	}
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+
+
+	public String getProjectOwner() {
+		return projectOwner;
+	}
+
+
+
+	public void setProjectOwner(String projectOwner) {
+		this.projectOwner = projectOwner;
+	}
+
+
+
+	public ArrayList<String> getProjectAssignedToUsers() {
+		return projectAssignedToUsers;
+	}
+
+
+
+	public void setProjectAssignedToUsers(ArrayList<String> projectAssignedToUsers) {
+		this.projectAssignedToUsers = projectAssignedToUsers;
+	}
+
+
+
+	public Set<Story> getStories() {
+		return stories;
+	}
+
+
+
+	public void setStories(Set<Story> stories) {
+		this.stories = stories;
+	}
+
+
 
 	public Project(@NotNull(message = "projectId should not be Null") @Size(max = 20) String projectId,
 			@NotNull(message = "projectName should not be Null") @Size(max = 30) @NotEmpty(message = "projectName should not be empty") String projectName,

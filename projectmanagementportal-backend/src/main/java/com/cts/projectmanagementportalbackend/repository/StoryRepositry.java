@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cts.projectmanagementportalbackend.model.Story;
 
 @Repository
-public interface StoryReposiotry extends JpaRepository<Story, String>{
+public interface StoryRepositry extends JpaRepository<Story, String>{
 
 	public List<Story> findByProjectIdName(String projectIdName);
 	

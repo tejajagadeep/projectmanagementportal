@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.User;
-import com.cts.projectmanagementportalbackend.model.UserResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
