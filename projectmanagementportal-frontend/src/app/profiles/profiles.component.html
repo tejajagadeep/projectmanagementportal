@@ -1,36 +1,36 @@
 <app-menu></app-menu>
-<p>Welcome {{message}}.</p>
 
 <h1 class="text-center">User List</h1>
 <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a user...">
-  </div>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        placeholder="Start searching for a user...">
+</div>
 <div class="container">
-<table class="table table-striped">
-      <caption>List User Details</caption>
+    <table class="table table-striped">
+        <caption>List User Details</caption>
 
-      
 
-      <thead class="thead-light">
-          <tr>
-              <th>USER Id</th>
-              <th>Name</th>
-              <th>Email Id</th>
-              <th>Contact</th>
-              <th>User Type</th>
-              <th>DOB</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let userDetail of user | filter: searchText">
-              <td>{{userDetail.userName}}</td>
-              <td>{{userDetail.name}}</td>
-              <td>{{userDetail.emailAddress}}</td>
-              <td>{{userDetail.contactNo}}</td>
-              <td>{{userDetail.role}}</td>
-              <td>{{userDetail.dateOfBirth | date : 'yyyy-MM-dd'}}</td>
-          </tr>
-      </tbody>
-  </table>
+
+        <thead class="thead-light">
+            <tr>
+                <th>USER Id</th>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>Contact</th>
+                <th>User Type</th>
+                <th>DOB</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let userDetail of user | filter: searchText">
+                <td>{{userDetail.userName}}</td>
+                <td>{{userDetail.name}}</td>
+                <td>{{userDetail.emailAddress}}</td>
+                <td>{{userDetail.contactNo}}</td>
+                <td>{{userDetail.role}}</td>
+                <td>{{userDetail.dateOfBirth | date : 'yyyy-MM-dd'}}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>

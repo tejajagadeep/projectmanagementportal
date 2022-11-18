@@ -8,9 +8,9 @@ describe('ViewProjectStoryStatusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewProjectStoryStatusComponent ]
+      declarations: [ViewProjectStoryStatusComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

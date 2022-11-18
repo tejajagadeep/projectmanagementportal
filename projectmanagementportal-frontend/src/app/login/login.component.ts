@@ -37,23 +37,23 @@ export class LoginComponent implements OnInit {
   }
 
   navLink() {
-      console.log('navLink')
+    console.log('navLink')
     this.router.navigate(["home"]);
   }
 
   handleJWTAuthLogin() {
     this.basicAuthService.executeJWTAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
           // },
           // error => {
           //   console.log(error)
           //   this.invalidLogin = true
-          }
-        )
+        }
+      )
   }
 
 
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
   handleErrorResponse(error: any) {
     // console.log(response);
-    this.errorMessage= error.error.message
+    this.errorMessage = error.error.message
   }
 
 
@@ -75,53 +75,24 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false
     } else
       this.invalidLogin = true
-    
+
   }
 
   checkLogin1() {
     this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(
       // {
-       response=> { this.user= response
-        this.userService.login(this.username, this.password, this.user).subscribe( 
-          (data: User) =>{ this.user=data},
-              error=> this.errorMessage = error.message
-        )
-      // this.invalidLogin = false,
-      // this.loginSuccess = true,
-      // console.log(this.loginSuccess)
-      // this.successMessage = 'Login Successful.',
-      this.router.navigate(['/home',this.username])
-      
-    // }, error, () => {
-    //   this.invalidLogin = true;
-    //   this.loginSuccess = false;
-    }
-  
-  );
-  
+      response => {
+        this.user = response
+        this.router.navigate(['/home', this.username])
+
+      }
+
+
+
+    );
+    this.userService.login(this.username, this.password, this.user).subscribe(
+      (data: User) => { this.user = data },
+      error => this.errorMessage = "Invalid Credantials"
+    )
   }
-  }
-
-  // checkLogin2() {
-  //   this.authenticateLoginService.authenticationService(this.username, this.password).subscribe({
-  //     next: (n: any) =>  console.log(n),
-  //     error: (e: any) => this.handleErrorResponse(e),
-  //   }
-  //     // {
-  //   // }, error, () => {
-  //   //   this.invalidLogin = true;
-  //   //   this.loginSuccess = false;
-    
-  
-  // );
-  
-
-  // }
-
-
-
-
-  function checkLogin2() {
-    throw new Error('Function not implemented.');
-  }
-
+}

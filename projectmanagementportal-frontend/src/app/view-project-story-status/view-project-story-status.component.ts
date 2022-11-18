@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
-import { Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Story } from '../model/story';
 import { UserDataService } from '../service/data/user-data.service';
 import { User } from '../model/user';
@@ -30,8 +30,8 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   project!: Project
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private userService: UserDataService,
     private projectService: ProjectDataService,
@@ -53,8 +53,8 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     // this.getuserByName(this.name)
   }
 
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
+  getUsername() {
+    this.username = this.authService.getLoggedInUserName();
   }
 
   getUser(userName: string) {
@@ -90,44 +90,44 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     )
   }
 
-  navBack(){
+  navBack() {
     this.location.back();
   }
 
-  getStoryById(storyId: string){
+  getStoryById(storyId: string) {
     this.storyService.getStoryById(storyId).subscribe(
       response => {
         this.story = response;
         this.projectId = response.projectIdName
         this.getProjectsById(this.projectId)
-        console.log("projectIdName:"+this.projectId)
+        console.log("projectIdName:" + this.projectId)
       },
       error => {
         console.log("Exception Occured")
         this.handleErrorMessage(error);
       }
     )
-   }
-  
-  handleErrorMessage(error: any){
+  }
+
+  handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-    if (this.storyId===undefined){
+    if (this.storyId === undefined) {
       this.errorMessageResponse = this.temp
     } else {
       this.errorMessageResponse = error.error.message
     }
-   }
+  }
 
-   updateStory(storyId: string){
+  updateStory(storyId: string) {
     console.log(`update ${storyId}`);
     // this.router.navigate(['view-project-status/project-story-registration',storyId]);
     this.router.navigate([`project-story-update/${storyId}`])
   }
 
-  
-  deleteStory(storyId: string){
+
+  deleteStory(storyId: string) {
     this.storyService.deleteStoryById(storyId).subscribe(
-      response =>  {
+      response => {
         this.message = `Deleted Story with Id ${storyId}`;
         console.log(this.message)
 
@@ -141,13 +141,13 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     )
   }
 
-  getAllStories(){
+  getAllStories() {
     this.storyService.getAllStories().subscribe(
       response => this.handleGetStories(response)
     );
-   }
+  }
 
-   handleGetStories(response : any){
+  handleGetStories(response: any) {
     this.story = response
     // console.log(response)
   }
@@ -169,7 +169,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     )
   }
 
-  handleGetProject(response : any){
+  handleGetProject(response: any) {
     this.project = response
-   }
+  }
 }

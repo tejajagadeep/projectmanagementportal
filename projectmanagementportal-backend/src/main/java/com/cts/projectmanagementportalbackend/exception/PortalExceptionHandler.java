@@ -36,6 +36,23 @@ public class PortalExceptionHandler extends ResponseEntityExceptionHandler{
 	}
 	
 	/**invalid user exception handler
+	 * @param InvalidUserIdOrPasswordException
+	 * @return ResponseEntity<MessageResponse>
+	 * 
+	 * @author Kollimarla Jagadeep
+	 */
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler(InvalidUserIdOrPasswordException.class)
+	public ResponseEntity<MessageResponse> handleIInvalidUserIdOrPasswordException(InvalidUserIdOrPasswordException ie) {
+		MessageResponse messageResponse = new MessageResponse();
+		messageResponse.setMessage(ie.getMessage());
+		messageResponse.setStatus(HttpStatus.UNAUTHORIZED);
+		messageResponse.setTimeStamp(new Date());
+		return new ResponseEntity<>(messageResponse, HttpStatus.UNAUTHORIZED);
+
+	}
+	
+	/**invalid user exception handler
 	 * @param IdAlreadyExistException
 	 * @return ResponseEntity<MessageResponse>
 	 * 

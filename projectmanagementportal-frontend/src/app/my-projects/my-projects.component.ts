@@ -17,10 +17,10 @@ export class MyProjectsComponent implements OnInit {
 
   username!: string
   message!: string
-  errorMessageResponse=""
+  errorMessageResponse = ""
   helloWorldMessage!: MessageResponse
 
-  project!:Project[]
+  project!: Project[]
   projectC!: number
   // projectO!:Project[]
   // projectMN!:Project[]
@@ -29,8 +29,8 @@ export class MyProjectsComponent implements OnInit {
   user!: User
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private projectService: ProjectDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService,
@@ -38,7 +38,7 @@ export class MyProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.username=this.authService.getLoggedInUserName();
+    this.username = this.authService.getLoggedInUserName();
     console.log(this.username)
     console.log('my-projects.component.ts')
     this.getUser(this.username);
@@ -64,28 +64,30 @@ export class MyProjectsComponent implements OnInit {
     )
   }
 
-  handleErrorMessage(error: any){
+  handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessageResponse = error.error.message
-   }
+    this.errorMessageResponse = error.error.message
+  }
 
-  getAllProjects(){
+  getAllProjects() {
     this.projectService.getAllProjects().subscribe(
-      response =>     this.project = response
+      response => this.project = response
       // console.log(projectOwner)
     );
 
-   }
+  }
 
-   getAllProjectsC(){
-     this.projectService.getAllProjects().subscribe(
-      response =>    { this.projectC = response.length,
-      console.log(this.projectC) }
+  getAllProjectsC() {
+    this.projectService.getAllProjects().subscribe(
+      response => {
+        this.projectC = response.length,
+        console.log(this.projectC)
+      }
 
     );
     return this.projectC
 
-   }
+  }
   //  getAllProjectsO(projectOwner: string){
   //   this.projectService.getProjectsByProjectOwner(projectOwner).subscribe(
   //     response =>     this.projectO = response
@@ -111,9 +113,9 @@ export class MyProjectsComponent implements OnInit {
   //   this.projectAT = response
   //   );
   //  }
-   
-   handleGetProjects(response : any){
+
+  handleGetProjects(response: any) {
     this.project = response
-   }
+  }
 
 }

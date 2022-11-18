@@ -52,9 +52,13 @@ public class UserController {
 //	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 	@PostMapping("login/{userName}/{password}")
 	public ResponseEntity<User> login(@PathVariable String userName, @PathVariable String password) throws InvalidUserIdOrPasswordException{
-		
+		try {
 		log.info("inside login of User Controller");
 		return new ResponseEntity<>(userService.login(userName, password),HttpStatus.OK);
+		} catch(InvalidUserIdOrPasswordException e) {
+			throw new InvalidUserIdOrPasswordException("");
+		}
+		
 	}
 	
 	@GetMapping("/helloWorld")

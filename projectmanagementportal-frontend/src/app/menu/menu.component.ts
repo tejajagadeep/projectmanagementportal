@@ -10,13 +10,13 @@ import { UserDataService } from '../service/data/user-data.service';
 })
 export class MenuComponent implements OnInit {
 
-  isUserLoggedIn! : boolean
-  username!:string
+  isUserLoggedIn!: boolean
+  username!: string
   user!: User
   errorMessage!: string
 
   constructor(
-    private authService : AuthenticationDataService,
+    private authService: AuthenticationDataService,
     private userService: UserDataService
   ) { }
 
@@ -26,8 +26,8 @@ export class MenuComponent implements OnInit {
     this.getUser(this.username);
   }
 
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
+  getUsername() {
+    this.username = this.authService.getLoggedInUserName();
   }
 
   getUser(userName: string) {
@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit {
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessage = error.error.message
+    this.errorMessage = error.error.message
   }
 
 }

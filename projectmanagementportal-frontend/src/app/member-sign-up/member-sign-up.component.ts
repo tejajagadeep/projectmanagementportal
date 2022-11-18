@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
@@ -44,11 +43,11 @@ export class MemberSignUpComponent implements OnInit {
   // }
   // }
 
-  navLink(){
+  navLink() {
     this.router.navigate(["home"]);
   }
 
-  navLogin(){
+  navLogin() {
     this.router.navigate(["login"]);
   }
 
@@ -75,8 +74,8 @@ export class MemberSignUpComponent implements OnInit {
         },
         error => {
           this.handleErrorMessage(error)
-        } 
-        
+        }
+
       )
   }
 

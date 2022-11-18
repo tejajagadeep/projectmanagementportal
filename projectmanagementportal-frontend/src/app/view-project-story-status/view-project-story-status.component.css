@@ -49,7 +49,7 @@ input.form-control {
 }
 
 .offer-content a {
-    background-color: rgba(23, 119, 14, 0.87)!important;
+    background-color: rgba(23, 119, 14, 0.87) !important;
 }
 
 button.material-icons {
@@ -58,11 +58,12 @@ button.material-icons {
 }
 
 #divStyle {
-    width:90%;
-    margin:auto;
+    width: 90%;
+    margin: auto;
     padding-bottom: 50px;
 }
 
-td, th {
+td,
+th {
     text-align: center;
-  }
+}

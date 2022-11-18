@@ -11,54 +11,80 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><h6>Story Id</h6></td>
+                    <td>
+                        <h6>Story Id</h6>
+                    </td>
                     <td>{{story.storyId}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Story Title</h6></td>
+                    <td>
+                        <h6>Story Title</h6>
+                    </td>
                     <td>{{story.storyTitle}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Story Description</h6></td>
+                    <td>
+                        <h6>Story Description</h6>
+                    </td>
                     <td>{{story.storyDescription}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Assignee</h6></td>
+                    <td>
+                        <h6>Assignee</h6>
+                    </td>
                     <td>{{story.assignee}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Assignee Email Id</h6></td>
+                    <td>
+                        <h6>Assignee Email Id</h6>
+                    </td>
                     <td>{{story.assigneeEmailId}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Assignment Date</h6></td>
+                    <td>
+                        <h6>Assignment Date</h6>
+                    </td>
                     <td>{{story.assignmentDate | date : 'yyyy-MM-dd'}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Target Date</h6></td>
+                    <td>
+                        <h6>Target Date</h6>
+                    </td>
                     <td>{{story.targetDate | date : 'yyyy-MM-dd'}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Status</h6></td>
+                    <td>
+                        <h6>Status</h6>
+                    </td>
                     <td>{{story.status}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Remarks</h6></td>
+                    <td>
+                        <h6>Remarks</h6>
+                    </td>
                     <td>{{story.remarks}}</td>
                 </tr>
                 <tr>
-                    <td><h6>Users Assigned</h6></td>
-                    <td><div *ngFor="let assign of story.storyAssignedToUsers">Id: {{assign}} </div></td>
+                    <td>
+                        <h6>Users Assigned</h6>
+                    </td>
+                    <td>
+                        <div *ngFor="let assign of story.storyAssignedToUsers">Id: {{assign}} </div>
+                    </td>
                 </tr>
-                
+
             </tbody>
         </table>
         <div class="d-flex justify-content-between">
-        <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name" (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
-                
-                <button *ngIf="project.projectOwner == username || story.assignee == name|| project.projectManagerName === user.name" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
-                <ng-container *ngFor="let assign of story.storyAssignedToUsers">
-                <button *ngIf="assign == username" (click)="updateStory(story.storyId)" class="btn btn-info">Update</button>
+            <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name"
+                (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
+
+            <button
+                *ngIf="project.projectOwner == username || story.assignee == name|| project.projectManagerName === user.name"
+                (click)="updateStory(story.storyId)" class="btn btn-warning">Update</button>
+            <ng-container *ngFor="let assign of story.storyAssignedToUsers">
+                <button *ngIf="assign == username" (click)="updateStory(story.storyId)"
+                    class="btn btn-warning">Update</button>
             </ng-container>
         </div>
         <br>

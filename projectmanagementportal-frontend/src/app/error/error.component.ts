@@ -10,12 +10,12 @@ export class ErrorComponent implements OnInit {
 
   errorMessage = 'An Error Occured! Redirecting...'
 
-  isUserLoggedIn! : boolean
-  username!:string
+  isUserLoggedIn!: boolean
+  username!: string
   userNull!: boolean
 
   constructor(
-    private authService : AuthenticationDataService
+    private authService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {

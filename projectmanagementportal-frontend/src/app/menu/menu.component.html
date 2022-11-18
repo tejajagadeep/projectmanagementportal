@@ -1,18 +1,19 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #97d2fc;">
-        <span>Project Management</span>
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #97d2fc;">
+    <span>Project Management</span>
 
-        <ul class="navbar-nav">
-            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
-            <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
-            <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
-        </ul>
+    <ul class="navbar-nav">
+      <li><a *ngIf="isUserLoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
+      <li><a *ngIf="isUserLoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
+      <li><a *ngIf="isUserLoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
+    </ul>
 
-        <ul class="navbar-nav navbar-collapse justify-content-end">
-                <li><a *ngIf="isUserLoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New Project</a></li>
-                <li><a *ngIf="isUserLoggedIn" routerLink="/logout" class="nav-link">logout</a></li>
-        </ul>
-    </nav>
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li><a *ngIf="isUserLoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New
+          Project</a></li>
+      <li><a *ngIf="isUserLoggedIn" routerLink="/logout" class="nav-link">logout</a></li>
+    </ul>
+  </nav>
 </header>
 <br>
 <br>

@@ -18,16 +18,16 @@ export class HomeComponent implements OnInit {
 
   username!: string
   message!: string
-  errorMessageResponse=""
+  errorMessageResponse = ""
   helloWorldMessage!: MessageResponse
 
   // projectIdName!: string
-  isUserLoggedIn! : boolean
+  isUserLoggedIn!: boolean
   user!: User
   errorMessage!: string
 
   searchText: any;
-  project!:Project[]
+  project!: Project[]
 
   // to get by value
   @ViewChild("status") status!: ElementRef
@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private projectService: ProjectDataService,
     private storyService: StoryDataService,
     private authService: AuthenticationDataService,
@@ -56,8 +56,8 @@ export class HomeComponent implements OnInit {
     // this.helloWorld();
   }
 
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
+  getUsername() {
+    this.username = this.authService.getLoggedInUserName();
   }
 
   getUser(userName: string) {
@@ -75,35 +75,35 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  getAllProjects(){
+  getAllProjects() {
     this.projectService.getAllProjects().subscribe(
       response => this.handleGetProjects(response)
     );
-   }
+  }
 
-   getByProjectStatus(){
+  getByProjectStatus() {
     let status = this.status.nativeElement.value;
-    if(status == 'Filter by status'){
+    if (status == 'Filter by status') {
       this.getAllProjects();
     }
     this.projectService.getProjectsByStatus(status).subscribe(
       response => this.handleGetProjects(response)
     )
-   }
+  }
 
-   getByProjectByIdOrManagerName(){
+  getByProjectByIdOrManagerName() {
     let projectIdName = this.status.nativeElement.value;
-      this.projectService.getProjectById(projectIdName).subscribe(
-        response => this.handleGetProjects(response)
-      )
-   }
-   
-   handleGetProjects(response : any){
-    this.project = response
-   }
+    this.projectService.getProjectById(projectIdName).subscribe(
+      response => this.handleGetProjects(response)
+    )
+  }
 
-   handleErrorMessage(error: any) {
+  handleGetProjects(response: any) {
+    this.project = response
+  }
+
+  handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessage = error.error.message
+    this.errorMessage = error.error.message
   }
 }

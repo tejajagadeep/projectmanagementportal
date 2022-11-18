@@ -12,17 +12,17 @@ import { StoryDataService } from '../service/data/story-data.service';
 })
 export class ProjectStoryUpdateComponent implements OnInit {
 
-  story! : Story
+  story!: Story
   storyId!: string
   dateDummy!: Date
   errorMessageResponse!: string
   temp!: string
-  storyAssigned!:  string[]
+  storyAssigned!: string[]
   username!: string
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private storyDataService: StoryDataService,
     private authService: AuthenticationDataService,
     private location: Location
@@ -35,11 +35,11 @@ export class ProjectStoryUpdateComponent implements OnInit {
     this.username = this.authService.getLoggedInUserName();
   }
 
-  navBack(){
+  navBack() {
     this.location.back()
   }
 
-  getStoryById(storyId: string){
+  getStoryById(storyId: string) {
     this.storyDataService.getStoryById(storyId).subscribe(
       response => {
         this.story = response;
@@ -49,24 +49,24 @@ export class ProjectStoryUpdateComponent implements OnInit {
         this.handleErrorMessage(error);
       }
     )
-   }
+  }
 
-   updateStoryById(){
+  updateStoryById() {
     this.storyDataService.updateStoryAdmin(this.storyId, this.story)
-    .subscribe(
-      response => {
-        console.log(`updated story with Id ${this.storyId}`)
-        this.navBack()
-      },
-      error => {
-        console.log("Exception Occured")
-        this.handleErrorMessage(error);
-      }
-    )
-   }
-  
-   handleErrorMessage(error: any){
+      .subscribe(
+        response => {
+          console.log(`updated story with Id ${this.storyId}`)
+          this.navBack()
+        },
+        error => {
+          console.log("Exception Occured")
+          this.handleErrorMessage(error);
+        }
+      )
+  }
+
+  handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessageResponse = error.error.message
-   }
+    this.errorMessageResponse = error.error.message
+  }
 }

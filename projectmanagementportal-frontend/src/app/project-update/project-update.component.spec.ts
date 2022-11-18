@@ -8,9 +8,9 @@ describe('ProjectUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectUpdateComponent ]
+      declarations: [ProjectUpdateComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

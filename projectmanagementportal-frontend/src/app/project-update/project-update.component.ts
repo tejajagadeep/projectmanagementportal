@@ -20,8 +20,8 @@ export class ProjectUpdateComponent implements OnInit {
   temp!: string
   projectId!: string
   dateDummy!: Date
-  assign!:string
-  
+  assign!: string
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -34,10 +34,10 @@ export class ProjectUpdateComponent implements OnInit {
     console.log('project-update.component.ts')
     this.projectId = this.route.snapshot.params['projectId'];
     this.getProjectBId(this.projectId);
-    this.username=this.authService.getLoggedInUserName();
+    this.username = this.authService.getLoggedInUserName();
   }
 
-  navBack(){
+  navBack() {
     this.location.back()
   }
 
@@ -60,7 +60,7 @@ export class ProjectUpdateComponent implements OnInit {
     this.projectDataService.updateProjectById(this.projectId, this.project).subscribe(
       response => {
         console.log(`updated project ${this.projectId}`)
-          this.router.navigate(['view-project-status',response.projectId]);
+        this.router.navigate(['view-project-status', response.projectId]);
       },
       error => {
         console.log("Exception Occured")
@@ -71,7 +71,7 @@ export class ProjectUpdateComponent implements OnInit {
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessageResponse = error.error.message
+    this.errorMessageResponse = error.error.message
   }
 
 }

@@ -10,32 +10,32 @@ export class StoryDataService {
 
   constructor(private http: HttpClient) { }
 
-  getAllStories(){
+  getAllStories() {
     return this.http.get<Story[]>(`${STORY_API_URL}/getAllStories`)
   }
 
-  getStoryById(storyId: string){
+  getStoryById(storyId: string) {
     return this.http.get<Story>(`${STORY_API_URL}/getStoryById/${storyId}`)
   }
 
-  saveStory(story: Story){
-    return this.http.post<Story>(`${STORY_API_URL}/storyRegistration`,story)
+  saveStory(story: Story) {
+    return this.http.post<Story>(`${STORY_API_URL}/storyRegistration`, story)
   }
 
-  updateStoryAdmin(storyId: string, story: Story){
-    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAdmin/${storyId}`,story)
+  updateStoryAdmin(storyId: string, story: Story) {
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAdmin/${storyId}`, story)
   }
 
-  updateStoryMember(storyId: string, story: Story){
-    return this.http.put<Story>(`${STORY_API_URL}/updateStoryMember/${storyId}`,story)
+  updateStoryMember(storyId: string, story: Story) {
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryMember/${storyId}`, story)
   }
 
-  deleteStoryById(storyId: string){
+  deleteStoryById(storyId: string) {
     return this.http.delete<Story>(`${STORY_API_URL}/deleteStoryById/${storyId}`)
   }
 
-  StoryAssign(projectId:string, storyId: string, project: Story){
-    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAssignAdmin/${projectId}/story/${storyId}`,Story);
+  StoryAssign(projectId: string, storyId: string, project: Story) {
+    return this.http.put<Story>(`${STORY_API_URL}/updateStoryAssignAdmin/${projectId}/story/${storyId}`, Story);
   }
 
 }

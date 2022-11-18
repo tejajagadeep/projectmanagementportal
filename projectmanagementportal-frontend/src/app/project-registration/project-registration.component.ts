@@ -16,10 +16,10 @@ export class ProjectRegistrationComponent implements OnInit {
   errorMessageResponse!: string
   projectId!: string
   username!: string
-projectAssigned!: string[]
+  projectAssigned!: string[]
 
   constructor(
-    
+
     private router: Router,
     private route: ActivatedRoute,
     private projectDataService: ProjectDataService,
@@ -28,16 +28,16 @@ projectAssigned!: string[]
   ) { }
 
   ngOnInit(): void {
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '','',this.projectAssigned)
+    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '', '', this.projectAssigned)
     this.username = this.authService.getLoggedInUserName();
     console.log('projects-reistration.component.ts')
   }
 
-  navBack(){
+  navBack() {
     this.location.back();
   }
   navLink() {
-    this.router.navigate(['view-project-status',this.projectId]);
+    this.router.navigate(['view-project-status', this.projectId]);
   }
 
   saveProject() {
@@ -45,11 +45,11 @@ projectAssigned!: string[]
       .subscribe(
         response => {
           this.project = response,
-          this.projectDataService.ProjectAssign(this.username, this.project.projectId, this.project).subscribe(
-            response => console.log("usename: "+ this.username + "assigned : "+ this.project.projectId)
-          )
+            this.projectDataService.ProjectAssign(this.username, this.project.projectId, this.project).subscribe(
+              response => console.log("usename: " + this.username + "assigned : " + this.project.projectId)
+            )
           console.log("Response Recieved")
-          this.router.navigate(['view-project-status/',response.projectId]);
+          this.router.navigate(['view-project-status/', response.projectId]);
         },
         error => {
           console.log("Exception Occured")
@@ -61,7 +61,7 @@ projectAssigned!: string[]
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-      this.errorMessageResponse = error.error.message
+    this.errorMessageResponse = error.error.message
   }
 
 }

@@ -16,25 +16,25 @@ export class UserProfileComponent implements OnInit {
   errorMessageResponse!: string
   temp!: string
   isUserLoggedIn!: boolean
-  user!:User
+  user!: User
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private userService: UserDataService,
     private authService: AuthenticationDataService
   ) { }
 
   ngOnInit(): void {
-    this.username=this.authService.getLoggedInUserName();
+    this.username = this.authService.getLoggedInUserName();
     console.log(this.username)
     console.log('user-profile.component.ts')
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.getUserByUserName(this.username)
   }
 
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
+  getUsername() {
+    this.username = this.authService.getLoggedInUserName();
     this.getUserByUserName(this.username);
   }
 
@@ -55,7 +55,7 @@ export class UserProfileComponent implements OnInit {
 
   handleErrorMessage(error: any) {
     // this.errorMessageResponse = error
-    if (this.username===undefined){
+    if (this.username === undefined) {
       this.errorMessageResponse = this.temp
     } else {
       this.errorMessageResponse = error.error.message

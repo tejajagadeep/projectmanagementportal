@@ -18,11 +18,11 @@ export class ViewProjectStatusComponent implements OnInit {
 
   story!: Story[]
   // projects!:Project[]
-  project!:Project
+  project!: Project
   storyData!: Story
   message!: string
   errorMessage!: string
-  projectId!: string 
+  projectId!: string
 
   user!: User
   userByName!: User
@@ -35,8 +35,8 @@ export class ViewProjectStatusComponent implements OnInit {
   messageResponse!: MessageResponse
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private userService: UserDataService,
     private projectService: ProjectDataService,
     private storyService: StoryDataService,
@@ -44,7 +44,7 @@ export class ViewProjectStatusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getUsername();
     this.getUser(this.username);
 
@@ -61,8 +61,8 @@ export class ViewProjectStatusComponent implements OnInit {
 
   }
 
-  getUsername(){
-    this.username=this.authService.getLoggedInUserName();
+  getUsername() {
+    this.username = this.authService.getLoggedInUserName();
 
   }
 
@@ -89,14 +89,16 @@ export class ViewProjectStatusComponent implements OnInit {
     )
   }
 
-  projectAssign(){
-    this.projectService.assignProjectToUser(this.assignedTo, this.projectId,this.messageResponse).subscribe(
-      response => {this.messageAssigned = response.message,
-      this.getProejctsById(this.projectId)},
+  projectAssign() {
+    this.projectService.assignProjectToUser(this.assignedTo, this.projectId, this.messageResponse).subscribe(
+      response => {
+        this.messageAssigned = response.message,
+        this.getProejctsById(this.projectId)
+      },
       error => this.messageAssigned = error.error.message
 
     )
-  }  
+  }
 
   getuserByName(name: string) {
     console.log()
@@ -140,15 +142,15 @@ export class ViewProjectStatusComponent implements OnInit {
   //   );
   //  }
 
-  updateProject(projectId: string){
+  updateProject(projectId: string) {
     console.log(`update ${projectId}`);
     this.router.navigate([`project-update/${projectId}`])
     // this.router.navigate([`view-project-status/${projectId}`])
   }
 
-  deleteProject(projectId: string){
+  deleteProject(projectId: string) {
     this.projectService.deleteProjectById(projectId).subscribe(
-      response =>  {
+      response => {
         this.message = `Deleted Project with Id ${projectId}`;
         console.log(this.message)
         this.navLink();
@@ -166,25 +168,25 @@ export class ViewProjectStatusComponent implements OnInit {
   //   this.projects = response
   //  }
 
-   handleGetProject(response : any){
+  handleGetProject(response: any) {
     this.project = response
-   }
+  }
 
-   getAllStories(){
+  getAllStories() {
     console.log()
     this.storyService.getAllStories().subscribe(
       response => this.handleGetStories(response)
     );
-   }
+  }
 
-  
 
-  handleGetStories(response : any){
+
+  handleGetStories(response: any) {
     this.story = response
     // console.log(response)
   }
 
-  handleErrorMessage(error: any){
+  handleErrorMessage(error: any) {
     this.errorMessage = error.error.message;
   }
 

@@ -31,8 +31,8 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
-                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100" maxlength="255"
-                            required #projectDescription="ngModel"
+                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
+                            maxlength="255" required #projectDescription="ngModel"
                             [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
                         <small class="text-danger"
                             [class.d-none]="projectDescription.valid || projectDescription.untouched">Project
@@ -60,7 +60,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
-                          min="1"  [(ngModel)]="project.teamSize" required #teamSize="ngModel"
+                            min="1" [(ngModel)]="project.teamSize" required #teamSize="ngModel"
                             [class.is-invalid]="teamSize.invalid && teamSize.touched" />
                         <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
                             required</small>
@@ -134,8 +134,8 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectStartDate" name="projectStartDate"
-                            placeholder="projectStartDate" [ngModel]="(project.projectStartDate) | date: 'yyyy-MM-dd' " required
-                            #projectStartDate="ngModel"
+                            placeholder="projectStartDate" [ngModel]="project.projectStartDate | date: 'yyyy-MM-dd' "
+                            (ngModelChange)="project.projectStartDate = $event" required #projectStartDate="ngModel"
                             [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
                         <small class="text-danger"
                             [class.d-none]="projectStartDate.valid || projectStartDate.untouched">Project Start Date
@@ -149,8 +149,8 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
-                            placeholder="projectEndDate" [ngModel]="(project.projectEndDate) | date: 'yyyy-MM-dd' " required
-                            #projectEndDate="ngModel"
+                            placeholder="projectEndDate" [ngModel]="project.projectEndDate | date: 'yyyy-MM-dd' "
+                            (ngModelChange)="project.projectEndDate = $event" required #projectEndDate="ngModel"
                             [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
                         <small class="text-danger"
                             [class.d-none]="projectEndDate.valid || projectEndDate.untouched">Project End Date
@@ -203,17 +203,17 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
-                      <h6 class="mb-0">Status</h6>
+                        <h6 class="mb-0">Status</h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="project.status" required>
-                          <option value="To-Do" selected>To-Do</option>
-                          <option value="In-Progress">In-Progress</option>
-                          <option value="Ready-For-Test">Ready-For-Test</option>
-                          <option value="Completed">Completed</option>
+                            <option value="To-Do" selected>To-Do</option>
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Ready-For-Test">Ready-For-Test</option>
+                            <option value="Completed">Completed</option>
                         </select>
                     </div>
-                  </div>
+                </div>
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputremarks">
@@ -227,7 +227,7 @@
                             required</small>
                     </fieldset>
                 </div>
-                
+
 
 
 

@@ -17,32 +17,22 @@ import { ViewProjectStatusComponent } from './view-project-status/view-project-s
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
 
 const routes: Routes = [
-  { path: '', component: ErrorComponent},
-  { path: 'login', component: LoginComponent},
-  // { path: 'home', component: HomeComponent},
-  // { path: 'home/:userId', component: HomeComponent},
-  // { path: 'member-signUp', component: MemberSignUpComponent},
-  // { path: 'view-project-status', component: ViewProjectStatusComponent},
-  // { path: 'project-registration', component: ProjectRegistrationOrUpdationComponent},
-  // { path: 'project-registration/:projectId', component: ProjectRegistrationOrUpdationComponent},
-  // { path: 'project-story-registration', component: ProjectStoriesRegistrationOrUpdationComponent},
-  // { path: 'project-story-registration/:storyId', component: ProjectStoriesRegistrationOrUpdationComponent}
-  // { path:'**', component: LoginComponent}
-  { path: 'member-signUp', component: MemberSignUpComponent},
-  { path: 'home/:userName', component: HomeComponent, canActivate: [AuthGuardDataService]},
-  { path: 'profiles/:userName', component: ProfilesComponent, canActivate: [AuthGuardDataService]},
-  { path: 'user-profile/:userName', component: UserProfileComponent, canActivate: [AuthGuardDataService]},
-  { path: 'view-project-status', component: HomeComponent, canActivate: [AuthGuardDataService]},
-  { path: 'my-projects', component: MyProjectsComponent, canActivate: [AuthGuardDataService]},
-  { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService]},
-  { path: 'view-project-story-status/:projectId/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService]},
-  { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService]},
-
-  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
-  { path: '**', component: ErrorComponent }
+  { path: '', redirectTo: 'login' , pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
+  { path: 'member-signUp', component: MemberSignUpComponent },
+  { path: 'home/:userName', component: HomeComponent, canActivate: [AuthGuardDataService] },
+  { path: 'profiles/:userName', component: ProfilesComponent, canActivate: [AuthGuardDataService] },
+  { path: 'user-profile/:userName', component: UserProfileComponent, canActivate: [AuthGuardDataService] },
+  { path: 'view-project-status', component: HomeComponent, canActivate: [AuthGuardDataService] },
+  { path: 'my-projects', component: MyProjectsComponent, canActivate: [AuthGuardDataService] },
+  { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService] },
+  { path: 'view-project-story-status/:projectId/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService] },
+  { path: '**', component: ErrorComponent, canActivate: [AuthGuardDataService] },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] }
 
 ];
 

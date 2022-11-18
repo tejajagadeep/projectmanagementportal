@@ -11,42 +11,42 @@ import { USER_API_URL } from 'src/app/app.constants';
 })
 export class BasicAuthenticationService {
 
-  
- public TOKEN = 'token'
- public AUTHENTICATED_USER = 'authenticaterUser'
+
+  public TOKEN = 'token'
+  public AUTHENTICATED_USER = 'authenticaterUser'
 
   constructor(private http: HttpClient) { }
 
   executeJWTAuthenticationService(username: string, password: string) {
-    
+
     return this.http.post<any>(
-      `http://localhost:8093/project-management/authenticate`,{
-        username,
-        password
-      }).pipe(
-        map(
-          data => {
-            sessionStorage.setItem(this.AUTHENTICATED_USER, username);
-            sessionStorage.setItem(this.TOKEN, `Bearer ${data.token}`);
-            return data;
-          }
-        )
-      );
+      `http://localhost:8093/project-management/authenticate`, {
+      username,
+      password
+    }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(this.AUTHENTICATED_USER, username);
+          sessionStorage.setItem(this.TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
     //console.log("Execute Hello World Bean Service")
   }
 
 
   executeAuthenticationService(username: string, password: string) {
-    
+
     let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
 
     let headers = new HttpHeaders({
-        Authorization: basicAuthHeaderString
-      })
+      Authorization: basicAuthHeaderString
+    })
 
     return this.http.get<any>(
       `http://localhost:8093/project-management/**`,
-      {headers}).pipe(
+      { headers }).pipe(
         map(
           data => {
             sessionStorage.setItem(this.AUTHENTICATED_USER, username);
@@ -65,9 +65,9 @@ export class BasicAuthenticationService {
   }
 
   getAuthenticatedToken() {
-    if(this.getLoggedInUserName())
+    if (this.getLoggedInUserName())
       return sessionStorage.getItem(this.TOKEN)
-    return ;
+    return;
   }
 
   isUserLoggedIn() {
@@ -76,13 +76,13 @@ export class BasicAuthenticationService {
     return true
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem(this.AUTHENTICATED_USER)
     sessionStorage.removeItem(this.TOKEN)
   }
 
 }
 
-export class AuthenticationBean{
-  constructor(public message:string) { }
+export class AuthenticationBean {
+  constructor(public message: string) { }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorComponent } from '../error/error.component';
 import { MessageResponse } from '../model/message-response';
 import { Project } from '../model/project';
 import { Story } from '../model/story';
@@ -16,18 +15,18 @@ export class ProfilesComponent implements OnInit {
 
   username!: string
   message!: string
-  errorMessageResponse=""
-  name=''
-  user!:User[]
+  errorMessageResponse = ""
+  name = ''
+  user!: User[]
   story!: Story[]
-  project!:Project[]
+  project!: Project[]
   helloWorldMessage!: MessageResponse
 
   searchText!: string
 
   constructor(
-    private router : Router, 
-    private route: ActivatedRoute, 
+    private router: Router,
+    private route: ActivatedRoute,
     private userService: UserDataService
   ) { }
 
@@ -39,7 +38,7 @@ export class ProfilesComponent implements OnInit {
     // this.helloWorld();
   }
 
-  getAllUsers(){
+  getAllUsers() {
     this.userService.getAllUsers(this.username).subscribe(
       response => this.handleGetUsers(response)
       // {
@@ -50,13 +49,13 @@ export class ProfilesComponent implements OnInit {
     );
     console.log('getAllUsers')
 
-   }
+  }
 
-   handleGetUsers(response : any){
+  handleGetUsers(response: any) {
     this.user = response
     console.log('handle getUsers')
 
-   }
+  }
 
   //  helloWorld(){
   //   this.userService.helloWorldDataService().subscribe(
@@ -66,7 +65,7 @@ export class ProfilesComponent implements OnInit {
   //   )
   //  }
 
-   
+
 
   //  helloWorld(){
   //   this.userService.helloWorldDataService().subscribe(

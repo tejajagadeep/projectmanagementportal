@@ -107,7 +107,8 @@
                         <h6>Users Assigned</h6>
                     </td>
                     <td>
-                     <div *ngFor="let assign of project.projectAssignedToUsers" class="btn-light">Id: {{assign}} </div>
+                        <div *ngFor="let assign of project.projectAssignedToUsers" class="btn-light">Id: {{assign}}
+                        </div>
                     </td>
                 </tr>
 
@@ -115,21 +116,28 @@
         </table>
         <br>
         <div class="d-flex justify-content-between">
-            <button *ngIf="user.role === 'Admin' && project.projectOwner === username" (click)="deleteProject(project.projectId)" class="btn btn-danger">Delete</button>
-            <button *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" [routerLink]="['/project-story-registration/',project.projectId]"
-                class="btn btn-secondary">New Story For
+            <button *ngIf="user.role === 'Admin' && project.projectOwner === username"
+                (click)="deleteProject(project.projectId)" class="btn btn-danger">Delete</button>
+            <button
+                *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+                [routerLink]="['/project-story-registration/',project.projectId]" class="btn btn-secondary">New Story
+                For
                 {{project.projectName}}</button>
-                <button *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" (click)="updateProject(project.projectId)" class="btn btn-info">Update</button>
-            </div>
+            <button
+                *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+                (click)="updateProject(project.projectId)" class="btn btn-warning">Update</button>
+        </div>
         <br>
-            <br>
+        <br>
 
-        <form  *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)" class="d-flex justify-content-between"#RegisterForm="ngForm" (ngSubmit)="projectAssign()" >
-           
-                <h6 class="mb-0">Story Title</h6>
-                <input type="text" class="form-control" id="assignedTo" name="assignedTo"
-                    placeholder="Assigned To UserId" [(ngModel)]="assignedTo" required>
-                
+        <form
+            *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+            class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="projectAssign()">
+
+            <h6 class="mb-0">Story Title</h6>
+            <input type="text" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assigned To UserId"
+                [(ngModel)]="assignedTo" required>
+
             <button type="submit" class="btn btn-success">assignedToUser</button>
         </form>
         <br>
@@ -155,7 +163,8 @@
                 <div class="p-2"><b>TargetDate:</b> {{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</div>
                 <div class="p-2"><b>Status:</b> {{storyDetail.status}}</div>
             </div><br>
-            <a [routerLink]="['/view-project-story-status/',project.projectId,storyDetail.storyId]" class="btn btn-success">Story
+            <a [routerLink]="['/view-project-story-status/',project.projectId,storyDetail.storyId]"
+                class="btn btn-success">Story
                 Details</a>
         </div>
     </ng-container>
@@ -255,4 +264,3 @@
 </div> -->
 
 <app-footer></app-footer>
-

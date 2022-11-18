@@ -16,15 +16,23 @@ export class AuthenticationDataService {
 
   messageResponse!: MessageResponse
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    // private http: HttpClient,
+    private httpClient: HttpClient
+  ) { }
 
   authenticate(username: string, password: string) {
-    if (username === "in28minutes" && password === "password") {
-      sessionStorage.setItem('username', username)
-      return true;
-    } else {
-      return false;
-    }
+    return this.httpClient.post<any>('http://localhost:8093/project-management/authenticate', { username, password }).pipe(
+      map(
+        userData => {
+          sessionStorage.setItem('username', username);
+          let tokenStr = 'Bearer ' + userData.token;
+          sessionStorage.setItem('token', tokenStr);
+          return userData;
+        }
+      )
+
+    );
   }
 
   isUserLoggedIn() {
@@ -42,7 +50,7 @@ export class AuthenticationDataService {
   }
 
   authenticationService(username: string, password: string): Observable<any> {
-    return this.http.get(`http://localhost:8093/project-management/basicauth`,
+    return this.httpClient.get(`http://localhost:8093/project-management/basicauth`,
       { headers: { authorization: this.createBasicAuthToken1(username, password) } }).pipe(map((res) => {
         this.username = username;
         this.password = password;
@@ -70,10 +78,11 @@ export class AuthenticationDataService {
     return true
   }
 
-  isNavBar(){
+  isNavBar() {
     let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user) {return false} else {
-    return true}
+    if (user) { return false } else {
+      return true
+    }
   }
 
   getLoggedInUserName() {
