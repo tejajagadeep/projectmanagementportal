@@ -7,7 +7,8 @@
 
             <div class="card-body">
 
-                <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+                <div class="container text-center  alert alert-warning" *ngIf="errorMessageResponse">Error:
+                    {{errorMessageResponse}}
                 </div>
 
 
@@ -51,7 +52,7 @@
                         <small class="text-danger"
                             [class.d-none]="projectDescription.valid || projectDescription.untouched">Project
                             Description Id
-                            is requiredand must be minimium 100 characters</small>
+                            is requiredand should have minimium 100 characters</small>
                     </fieldset>
                 </div>
 
@@ -103,8 +104,8 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
-                            placeholder="projectManagerEmailId" [(ngModel)]="project.projectManagerEmailId" required
-                            #projectManagerEmailId="ngModel"
+                            placeholder="projectManagerEmailId" [(ngModel)]="project.projectManagerEmailId"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #projectManagerEmailId="ngModel"
                             [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
                         <small class="text-danger"
                             [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">Project
@@ -133,8 +134,8 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
-                            placeholder="techLeadEmailId" [(ngModel)]="project.techLeadEmailId" required
-                            #techLeadEmailId="ngModel"
+                            placeholder="techLeadEmailId" [(ngModel)]="project.techLeadEmailId"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #techLeadEmailId="ngModel"
                             [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
                         <small class="text-danger"
                             [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">Tech Lead Email Id is
@@ -245,7 +246,7 @@
 
 
 
-                <div class="d-flex justify-content-between pt-3">
+                <div class="d-flex justify-content-around pt-3">
                     <button type="button" class="btn btn-primary btn-lg" (click)="navBack()">Back</button>
                     <button type="button" class="btn btn-light" [routerLink]="['/home/',username]">Home</button>
                     <button type="reset" class="btn btn-info btn-lg">Reset all</button>

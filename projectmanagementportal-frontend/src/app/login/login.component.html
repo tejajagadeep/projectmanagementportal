@@ -53,7 +53,7 @@
   </div>
 </section> -->
 
-<section class="vh-100 gradient-custom">
+<section class="vh-100 gradient-custom" *ngIf="!isLogin">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -64,8 +64,7 @@
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-              <small class="alert alert-warning " *ngIf='errorMessage'>{{errorMessage}}</small>
-              <div class="alert alert-warning d-flex align-items-center" role="alert" *ngIf='invalidLogin'>
+              <div class="alert alert-warning d-flex align-items-center" role="alert" *ngIf='errorMessage'>
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
                   <use xlink:href="#exclamation-triangle-fill" />
                 </svg>
@@ -106,7 +105,7 @@
     </div>
   </div>
 </section>
-
+<app-home *ngIf="isLogin"></app-home>
 <!-- <app-menu></app-menu>
 <div class="container col-lg-6">
     <h1 class="text-center">Login</h1>

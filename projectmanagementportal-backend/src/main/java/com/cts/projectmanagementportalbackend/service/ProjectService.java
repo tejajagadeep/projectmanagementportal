@@ -2,8 +2,6 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { STORY_API_URL } from 'src/app/app.constants';
+import { MessageResponse } from 'src/app/model/message-response';
 import { Story } from 'src/app/model/story';
 
 @Injectable({
@@ -36,6 +37,10 @@ export class StoryDataService {
 
   StoryAssign(projectId: string, storyId: string, project: Story) {
     return this.http.put<Story>(`${STORY_API_URL}/updateStoryAssignAdmin/${projectId}/story/${storyId}`, Story);
+  }
+
+  StoryAssignToUser(userName: string, storyId: string, messageResponse: MessageResponse) {
+    return this.http.put<MessageResponse>(`${STORY_API_URL}/assignStoryToUsers/${userName}/story/${storyId}`, messageResponse);
   }
 
 }

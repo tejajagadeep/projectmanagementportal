@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage!: string
   successMessage!: string
   invalidLogin = false
-  loginSuccess = false
+  isLogin = false
   user!: User
   messageResponse!: MessageResponse
 
@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log('login.component.ts')
     this.password = 'ABCabc@123'
+    this.isLogin = this.authenticateLoginService.isUserLoggedIn();
+    console.log(this.isLogin)
   }
 
   navLink() {
@@ -79,20 +81,31 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin1() {
-    this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(
-      // {
+    // this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(
+    //   // {
+    //   response => {
+    //     this.user = response
+    //     this.router.navigate(['/home', this.username])
+
+    //   }
+
+
+
+    // );
+    // this.userService.login(this.username, this.password, this.user).subscribe(
+    //   (data: User) => { this.user = data },
+    //   error => this.errorMessage = "Invalid Credantials"
+    // )
+
+    this.authenticateLoginService.authenticate(this.username, this.password).subscribe(
       response => {
         this.user = response
         this.router.navigate(['/home', this.username])
-
+      },
+      error => {
+        this.errorMessage = "Invalid Credentials"
       }
 
-
-
     );
-    this.userService.login(this.username, this.password, this.user).subscribe(
-      (data: User) => { this.user = data },
-      error => this.errorMessage = "Invalid Credantials"
-    )
   }
 }

@@ -8,6 +8,8 @@ import { Story } from '../model/story';
 import { UserDataService } from '../service/data/user-data.service';
 import { User } from '../model/user';
 import { Project } from '../model/project';
+import { MessageResponse } from '../model/message-response';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -28,6 +30,12 @@ export class ViewProjectStoryStatusComponent implements OnInit {
 
   projectId!: string
   project!: Project
+
+  assignedTo!: string
+  messageResponse!: MessageResponse
+  messageAssigned!: string
+  messageAssignedNUll!: string
+  assignUndefined = false
 
   constructor(
     private router: Router,
@@ -51,6 +59,23 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.getUser(this.username);
 
     // this.getuserByName(this.name)
+  }
+
+  storyAssign() {
+    
+    this.storyService.StoryAssignToUser(this.assignedTo, this.storyId, this.messageResponse).subscribe(
+      response => {
+        this.messageAssigned = response.message,
+        this.getStoryById(this.storyId)
+      },
+      
+      error => this.messageAssigned = error.error.message
+
+    )
+    if(this.assignedTo==undefined){
+      this.assignUndefined = true
+      this.messageAssigned = this.messageAssignedNUll
+  }
   }
 
   getUsername() {

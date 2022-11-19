@@ -9,14 +9,14 @@ import { AuthenticationDataService } from '../service/auth/authentication-data.s
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private AuthGaurdService: AuthenticationDataService
+    private AuthService: AuthenticationDataService
   ) { }
 
   ngOnInit(
 
   ): void {
 
-    this.AuthGaurdService.logOut();
+    this.AuthService.logOut();
 
   }
 

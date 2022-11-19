@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <h6>Project Owner Id</h6>
+                        <h6>Posted By User</h6>
                     </td>
                     <td>{{project.projectOwner}}</td>
                 </tr>
@@ -107,7 +107,10 @@
                         <h6>Users Assigned</h6>
                     </td>
                     <td>
-                        <div *ngFor="let assign of project.projectAssignedToUsers" class="btn-light">Id: {{assign}}
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <div *ngFor="let assign of project.projectAssignedToUsers">
+                                <div>&nbsp;&nbsp;&nbsp;Id:-&nbsp; {{assign}}&nbsp;;</div>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -141,7 +144,7 @@
             <button type="submit" class="btn btn-success">assignedToUser</button>
         </form>
         <br>
-        <div class="alert alert-info" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
+        <div class="alert alert-primary" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
 
     </div>
 </div>
@@ -262,5 +265,4 @@
         </tbody>
     </table>
 </div> -->
-
 <app-footer></app-footer>

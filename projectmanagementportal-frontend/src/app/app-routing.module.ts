@@ -17,7 +17,7 @@ import { ViewProjectStatusComponent } from './view-project-status/view-project-s
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login' , pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'member-signUp', component: MemberSignUpComponent },
   { path: 'home/:userName', component: HomeComponent, canActivate: [AuthGuardDataService] },
@@ -31,8 +31,8 @@ const routes: Routes = [
   { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService] },
   { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService] },
   { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService] },
-  { path: '**', component: ErrorComponent, canActivate: [AuthGuardDataService] },
-  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] }
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
+  { path: '**', component: ErrorComponent, canActivate: [AuthGuardDataService] }
 
 ];
 

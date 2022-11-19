@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { UserDataService } from '../service/data/user-data.service';
@@ -10,20 +11,28 @@ import { UserDataService } from '../service/data/user-data.service';
 })
 export class MenuComponent implements OnInit {
 
-  isUserLoggedIn!: boolean
+  LoggedIn = false
   username!: string
   user!: User
   errorMessage!: string
 
   constructor(
     private authService: AuthenticationDataService,
-    private userService: UserDataService
+    private userService: UserDataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.isUserLoggedIn = this.authService.isUserLoggedIn();
+    // this.isUserLoggedIn = this.authService.isUserLoggedIn();
     this.getUsername();
     this.getUser(this.username);
+    this.LoggedIn = this.authService.isUserLoggedIn();
+
+  }
+
+  logout() {
+    this.authService.logOut()
+    this.router.navigate(['logout'])
   }
 
   getUsername() {

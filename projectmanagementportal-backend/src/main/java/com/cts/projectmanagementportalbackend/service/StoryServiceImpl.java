@@ -1,16 +1,12 @@
 package com.cts.projectmanagementportalbackend.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
@@ -18,13 +14,13 @@ import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
 import com.cts.projectmanagementportalbackend.repository.StoryRepositry;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
-import com.cts.projectmanagementportalbackend.security.UserDetailsImpl;
 
 @Service
 public class StoryServiceImpl implements StoryService {
@@ -241,5 +237,58 @@ public class StoryServiceImpl implements StoryService {
 
 	}
 
+	@Override
+	public MessageResponse assignStoryToUser(String userName, String storyId) {
+//		Set<Story> storySet = null;
+
+		Story story = storyRepositry.findById(storyId).get();
+
+		User user = userRepository.findByUserName(userName);
+
+		if (user == null) {
+
+			log.warn("User Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist");
+
+		} else if (story == null) {
+
+			log.warn("story Id does'nt exist " + storyId);
+			throw new NoSuchElementExistException("story Id doesn't exist");
+		}
+
+		Project project = projectRepository.findById(story.getProjectIdName()).get();
+
+		System.out.println("manager: " + user.getName().equals(project.getProjectManagerName()));
+		System.out.println("techlead : " + user.getName().equals(project.getTechLeadName()));
+		System.out.println("Owner: " + userName.equals(project.getProjectOwner()));
+
+		if (user.getName().equals(project.getProjectManagerName()) ==false
+				&& user.getName().equals(project.getTechLeadName()) == false
+				&& userName.equals(project.getProjectOwner()) == false
+				&& project.getProjectAssignedToUsers() == null
+				) {
+
+			throw new InvalidUserException("User not Part of the Project.");
+		}
+		
+		if(project.getProjectAssignedToUsers()!=null) {
+			project.getProjectAssignedToUsers().forEach( assignProjectUser -> {
+				
+				if(!assignProjectUser.contentEquals(userName)) {
+					throw new InvalidUserException("User not Part of the Project..");
+				} 
+				
+			});
+		};
+
+		story.addStoryAssignedToUsers(userName);
+
+		String msg = "story with Id " + storyId + " is assigned to User with Id " + userName;
+		log.info("inside assign of Story Servcie Impl " + msg);
+
+		storyRepositry.save(story);
+
+		return new MessageResponse(msg);
+	}
 
 }

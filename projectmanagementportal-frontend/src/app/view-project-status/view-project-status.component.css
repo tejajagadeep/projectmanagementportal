@@ -82,3 +82,16 @@ th {
     overflow: hidden;
     white-space: nowrap;
 }
+
+.ellipsis {
+    max-width: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+h1 {
+    text-align: center;
+    color: rgba(23, 119, 14, 0.87);
+    padding-bottom: 20px;
+}

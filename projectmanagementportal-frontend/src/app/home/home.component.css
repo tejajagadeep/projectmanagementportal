@@ -101,10 +101,11 @@ input:focus {
     min-width: 200px;
 }
 
-h2 {
+h1 {
     text-align: center;
-    color: rgba(255, 153, 0);
+    color: rgb(255, 115, 0);
     padding-top: 50px;
+    text-decoration: darkgreen;
 }
 
 #divStyle {

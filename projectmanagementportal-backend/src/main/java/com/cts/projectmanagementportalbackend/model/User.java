@@ -145,9 +145,9 @@ public class User {
 		this.role = role;
 	}
 
-	public String getUserType() {
-		return userType;
-	}
+//	public String getUserType() {
+//		return userType;
+//	}
 
 	public void setUserType(String userType) {
 		this.userType = userType;

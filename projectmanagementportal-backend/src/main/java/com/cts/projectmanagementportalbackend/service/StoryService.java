@@ -2,12 +2,10 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
-import com.cts.projectmanagementportalbackend.model.Project;
+import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Story;
 
 public interface StoryService {
@@ -25,5 +23,7 @@ public interface StoryService {
 	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
 
 	void assign(String projectId, String storyId)  throws NoSuchElementExistException;
+	
+	MessageResponse assignStoryToUser(String userName, String storytId);
 	
 }

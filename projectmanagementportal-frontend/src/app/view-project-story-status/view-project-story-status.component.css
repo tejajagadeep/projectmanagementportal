@@ -67,3 +67,9 @@ td,
 th {
     text-align: center;
 }
+
+h1 {
+    text-align: center;
+    color: rgba(73, 89, 184, 0.87);
+    padding-bottom: 20px;
+}

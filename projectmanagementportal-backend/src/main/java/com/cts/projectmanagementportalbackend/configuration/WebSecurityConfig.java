@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,8 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.jwt.JwtAuthenticationEntryPoint;
 import com.cts.projectmanagementportalbackend.jwt.JwtRequestFilter;
-import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
-import com.cts.projectmanagementportalbackend.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -34,9 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserDetailsService userDetailsService;
-
-//	@Autowired
-//	UserService userService;
 
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
@@ -59,40 +53,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		auth.inMemoryAuthentication().withUser("Sam").password(passwordEncoder().encode("aaaa")).roles("admin");
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//		auth.authenticationProvider(authProvider());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("inside HttpSecurity configure of WebSecurityConfig");
 		http.authorizeRequests()
-//			.antMatchers(HttpMethod.GET).hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.POST).hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MEMBER")
-//			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
 				.antMatchers("/authenticate").permitAll()
 				.antMatchers(HttpMethod.GET).permitAll()
 
-//			
-//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllProjects").hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getProjectById/{projectId}").hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.POST,"/api/v1.0/project/registerProject").hasAnyRole("ADMIN")
-//			
-//			.antMatchers(HttpMethod.GET,"/api/v1.0/story/getAllStories").hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.POST,"/api/v1.0/story/registerStory").hasAnyRole("ADMIN")
-//			.antMatchers(HttpMethod.PUT,"/api/v1.0/story/updateStory/**").hasAnyRole("ADMIN","MEMBER")
-//			.antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
-
-//			.antMatchers(HttpMethod.POST,"/api/v1.0/user/getUserById/{userId}").access("@userSecurity.hasUserId(authenticate,#userId)")
 				.antMatchers(HttpMethod.GET, "/api/v1.0/user/helloWorld").permitAll()
-//			.antMatchers(HttpMethod.POST,"/basicauth").permitAll()
-//			.antMatchers(HttpMethod.GET,"/api/v1.0/user/getAllUsers/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/userSignUp").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login/**").permitAll()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//			.anyRequest().authenticated().and().httpBasic()
-//			.and().formLogin().defaultSuccessUrl("/welcome",true)
 		;
 
 		http.cors();

@@ -11,7 +11,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +28,6 @@ public class AuthController {
 	@Autowired
 	private AuthenticationManager auth;
 	
-	@Autowired
-	private UserDetailsService userDetails;
-	
-
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	
 	@PostMapping("/login")

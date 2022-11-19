@@ -2,17 +2,12 @@ package com.cts.projectmanagementportalbackend.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
-
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
@@ -29,8 +24,6 @@ import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
 import com.cts.projectmanagementportalbackend.repository.StoryRepositry;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
@@ -68,6 +61,10 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	@Override
 	public List<Project> getProjectsByStatus(String status) {
+		
+		if (!status.equals("To-Do") && !status.equals("In-Progress") && !status.equals("Ready-For-Test") && !status.equals("Completed")) {
+			throw new NoSuchElementExistException("Please give valid Status");
+		}
 
 		log.info(" inside getProjectsByStatus of ProjectServiceImpl : "+ status);
 		
@@ -82,10 +79,10 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 		// TODO Auto-generated method stub
-		Optional<Project> optionalProject = projectRepository.findById(projectId);
-		if(optionalProject.isPresent()) {
+		Project optionalProject = projectRepository.findById(projectId).get();
+		if(optionalProject!=null) {
 			log.info("project with Id: "+ projectId);
-			return projectRepository.findById(projectId).get();
+			return optionalProject;
 		} else {
 			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
@@ -244,8 +241,6 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		
 
-		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
-		
 		project.setProjectOwner(user.getUserName());
 		
 		projectSet = user.getProjects();
@@ -278,7 +273,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if (project == null) {
 			
-			log.warn("project Id does'nt exist " + userName);
+			log.warn("project Id does'nt exist " + projectId);
 			throw new NoSuchElementExistException("project Id doesn't exist");
 			
 		} else if (user==  null) {
@@ -294,15 +289,15 @@ public class ProjectServiceImpl implements ProjectService{
 		boolean projectTLEqualsPO = userRepository.findByName(project.getProjectManagerName()).getUserName().equals(project.getProjectOwner());
 		boolean projectPOEqualsPM = userRepository.findByName(project.getTechLeadName()).getUserName().equals(project.getProjectOwner());
 			
-		if (projectPMEqualsTL || projectTLEqualsPO || projectPOEqualsPM) {
+		if (!projectPMEqualsTL || !projectTLEqualsPO || !projectPOEqualsPM) {
 			--projectSizeParseInt;
 		} else
 		
-		if (projectPMEqualsTL && projectTLEqualsPO && projectPOEqualsPM) {
-			--projectSizeParseInt;
+		if (!projectPMEqualsTL && !projectTLEqualsPO && !projectPOEqualsPM) {
+			projectSizeParseInt=projectSizeParseInt-2;
 		}
 		
-		--projectSizeParseInt;
+		projectSizeParseInt=projectSizeParseInt-1;
 		
 		if (user.getName().equals(project.getProjectManagerName())) {
 			
@@ -335,15 +330,11 @@ public class ProjectServiceImpl implements ProjectService{
 				dummy.add(assignProjectUser);
 			});
 		}
-//		else if (project.getProjectAssignedToUsers().size()>projectSizeParseInt) {
-//			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
-//		}
-//		System.out.println(project.getProjectAssignedToUsers().size());
-//		System.out.println(project.getProjectAssignedToUsersSize());
+		
 		System.out.println(projectSizeParseInt);
 		System.out.println(dummy.size());
 		
-		if (projectSizeParseInt<=dummy.size()) {
+		if (dummy.size()>=projectSizeParseInt) {
 			
 			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
 		}
@@ -351,17 +342,16 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		project.addProjectAssignedToUsers(userName);
 			
-		storySetAssign.forEach(storyEach -> {
-			
-			storyEach.addStoryAssignedToUsers(userName);
-		});
+//		storySetAssign.forEach(storyEach -> {
+//			
+//			storyEach.addStoryAssignedToUsers(userName);
+//		});
 		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
 		String msg= "User with Id : " + userName + " is assigned to project with Id : " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
-//		projectRepository.save(project);
 		userRepository.save(user);
 		
 		return new MessageResponse(msg);

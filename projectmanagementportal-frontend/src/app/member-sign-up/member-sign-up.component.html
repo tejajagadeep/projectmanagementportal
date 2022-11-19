@@ -218,7 +218,8 @@
     <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
       <h1 class="text-success text-center">User SignUp</h1>
 
-      <!-- <div class="container alert alert-warning text-center" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div> -->
+      <div class="container text-center alert alert-warning" *ngIf="errorMessageResponse">Error {{errorMessageResponse}}
+      </div>
 
       <div class="row align-items-center pt-4 pb-3">
         <label class="form-label col-md-3 ps-5" for="exampleInputName">
@@ -237,8 +238,8 @@
         </label>
         <div class="form-group col-md-9 pe-5">
           <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="abc@gmail.com"
-            [(ngModel)]="user.emailAddress" required #emailAddress="ngModel"
-            [class.is-invalid]="emailAddress.invalid && emailAddress.touched" />
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.emailAddress" required
+            #emailAddress="ngModel" [class.is-invalid]="emailAddress.invalid && emailAddress.touched" />
           <small class="text-danger" [class.d-none]="emailAddress.valid || emailAddress.untouched">Email Address is
             required field</small>
         </div>
@@ -309,7 +310,6 @@
           <small class="text-danger" [class.d-none]="userName.valid || userName.untouched">User Id is required and
             should
             have 5 to 8 charaters</small>
-          <small class="text-danger" *ngIf="errorMessageResponse">{{errorMessageResponse}}</small>
         </div>
       </div>
 
@@ -328,13 +328,13 @@
 
       <div class="d-flex justify-content-around pt-3">
         <div>
-        <button class="btn btn-primary" routerLink="/login">Login</button>
-      </div>
-      <div>
-        <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-      </div>
-      <div>
-        <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+          <button class="btn btn-primary" routerLink="/login">Login</button>
+        </div>
+        <div>
+          <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
         </div>
       </div>
 

@@ -10,14 +10,11 @@ import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendAppl
 //import com.cts.projectmanagementportalbackend.repository.RoleRepository;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component("userSecurity")
 public class UserSecurity {
 	
 	@Autowired
 	UserRepository userRoleRepository;
-//	RoleRepository userRoleRepository;
 	
 	static Logger logg = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 	

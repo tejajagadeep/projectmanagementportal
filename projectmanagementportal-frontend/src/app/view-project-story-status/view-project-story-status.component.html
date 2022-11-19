@@ -69,7 +69,11 @@
                         <h6>Users Assigned</h6>
                     </td>
                     <td>
-                        <div *ngFor="let assign of story.storyAssignedToUsers">Id: {{assign}} </div>
+                        <div class="d-flex flex-wrap justify-content-center">
+                        <div *ngFor="let assign of story.storyAssignedToUsers">
+                            <div>&nbsp;&nbsp;&nbsp;Id:-&nbsp; {{assign}}&nbsp;;</div>
+                        </div>
+                    </div>
                     </td>
                 </tr>
 
@@ -78,16 +82,31 @@
         <div class="d-flex justify-content-between">
             <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name"
                 (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
-
+            
             <button
-                *ngIf="project.projectOwner == username || story.assignee == name|| project.projectManagerName === user.name"
+                *ngIf="(project.projectOwner == username || story.assignee == user.name|| project.projectManagerName === user.name)"
                 (click)="updateStory(story.storyId)" class="btn btn-warning">Update</button>
             <ng-container *ngFor="let assign of story.storyAssignedToUsers">
-                <button *ngIf="assign == username" (click)="updateStory(story.storyId)"
+                <button *ngIf="assign === username && user.role == 'Member'  " (click)="updateStory(story.storyId)"
                     class="btn btn-warning">Update</button>
             </ng-container>
         </div>
         <br>
+        <br>
+
+        <form
+            *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+            class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="storyAssign()">
+
+            <h6 class="mb-0">Story Title</h6>
+            <input type="text" class="form-control" id="assignedTo" maxlength="8" name="assignedTo" placeholder="Assigned To UserId"
+                [(ngModel)]="assignedTo" required>
+                <small class="text-danger" *ngIf="assignUndefined">User Id is required</small>
+
+            <button type="submit" class="btn btn-success">assignedToUser</button>
+        </form>
+        <br>
+        <div class="alert alert-primary" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
         <br>
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>

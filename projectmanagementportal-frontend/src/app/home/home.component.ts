@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   helloWorldMessage!: MessageResponse
 
   // projectIdName!: string
-  isUserLoggedIn!: boolean
+  LoggedIn = false
   user!: User
   errorMessage!: string
 
@@ -49,11 +49,18 @@ export class HomeComponent implements OnInit {
     console.log(this.username)
     console.log('home.component.ts')
     this.getAllProjects();
-    this.isUserLoggedIn = this.authService.isUserLoggedIn();
+    this.LoggedIn = this.authService.isUserLoggedIn();
+    console.log(this.LoggedIn)
     this.getUser(this.username);
+    console.log(this.user.role)
 
     this.getByProjectStatus();
     // this.helloWorld();
+  }
+
+  logout() {
+    this.authService.logOut()
+    this.router.navigate(['logout'])
   }
 
   getUsername() {

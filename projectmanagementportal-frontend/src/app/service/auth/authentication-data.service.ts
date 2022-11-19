@@ -25,7 +25,7 @@ export class AuthenticationDataService {
     return this.httpClient.post<any>('http://localhost:8093/project-management/authenticate', { username, password }).pipe(
       map(
         userData => {
-          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('authenticatedUser', username);
           let tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
           return userData;
@@ -35,17 +35,22 @@ export class AuthenticationDataService {
     );
   }
 
+  getAuthenticatedToken() {
+    return sessionStorage.getItem('token')
+  }
+
   isUserLoggedIn() {
     // let user = sessionStorage.getItem('username')
     // console.log(!(user === null))
     // return !(user === null)
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+    let user = sessionStorage.getItem('authenticatedUser')
     if (user === null) return false
     return true
   }
 
   logOut() {
-    // sessionStorage.removeItem('username')
+    sessionStorage.removeItem('authenticatedUser')
+    sessionStorage.removeItem('token')
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
   }
 
@@ -63,7 +68,8 @@ export class AuthenticationDataService {
   }
 
   registerSuccessfulLogin1(username: string, password: string) {
-    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+    sessionStorage.setItem('authenticatedUser', username)
+    // sessionStorage.setItem('password',password)
   }
 
   logout1() {
@@ -79,14 +85,14 @@ export class AuthenticationDataService {
   }
 
   isNavBar() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+    let user = sessionStorage.getItem('authenticatedUser')
     if (user) { return false } else {
       return true
     }
   }
 
   getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+    let user = sessionStorage.getItem('authenticatedUser')
     if (user === null) return ''
     return user
   }
