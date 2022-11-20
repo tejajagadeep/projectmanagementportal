@@ -1,3 +1,5 @@
+import { Story } from "./story";
+
 export class Project {
   // projectId!: string;
   // projectName!: string;
@@ -30,6 +32,7 @@ export class Project {
     public status: string,
     public remarks: string,
     public projectOwner: string,
-    public projectAssignedToUsers: string[]
+    public projectAssignedToUsers: string[],
+    public stories: Story[]
   ) { }
 }

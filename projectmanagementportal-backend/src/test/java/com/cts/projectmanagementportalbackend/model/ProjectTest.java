@@ -2,25 +2,43 @@ package com.cts.projectmanagementportalbackend.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockBeans;
 
 @SpringBootTest
 class ProjectTest {
-	
+
 	@InjectMocks
 	Project project;
+	
+	@InjectMocks
+	Story story;
+	
+//	private ArrayList<String> projectAssignedToUsers;
+//	private ArrayList<String> projectAssignedToUsersDummy = new ArrayList<>(projectAssignedToUsers);
+	
+	
+	
 	
 	private String dateString = "1999/07/28";
 	private Date date = new Date(dateString);
 	
 	private String projectDescriptionDummy = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
 	
-	private Project projectObject = new Project("project1","project",projectDescriptionDummy,"team1","3","manager1","manager1@gmail.com","tech1","tech1@gamil.com", date, date, "stack1", "ongoing", "done");
+	private Project projectObject = new Project("project2","project2",projectDescriptionDummy,"team2","5","manager2","manager2@gmail.com","tech2","tech2@gamil.com", date, date, "stack2", "Completed", "Completed");
 	
+
+
 	
 	@Test
 	void testGetterSetterProjectId() {
@@ -48,8 +66,8 @@ class ProjectTest {
 
 	@Test
 	void testGetterSetterTeamSize() {
-		project.setTeamSize("3");
-		assertEquals("3", project.getTeamSize());
+		project.setTeamSize("5");
+		assertEquals("5", project.getTeamSize());
 	}
 
 	@Test
@@ -96,14 +114,29 @@ class ProjectTest {
 
 	@Test
 	void testGetterSetterStatus() {
-		project.setStatus("ongoing");
-		assertEquals("ongoing", project.getStatus());
+		project.setStatus("Completed");
+		assertEquals("Completed", project.getStatus());
 	}
 
 	@Test
 	void testGetterSetterRemarks() {
-		project.setRemarks("done");
-		assertEquals("done", project.getRemarks());
+		project.setRemarks("Completed");
+		assertEquals("Completed", project.getRemarks());
+	}
+	
+
+	@Test
+	void testGetterSetterProjectOwner() {
+		project.setProjectOwner("jagadeep");
+		assertEquals("jagadeep", project.getProjectOwner());
+	}
+
+	@Test
+	void testAddProjectAssignedToUsers() {
+		ArrayList<String> assginUser = new ArrayList<>();
+	assginUser.add("user1");
+	project.setProjectAssignedToUsers(assginUser);
+	assertEquals(assginUser,project.getProjectAssignedToUsers());
 	}
 	
 	@Test
@@ -111,11 +144,44 @@ class ProjectTest {
 		Project projectNoArgs = new Project();
 		assertNotEquals(new Project(), projectNoArgs);
 	}
-//
-//	@Test
-//	void testProjectStringStringStringStringStringStringStringStringStringDateDateStringStringString() {
+	
+	
+
+	@Test
+	void testAddStory() {
 //		fail("Not yet implemented");
-//	}
+	}
 
+	@Test
+	void testaddProjectAssignedToUsers() {
+		ArrayList<String> assginUser2 = new ArrayList<>();
+		assginUser2.add("user2");
+		project.addProjectAssignedToUsers("user2");
+		assertEquals(assginUser2,project.getProjectAssignedToUsers());
+	}
 
+	@Test
+	void testGetterSetterStories() {
+		Set<Story> assginStory = new HashSet<>();
+		assginStory.add(story);
+		project.setStories(assginStory);
+		assginStory.stream().forEach(i->{System.out.println(i.toString());});
+		assertEquals(assginStory,project.getStories());
+		
+	}
+	
+	@Test
+	void testaddStories() {
+		Set<Story> assginStory = new HashSet<>();
+		assginStory.add(story);
+		project.addStory(story);
+		assginStory.stream().forEach(i->{System.out.println(i.toString());});
+		assertEquals(assginStory,project.getStories());
+		
+	}
+
+	@Test
+	void testToProject() {
+//		fail("Not yet implemented");
+	}
 }

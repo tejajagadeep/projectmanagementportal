@@ -347,6 +347,8 @@ public class ProjectServiceImpl implements ProjectService{
 			storyEach.addStoryAssignedToUsers(userName);
 		});
 		
+		user.setProjects(projectSet); 
+		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
 		String msg= "User with Id : " + userName + " is assigned to project with Id : " + projectId;

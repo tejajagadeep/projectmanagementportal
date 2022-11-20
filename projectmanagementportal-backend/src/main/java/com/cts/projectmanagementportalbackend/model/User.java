@@ -84,7 +84,7 @@ public class User {
 //	@NotNull(message = "userType should not be Null")
 //	@NotEmpty(message = "userType should not be Empty")
 //	@Size(max = 100)
-	private String userType;
+//	private String userType;
 	
 	@NotNull(message = "password should not be Null")
 	@Size(min = 8, message = "size should 8 characters or more")
@@ -148,10 +148,10 @@ public class User {
 //	public String getUserType() {
 //		return userType;
 //	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+//
+//	public void setUserType(String userType) {
+//		this.userType = userType;
+//	}
 
 	public String getPassword() {
 		return password;
@@ -169,12 +169,16 @@ public class User {
 		this.projects = projects;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", name=" + name + ", emailAddress=" + emailAddress + ", contactNo="
-				+ contactNo + ", dateOfBirth=" + dateOfBirth + ", role=" + role + ", userType=" + userType
-				+ ", password=" + password + ", projects=" + projects + "]";
+				+ contactNo + ", dateOfBirth=" + dateOfBirth + ", role=" + role + ", password=" + password
+				+ ", projects=" + projects + "]";
 	}
+
+	
 
 	public User(@Size(min = 5, max = 8, message = "userId shoud be between 5 and 8 characters") String userName,
 			@NotNull(message = "name should not be Null") @NotEmpty(message = "name shoudl not be Empty") @Size(max = 100) String name,
@@ -182,9 +186,7 @@ public class User {
 			@NotNull(message = "contactNo should not be Null") @Digits(fraction = 0, integer = 10, message = "contactNo should be 10 digits") Long contactNo,
 			@NotNull(message = "dateOfBirth should not be Null") Date dateOfBirth,
 			@NotNull(message = "Role should not be Null") @NotEmpty(message = "Role should not be Empty") @Size(max = 100) String role,
-			String userType,
-			@NotNull(message = "password should not be Null") @Size(min = 8, message = "size should 8 characters or more") @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "must contain one lower case, one upper case, one numeric and one symbol") String password,
-			Set<Project> projects) {
+			@NotNull(message = "password should not be Null") @Size(min = 8, message = "size should 8 characters or more") @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "must contain one lower case, one upper case, one numeric and one symbol") String password) {
 		super();
 		this.userName = userName;
 		this.name = name;
@@ -192,9 +194,7 @@ public class User {
 		this.contactNo = contactNo;
 		this.dateOfBirth = dateOfBirth;
 		this.role = role;
-		this.userType = userType;
 		this.password = password;
-		this.projects = projects;
 	}
 
 	public User() {

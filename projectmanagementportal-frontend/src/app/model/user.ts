@@ -1,3 +1,5 @@
+import { Project } from "./project";
+
 export class User {
 
   // userId!: string;
@@ -16,7 +18,7 @@ export class User {
     public contactNo: number,
     public dateOfBirth: Date,
     public role: string,
-    public password: string
-
+    public password: string,
+    public projects: Project[]
   ) { }
 }

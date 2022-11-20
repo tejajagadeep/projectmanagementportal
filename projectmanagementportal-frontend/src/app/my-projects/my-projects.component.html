@@ -2,12 +2,12 @@
 
 <h1 *ngIf="project">MY PROJECTS</h1>
 
-<div *ngIf=" " class="btn btn-warning">You are Don't have Any Projects To Show</div>
+<div *ngIf="user.projects.length==0" class="text-center text-uppercase alert alert-warning">You are Don't have Any Projects To Show</div>
 <div class="row" id="divStyle">
 
-    <ng-container *ngFor="let projectDetail of project">
+    <ng-container *ngFor="let projectDetail of user.projects">
         <div *ngIf="projectDetail.projectOwner === username" class="offer-content">
-            <h4 id="h4O">Project Owner</h4>
+            <h4 id="h4O">Project Created</h4>
             <h6 class="card-title align-center" id="pMO">{{projectDetail.projectName}}</h6>
             <p class="card-text ">
             <div class="d-flex flex-column ">
@@ -24,7 +24,7 @@
     </ng-container>
 
 
-    <ng-container *ngFor="let projectDetail of project">
+    <ng-container *ngFor="let projectDetail of user.projects">
         <div *ngIf="projectDetail.projectManagerName === user.name" class="offer-contentPM">
             <h4 id="h4PM">Project Manager</h4>
             <h6 class="card-title align-center" id="pMPM">{{projectDetail.projectName}}</h6>
@@ -42,7 +42,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngFor="let projectDetail of project">
+    <ng-container *ngFor="let projectDetail of user.projects">
         <div *ngIf="projectDetail.techLeadName === user.name" class="offer-contentTL">
             <h4 id="h4TL">Tech Lead</h4>
             <h6 class="card-title align-center" id="pMTL">{{projectDetail.projectName}}</h6>
@@ -60,7 +60,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngFor="let projectDetailATU of project">
+    <ng-container *ngFor="let projectDetailATU of user.projects">
         <ng-container *ngFor="let projectDetail of projectDetailATU.projectAssignedToUsers">
             <div *ngIf="projectDetail == username" class="offer-contentAT">
                 <h4 id="h4AT">Project Assigned</h4>

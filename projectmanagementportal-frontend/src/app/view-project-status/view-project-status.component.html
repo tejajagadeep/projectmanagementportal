@@ -153,8 +153,8 @@
 
 
 <div class="row" id="divStyle">
-    <ng-container *ngFor="let storyDetail of story">
-        <div *ngIf="storyDetail.projectIdName == projectId" class="offer-content">
+    <div *ngFor="let storyDetail of project.stories" class="offer-content">
+        <!-- <div *ngIf="storyDetail.projectIdName == projectId" class="offer-content"> -->
             <h6 class="card-title align-center" id="h6">
                 {{storyDetail.storyTitle}}</h6>
             <p class="card-text ">
@@ -169,8 +169,8 @@
             <a [routerLink]="['/view-project-story-status/',project.projectId,storyDetail.storyId]"
                 class="btn btn-success">Story
                 Details</a>
-        </div>
-    </ng-container>
+        <!-- </div> -->
+    </div>
 </div>
 
 <!-- <div class="container">

@@ -2,6 +2,7 @@ package com.cts.projectmanagementportalbackend.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class StoryTest {
-	
+
 	@InjectMocks
 	Story story;
 	
@@ -35,8 +36,8 @@ class StoryTest {
 
 	@Test
 	void testGetterSetterStoryTitle() {
-		story.setStoryTitle("storyTitle");
-		assertEquals("storyTitle", story.getStoryTitle());
+		story.setStoryTitle("story1");
+		assertEquals("story1", story.getStoryTitle());
 	}
 
 	@Test
@@ -47,14 +48,14 @@ class StoryTest {
 
 	@Test
 	void testGetterSetterAssignee() {
-		story.setAssignee("Assignee");
-		assertEquals("Assignee", story.getAssignee());
+		story.setAssignee("Assignee1");
+		assertEquals("Assignee1", story.getAssignee());
 	}
 
 	@Test
 	void testGetterSetterAssigneeEmailId() {
-		story.setAssigneeEmailId("Assignee@gmail.com");
-		assertEquals("Assignee@gmail.com", story.getAssigneeEmailId());
+		story.setAssigneeEmailId("Assignee1@gmail.com");
+		assertEquals("Assignee1@gmail.com", story.getAssigneeEmailId());
 	}
 
 	@Test
@@ -71,20 +72,48 @@ class StoryTest {
 
 	@Test
 	void testGetterSetterStatus() {
-		story.setStatus("ongoing");
-		assertEquals("ongoing", story.getStatus());
+		story.setStatus("Completed");
+		assertEquals("Completed", story.getStatus());
 	}
 
 	@Test
 	void testGetterSetterRemarks() {
-		story.setRemarks("done");
-		assertEquals("done", story.getRemarks());
+		story.setRemarks("Completed");
+		assertEquals("Completed", story.getRemarks());
+	}
+	@Test
+	void testAddStoryAssignedToUsers() {
+		ArrayList<String> assginUser = new ArrayList<>();
+		assginUser.add("user1");
+		story.setStoryAssignedToUsers(assginUser);
+		assertEquals(assginUser,story.getStoryAssignedToUsers());
+		
+		
 	}
 
+	@Test
+	void testGetProjectIdName() {
+		story.setProjectIdName("project1");
+		assertEquals("project1",story.getProjectIdName());
+	}
+	
 	@Test
 	void testStory() {
 		Story storyDummy = new Story();
 		assertNotEquals(new Story(), storyDummy);
+	}
+
+	@Test
+	void testaddStoryAssignedToUsers() {
+		ArrayList<String> assginUser2 = new ArrayList<>();
+		assginUser2.add("user2");
+		story.addStoryAssignedToUsers("user2");
+		assertEquals(assginUser2,story.getStoryAssignedToUsers());
+	}
+
+	@Test
+	void testToString() {
+//		fail("Not yet implemented");
 	}
 
 }
