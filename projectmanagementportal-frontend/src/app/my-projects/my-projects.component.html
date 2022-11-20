@@ -1,8 +1,19 @@
 <app-menu></app-menu>
 
-<h1 *ngIf="project">MY PROJECTS</h1>
+<h1 *ngIf="user.projects.length!=0">MY PROJECTS</h1>
 
-<div *ngIf="user.projects.length==0" class="text-center text-uppercase alert alert-warning">You are Don't have Any Projects To Show</div>
+<div *ngIf="user.projects.length==0" class="d-flex justify-content-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="center text-center text-uppercase alert alert-warning">
+        You Don't have Any Projects To Show.
+
+    </div>
+</div>
 <div class="row" id="divStyle">
 
     <ng-container *ngFor="let projectDetail of user.projects">

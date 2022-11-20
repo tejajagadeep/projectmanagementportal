@@ -43,22 +43,31 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
+	/*
+	 * Retrieve All Projects
+	 */
 	@Override
 	public List<Project> getAllProjects() {
 		log.info(" inside getAllProjects of ProjectServiceImpl");
 		return projectRepository.findAll();
 	}
 	
+	/*
+	 * Getting Project By Project Manager
+	 */
 	@Override
-	public List<Project> getProjectsByProjectManagerName(String techLeadName) {
+	public List<Project> getProjectsByProjectManagerName(String name) {
 
-		log.info(" inside getProjectsByProjectName of ProjectServiceImpl : "+ techLeadName);
+		log.info(" inside getProjectsByProjectName of ProjectServiceImpl : "+ name);
 		
 		
-		return projectRepository.findByProjectManagerName(techLeadName);
+		return projectRepository.findByProjectManagerName(name);
 	}
 	
-	
+	/*
+	 * Getting Projects By Project Status. 
+	 * 		Status: 'To-Do' or 'In-Progress' or 'Ready-For-Test' or 'Completed'
+	 */
 	@Override
 	public List<Project> getProjectsByStatus(String status) {
 		
@@ -72,6 +81,9 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.findByStatus(status);
 	}
 	
+	/*
+	 * Get Project By Project Id
+	 */
 	@Override
 	public Project getProjectById(String projectId) throws NoSuchElementExistException {
 
@@ -89,6 +101,9 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 	}
 
+	/*
+	 * Creating Project
+	 */
 	@Override
 	public Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException, NoSuchElementExistException {
 
@@ -139,6 +154,10 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 	}
+	
+	/*
+	 * Updating Project By Project Id
+	 */
 
 	@Override
 	public Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
@@ -200,6 +219,9 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 	}
 
+	/*
+	 * Deleting Project By Project Id
+	 */
 	@Override
 	public void deleteProjectById(String projectId) throws NoSuchElementExistException {
 
@@ -217,7 +239,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	/*
-	 * 
+	 * Assigning Project to That Creates the Projects
 	 */
 	@Override
 	public void assign(String userName, String projectId) throws NoSuchElementExistException {
@@ -260,7 +282,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	/*
-	 * 
+	 * Assigning Project to A user.
 	 */
 	@Override
 	public MessageResponse assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
