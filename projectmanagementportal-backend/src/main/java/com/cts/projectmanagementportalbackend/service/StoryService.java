@@ -12,17 +12,17 @@ public interface StoryService {
 
 	List<Story> getAllStories();
 	
-	Story getStoryById(String storyId)  throws NoSuchElementExistException;
+	Story getStoryById(String storyId);
 
-	Story saveStory(Story story)  throws IdAlreadyExistException, NoSuchElementExistException, InvalidUserIdOrPasswordException ;
+	Story saveStory(Story story) ;
 
-	Story updateStoryAdmin(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
+	Story updateStoryAdmin(String storyId, Story story);
 	
-	Story updateStoryMember(String storyId, Story story) throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
+	Story updateStoryMember(String storyId, Story story);
 
-	void deleteStoryById(String storyId)  throws NoSuchElementExistException;
+	void deleteStoryById(String storyId) ;
 
-	void assign(String projectId, String storyId)  throws NoSuchElementExistException;
+	void assign(String projectId, String storyId) ;
 	
 //	MessageResponse assignStoryToUser(String userName, String storytId);
 	

@@ -9,12 +9,12 @@ public interface UserService {
 
 	List<User> getAllUsers(String userName);
 	
-	User getByUserName(String userName) throws InvalidUserIdOrPasswordException;
+	User getByUserName(String userName) ;
 	
-	User getByUserId(int userId) throws InvalidUserIdOrPasswordException;
+	User getByUserId(int userId);
 
-	User saveUser(User user)  throws InvalidUserIdOrPasswordException;
+	User saveUser(User user) ;
 
-	User getUserByName(String name)  throws InvalidUserIdOrPasswordException;
+	User getUserByName(String name) ;
 	
 }

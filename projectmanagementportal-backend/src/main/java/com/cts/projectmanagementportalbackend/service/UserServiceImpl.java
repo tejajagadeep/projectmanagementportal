@@ -34,7 +34,9 @@ public class UserServiceImpl implements UserService {
 	
 	
 	
-
+	/*
+	 * Retrieve All User Details
+	 */
 	@Override
 	public List<User> getAllUsers(String userName) {
 		// TODO Auto-generated method stub
@@ -42,8 +44,11 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	/*
+	 * Retrieve User By User Id
+	 */
 	@Override
-	public User getByUserName(String userName)  throws InvalidUserIdOrPasswordException{
+	public User getByUserName(String userName){
 		
 		User optionalUser = userRepository.findByUserName(userName);
 		
@@ -57,8 +62,12 @@ public class UserServiceImpl implements UserService {
 		
 		
 	}
+	
+	/*
+	 * Retrieve User By Name
+	 */
 	@Override
-	public User getUserByName(String name)  throws InvalidUserIdOrPasswordException{
+	public User getUserByName(String name) {
 		
 		User optionalUser = userRepository.findByName(name);
 		
@@ -74,7 +83,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User getByUserId(int userId)  throws InvalidUserIdOrPasswordException{
+	public User getByUserId(int userId){
 		
 		User optionalUser = userRepository.findById(userId).get();
 	
@@ -89,8 +98,11 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+	/*
+	 * Sign Up User
+	 */
 	@Override
-	public User saveUser(User user)  throws InvalidUserIdOrPasswordException{
+	public User saveUser(User user){
 		
 		User optionalUser = userRepository.findByUserName(user.getUserName());
 		User optionalUserEmail = userRepository.findByEmailAddress(user.getEmailAddress());

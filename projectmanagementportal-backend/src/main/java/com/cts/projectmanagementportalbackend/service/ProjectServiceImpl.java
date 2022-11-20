@@ -85,7 +85,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * Get Project By Project Id
 	 */
 	@Override
-	public Project getProjectById(String projectId) throws NoSuchElementExistException {
+	public Project getProjectById(String projectId) {
 
 		log.info(" inside getProjectById of ProjectServiceImpl : ");
 		
@@ -105,7 +105,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * Creating Project
 	 */
 	@Override
-	public Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException, NoSuchElementExistException {
+	public Project saveProject(Project project) {
 
 		log.info(" inside saveProject of ProjectServiceImpl : "+ project.toString());
 		
@@ -160,7 +160,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 */
 
 	@Override
-	public Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
+	public Project updateProjectById(String projectId, Project project){
 
 		log.info(" inside updateProjectById of ProjectServiceImpl : ");
 		
@@ -223,7 +223,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * Deleting Project By Project Id
 	 */
 	@Override
-	public void deleteProjectById(String projectId) throws NoSuchElementExistException {
+	public void deleteProjectById(String projectId) {
 
 		log.info(" inside deleteProjectById of ProjectServiceImpl : ");
 		
@@ -242,7 +242,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * Assigning Project to That Creates the Projects
 	 */
 	@Override
-	public void assign(String userName, String projectId) throws NoSuchElementExistException {
+	public void assign(String userName, String projectId){
 		
         Set<Project> projectSet = null;
 		
@@ -285,7 +285,7 @@ public class ProjectServiceImpl implements ProjectService{
 	 * Assigning Project to A user.
 	 */
 	@Override
-	public MessageResponse assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException {
+	public MessageResponse assignProjectToUser(String userName, String projectId) {
 		
         Set<Project> projectSet = null;
 		

@@ -50,7 +50,7 @@ public class UserController {
 	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") User getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName) throws InvalidUserIdOrPasswordException{
+	public @ApiResponse(description = "Demo Object") User getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName){
 		
 		log.info("inside getByUserName of User Controller");
 		return userService.getByUserName(userName);
@@ -58,7 +58,7 @@ public class UserController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByName/{name}")
-	public @ApiResponse(description = "Demo Object") User getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name) throws InvalidUserIdOrPasswordException{
+	public @ApiResponse(description = "Demo Object") User getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name){
 		
 		log.info("inside getByUserName of User Controller");
 		return userService.getUserByName(name);
@@ -68,7 +68,7 @@ public class UserController {
 	@GetMapping("/getUserByUserId/{userId}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") User getByUserId(@Parameter(description = "Id of the Demo") @PathVariable int userId) throws InvalidUserIdOrPasswordException{
+	public @ApiResponse(description = "Demo Object") User getByUserId(@Parameter(description = "Id of the Demo") @PathVariable int userId){
 		
 		log.info("inside getUserById of User Controller");
 		return userService.getByUserId(userId);
@@ -77,7 +77,7 @@ public class UserController {
 	
 	@PostMapping("/userSignUp")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> saveUser(@Valid @RequestBody User user) throws InvalidUserIdOrPasswordException{
+	public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
 		
 		log.info("inside saveUser of User Controller");
 		return new ResponseEntity<>(userService.saveUser(user),HttpStatus.CREATED);

@@ -37,6 +37,9 @@ public class StoryServiceImpl implements StoryService {
 
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
+	/*
+	 * Retrieve All Stories
+	 */
 	@Override
 	public List<Story> getAllStories() {
 
@@ -45,8 +48,11 @@ public class StoryServiceImpl implements StoryService {
 		return storyRepository.findAll();
 	}
 
+	/*
+	 * Retrieve A Story By Story Id
+	 */
 	@Override
-	public Story getStoryById(String storyId) throws NoSuchElementExistException {
+	public Story getStoryById(String storyId){
 
 		log.info(" inside getStoryById of StoryServiceImpl");
 
@@ -61,9 +67,11 @@ public class StoryServiceImpl implements StoryService {
 		}
 	}
 
+	/*
+	 * Create Project Story
+	 */
 	@Override
-	public Story saveStory(Story story)
-			throws IdAlreadyExistException, NoSuchElementExistException, InvalidUserIdOrPasswordException {
+	public Story saveStory(Story story){
 
 		log.info(" inside saveStory of StoryServiceImpl : " + story.toString());
 
@@ -104,6 +112,9 @@ public class StoryServiceImpl implements StoryService {
 		}
 	}
 
+	/*
+	 * Update Story By Story ID
+	 */
 	@Override
 	public Story updateStoryAdmin(String storyId, Story story)
 			throws NoSuchElementExistException, InvalidUserIdOrPasswordException {
@@ -147,9 +158,11 @@ public class StoryServiceImpl implements StoryService {
 		}
 	}
 
+	/*
+	 * Member Update
+	 */
 	@Override
-	public Story updateStoryMember(String storyId, Story story)
-			throws NoSuchElementExistException, InvalidUserIdOrPasswordException {
+	public Story updateStoryMember(String storyId, Story story){
 
 		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
 		User userAssignee = userRepository.findByName(story.getAssignee());
@@ -184,9 +197,12 @@ public class StoryServiceImpl implements StoryService {
 			return storyRepository.save(storyData);
 		}
 	}
-
+	
+	/*
+	 * Delete Story By Story Id
+	 */
 	@Override
-	public void deleteStoryById(String storyId) throws NoSuchElementExistException {
+	public void deleteStoryById(String storyId) {
 
 		log.info(" inside deleteStoryById of StoryServiceImpl");
 
@@ -201,8 +217,11 @@ public class StoryServiceImpl implements StoryService {
 
 	}
 
+	/*
+	 * Assign Story To Project // HashSet
+	 */
 	@Override
-	public void assign(String projectId, String storyId) throws NoSuchElementExistException {
+	public void assign(String projectId, String storyId){
 		// TODO Auto-generated method stub
 
 		Set<Story> storySet = null;

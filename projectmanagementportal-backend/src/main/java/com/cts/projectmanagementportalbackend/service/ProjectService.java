@@ -16,17 +16,17 @@ public interface ProjectService {
 	
 	List<Project> getProjectsByStatus(String status);
 	
-	Project getProjectById(String projectId) throws NoSuchElementExistException;
+	Project getProjectById(String projectId);
 
-	Project saveProject(Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException , NoSuchElementExistException ;
+	Project saveProject(Project project);
 
-	Project updateProjectById(String projectId, Project project)  throws NoSuchElementExistException, InvalidUserIdOrPasswordException;
+	Project updateProjectById(String projectId, Project project);
 
-	void deleteProjectById(String projectId) throws NoSuchElementExistException;
+	void deleteProjectById(String projectId);
 
-	void assign(String userName, String projectId)  throws NoSuchElementExistException;
+	void assign(String userName, String projectId);
 
-	MessageResponse assignProjectToUser(String userName, String projectId) throws NoSuchElementExistException;
+	MessageResponse assignProjectToUser(String userName, String projectId);
 
 
 	

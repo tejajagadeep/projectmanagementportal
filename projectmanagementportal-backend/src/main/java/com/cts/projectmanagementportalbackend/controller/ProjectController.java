@@ -67,7 +67,7 @@ public class ProjectController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getProjectById/{projectId}")
-	public ResponseEntity<Project> getProjectById(@PathVariable String projectId) throws NoSuchElementExistException{
+	public ResponseEntity<Project> getProjectById(@PathVariable String projectId){
 
 		log.info("inside getProjectById of project Controller");
 		return new ResponseEntity<>(projectService.getProjectById(projectId), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/projectRegistration")
 	@ResponseBody
-	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project) throws IdAlreadyExistException, InvalidUserIdOrPasswordException, NoSuchElementExistException  {
+	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project)  {
 
 		log.info("inside saveProject of project Controller");
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);
@@ -86,7 +86,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/updateProjectById/{projectId}")
 	@ResponseBody
-	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project) throws NoSuchElementExistException, InvalidUserIdOrPasswordException{
+	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project){
 
 		log.info("inside updateProjectById of project Controller");
 		return new ResponseEntity<>(projectService.updateProjectById(projectId, project), HttpStatus.OK);
@@ -94,7 +94,7 @@ public class ProjectController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("updateProjectAssign/{userName}/project/{projectId}")
-	public ResponseEntity<MessageResponse> assign(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
+	public ResponseEntity<MessageResponse> assign(@PathVariable String userName, @PathVariable String projectId) {
 		projectService.assign(userName, projectId);
 		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
@@ -106,7 +106,7 @@ public class ProjectController {
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("assignProjectToUser/{userName}/project/{projectId}")
-	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId)  throws NoSuchElementExistException{
+	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId) {
 		projectService.assignProjectToUser(userName, projectId);
 		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assignProjectToUser of Story Controller "+msg);
@@ -118,7 +118,7 @@ public class ProjectController {
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/deleteProjectById/{projectId}")
-	public ResponseEntity<List<Project>> deleteProjectById(@PathVariable String projectId) throws NoSuchElementExistException{
+	public ResponseEntity<List<Project>> deleteProjectById(@PathVariable String projectId){
 
 		log.info("inside deleteProjectById of project Controller");
 		projectService.deleteProjectById(projectId);
