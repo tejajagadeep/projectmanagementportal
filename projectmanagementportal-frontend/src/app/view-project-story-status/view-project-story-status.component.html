@@ -92,14 +92,14 @@
             </ng-container>
         </div>
         <br>
-        <br>
+        <!-- <br>
 
         <form
             *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
             class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="storyAssign()">
 
             <h6 class="mb-0">Story Title</h6>
-            <input type="text" class="form-control" id="assignedTo" maxlength="8" name="assignedTo" placeholder="Assigned To UserId"
+            <input type="text" class="form-control" id="assignedTo" maxlength="8" name="assignedTo" placeholder="Assign To UserId"
                 [(ngModel)]="assignedTo" required>
                 <small class="text-danger" *ngIf="assignUndefined">User Id is required</small>
 
@@ -107,7 +107,7 @@
         </form>
         <br>
         <div class="alert alert-primary" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
-        <br>
+        <br> -->
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>
 </div>

@@ -77,3 +77,79 @@
 		projectRepository.save(project);
 
 	}
+
+
+
+	@Override
+	public MessageResponse assignStoryToUser(String userName, String storyId) {
+//		Set<Story> storySet = null;
+
+		Story story = storyRepository.findByStoryId(storyId);
+
+		User user = userRepository.findByUserName(userName);
+
+		if (user == null) {
+
+			log.warn("User Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist");
+
+		} else if (story == null) {
+
+			log.warn("story Id does'nt exist " + storyId);
+			throw new NoSuchElementExistException("story Id doesn't exist");
+		}
+
+		Project project = projectRepository.findById(story.getProjectIdName()).get();
+
+		System.out.println("manager: " + user.getName().equals(project.getProjectManagerName()));
+		System.out.println("techlead : " + user.getName().equals(project.getTechLeadName()));
+		System.out.println("Owner: " + userName.equals(project.getProjectOwner()));
+		System.out.println("user id : " + userName);
+		
+		if (user.getName().equals(project.getProjectManagerName()) ==false
+				&& user.getName().equals(project.getTechLeadName()) == false
+				&& userName.equals(project.getProjectOwner()) == false
+				&& project.getProjectAssignedToUsers() == null
+				) {
+
+			throw new InvalidUserException("User not Part of the Project.");
+		} 
+		
+		if(user.getName().equals(project.getProjectManagerName()) ==false
+				&& user.getName().equals(project.getTechLeadName()) == false
+				&& userName.equals(project.getProjectOwner()) == false
+				&& project.getProjectAssignedToUsers()!=null) {
+//			project.getProjectAssignedToUsers().forEach( assignProjectUser -> {
+//				
+//				System.out.println("all users project : "+assignProjectUser);
+//				if(
+//						assignProjectUser.is
+//						!assignProjectUser.equals(userName)) {
+//					
+//					throw new InvalidUserException("User not Part of the Project..");
+//				} 
+//				
+//			});
+			project.getProjectAssignedToUsers()
+			.stream()
+			.filter(i->i.contentEquals(userName))
+			.forEach( 
+					a->{
+						
+						if((a.is())){
+							throw new InvalidUserException("User not Part of the Project..");
+						}
+					}
+					
+					);
+		};
+
+		story.addStoryAssignedToUsers(userName);
+
+		String msg = "story with Id " + storyId + " is assigned to User with Id " + userName;
+		log.info("inside assign of Story Servcie Impl " + msg);
+
+		storyRepository.save(story);
+
+		return new MessageResponse(msg);
+	}

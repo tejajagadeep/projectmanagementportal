@@ -33,6 +33,8 @@ export class ViewProjectStatusComponent implements OnInit {
   assignedTo!: string
 
   messageResponse!: MessageResponse
+  messageAssignedNUll!: string
+  assignUndefined = false
 
   constructor(
     private router: Router,
@@ -98,6 +100,12 @@ export class ViewProjectStatusComponent implements OnInit {
       error => this.messageAssigned = error.error.message
 
     )
+
+    if(this.assignedTo==undefined){
+      this.assignUndefined = true
+      this.messageAssigned = this.messageAssignedNUll
+    }
+
   }
 
   getuserByName(name: string) {

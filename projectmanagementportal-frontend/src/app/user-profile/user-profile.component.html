@@ -54,7 +54,7 @@
             <div class="d-flex justify-content-between pt-3">
                 <a [routerLink]="['/home/',username]" class="btn btn-primary">Back</a>
 
-                <a *ngIf="isUserLoggedIn && user.role == 'Admin' " [routerLink]="['/profiles/',username]"
+                <a *ngIf="isUserLoggedIn" [routerLink]="['/profiles/',username]"
                     class="btn btn-primary">Profiles</a>
             </div>
         </div>

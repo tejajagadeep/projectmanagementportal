@@ -21,7 +21,7 @@ import com.cts.projectmanagementportalbackend.model.Project;
 import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
-import com.cts.projectmanagementportalbackend.repository.StoryRepositry;
+import com.cts.projectmanagementportalbackend.repository.StoryRepository;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
 
@@ -36,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService{
 	UserRepository userRepository;
 	
 	@Autowired
-	StoryRepositry storyRepository;
+	StoryRepository storyRepository;
 	
 	@Autowired
 	UserDetailsServiceImpl userDeatils;
@@ -79,7 +79,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 		// TODO Auto-generated method stub
-		Project optionalProject = projectRepository.findById(projectId).get();
+		Project optionalProject = projectRepository.findByProjectId(projectId);
 		if(optionalProject!=null) {
 			log.info("project with Id: "+ projectId);
 			return optionalProject;
@@ -97,9 +97,9 @@ public class ProjectServiceImpl implements ProjectService{
 		User userProjectManager = userRepository.findByName(project.getProjectManagerName());
 		User userTechLead = userRepository.findByName(project.getTechLeadName());
 		
-		Optional<Project> optionalProject = projectRepository.findById(project.getProjectId());
+		Project optionalProject = projectRepository.findByProjectId(project.getProjectId());
 		
-		if (optionalProject.isPresent()) {
+		if (optionalProject!=null) {
 			
 			log.warn("Project with Id " + project.getProjectId() + "  already Exist");
 			throw new IdAlreadyExistException("Project with Id " + project.getProjectId() + "  already Exist");
@@ -150,9 +150,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 		// TODO Auto-generated method stub
-		Optional<Project> optionalProject = projectRepository.findById(projectId);
+		Project optionalProject = projectRepository.findByProjectId(projectId);
 		
-		if(optionalProject.isEmpty()) {
+		if(optionalProject==null) {
 			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		} else if (userProjectManager==null) {
@@ -182,7 +182,7 @@ public class ProjectServiceImpl implements ProjectService{
 			
 			
 			log.info("udpated project with id"+projectId + project.toString());
-			Project projectData = optionalProject.get();
+			Project projectData = optionalProject;
 			projectData.setProjectName(project.getProjectName());
 			projectData.setProjectDescription(project.getProjectDescription());
 			projectData.setTeamName(project.getTeamName());
@@ -226,7 +226,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		User user = userRepository.findByUserName(userName);
 		
-		Project project = projectRepository.findById(projectId).get();
+		Project project = projectRepository.findByProjectId(projectId);
 		
 		
 		if (project == null) {
@@ -269,7 +269,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		User user = userRepository.findByUserName(userName);
 		
-		Project project = projectRepository.findById(projectId).get();
+		Project project = projectRepository.findByProjectId(projectId);
 		
 		if (project == null) {
 			
@@ -279,7 +279,7 @@ public class ProjectServiceImpl implements ProjectService{
 		} else if (user==  null) {
 			
 			log.warn("User with Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("User with Id "+userName+" doesn't exist ");
+			throw new NoSuchElementExistException("User Id doesn't exist ");
 		}
 		
 
@@ -289,16 +289,18 @@ public class ProjectServiceImpl implements ProjectService{
 		boolean projectTLEqualsPO = userRepository.findByName(project.getProjectManagerName()).getUserName().equals(project.getProjectOwner());
 		boolean projectPOEqualsPM = userRepository.findByName(project.getTechLeadName()).getUserName().equals(project.getProjectOwner());
 			
-		if (!projectPMEqualsTL || !projectTLEqualsPO || !projectPOEqualsPM) {
-			--projectSizeParseInt;
-		} else
-		
+		System.out.println(projectSizeParseInt);
 		if (!projectPMEqualsTL && !projectTLEqualsPO && !projectPOEqualsPM) {
 			projectSizeParseInt=projectSizeParseInt-2;
+			System.out.println(projectSizeParseInt);
+		} else
+		
+		if (!projectPMEqualsTL || !projectTLEqualsPO || !projectPOEqualsPM) {
+			projectSizeParseInt=projectSizeParseInt-1;
+			System.out.println(projectSizeParseInt);
 		}
-		
 		projectSizeParseInt=projectSizeParseInt-1;
-		
+		System.out.println(projectSizeParseInt);
 		if (user.getName().equals(project.getProjectManagerName())) {
 			
 			throw new InvalidUserException("User already Assigned As Project Manager");
@@ -321,7 +323,7 @@ public class ProjectServiceImpl implements ProjectService{
 		ArrayList<String> dummy = new ArrayList<>();
 		
 		if(project.getProjectAssignedToUsers()!=null) {
-			project.getProjectAssignedToUsers().forEach( assignProjectUser -> {
+			project.getProjectAssignedToUsers().stream().forEach( assignProjectUser -> {
 				
 				if(assignProjectUser.contentEquals(userName)) {
 					throw new InvalidUserException("User already Assigned.");
@@ -330,10 +332,8 @@ public class ProjectServiceImpl implements ProjectService{
 				dummy.add(assignProjectUser);
 			});
 		}
-		
-		System.out.println(projectSizeParseInt);
 		System.out.println(dummy.size());
-		
+		System.out.println(projectSizeParseInt);
 		if (dummy.size()>=projectSizeParseInt) {
 			
 			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
@@ -342,10 +342,10 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		project.addProjectAssignedToUsers(userName);
 			
-//		storySetAssign.forEach(storyEach -> {
-//			
-//			storyEach.addStoryAssignedToUsers(userName);
-//		});
+		storySetAssign.forEach(storyEach -> {
+			
+			storyEach.addStoryAssignedToUsers(userName);
+		});
 		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		

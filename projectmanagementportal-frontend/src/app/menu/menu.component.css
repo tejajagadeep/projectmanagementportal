@@ -21,3 +21,13 @@
     margin-top: 30px;
     /* Add a top margin to avoid content overlay */
 }
+h3 {
+text-transform: uppercase;
+font-size: 25x;
+}
+
+h4{
+    color: rgb(4, 4, 34);
+    text-transform: uppercase;
+    text-decoration: wavy;
+    }

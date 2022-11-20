@@ -138,9 +138,9 @@
             class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="projectAssign()">
 
             <h6 class="mb-0">Story Title</h6>
-            <input type="text" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assigned To UserId"
+            <input type="text" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assign To UserId"
                 [(ngModel)]="assignedTo" required>
-
+                <small class="text-danger" *ngIf="assignUndefined">User Id is required</small>
             <button type="submit" class="btn btn-success">assignedToUser</button>
         </form>
         <br>

@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService] },
   { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
-  { path: '**', component: ErrorComponent, canActivate: [AuthGuardDataService] }
+  { path: '**', component: LoginComponent, canActivate: [AuthGuardDataService] }
 
 ];
 

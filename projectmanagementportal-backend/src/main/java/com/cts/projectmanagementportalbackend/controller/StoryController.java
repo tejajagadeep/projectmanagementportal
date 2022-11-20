@@ -89,15 +89,6 @@ public class StoryController {
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("assignStoryToUsers/{userName}/story/{storyId}")
-	public ResponseEntity<MessageResponse> assignStoryToUsers(@PathVariable String userName, @PathVariable String storyId)  throws NoSuchElementExistException{
-		storyService.assignStoryToUser(userName, storyId);
-		String msg= "story with Id " + storyId + " is assigned to User with Id " + userName;
-		log.info("inside assign of Story Controller "+msg);
-		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
-	}
-	
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/deleteStoryById/{storyId}")

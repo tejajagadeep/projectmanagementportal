@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('login.component.ts')
-    this.password = 'ABCabc@123'
     this.isLogin = this.authenticateLoginService.isUserLoggedIn();
     console.log(this.isLogin)
   }

@@ -152,4 +152,17 @@ select {
     background-color: white;
     height: 40px;
     text-size-adjust: inherit;
+    font-size: 20;
 }
+
+h3 {
+    text-transform: uppercase;
+    font-size: 25px;
+    
+    }
+    
+    h4{
+    color: rgb(4, 4, 34);
+    text-transform: uppercase;
+    text-decoration: wavy;
+    }

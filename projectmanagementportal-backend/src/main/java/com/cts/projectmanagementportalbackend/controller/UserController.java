@@ -38,7 +38,7 @@ public class UserController {
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')") // hasRole('ROLE_MEMBER') and @userSecurity.hasUserId(authentication,#userId)
 	@GetMapping("/getAllUsers/{userName}")
 	public ResponseEntity<List<User>> getAllUsers(@PathVariable String userName){
 		
@@ -56,6 +56,7 @@ public class UserController {
 		return userService.getByUserName(userName);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByName/{name}")
 	public @ApiResponse(description = "Demo Object") User getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name) throws InvalidUserIdOrPasswordException{
 		

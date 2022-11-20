@@ -24,6 +24,6 @@ public interface StoryService {
 
 	void assign(String projectId, String storyId)  throws NoSuchElementExistException;
 	
-	MessageResponse assignStoryToUser(String userName, String storytId);
+//	MessageResponse assignStoryToUser(String userName, String storytId);
 	
 }
