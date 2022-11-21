@@ -72,13 +72,13 @@ public class StoryController {
 		return new ResponseEntity<>(storyService.updateStoryAdmin(storyId, story), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
-	@PutMapping("updateStoryMember/{storyId}")
-	public ResponseEntity<Story> updateStoryByIdMember(@PathVariable String storyId, @Valid @RequestBody Story story){
-		
-		log.info("inside updateStoryById of Story Controller");
-		return new ResponseEntity<>(storyService.updateStoryMember(storyId, story), HttpStatus.OK);
-	}
+//	@PreAuthorize("hasRole('ROLE_MEMBER')")
+//	@PutMapping("updateStoryMember/{storyId}")
+//	public ResponseEntity<Story> updateStoryByIdMember(@PathVariable String storyId, @Valid @RequestBody Story story){
+//		
+//		log.info("inside updateStoryById of Story Controller");
+//		return new ResponseEntity<>(storyService.updateStoryMember(storyId, story), HttpStatus.OK);
+//	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("updateStoryAssignAdmin/{projectId}/story/{storyId}")
@@ -89,6 +89,14 @@ public class StoryController {
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping("assignStoryToUsers/{userName}/story/{storyId}")
+	public ResponseEntity<MessageResponse> assignStoryToUsers(@PathVariable String userName, @PathVariable String storyId) {
+		storyService.assignStoryToUser(userName, storyId);
+		String msg= "story with Id " + storyId + " is assigned to User with Id " + userName;
+		log.info("inside assign of Story Controller "+msg);
+		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
+	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/deleteStoryById/{storyId}")

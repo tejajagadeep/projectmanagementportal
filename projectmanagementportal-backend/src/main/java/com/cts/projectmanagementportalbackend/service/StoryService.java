@@ -18,12 +18,12 @@ public interface StoryService {
 
 	Story updateStoryAdmin(String storyId, Story story);
 	
-	Story updateStoryMember(String storyId, Story story);
+//	Story updateStoryMember(String storyId, Story story);
 
 	void deleteStoryById(String storyId) ;
 
 	void assign(String projectId, String storyId) ;
 	
-//	MessageResponse assignStoryToUser(String userName, String storytId);
+	void assignStoryToUser(String userName, String storytId);
 	
 }

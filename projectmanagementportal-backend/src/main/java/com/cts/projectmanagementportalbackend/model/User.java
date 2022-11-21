@@ -1,7 +1,9 @@
 package com.cts.projectmanagementportalbackend.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -96,6 +98,17 @@ public class User {
 	})
 	@JoinColumn(name = "user_name")
 	private Set<Project> projects;
+	
+	public void addProjects(Project theProject) {
+
+		if (projects == null) {
+//			storyAssignedToUsers = new ArrayList<>();
+			projects = new HashSet<>();
+		}
+
+		projects.add(theProject);
+
+	}
 
 	public String getUserName() {
 		return userName;

@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -58,13 +59,12 @@ public class StoryServiceImpl implements StoryService {
 
 		Story optionalStory = storyRepository.findByStoryId(storyId);
 
-		if (optionalStory!=null) {
-			log.info(" inside getStoryById of StoryServiceImpl : " + storyId);
-			return optionalStory;
-		} else {
+		if (optionalStory==null) {
 			log.warn("Story with Id " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
-		}
+		} 
+		log.info(" inside getStoryById of StoryServiceImpl : " + storyId);
+		return optionalStory;
 	}
 
 	/*
@@ -83,7 +83,7 @@ public class StoryServiceImpl implements StoryService {
 			log.warn("Story Id " + story.getStoryId() + " Already Exist");
 			throw new IdAlreadyExistException("Story Id Already Exist");
 
-		} else
+		} 
 		
 		
 		if (userAssignee == null) {
@@ -92,14 +92,16 @@ public class StoryServiceImpl implements StoryService {
 			log.warn(assigneNotFound);
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 
-		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+		} 
+		if(optionalStory==null && userAssignee != null) {
+		if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
 			String assigneNotFound = "assignee " + userAssignee.getName()
 					+ "   email doesn't exist. please re-enter...";
 			log.warn(assigneNotFound);
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 
-		} else {
-
+		} 
+		}
 //			ArrayList<String> projectAssignedUsers = projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers();
 //			
 //			if(projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers()!=null) {
@@ -109,7 +111,7 @@ public class StoryServiceImpl implements StoryService {
 			log.info("saved story " + story.toString());
 			return storyRepository.save(story);
 
-		}
+		
 	}
 
 	/*
@@ -130,19 +132,22 @@ public class StoryServiceImpl implements StoryService {
 			log.warn("Story with Id " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 
-		} else if (userAssignee == null) {
+		}  if (userAssignee == null) {
 
 			String assigneNotFound = "user doesn't exist. please enter exist user...";
 			log.warn(assigneNotFound);
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 
-		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+		} 
+		if (optionalStory!=null&&userAssignee!=null) {
+		if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
 			String assigneNotFound = "assignee " + userAssignee.getName()
 					+ "   email doesn't match. please re-enter...";
 			log.warn(assigneNotFound);
 			throw new InvalidUserIdOrPasswordException(assigneNotFound);
 
-		} else {
+		} 
+		}
 
 			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
 			Story storyData = optionalStory;
@@ -155,49 +160,49 @@ public class StoryServiceImpl implements StoryService {
 			storyData.setStatus(story.getStatus());
 			storyData.setRemarks(story.getRemarks());
 			return storyRepository.save(storyData);
-		}
+		
 	}
 
 	/*
 	 * Member Update
 	 */
-	@Override
-	public Story updateStoryMember(String storyId, Story story){
-
-		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
-		User userAssignee = userRepository.findByName(story.getAssignee());
-
-		Story optionalStory = storyRepository.findByStoryId(storyId);
-
-		if (optionalStory==null) {
-
-			log.warn("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
-
-		} else if (userAssignee == null) {
-
-			String assigneNotFound = "user doesn't exist. please enter exist user...";
-			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
-
-		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
-			String assigneNotFound = "assignee " + userAssignee.getName()
-					+ "   email doesn't match. please re-enter...";
-			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
-
-		} else {
-
-			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
-			Story storyData = optionalStory;
-			storyData.setStoryDescription(story.getStoryDescription());
-			storyData.setTargetDate(story.getTargetDate());
-			storyData.setStatus(story.getStatus());
-			storyData.setRemarks(story.getRemarks());
-			return storyRepository.save(storyData);
-		}
-	}
-	
+//	@Override
+//	public Story updateStoryMember(String storyId, Story story){
+//
+//		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
+//		User userAssignee = userRepository.findByName(story.getAssignee());
+//
+//		Story optionalStory = storyRepository.findByStoryId(storyId);
+//
+//		if (optionalStory==null) {
+//
+//			log.warn("Story with Id " + storyId + " Doesn't Exist");
+//			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+//
+//		} else if (userAssignee == null) {
+//
+//			String assigneNotFound = "user doesn't exist. please enter exist user...";
+//			log.warn(assigneNotFound);
+//			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+//
+//		} else if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
+//			String assigneNotFound = "assignee " + userAssignee.getName()
+//					+ "   email doesn't match. please re-enter...";
+//			log.warn(assigneNotFound);
+//			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+//
+//		} else {
+//
+//			log.info("This Story with Id " + storyId + " Id doesn't belong to this Project");
+//			Story storyData = optionalStory;
+//			storyData.setStoryDescription(story.getStoryDescription());
+//			storyData.setTargetDate(story.getTargetDate());
+//			storyData.setStatus(story.getStatus());
+//			storyData.setRemarks(story.getRemarks());
+//			return storyRepository.save(storyData);
+//		}
+//	}
+//	
 	/*
 	 * Delete Story By Story Id
 	 */
@@ -207,13 +212,14 @@ public class StoryServiceImpl implements StoryService {
 		log.info(" inside deleteStoryById of StoryServiceImpl");
 
 		Story optionalProject = storyRepository.findByStoryId(storyId);
-		if (optionalProject!=null) {
-			log.info(" deleted Story with id : " + storyId);
-			storyRepository.deleteById(storyId);
-		} else {
+		if (optionalProject==null) {
 			log.warn("Story with Id " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
-		}
+	
+			
+		} 
+		log.info(" deleted Story with id : " + storyId);
+		storyRepository.deleteById(storyId);
 
 	}
 
@@ -234,7 +240,9 @@ public class StoryServiceImpl implements StoryService {
 			log.warn("project Id does'nt exist " + projectId);
 			throw new NoSuchElementExistException("project Id doesn't exist");
 
-		} else if (story == null) {
+		} 
+		
+		if (story == null) {
 
 			log.warn("story Id does'nt exist " + storyId);
 			throw new NoSuchElementExistException("story Id doesn't exist");
@@ -248,8 +256,8 @@ public class StoryServiceImpl implements StoryService {
 
 		story.setProjectIdName(project.getProjectId());
 
-		story.setStoryAssignedToUsers(
-				projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
+//		story.setStoryAssignedToUsers(
+//				projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
 
 		String msg = "story with Id " + storyId + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl " + msg);
@@ -259,4 +267,58 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 
+	@Override
+	public void assignStoryToUser(String userName, String storyId) {
+//		Set<Story> storySet = null;
+
+		Story story = storyRepository.findByStoryId(storyId);
+
+		User user = userRepository.findByUserName(userName);
+
+		if (user == null) {
+
+			log.warn("User Id does'nt exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist");
+
+		} 
+		
+		if (story == null) {
+
+			log.warn("story Id does'nt exist " + storyId);
+			throw new NoSuchElementExistException("story Id doesn't exist");
+		}
+
+		Project project = projectRepository.findByProjectId(story.getProjectIdName());
+
+	
+		if(story.getStoryAssignedToUsers()!=null) {
+			if(story.getStoryAssignedToUsers().contains(userName)==true) {
+				throw new IdAlreadyExistException("User Id Already Assigned For this story");
+			}
+		}
+		
+		if (user.getName().equals(project.getProjectManagerName()) ==false
+				&& user.getName().equals(project.getTechLeadName()) == false
+				&& userName.equals(project.getProjectOwner()) == false
+				) {
+			if(project.getProjectAssignedToUsers() == null) {
+			throw new InvalidUserException("User not Part of the Project.");
+			}
+			if (project.getProjectAssignedToUsers() != null) {
+				if(project.getProjectAssignedToUsers().contains(userName)==false){
+					throw new InvalidUserException("User not Part of the Project..");
+				}
+			}
+				
+				
+		} 
+		
+		story.addStoryAssignedToUsers(userName);
+
+		String msg = "story with Id " + storyId + " is assigned to User with Id " + userName;
+		log.info("inside assign of Story Servcie Impl " + msg);
+
+		storyRepository.save(story);
+
+	}
 }

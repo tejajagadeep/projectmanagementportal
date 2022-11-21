@@ -26,7 +26,7 @@ public interface ProjectService {
 
 	void assign(String userName, String projectId);
 
-	MessageResponse assignProjectToUser(String userName, String projectId);
+	void assignProjectToUser(String userName, String projectId);
 
 
 	

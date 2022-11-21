@@ -52,13 +52,13 @@ public class UserServiceImpl implements UserService {
 		
 		User optionalUser = userRepository.findByUserName(userName);
 		
-		if(optionalUser!=null ) {
-			log.info("users" + optionalUser.toString());
-			return optionalUser;
-		} else{
+		if(optionalUser==null ) {
 			log.warn("user Id " +userName+" dosem't exist");
 			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
-		}
+			
+		} 
+		log.info("users" + optionalUser.toString());
+		return optionalUser;
 		
 		
 	}
@@ -71,14 +71,13 @@ public class UserServiceImpl implements UserService {
 		
 		User optionalUser = userRepository.findByName(name);
 		
-		if(optionalUser!=null ) {
-			log.info("users" + optionalUser.toString());
-			return optionalUser;
-		} else{
+		if(optionalUser==null ) {
+			
 			log.warn("user name " +name+" dosem't exist");
 			throw new InvalidUserIdOrPasswordException("User name doesn't Exist");
 		}
-		
+		log.info("users" + optionalUser.toString());
+		return optionalUser;
 		
 	}
 	
@@ -87,14 +86,13 @@ public class UserServiceImpl implements UserService {
 		
 		User optionalUser = userRepository.findById(userId).get();
 	
-		if(optionalUser!=null ) {
-			log.info("users" + optionalUser.toString());
-			return optionalUser;
-		} else{
+		if(optionalUser==null ) {
+			
 			log.warn("user Id " +userId+" dosem't exist");
 			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
 		}
-		
+		log.info("users" + optionalUser.toString());
+		return optionalUser;
 		
 	}
 	

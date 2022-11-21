@@ -37,7 +37,7 @@ insert into story(story_id, assignee, assignment_date, assignee_email_id, projec
 
 
 insert into project(project_id, project_description, project_start_date, project_end_date, project_manager_email_id, project_manager_name, project_name, remarks, status, tech_lead_email_id, tech_lead_name, team_name, team_size, tech_stack,user_name, project_owner) 
-values('Burera', 'Only reading or hearing these two words together sparks up a feeling to want to try what this amazing and mysterious dish could be. Well, it is exactly as it sounds, only it tastes much better.', '2021-06-18', '2022-11-09', 'rajesh@gmail.com', 'Rajesh', 'Burera', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '3', 'stack1','vinay','vinay');
+values('Burera', 'Only reading or hearing these two words together sparks up a feeling to want to try what this amazing and mysterious dish could be. Well, it is exactly as it sounds, only it tastes much better.', '2021-06-18', '2022-11-09', 'rajesh@gmail.com', 'Rajesh', 'Burera', 'pending', 'To-Do', 'ram@gmail.com', 'Ram', 'Team2', '5', 'stack1','vinay','vinay');
 
 insert into story(story_id, assignee, assignment_date, assignee_email_id, project_id, remarks, status, story_description, story_title, target_date, project_id_name)
  values('Viruera', 'Hari Krishna', '2022-06-18', 'harikrishna@gmail.com', 'Burera', 'testing at 40%', 'Ready-For-Test', 'Only reading or hearing these two words together sparks up a feeling to want to try what this amazing and mysterious dish could be. ', 'Viruera', '2021-10-29', 'Burera');
