@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
 		
 		if(optionalUser==null ) {
 			log.warn("user Id " +userName+" dosem't exist");
-			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
+			throw new InvalidUserException("User Id doesn't Exist");
 			
 		} 
 		log.info("users" + optionalUser.toString());
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
 		if(optionalUser==null ) {
 			
 			log.warn("user name " +name+" dosem't exist");
-			throw new InvalidUserIdOrPasswordException("User name doesn't Exist");
+			throw new InvalidUserException("User name doesn't Exist");
 		}
 		log.info("users" + optionalUser.toString());
 		return optionalUser;
@@ -104,7 +105,6 @@ public class UserServiceImpl implements UserService {
 		User optionalUser = userRepository.findByUserName(user.getUserName());
 		User optionalUserEmail = userRepository.findByEmailAddress(user.getEmailAddress());
 		
-		try {
 		if(optionalUser==null) {
 			
 			userRepository.findAll().forEach(userNameEach->{
@@ -112,11 +112,11 @@ public class UserServiceImpl implements UserService {
 				if(userNameEach.getName().equalsIgnoreCase(user.getUserName())) {
 					
 					log.warn("user Id alerady exist");
-					throw new InvalidUserIdOrPasswordException("User Id already Exists");
+					throw new IdAlreadyExistException("User Id already Exists");
 					
 				}
 			});
-			
+		}
 			if (optionalUserEmail!=null) {
 				log.warn("Email addres alerady exist");
 				throw new IdAlreadyExistException("Email address already Exists");
@@ -127,19 +127,8 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			return userRepository.save(user);
 		
-		} else {
-			log.warn("user Id alerady exist");
-			throw new InvalidUserIdOrPasswordException("User Id already Exists");
-		} }
-		catch (InvalidUserIdOrPasswordException e) {
-			log.warn("catch user Id alerady exist");
-			throw new InvalidUserIdOrPasswordException("User Id already Exists");
-		}
 		
 	}
-
-
-	
 
 
 }

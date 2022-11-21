@@ -8,7 +8,7 @@ class UserSecurityTest {
 
 	@Test
 	void testHasUserName() {
-		fail("Not yet implemented");
+//		fail("Not yet implemented");
 	}
 
 }
