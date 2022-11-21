@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService {
 	 * Retrieve All User Details
 	 */
 	@Override
-	public List<User> getAllUsers(String userName) {
-		// TODO Auto-generated method stub
+	public List<User> getAllUsers() {
 		log.info("inside get all users");
 		return userRepository.findAll();
 	}
@@ -81,20 +80,20 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	@Override
-	public User getByUserId(int userId){
-		
-		User optionalUser = userRepository.findById(userId).get();
-	
-		if(optionalUser==null ) {
-			
-			log.warn("user Id " +userId+" dosem't exist");
-			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
-		}
-		log.info("users" + optionalUser.toString());
-		return optionalUser;
-		
-	}
+//	@Override
+//	public User getByUserId(int userId){
+//		
+//		User optionalUser = userRepository.findByUserId(userId);
+//	
+//		if(optionalUser==null ) {
+//			
+//			log.warn("user Id " +userId+" dosem't exist");
+//			throw new InvalidUserIdOrPasswordException("User Id doesn't Exist");
+//		}
+//		log.info("users" + optionalUser.toString());
+//		return optionalUser;
+//		
+//	}
 	
 	/*
 	 * Sign Up User

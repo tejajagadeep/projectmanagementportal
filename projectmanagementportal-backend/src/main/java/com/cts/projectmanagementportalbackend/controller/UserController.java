@@ -43,7 +43,7 @@ public class UserController {
 	public ResponseEntity<List<User>> getAllUsers(@PathVariable String userName){
 		
 		log.info("inside getAllUsers of User Controller");
-		return new ResponseEntity<>(userService.getAllUsers(userName),HttpStatus.OK);
+		return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
 	}
 	
 //	@PreAuthorize("@userSecurity.hasUserName(authentication,#userName)")
@@ -64,15 +64,15 @@ public class UserController {
 		return userService.getUserByName(name);
 	}
 	
-	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
-	@GetMapping("/getUserByUserId/{userId}")
-//	@PostFilter("filterObject.userId==authentication.name")
-	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") User getByUserId(@Parameter(description = "Id of the Demo") @PathVariable int userId){
-		
-		log.info("inside getUserById of User Controller");
-		return userService.getByUserId(userId);
-	}
+//	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
+//	@GetMapping("/getUserByUserId/{userId}")
+////	@PostFilter("filterObject.userId==authentication.name")
+//	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
+//	public @ApiResponse(description = "Demo Object") User getByUserId(@Parameter(description = "Id of the Demo") @PathVariable int userId){
+//		
+//		log.info("inside getUserById of User Controller");
+//		return userService.getByUserId(userId);
+//	}
 	
 	
 	@PostMapping("/userSignUp")

@@ -7,11 +7,11 @@ import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordE
 
 public interface UserService {
 
-	List<User> getAllUsers(String userName);
+	List<User> getAllUsers();
 	
 	User getByUserName(String userName) ;
 	
-	User getByUserId(int userId);
+//	User getByUserId(int userId);
 
 	User saveUser(User user) ;
 
