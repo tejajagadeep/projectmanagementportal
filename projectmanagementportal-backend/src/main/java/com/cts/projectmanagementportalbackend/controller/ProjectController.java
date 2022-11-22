@@ -1,5 +1,6 @@
 package com.cts.projectmanagementportalbackend.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -98,7 +99,7 @@ public class ProjectController {
 		projectService.assign(userName, projectId);
 		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
-		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
+		return new ResponseEntity<>(new MessageResponse(new Date(),msg,HttpStatus.OK), HttpStatus.OK);
 	}
 	
 	/*
@@ -110,7 +111,7 @@ public class ProjectController {
 		projectService.assignProjectToUser(userName, projectId);
 		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assignProjectToUser of Story Controller "+msg);
-		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
+		return new ResponseEntity<>(new MessageResponse(new Date(),msg,HttpStatus.OK), HttpStatus.OK);
 	}
 	
 	/*

@@ -77,7 +77,7 @@ public class StoryServiceImpl implements StoryService {
 
 		Story optionalStory = storyRepository.findByStoryId(story.getStoryId());
 //		Optional<Project> optionalProject = projectRepository.findById(story.getProjectId());
-		User userAssignee = userRepository.findByName(story.getAssignee());
+		User userAssignee = userRepository.findByEmailAddress(story.getAssigneeEmailId());
 		
 		if (optionalStory!=null) {
 			log.warn("Story Id " + story.getStoryId() + " Already Exist");
@@ -88,17 +88,17 @@ public class StoryServiceImpl implements StoryService {
 		
 		if (userAssignee == null) {
 
-			String assigneNotFound = "user doesn't exist. please enter exist user...";
+			String assigneNotFound = "User mail doesn't exist. please enter exist user...";
 			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			throw new NoSuchElementExistException(assigneNotFound);
+			
 
 		} 
 		if(optionalStory==null && userAssignee != null) {
-		if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
-			String assigneNotFound = "assignee " + userAssignee.getName()
-					+ "   email doesn't exist. please re-enter...";
+		if (!userAssignee.getName().equals(story.getAssignee())) {
+			String assigneNotFound = "Name doesn't match with Email Id. please enter valid user...";
 			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			throw new InvalidUserException(assigneNotFound);
 
 		} 
 		}
@@ -123,9 +123,11 @@ public class StoryServiceImpl implements StoryService {
 
 		log.info(" inside updateStory of StoryServiceImpl : " + story.toString());
 
-		User userAssignee = userRepository.findByName(story.getAssignee());
-
 		Story optionalStory = storyRepository.findByStoryId(storyId);
+		
+		User userAssignee = userRepository.findByEmailAddress(story.getAssigneeEmailId());
+
+		
 
 		if (optionalStory==null) {
 
@@ -134,17 +136,17 @@ public class StoryServiceImpl implements StoryService {
 
 		}  if (userAssignee == null) {
 
-			String assigneNotFound = "user doesn't exist. please enter exist user...";
+			String assigneNotFound = "User mail doesn't exist. please enter exist user...";
 			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			throw new NoSuchElementExistException(assigneNotFound);
+			
 
 		} 
-		if (optionalStory!=null&&userAssignee!=null) {
-		if (!userAssignee.getEmailAddress().equals(story.getAssigneeEmailId())) {
-			String assigneNotFound = "assignee " + userAssignee.getName()
-					+ "   email doesn't match. please re-enter...";
+		if(optionalStory!=null && userAssignee != null) {
+		if (!userAssignee.getName().equals(story.getAssignee())) {
+			String assigneNotFound = "Name doesn't match with Email Id. please enter valid user...";
 			log.warn(assigneNotFound);
-			throw new InvalidUserIdOrPasswordException(assigneNotFound);
+			throw new InvalidUserException(assigneNotFound);
 
 		} 
 		}

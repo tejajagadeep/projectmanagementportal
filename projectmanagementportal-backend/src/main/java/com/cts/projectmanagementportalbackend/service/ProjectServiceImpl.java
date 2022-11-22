@@ -276,8 +276,6 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		user.setProjects(projectSet);
 		
-		
-		
 		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
