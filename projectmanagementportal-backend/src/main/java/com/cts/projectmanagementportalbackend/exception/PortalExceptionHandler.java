@@ -102,4 +102,21 @@ public class PortalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<>(messageResponse, HttpStatus.NOT_FOUND);
 
 	}
+	
+	/**invalid user exception handler
+	 * @param NullPointerException
+	 * @return ResponseEntity<MessageResponse>
+	 * 
+	 * @author Kollimarla Jagadeep
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<MessageResponse> handleNullPointerException(NullPointerException ie) {
+		MessageResponse messageResponse = new MessageResponse();
+		messageResponse.setMessage(ie.getMessage());
+		messageResponse.setStatus(HttpStatus.BAD_REQUEST);
+		messageResponse.setTimeStamp(new Date());
+		return new ResponseEntity<>(messageResponse, HttpStatus.BAD_REQUEST);
+
+	}
 }

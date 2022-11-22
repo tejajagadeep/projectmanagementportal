@@ -113,7 +113,8 @@ class StoryTest {
 
 	@Test
 	void testToString() {
-//		fail("Not yet implemented");
+		String toString = story.toString();
+		assertEquals(story.toString(), toString);
 	}
 
 }

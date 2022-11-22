@@ -149,7 +149,8 @@ class ProjectTest {
 
 	@Test
 	void testAddStory() {
-//		fail("Not yet implemented");
+		String toString = project.toString();
+		assertEquals(project.toString(),toString);
 	}
 
 	@Test
@@ -165,7 +166,6 @@ class ProjectTest {
 		Set<Story> assginStory = new HashSet<>();
 		assginStory.add(story);
 		project.setStories(assginStory);
-		assginStory.stream().forEach(i->{System.out.println(i.toString());});
 		assertEquals(assginStory,project.getStories());
 		
 	}
@@ -175,7 +175,6 @@ class ProjectTest {
 		Set<Story> assginStory = new HashSet<>();
 		assginStory.add(story);
 		project.addStory(story);
-		assginStory.stream().forEach(i->{System.out.println(i.toString());});
 		assertEquals(assginStory,project.getStories());
 		
 	}

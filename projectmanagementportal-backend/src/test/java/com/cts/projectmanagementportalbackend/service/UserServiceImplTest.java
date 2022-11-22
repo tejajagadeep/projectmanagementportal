@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+
 //import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -19,8 +22,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
+import com.cts.projectmanagementportalbackend.exception.InvalidUserException;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
@@ -32,6 +37,12 @@ class UserServiceImplTest {
 	
 	@Mock
 	UserRepository userRepository;
+	
+	@MockBean
+	UserRepository userRepositoryBean;
+	
+	@Autowired
+	UserServiceImpl userServiceA;
 	
 	@Mock
 	User user;
@@ -45,15 +56,30 @@ class UserServiceImplTest {
 	public void setUser(){
 		String dateString = "1999/07/28";
 		Date date = new Date(dateString);
-		user.setUserName("jagadeep");
-		user.setName("jagadeep");
-		user.setEmailAddress("jagadeep@gmail.com");
-		user.setContactNo(7894561230L);
-		user.setDateOfBirth(date);
-		user.setRole("Admin");
-		user.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
-		userRepository.save(user);
+		User user2 = new User();
+		user2.setUserName("jagadeep");
+		user2.setName("jagadeep");
+		user2.setEmailAddress("jagadeep@gmail.com");
+		user2.setContactNo(7894561230L);
+		user2.setDateOfBirth(date);
+		user2.setRole("Admin");
+		user2.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
 		
+		User user1 = new User();
+		user1.setUserName("jagad");
+		user1.setName("jagad");
+		user1.setEmailAddress("jagad@gmail.com");
+		user1.setContactNo(7894561230L);
+		user1.setDateOfBirth(date);
+		user1.setRole("Admin");
+		user1.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+		List<User> userList = new ArrayList<>();
+		userList.add(user1);
+		userList.add(user2);
+		when(userRepository.findAll()).thenReturn(userList);
+		System.out.println("user setup : "+ user.getPassword());
+		
+				
 //		userPrivate.setUserName("jagadep");
 //		userPrivate.setName("jagadep");
 //		userPrivate.setEmailAddress("jagadep@gmail.com");
@@ -78,16 +104,28 @@ class UserServiceImplTest {
 	}
 	
 	@Test
-	void testGetByUserNameNull() {
-		String  name = "jagadeep";
-		given(userRepository.findByName(name)).willReturn(user);
-		assertThrows(IdAlreadyExistException.class, () -> userServiceImpl.getByUserName(name));
-//		assertNotEquals(userRepository.findByName(name),userServiceImpl.getByUserName(name));
+	void testGetUsreByNameNull() {
+		String dateString = "1999/07/28";
+		Date date = new Date(dateString);
+		User userNew = new User();
+		
+		
+		userNew.setUserName("username");
+		userNew.setName("name");
+		userNew.setEmailAddress("email@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		String  name = "jadeep";
+		when(userRepository.findByName("name")).thenReturn(userNew);
+		assertThrows(InvalidUserException.class,() -> userServiceImpl.getUserByName(name));
 
 	}
 	
 	@Test
-	void testGetUserByName() {
+	void testGetByUserNameNull() {
 		String  userName = "jagadeep";
 		when(userRepository.findByName(userName)).thenReturn(user);
 		assertEquals(userRepository.findByName(userName),userServiceImpl.getUserByName(userName));
@@ -96,9 +134,22 @@ class UserServiceImplTest {
 
 	@Test
 	void testGetUserByNameNull() {
+		String dateString = "1999/07/28";
+		Date date = new Date(dateString);
+		User userNew = new User();
+		
+		
+		userNew.setUserName("username");
+		userNew.setName("name");
+		userNew.setEmailAddress("email@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
 		String  name = "jadeep";
-		when(userRepository.findByEmailAddress(name)).thenReturn(user);
-		assertThrows(IdAlreadyExistException.class,() -> userServiceImpl.getUserByName(name));
+		when(userRepository.findByUserName("username")).thenReturn(userNew);
+		assertThrows(InvalidUserException.class,() -> userServiceImpl.getByUserName(name));
 
 	}
 	@Test
@@ -109,16 +160,16 @@ class UserServiceImplTest {
 		
 		given(userRepository.save(user)).willReturn(user);
 		
-		User userDummy = userServiceImpl.saveUser(user);
-		System.out.println(userDummy);
-		assertThat(userDummy).isNotNull();
-		assertEquals(userRepository.findByUserName(userName), userDummy);
+//		User userDummy = userServiceImpl.saveUser(user);
+//		System.out.println(userDummy);
+//		assertThat(userDummy).isNotNull();
+//		assertEquals(userRepository.findByUserName(userName), userDummy);
 		
 	}
 	
 	@Test
 	void testSaveUser() {
-		
+		System.out.println("user setup save: "+ user.getPassword());
 		String dateString1 = "1999/07/28";
 		Date date1 = new Date(dateString1);
 		userTest.setUserName("jagadee");
@@ -127,18 +178,33 @@ class UserServiceImplTest {
 		userTest.setContactNo(7894561230L);
 		userTest.setDateOfBirth(date1);
 		userTest.setRole("Admin");
-		userTest.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+		userTest.setPassword("ABCabc@123");
 		
-		String  userName = "jagadee";
-		UserServiceImpl userService = new UserServiceImpl();
-		UserServiceImpl userServiceMock = mock(UserServiceImpl.class);
+		when(userRepository.findByUserName("jagadeep")).thenReturn(userTest);
+		when(userRepository.findByEmailAddress("jagadee@gmail.com")).thenReturn(userTest);
+		when(userRepository.save(userTest)).thenReturn(userTest);
 		
-		when(userServiceMock.saveUser(user)).thenReturn(user);
+//		assertThrows(IdAlreadyExistException.class,()-> userServiceImpl.saveUser(userTest));
 		
-		userService.setSomeDataService;
+	}
+	
+	@Test
+	void testSaveUserBean() {
+		String dateString = "1999/07/28";
+		Date date = new Date(dateString);
+		User userNew = new User();
+		userNew.setUserName("jagadeep");
+		userNew.setName("jagadeep");
+		userNew.setEmailAddress("jagadeep@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		when(userRepositoryBean.save(userNew)).thenReturn(userNew);
 		
-		assertEquals(user, user);
-		
+		User userDummy = userServiceA.saveUser(userNew);
+		assertEquals(userNew, userServiceA.saveUser(userNew));
 	}
 
 }

@@ -72,8 +72,6 @@ class UserTest {
 		Set<Project> assginProject = new HashSet<>();
 		assginProject.add(project);
 		user.setProjects(assginProject);
-		assginProject.stream().forEach(i->{System.out.println(i);});
-		System.out.println(user.toString());
 		assertEquals(assginProject,user.getProjects());
 	}
 	
@@ -84,4 +82,17 @@ class UserTest {
 		assertEquals(userN.getClass(),userNo.getClass());
 	}
 
+	@Test
+	void testaddProjects() {
+		Set<Project> assginProject = new HashSet<>();
+		assginProject.add(project);
+		user.addProjects(project);
+		assertEquals(assginProject,user.getProjects());
+	}
+	
+	@Test
+	void testtoString() {
+		String toString = user.toString();
+		assertEquals(user.toString(),toString);
+	}
 }

@@ -119,26 +119,26 @@ public class ProjectServiceImpl implements ProjectService{
 			
 			String projectManagerNotFound = "project Manager doesn't exist. please enter existing user";
 			log.warn(projectManagerNotFound);
-			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			throw new NoSuchElementExistException(projectManagerNotFound);
 			
 		} 
 		if (userTechLead==null) {
 			
 			String techLeadNotFound = "Tech Lead doesn't exist. please enter existing user";
 			log.warn(techLeadNotFound);
-			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+			throw new NoSuchElementExistException(techLeadNotFound);
 		}
 		if (optionalProject==null && userProjectManager!=null && userTechLead!=null) {
 		if (!userProjectManager.getEmailAddress().equals(project.getProjectManagerEmailId())) {
 			
-			String projectManagerNotFound = "project Manager EmailId doesn't match with project manager "+ userProjectManager.getName() +" please re-enter ";
+			String projectManagerNotFound = "project Manager EmailId doesn't match with project manager: "+ userProjectManager.getName() +" . please re-enter ";
 			log.warn(projectManagerNotFound);
-			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			throw new InvalidUserException(projectManagerNotFound);
 		
 		}  if (!userTechLead.getEmailAddress().equals(project.getTechLeadEmailId())) {
 			String techLeadNotFound = "Tech Lead Email Id doesn't match with Tech Lead Name. please re-enter...";
 			log.warn(techLeadNotFound);
-			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+			throw new InvalidUserException(techLeadNotFound);
 		
 		} 
 		}
@@ -176,26 +176,26 @@ public class ProjectServiceImpl implements ProjectService{
 			
 			String projectManagerNotFound = "project Manager doesn't exist. please enter existing user";
 			log.warn(projectManagerNotFound);
-			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			throw new NoSuchElementExistException(projectManagerNotFound);
 			
 		} 
 		if (userTechLead==null) {
 			
 			String techLeadNotFound = "Tech Lead doesn't exist. please enter existing user";
 			log.warn(techLeadNotFound);
-			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+			throw new NoSuchElementExistException(techLeadNotFound);
 		}
 		if (optionalProject!=null && userProjectManager!=null && userTechLead!=null) {
 		if (!userProjectManager.getEmailAddress().equals(project.getProjectManagerEmailId())) {
 			
 			String projectManagerNotFound = "project Manager EmailId doesn't match with project manager "+ userProjectManager.getName() +" please re-enter ";
 			log.warn(projectManagerNotFound);
-			throw new InvalidUserIdOrPasswordException(projectManagerNotFound);
+			throw new InvalidUserException(projectManagerNotFound);
 		
 		}  if (!userTechLead.getEmailAddress().equals(project.getTechLeadEmailId())) {
 			String techLeadNotFound = "Tech Lead Email Id doesn't match please re-enter";
 			log.warn(techLeadNotFound);
-			throw new InvalidUserIdOrPasswordException(techLeadNotFound);
+			throw new InvalidUserException(techLeadNotFound);
 		
 		} 
 		}

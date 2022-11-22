@@ -105,17 +105,18 @@ public class UserServiceImpl implements UserService {
 		User optionalUser = userRepository.findByUserName(user.getUserName());
 		User optionalUserEmail = userRepository.findByEmailAddress(user.getEmailAddress());
 		
-		if(optionalUser==null) {
+		if(optionalUser!=null) {
 			
-			userRepository.findAll().forEach(userNameEach->{
-				
-				if(userNameEach.getName().equalsIgnoreCase(user.getUserName())) {
-					
+//			userRepository.findAll()
+//			.forEach(userNameEach->{
+//				
+//				if(userNameEach.getUserName().equalsIgnoreCase(user.getUserName())) {
+//					
 					log.warn("user Id alerady exist");
 					throw new IdAlreadyExistException("User Id already Exists");
 					
-				}
-			});
+//				}
+//			});
 		}
 			if (optionalUserEmail!=null) {
 				log.warn("Email addres alerady exist");
