@@ -50,18 +50,18 @@ public class UserController {
 	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") User getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName){
+	public @ApiResponse(description = "Demo Object") ResponseEntity<User> getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName){
 		
 		log.info("inside getByUserName of User Controller");
-		return userService.getByUserName(userName);
+		return new ResponseEntity<>(userService.getByUserName(userName),HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByName/{name}")
-	public @ApiResponse(description = "Demo Object") User getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name){
+	public @ApiResponse(description = "Demo Object") ResponseEntity<User> getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name){
 		
 		log.info("inside getByUserName of User Controller");
-		return userService.getUserByName(name);
+		return new ResponseEntity<>(userService.getUserByName(name),HttpStatus.OK);
 	}
 	
 //	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
