@@ -392,6 +392,110 @@ class StoryServiceImplTest {
 
 	@Test
 	void testAssignStoryToUserExceptionAlreadyExist() {
+		
+		String dateString = "1999/07/28";
+		Date date = new Date(dateString);
+		String projectDescriptionDummy11 = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
+		ArrayList<String> toUser = new ArrayList<>();
+		toUser.add("jagadeep");
+		
+		User userNew = new User();
+		userNew.setUserName("jagadeep");
+		userNew.setName("jagadeep");
+		userNew.setEmailAddress("jagadeep@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		Story story1=new Story();
+		story1.setStoryId("story");
+		story1.setStoryTitle("story");
+		story1.setStoryDescription(projectDescriptionDummy11);
+		story1.setAssignee("jagad1eep");
+		story1.setAssigneeEmailId("jagadeep@gmail.com");
+		story1.setAssignmentDate(date);
+		story1.setTargetDate(date);
+		story1.setStatus("Completed");
+		story1.setRemarks("Completed");
+		story1.setProjectIdName("project");
+		story1.setStoryAssignedToUsers(toUser);
+
+		Project projectNew11  = new Project();
+		projectNew11.setProjectId("project11");
+		projectNew11.setProjectName("project11");
+		projectNew11.setProjectDescription(projectDescriptionDummy11);
+		projectNew11.setProjectManagerName("jagadeep");
+		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
+		projectNew11.setTechLeadName("jagadeep");
+		projectNew11.setTechLeadEmailId("tech11@gmail.com");
+		projectNew11.setTeamName("team11");
+		projectNew11.setTeamSize("5");
+		projectNew11.setProjectStartDate(date);
+		projectNew11.setProjectEndDate(date);
+		projectNew11.setTechStack("stack11");
+		projectNew11.setStatus("Completed");
+		projectNew11.setRemarks("Completed");
+	
+		when(userRepository.findByUserName("jagadeep")).thenReturn(userNew);
+		when(storyRepository.findByStoryId("story")).thenReturn(story1);
+		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
+		assertThrows(IdAlreadyExistException.class,()->storyServiceImpl.assignStoryToUser("jagadeep", "story"));
+		assertThrows(IdAlreadyExistException.class,()->storyServiceImpl.assignStoryToUser("jagadeep", "story"));
 	}
 
+	@Test
+	void testAssignStoryToUserExceptionnotExist() {
+		
+		String dateString = "1999/07/28";
+		Date date = new Date(dateString);
+		String projectDescriptionDummy11 = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
+		ArrayList<String> toUser = new ArrayList<>();
+		toUser.add("jagadeep");
+		
+		User userNew = new User();
+		userNew.setUserName("jgeep");
+		userNew.setName("jgadeep");
+		userNew.setEmailAddress("jgaeep@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		Story story1=new Story();
+		story1.setStoryId("story");
+		story1.setStoryTitle("story");
+		story1.setStoryDescription(projectDescriptionDummy11);
+		story1.setAssignee("jagad1eep");
+		story1.setAssigneeEmailId("jadeep@gmail.com");
+		story1.setAssignmentDate(date);
+		story1.setTargetDate(date);
+		story1.setStatus("Completed");
+		story1.setRemarks("Completed");
+		story1.setProjectIdName("project");
+//		story1.setStoryAssignedToUsers(toUser);
+
+		Project projectNew11  = new Project();
+		projectNew11.setProjectId("project11");
+		projectNew11.setProjectName("project11");
+		projectNew11.setProjectDescription(projectDescriptionDummy11);
+		projectNew11.setProjectManagerName("jaeep");
+		projectNew11.setProjectManagerEmailId("jaga1deep@gmail.com");
+		projectNew11.setTechLeadName("jeep");
+		projectNew11.setTechLeadEmailId("tech11@gmail.com");
+		projectNew11.setTeamName("team11");
+		projectNew11.setTeamSize("5");
+		projectNew11.setProjectStartDate(date);
+		projectNew11.setProjectEndDate(date);
+		projectNew11.setTechStack("stack11");
+		projectNew11.setStatus("Completed");
+		projectNew11.setRemarks("Completed");
+		projectNew11.setProjectOwner("jagadee");
+		projectNew11.setProjectAssignedToUsers(toUser);
+	
+		when(userRepository.findByUserName("jgeep")).thenReturn(userNew);
+		when(storyRepository.findByStoryId("story")).thenReturn(story1);
+		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
+		assertThrows(NoSuchElementExistException.class,()->storyServiceImpl.assignStoryToUser("jgeep", "story"));
+	}
 }

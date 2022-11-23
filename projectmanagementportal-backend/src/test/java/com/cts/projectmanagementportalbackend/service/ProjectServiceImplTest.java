@@ -260,8 +260,8 @@ class ProjectServiceImplTest {
 		projectNew12.setStatus("Completed");
 		projectNew12.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(null);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertEquals(projectNew11,projectServiceImpl.saveProject(projectNew11));
@@ -320,8 +320,8 @@ class ProjectServiceImplTest {
 		projectNew12.setStatus("Completed");
 		projectNew12.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(IdAlreadyExistException.class,()->projectServiceImpl.saveProject(projectNew11));
@@ -360,8 +360,8 @@ class ProjectServiceImplTest {
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagaep")).thenReturn(null);
-		when(userRepository.findByName("jagaep")).thenReturn(null);
+		when(userRepository.findByEmailAddress("jagadep@gmail.com")).thenReturn(null);
+		when(userRepository.findByEmailAddress("jagaeep@gmail.com")).thenReturn(null);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.updateProjectById("project11", projectNew11));
@@ -399,11 +399,50 @@ class ProjectServiceImplTest {
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-//		when(userRepository.findByName("jagaep")).thenReturn(null);
+		when(userRepository.findByEmailAddress("jagadep@gmail.com")).thenReturn(userNew);
+//		when(userRepository.findByEmailAddress("jagaep")).thenReturn(null);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.updateProjectById("project11", projectNew11));
+	}
+	
+	@Test
+	void testUpdateProjectnotNullProjectMismatch() {
+		
+		String dateString11 = "1999/07/28";
+		Date date11 = new Date(dateString11);
+		String projectDescriptionDummy11 = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
+		
+		User userNew = new User();
+		userNew.setUserName("jagadeep");
+		userNew.setName("jagadeep");
+		userNew.setEmailAddress("jagadeep@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date11);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		Project projectNew11  = new Project();
+		projectNew11.setProjectId("project11");
+		projectNew11.setProjectName("project11");
+		projectNew11.setProjectDescription(projectDescriptionDummy11);
+		projectNew11.setProjectManagerName("jagaep");
+		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
+		projectNew11.setTechLeadName("jagadeep");
+		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
+		projectNew11.setTeamName("team11");
+		projectNew11.setTeamSize("5");
+		projectNew11.setProjectStartDate(date11);
+		projectNew11.setProjectEndDate(date11);
+		projectNew11.setTechStack("stack11");
+		projectNew11.setStatus("Completed");
+		projectNew11.setRemarks("Completed");
+		
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
+		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
+		assertThrows(InvalidUserException.class,()->projectServiceImpl.updateProjectById("project11", projectNew11));
 	}
 	
 	@Test
@@ -427,8 +466,8 @@ class ProjectServiceImplTest {
 		projectNew11.setProjectName("project11");
 		projectNew11.setProjectDescription(projectDescriptionDummy11);
 		projectNew11.setProjectManagerName("jagadeep");
-		projectNew11.setProjectManagerEmailId("jagaep@gmail.com");
-		projectNew11.setTechLeadName("jagadeep");
+		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
+		projectNew11.setTechLeadName("jagadep");
 		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
 		projectNew11.setTeamName("team11");
 		projectNew11.setTeamSize("5");
@@ -438,8 +477,8 @@ class ProjectServiceImplTest {
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-//		when(userRepository.findByName("jagaep")).thenReturn(null);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+//		when(userRepository.findByEmailAddress("jagaep")).thenReturn(null);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(InvalidUserException.class,()->projectServiceImpl.updateProjectById("project11", projectNew11));
@@ -477,7 +516,7 @@ class ProjectServiceImplTest {
 		projectNew11.setTechStack("stack11");
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("manager11@gmail.com")).thenReturn(userNew);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.saveProject(projectNew11));
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.updateProjectById("projt11", projectNew11));
@@ -506,7 +545,7 @@ class ProjectServiceImplTest {
 		projectNew11.setTechStack("stack11");
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
-		when(userRepository.findByName("jagap")).thenReturn(null);
+		when(userRepository.findByEmailAddress("manager11@gmail.com")).thenReturn(null);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.saveProject(projectNew11));
 		assertThrows(NoSuchElementExistException.class,()->projectServiceImpl.updateProjectById("project11", projectNew11));
@@ -532,10 +571,10 @@ class ProjectServiceImplTest {
 		projectNew11.setProjectId("project11");
 		projectNew11.setProjectName("project11");
 		projectNew11.setProjectDescription(projectDescriptionDummy11);
-		projectNew11.setProjectManagerName("jagadeep");
-		projectNew11.setProjectManagerEmailId("manager11@gmail.com");
-		projectNew11.setTechLeadName("jagadeep");
-		projectNew11.setTechLeadEmailId("tech11@gmail.com");
+		projectNew11.setProjectManagerName("maanager");
+		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
+		projectNew11.setTechLeadName("tech1");
+		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
 		projectNew11.setTeamName("team11");
 		projectNew11.setTeamSize("5");
 		projectNew11.setProjectStartDate(date11);
@@ -543,8 +582,8 @@ class ProjectServiceImplTest {
 		projectNew11.setTechStack("stack11");
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(null);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		assertThrows(InvalidUserException.class,()->projectServiceImpl.saveProject(projectNew11));
@@ -573,8 +612,8 @@ class ProjectServiceImplTest {
 		projectNew11.setProjectDescription(projectDescriptionDummy11);
 		projectNew11.setProjectManagerName("jagadeep");
 		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
-		projectNew11.setTechLeadName("jagadeep");
-		projectNew11.setTechLeadEmailId("tech11@gmail.com");
+		projectNew11.setTechLeadName("tech1");
+		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
 		projectNew11.setTeamName("team11");
 		projectNew11.setTeamSize("5");
 		projectNew11.setProjectStartDate(date11);
@@ -583,8 +622,8 @@ class ProjectServiceImplTest {
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com\"")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(null);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		
@@ -614,8 +653,8 @@ class ProjectServiceImplTest {
 		projectNew11.setProjectDescription(projectDescriptionDummy11);
 		projectNew11.setProjectManagerName("jagadeep");
 		projectNew11.setProjectManagerEmailId("jagadeep@gmail.com");
-		projectNew11.setTechLeadName("jagadeep");
-		projectNew11.setTechLeadEmailId("tech11@gmail.com");
+		projectNew11.setTechLeadName("tech1");
+		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
 		projectNew11.setTeamName("team11");
 		projectNew11.setTeamSize("5");
 		projectNew11.setProjectStartDate(date11);
@@ -624,8 +663,8 @@ class ProjectServiceImplTest {
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
 		
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(projectRepository.save(projectNew11)).thenReturn(projectNew11);
 		
@@ -662,7 +701,7 @@ class ProjectServiceImplTest {
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		projectServiceImpl.deleteProjectById("project11");
 //		when(projectRepository.deleteById("project11")).thenReturn(projectNew11);
-		verify(projectRepository, times(1)).delete(projectNew11);
+		verify(projectRepository);
 	}
 	
 	@Test
@@ -813,7 +852,7 @@ class ProjectServiceImplTest {
 		
 		when(userRepository.findByUserName("jagadeep")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		
 		assertThrows(IdAlreadyExistException.class,()->projectServiceImpl.assignProjectToUser("jagadeep", "project11"));
 
@@ -826,7 +865,7 @@ class ProjectServiceImplTest {
 		String projectDescriptionDummy11 = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
 		
 		ArrayList<String> toUsers = new ArrayList();
-		toUsers.add("jagadeep");
+		toUsers.add("jagadeep4");
 		
 		User userNew = new User();
 		userNew.setUserName("jagadeep");
@@ -843,8 +882,8 @@ class ProjectServiceImplTest {
 		projectNew11.setProjectDescription(projectDescriptionDummy11);
 		projectNew11.setProjectManagerName("jagadeep1");
 		projectNew11.setProjectManagerEmailId("jagadeep1@gmail.com");
-		projectNew11.setTechLeadName("jagadeep2");
-		projectNew11.setTechLeadEmailId("jagadeep2@gmail.com");
+		projectNew11.setTechLeadName("jagadeep");
+		projectNew11.setTechLeadEmailId("jagadeep@gmail.com");
 		projectNew11.setTeamName("team11");
 		projectNew11.setTeamSize("1");
 		projectNew11.setProjectStartDate(date11);
@@ -852,14 +891,16 @@ class ProjectServiceImplTest {
 		projectNew11.setTechStack("stack11");
 		projectNew11.setStatus("Completed");
 		projectNew11.setRemarks("Completed");
-		projectNew11.setProjectOwner("jagadeep3");
+		projectNew11.setProjectOwner("jagadeep");
 		projectNew11.setProjectAssignedToUsers(toUsers);
 		
 		when(userRepository.findByUserName("jagadeep")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
-		when(userRepository.findByName("jagadeep2")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		
-		assertThrows(IdAlreadyExistException.class,()->projectServiceImpl.assignProjectToUser("jagadeep", "project11"));
+		assertThrows(TeamSizeExcedsException.class,()->projectServiceImpl.assignProjectToUser("jagadeep", "project11"));
 
 	}
 	
@@ -900,10 +941,53 @@ class ProjectServiceImplTest {
 		
 		when(userRepository.findByUserName("jagadeep")).thenReturn(userNew);
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
-		when(userRepository.findByName("jagadeep")).thenReturn(userNew);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		
 		assertThrows(IdAlreadyExistException.class,()->projectServiceImpl.assignProjectToUser("jagadeep", "project11"));
 
+	}
+	
+	@Test
+	void testAssignProjectToUser() {
+		String dateString11 = "1999/07/28";
+		Date date11 = new Date(dateString11);
+		String projectDescriptionDummy11 = "As Bean Validation API is just a specification, it requires an implementation. So, for that, it uses Hibernate Validator. The Hibernate Validator is a fully compliant.";
+		
+		ArrayList<String> toUsers = new ArrayList();
+		toUsers.add("jagadeep4");
+		
+		User userNew = new User();
+		userNew.setUserName("jagadeep");
+		userNew.setName("jagadeep");
+		userNew.setEmailAddress("jagadeep@gmail.com");
+		userNew.setContactNo(7894561230L);
+		userNew.setDateOfBirth(date11);
+		userNew.setRole("Admin");
+		userNew.setPassword("{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm");
+
+		Project projectNew11  = new Project();
+		projectNew11.setProjectId("project11");
+		projectNew11.setProjectName("project11");
+		projectNew11.setProjectDescription(projectDescriptionDummy11);
+		projectNew11.setProjectManagerName("jagadeep1");
+		projectNew11.setProjectManagerEmailId("jagadeep1@gmail.com");
+		projectNew11.setTechLeadName("jagadeep2");
+		projectNew11.setTechLeadEmailId("jagadeep2@gmail.com");
+		projectNew11.setTeamName("team11");
+		projectNew11.setTeamSize("5");
+		projectNew11.setProjectStartDate(date11);
+		projectNew11.setProjectEndDate(date11);
+		projectNew11.setTechStack("stack11");
+		projectNew11.setStatus("Completed");
+		projectNew11.setRemarks("Completed");
+		projectNew11.setProjectOwner("jagadeep3");
+		projectNew11.setProjectAssignedToUsers(toUsers);
+		
+		when(userRepository.findByUserName("jagadeep")).thenReturn(userNew);
+		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
+		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
+		projectServiceImpl.assignProjectToUser("jagadeep","project11");
+		verify(userRepository).save(userNew);
 	}
 
 }

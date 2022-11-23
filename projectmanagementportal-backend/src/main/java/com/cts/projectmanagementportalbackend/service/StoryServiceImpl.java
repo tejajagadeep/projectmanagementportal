@@ -299,16 +299,16 @@ public class StoryServiceImpl implements StoryService {
 			}
 		}
 		
-		if (user.getName().equals(project.getProjectManagerName()) ==false
-				&& user.getName().equals(project.getTechLeadName()) == false
+		if (user.getEmailAddress().equals(project.getProjectManagerEmailId()) ==false
+				&& user.getEmailAddress().equals(project.getTechLeadEmailId()) == false
 				&& userName.equals(project.getProjectOwner()) == false
 				) {
 			if(project.getProjectAssignedToUsers() == null) {
-			throw new InvalidUserException("User not Part of the Project.");
+			throw new NoSuchElementExistException("User not Part of the Project.");
 			}
 			if (project.getProjectAssignedToUsers() != null) {
 				if(project.getProjectAssignedToUsers().contains(userName)==false){
-					throw new InvalidUserException("User not Part of the Project..");
+					throw new NoSuchElementExistException("User not Part of the Project..");
 				}
 			}
 				
