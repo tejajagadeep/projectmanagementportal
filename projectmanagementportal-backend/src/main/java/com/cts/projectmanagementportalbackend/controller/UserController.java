@@ -47,6 +47,7 @@ public class UserController {
 	}
 	
 //	@PreAuthorize("@userSecurity.hasUserName(authentication,#userName)")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
 	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
