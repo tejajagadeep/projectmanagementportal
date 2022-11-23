@@ -699,9 +699,11 @@ class ProjectServiceImplTest {
 		projectNew11.setRemarks("Completed");
 		
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
+		
 		projectServiceImpl.deleteProjectById("project11");
 //		when(projectRepository.deleteById("project11")).thenReturn(projectNew11);
-		verify(projectRepository);
+		verify(projectRepository,times(1)).deleteById("project11");
+//		assertThat(projectRepository.findById("project11")).isNull();
 	}
 	
 	@Test
@@ -987,7 +989,7 @@ class ProjectServiceImplTest {
 		when(projectRepository.findByProjectId("project11")).thenReturn(projectNew11);
 		when(userRepository.findByEmailAddress("jagadeep@gmail.com")).thenReturn(userNew);
 		projectServiceImpl.assignProjectToUser("jagadeep","project11");
-		verify(userRepository).save(userNew);
+		verify(userRepository,times(1)).save(userNew);
 	}
 
 }

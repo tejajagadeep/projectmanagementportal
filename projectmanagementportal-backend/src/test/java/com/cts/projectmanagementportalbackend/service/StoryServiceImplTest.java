@@ -303,9 +303,8 @@ class StoryServiceImplTest {
 		story1.setProjectIdName("project");
 		when(storyRepository.findByStoryId("story")).thenReturn(story1);
 		
-		storyRepository.deleteById("story");
 		storyServiceImpl.deleteStoryById("story");
-		verify(storyRepository, times(1)).delete(story1);
+		verify(storyRepository, times(1)).deleteById("story");
 	}
 	
 	@Test
