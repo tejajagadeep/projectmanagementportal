@@ -157,6 +157,7 @@ export class ViewProjectStatusComponent implements OnInit {
   }
 
   deleteProject(projectId: string) {
+    if(confirm('Are you sure you want to delete this Project?'))
     this.projectService.deleteProjectById(projectId).subscribe(
       response => {
         this.message = `Deleted Project with Id ${projectId}`;

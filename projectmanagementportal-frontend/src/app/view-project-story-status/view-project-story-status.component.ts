@@ -164,6 +164,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
 
 
   deleteStory(storyId: string) {
+    if(confirm('Are you sure you want to delete this story?'))
     this.storyService.deleteStoryById(storyId).subscribe(
       response => {
         this.message = `Deleted Story with Id ${storyId}`;
