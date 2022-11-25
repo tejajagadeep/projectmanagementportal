@@ -1,6 +1,9 @@
-<div *ngIf="isUserLoggedIn">
+<app-menu></app-menu>
 
-    <app-home></app-home>
-    <h4 class="alert alert-warning">{{errorMessage}}</h4>
+<div>
+
+    
+    <h4 class="alert alert-warning">Error Page. Redirected to home...</h4>
 </div>
-<!-- <app-login *ngIf="username"></app-login> -->
+<app-home></app-home>
+<app-footer></app-footer>

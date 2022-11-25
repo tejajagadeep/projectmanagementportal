@@ -4,7 +4,6 @@ import { MessageResponse } from '../model/message-response';
 import { Project } from '../model/project';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
-import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
 import { ProjectDataService } from '../service/data/project-data.service';
 import { StoryDataService } from '../service/data/story-data.service';
 import { UserDataService } from '../service/data/user-data.service';
@@ -41,7 +40,6 @@ export class HomeComponent implements OnInit {
     private storyService: StoryDataService,
     private authService: AuthenticationDataService,
     private userService: UserDataService,
-    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +51,7 @@ export class HomeComponent implements OnInit {
     console.log(this.LoggedIn)
     this.getUser(this.username);
     console.log(this.user.role)
-
+    this.getUserRole()
     this.getByProjectStatus();
     // this.helloWorld();
   }
@@ -61,6 +59,14 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authService.logOut()
     this.router.navigate(['logout'])
+  }
+
+  getUserRole(){
+    this.userService.getUserByUserName(this.username).subscribe(
+      response => {
+        sessionStorage.setItem('userRole', response.role)
+      }
+    )
   }
 
   getUsername() {

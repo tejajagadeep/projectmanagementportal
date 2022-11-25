@@ -22,7 +22,7 @@ import com.cts.projectmanagementportalbackend.jwt.JwtTokenUtil;
 import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class JwtAuthenticationController {
 
 	@Autowired

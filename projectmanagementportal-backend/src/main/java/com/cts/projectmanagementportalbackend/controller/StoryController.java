@@ -30,7 +30,7 @@ import com.cts.projectmanagementportalbackend.service.StoryService;
 
 //import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1.0/story")
 public class StoryController {

@@ -2,7 +2,6 @@ import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } fro
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationDataService } from '../auth/authentication-data.service';
-import { BasicAuthenticationService } from '../auth/basic-authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ import { BasicAuthenticationService } from '../auth/basic-authentication.service
 export class HttpIntercepterBasicAuthService implements HttpInterceptor {
 
   constructor(
-    private basicAuthenticationService: BasicAuthenticationService,
     private authDataService: AuthenticationDataService
   ) { }
 

@@ -10,6 +10,9 @@ import { User } from '../model/user';
 import { Project } from '../model/project';
 import { MessageResponse } from '../model/message-response';
 import { threadId } from 'worker_threads';
+import { timeStamp } from 'console';
+
+declare var window: any;
 
 @Component({
   selector: 'app-view-project-story-status',
@@ -37,6 +40,8 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   messageAssignedNUll!: string
   assignUndefined = false
 
+  formModal:any
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -59,6 +64,14 @@ export class ViewProjectStoryStatusComponent implements OnInit {
     this.getUser(this.username);
 
     // this.getuserByName(this.name)
+
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("exampleModalCenter")
+    )
+  }
+
+  openModal(){
+    this.formModal.show()
   }
 
   storyAssign() {

@@ -12,6 +12,7 @@ import { ProjectStoryRegistrationComponent } from './project-story-registration/
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { AuthGuardDataService } from './service/auth/auth-guard-data.service';
+import { AdminRouteGuardService } from './service/role/admin-route-guard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService] },
   { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService] },
   { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService] },
+  { path: 'error', component: ErrorComponent, canActivate: [AuthGuardDataService] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
   { path: '**', component: LoginComponent, canActivate: [AuthGuardDataService] }
 

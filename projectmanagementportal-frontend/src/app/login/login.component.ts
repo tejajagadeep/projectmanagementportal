@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageResponse } from '../model/message-response';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
-import { BasicAuthenticationService } from '../service/auth/basic-authentication.service';
 import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authenticateLoginService: AuthenticationDataService,
-    private basicAuthService: BasicAuthenticationService,
     private userService: UserDataService
   ) { }
 
@@ -43,20 +41,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["home"]);
   }
 
-  handleJWTAuthLogin() {
-    this.basicAuthService.executeJWTAuthenticationService(this.username, this.password)
-      .subscribe(
-        data => {
-          console.log(data)
-          this.router.navigate(['welcome', this.username])
-          this.invalidLogin = false
-          // },
-          // error => {
-          //   console.log(error)
-          //   this.invalidLogin = true
-        }
-      )
-  }
+
 
 
   handleSuccessResponse(response: any) {
@@ -70,15 +55,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  checkLogin() {
-    if (this.basicAuthService.executeJWTAuthenticationService(this.username, this.password)
-    ) {
-      this.router.navigate(['home', this.username])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
-
-  }
 
   checkLogin1() {
     // this.authenticateLoginService.authenticationService(this.username, this.password).subscribe(

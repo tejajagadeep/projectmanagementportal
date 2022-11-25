@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { API_URL } from 'src/app/app.constants';
 import { MessageResponse } from 'src/app/model/message-response';
+import { UserDataService } from '../data/user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +20,12 @@ export class AuthenticationDataService {
 
   constructor(
     // private http: HttpClient,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private userService: UserDataService
   ) { }
 
   authenticate(username: string, password: string) {
-    return this.httpClient.post<any>('http://localhost:8093/project-management/authenticate', { username, password }).pipe(
+    return this.httpClient.post<any>(`${API_URL}/authenticate`, { username, password }).pipe(
       map(
         userData => {
           sessionStorage.setItem('authenticatedUser', username);
@@ -54,14 +57,14 @@ export class AuthenticationDataService {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
   }
 
-  authenticationService(username: string, password: string): Observable<any> {
-    return this.httpClient.get(`http://localhost:8093/project-management/basicauth`,
-      { headers: { authorization: this.createBasicAuthToken1(username, password) } }).pipe(map((res) => {
-        this.username = username;
-        this.password = password;
-        this.registerSuccessfulLogin1(username, password);
-      }));
-  }
+  // authenticationService(username: string, password: string): Observable<any> {
+  //   return this.httpClient.get(`http://localhost:8093/project-management/basicauth`,
+  //     { headers: { authorization: this.createBasicAuthToken1(username, password) } }).pipe(map((res) => {
+  //       this.username = username;
+  //       this.password = password;
+  //       this.registerSuccessfulLogin1(username, password);
+  //     }));
+  // }
 
   createBasicAuthToken1(username: string, password: string) {
     return 'Basic ' + window.btoa(username + ":" + password)
@@ -97,4 +100,5 @@ export class AuthenticationDataService {
     return user
   }
 
+  
 }

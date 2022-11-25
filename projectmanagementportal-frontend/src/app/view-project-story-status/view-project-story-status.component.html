@@ -81,7 +81,7 @@
         </table>
         <div class="d-flex justify-content-between">
             <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name"
-                (click)="deleteStory(story.storyId)" class="btn btn-danger">Delete</button>
+                 class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" >Delete</button>
             
             <button
                 *ngIf="(project.projectOwner == username || story.assignee == user.name|| project.projectManagerName === user.name)"
@@ -111,5 +111,24 @@
         <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete Story</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are You Sure You want to Delete The story. Once Deleted You will not be able to retrieve the details again.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="deleteStory(story.storyId)" >Delete Story</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <app-footer></app-footer>
