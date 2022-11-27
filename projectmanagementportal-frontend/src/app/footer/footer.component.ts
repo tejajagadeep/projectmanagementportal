@@ -1,5 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { debounceTime, fromEvent, map, tap } from 'rxjs';
+// import { debounceTime, fromEvent, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -9,11 +9,11 @@ import { debounceTime, fromEvent, map, tap } from 'rxjs';
 export class FooterComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
 
-  showBtn$ = fromEvent(document, 'scroll').pipe(
-    debounceTime(50),
-    map(() => window.scrollY > 500),
-    tap(() => console.log('sas'))
-  );
+  // showBtn$ = fromEvent(document, 'scroll').pipe(
+  //   debounceTime(50),
+  //   map(() => window.scrollY > 500),
+  //   tap(() => console.log('sas'))
+  // );
 
   // not Cross browsing (works on chrome - firefox)
   gotoTop() {

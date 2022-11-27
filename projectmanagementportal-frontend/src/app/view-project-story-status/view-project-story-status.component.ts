@@ -9,8 +9,6 @@ import { UserDataService } from '../service/data/user-data.service';
 import { User } from '../model/user';
 import { Project } from '../model/project';
 import { MessageResponse } from '../model/message-response';
-import { threadId } from 'worker_threads';
-import { timeStamp } from 'console';
 
 declare var window: any;
 

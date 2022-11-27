@@ -29,7 +29,6 @@ import { ProjectStoryRegistrationComponent } from './project-story-registration/
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
