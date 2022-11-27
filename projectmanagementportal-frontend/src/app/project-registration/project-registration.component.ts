@@ -2,8 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
+import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
   selector: 'app-project-registration',
@@ -17,20 +19,43 @@ export class ProjectRegistrationComponent implements OnInit {
   projectId!: string
   username!: string
   projectAssigned!: string[]
+  dateDummy!: Date
 
+  user!: User
+
+  
   constructor(
 
     private router: Router,
     private route: ActivatedRoute,
     private projectDataService: ProjectDataService,
+    private userService: UserDataService,
     private authService: AuthenticationDataService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.project = new Project('', '', '', '', '', '', '', '', '', new Date(), new Date(), '', 'To-Do', '', '', this.projectAssigned,[])
+    this.project = new Project('', '', '', '', '', '', '', '', '', this.dateDummy, this.dateDummy, '', 'To-Do', '', '', this.projectAssigned,[])
     this.username = this.authService.getLoggedInUserName();
+    this.getUser(this.username)
     console.log('projects-reistration.component.ts')
+  }
+
+  getUser(userName: string) {
+    this.userService.getUserByUserName(userName).subscribe(
+      response => {
+        console.log("response")
+        this.user = response;
+        // this.getAllProjectsMN(response.name)
+        // this.getAllProjectsTL(response.name)
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
   }
 
   navBack() {

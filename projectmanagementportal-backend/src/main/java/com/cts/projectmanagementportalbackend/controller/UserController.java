@@ -24,9 +24,6 @@ import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendAppl
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.service.UserService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -50,8 +47,7 @@ public class UserController {
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByUserName/{userName}")
 //	@PostFilter("filterObject.userId==authentication.name")
-	@Operation(summary = "Returns a User", description = "Takes Id and returns single User" ) //method level
-	public @ApiResponse(description = "Demo Object") ResponseEntity<User> getByUserName(@Parameter(description = "Id of the Demo") @PathVariable String userName){
+	public ResponseEntity<User> getByUserName(@PathVariable String userName){
 		
 		log.info("inside getByUserName of User Controller");
 		return new ResponseEntity<>(userService.getByUserName(userName),HttpStatus.OK);
@@ -59,7 +55,7 @@ public class UserController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	@GetMapping("/getUserByName/{name}")
-	public @ApiResponse(description = "Demo Object") ResponseEntity<User> getUserByName(@Parameter(description = "Id of the Demo") @PathVariable String name){
+	public ResponseEntity<User> getUserByName(@PathVariable String name){
 		
 		log.info("inside getByUserName of User Controller");
 		return new ResponseEntity<>(userService.getUserByName(name),HttpStatus.OK);

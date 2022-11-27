@@ -92,9 +92,7 @@ public class Story {
 	@NotEmpty(message = "status should not be Null")
 	private String status;
 	
-	@NotNull(message = "remarks should not be Null")
 	@Size(max = 100)
-	@NotEmpty(message = "remarks should not be empty")
 	private String remarks;
 	
 	private ArrayList<String> storyAssignedToUsers;

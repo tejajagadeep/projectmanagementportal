@@ -2,9 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../model/project';
+import { User } from '../model/user';
 import { AuthGuardDataService } from '../service/auth/auth-guard-data.service';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { ProjectDataService } from '../service/data/project-data.service';
+import { UserDataService } from '../service/data/user-data.service';
 
 @Component({
   selector: 'app-project-update',
@@ -22,10 +24,13 @@ export class ProjectUpdateComponent implements OnInit {
   dateDummy!: Date
   assign!: string
 
+  user!: User
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private projectDataService: ProjectDataService,
+    private userService: UserDataService,
     private authService: AuthenticationDataService,
     private location: Location
   ) { }
@@ -35,6 +40,23 @@ export class ProjectUpdateComponent implements OnInit {
     this.projectId = this.route.snapshot.params['projectId'];
     this.getProjectBId(this.projectId);
     this.username = this.authService.getLoggedInUserName();
+    this.getUser(this.username)
+  }
+
+  getUser(userName: string) {
+    console.log()
+    this.userService.getUserByUserName(userName).subscribe(
+      response => {
+        console.log("response")
+        this.user = response;
+      },
+      error => {
+        console.log("error")
+        this.handleErrorMessage(error);
+        console.log(error.error.message)
+
+      }
+    )
   }
 
   navBack() {

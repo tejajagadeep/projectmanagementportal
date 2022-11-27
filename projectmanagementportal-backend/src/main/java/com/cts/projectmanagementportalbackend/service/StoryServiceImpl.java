@@ -60,7 +60,7 @@ public class StoryServiceImpl implements StoryService {
 		Story optionalStory = storyRepository.findByStoryId(storyId);
 
 		if (optionalStory==null) {
-			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id: " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 		} 
 		log.info(" inside getStoryById of StoryServiceImpl : " + storyId);
@@ -215,7 +215,7 @@ public class StoryServiceImpl implements StoryService {
 
 		Story optionalProject = storyRepository.findByStoryId(storyId);
 		if (optionalProject==null) {
-			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id: " + storyId + " Doesn't Exist");
 			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
 	
 			
@@ -240,14 +240,14 @@ public class StoryServiceImpl implements StoryService {
 		if (project == null) {
 
 			log.warn("project Id does'nt exist " + projectId);
-			throw new NoSuchElementExistException("project Id doesn't exist");
+			throw new NoSuchElementExistException("Project Id doesn't exist");
 
 		} 
 		
 		if (story == null) {
 
 			log.warn("story Id does'nt exist " + storyId);
-			throw new NoSuchElementExistException("story Id doesn't exist");
+			throw new NoSuchElementExistException("Story Id doesn't exist");
 		}
 
 		storySet = project.getStories();
@@ -287,7 +287,7 @@ public class StoryServiceImpl implements StoryService {
 		if (story == null) {
 
 			log.warn("story Id does'nt exist " + storyId);
-			throw new NoSuchElementExistException("story Id doesn't exist");
+			throw new NoSuchElementExistException("Story Id doesn't exist");
 		}
 
 		Project project = projectRepository.findByProjectId(story.getProjectIdName());

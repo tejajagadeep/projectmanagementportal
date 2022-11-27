@@ -5,7 +5,7 @@
     <ul class="navbar-nav">
       <li><a *ngIf="LoggedIn" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a></li>
       <li><a *ngIf="LoggedIn" [routerLink]="['/home/',username]" class="nav-link">Home</a></li>
-      <li><a *ngIf="LoggedIn" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
+      <li><a *ngIf="LoggedIn" routerLink="/my-projects" class="nav-link">My Projects</a></li>
     </ul>
     <div class="navbar-nav navbar-collapse justify-content-center">
       <h3 class="">Project Management</h3>
@@ -13,7 +13,7 @@
     <ul class="navbar-nav navbar-collapse justify-content-end">
       <li><a *ngIf="LoggedIn && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New
           Project</a></li>
-      <li><a *ngIf="LoggedIn" (click)="logout()" class="nav-link">logout</a></li>
+      <li><a *ngIf="LoggedIn" (click)="logout()" class="nav-link">Logout</a></li>
     </ul>
   </nav>
 </header>

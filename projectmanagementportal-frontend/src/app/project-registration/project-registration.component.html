@@ -1,4 +1,4 @@
-<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+<section class="h-100 h-custom" style="background-color: #8fc4b7;" *ngIf="user.role==='Admin' ">
     <div class="container">
 
         <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveProject()">
@@ -17,7 +17,7 @@
                         <h6 class="mb-0">Project Id</h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="projectId" name="projectId" placeholder="projectId"
+                        <input type="text" class="form-control" id="projectId" name="projectId" placeholder="Project Id"
                             [(ngModel)]="project.projectId" required #projectId="ngModel"
                             [class.is-invalid]="projectId.invalid && projectId.touched" />
                         <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id Id
@@ -32,7 +32,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectName" name="projectName"
-                            placeholder="projectName" [(ngModel)]="project.projectName" required #projectName="ngModel"
+                            placeholder="Project Name" [(ngModel)]="project.projectName" required #projectName="ngModel"
                             [class.is-invalid]="projectName.invalid && projectName.touched" />
                         <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">Project
                             Name
@@ -46,7 +46,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
-                            placeholder="projectDescription" [(ngModel)]="project.projectDescription" minlength="100"
+                            placeholder="Project Description" [(ngModel)]="project.projectDescription" minlength="100"
                             maxlength="255" required #projectDescription="ngModel"
                             [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
                         <small class="text-danger"
@@ -61,7 +61,7 @@
                         <h6 class="mb-0">Team Name</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="teamName" name="teamName" placeholder="teamName"
+                        <input type="text" class="form-control" id="teamName" name="teamName" placeholder="Team Name"
                             [(ngModel)]="project.teamName" required #teamName="ngModel"
                             [class.is-invalid]="teamName.invalid && teamName.touched" />
                         <small class="text-danger" [class.d-none]="teamName.valid || teamName.untouched">Team Name is
@@ -74,7 +74,7 @@
                         <h6 class="mb-0">Team Size</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="teamSize"
+                        <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="Team Size"
                             min="1" [(ngModel)]="project.teamSize" required #teamSize="ngModel"
                             [class.is-invalid]="teamSize.invalid && teamSize.touched" />
                         <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
@@ -88,7 +88,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectManagerName" name="projectManagerName"
-                            placeholder="projectManagerName" [(ngModel)]="project.projectManagerName" required
+                            placeholder="roject Manager Name" [(ngModel)]="project.projectManagerName" required
                             #projectManagerName="ngModel"
                             [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched" />
                         <small class="text-danger"
@@ -104,7 +104,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
-                            placeholder="projectManagerEmailId" [(ngModel)]="project.projectManagerEmailId"
+                            placeholder="Project Manager Email Id" [(ngModel)]="project.projectManagerEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #projectManagerEmailId="ngModel"
                             [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
                         <small class="text-danger"
@@ -120,7 +120,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techLeadName" name="techLeadName"
-                            placeholder="techLeadName" [(ngModel)]="project.techLeadName" required
+                            placeholder="Tech Lead Name" [(ngModel)]="project.techLeadName" required
                             #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched" />
                         <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">Tech
                             Lead Name is
@@ -134,7 +134,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
-                            placeholder="techLeadEmailId" [(ngModel)]="project.techLeadEmailId"
+                            placeholder="Tech Lead Email Id" [(ngModel)]="project.techLeadEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #techLeadEmailId="ngModel"
                             [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
                         <small class="text-danger"
@@ -147,9 +147,10 @@
                     <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
                         <h6 class="mb-0">Project Start Date</h6>
                     </label>
+                    
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectStartDate" name="projectStartDate"
-                            placeholder="projectStartDate" [ngModel]="project.projectStartDate | date: 'yyyy-MM-dd' "
+                            placeholder="Project Start Date" [ngModel]="project.projectStartDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="project.projectStartDate = $event" required #projectStartDate="ngModel"
                             [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
                         <small class="text-danger"
@@ -164,7 +165,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
-                            placeholder="projectEndDate" [ngModel]="project.projectEndDate | date: 'yyyy-MM-dd' "
+                            placeholder="Project End Date" [ngModel]="project.projectEndDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="project.projectEndDate = $event" required #projectEndDate="ngModel"
                             [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
                         <small class="text-danger"
@@ -178,7 +179,7 @@
                         <h6 class="mb-0">Tech Stack</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="techStack" name="techStack" placeholder="techStack"
+                        <input type="text" class="form-control" id="techStack" name="techStack" placeholder="Tech Stack"
                             [(ngModel)]="project.techStack" required #techStack="ngModel"
                             [class.is-invalid]="techStack.invalid && techStack.touched" />
                         <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">Tech Stack is
@@ -222,7 +223,7 @@
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="project.status" required>
-                            <option value="To-Do" selected>To-Do</option>
+                            <option value="To-Do" >To-Do</option>
                             <option value="In-Progress">In-Progress</option>
                             <option value="Ready-For-Test">Ready-For-Test</option>
                             <option value="Completed">Completed</option>
@@ -235,7 +236,7 @@
                         <h6 class="mb-0">Remarks</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks"
                             [(ngModel)]="project.remarks" required #remarks="ngModel"
                             [class.is-invalid]="remarks.invalid && remarks.touched" />
                         <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
@@ -249,7 +250,7 @@
                 <div class="d-flex justify-content-around pt-3">
                     <button type="button" class="btn btn-primary btn-lg" (click)="navBack()">Back</button>
                     <button type="button" class="btn btn-light" [routerLink]="['/home/',username]">Home</button>
-                    <button type="reset" class="btn btn-info btn-lg">Reset all</button>
+                    <button type="reset" class="btn btn-info btn-lg">Reset All</button>
                     <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
                 </div>
             </div>
@@ -257,3 +258,7 @@
         </form>
     </div>
 </section>
+
+<div *ngIf="user.role==='Member' ">
+<app-home></app-home>
+</div>

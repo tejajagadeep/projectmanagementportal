@@ -69,7 +69,7 @@ public class ProjectServiceImpl implements ProjectService{
 	public List<Project> getProjectsByStatus(String status) {
 		
 		if (!status.equals("To-Do") && !status.equals("In-Progress") && !status.equals("Ready-For-Test") && !status.equals("Completed")) {
-			throw new NoSuchElementExistException("Please give valid Status");
+			throw new NoSuchElementExistException("Please give valid Status.");
 		}
 
 		log.info(" inside getProjectsByStatus of ProjectServiceImpl : "+ status);
@@ -91,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService{
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		if(optionalProject==null) {
 			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist");
 		
 			
 		} 
@@ -114,9 +114,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if(optionalProject!=null) {
 			log.warn("Project with Id " + project.getProjectId() + " Already Exist");
-			throw new IdAlreadyExistException("Project with Id " + project.getProjectId() + " Already Exist");
+			throw new IdAlreadyExistException("Project with Id: " + project.getProjectId() + " Already Exist");
 		}  if (userProjectManager==null) {
-			String projectManagerNotFound = "project Manager EmailId doesn't exist.  please enter existing user ";
+			String projectManagerNotFound = "Project Manager Email Id doesn't exist.  please enter existing user. ";
 			
 			log.warn(projectManagerNotFound);
 			throw new NoSuchElementExistException(projectManagerNotFound);
@@ -130,14 +130,14 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		if (optionalProject==null && userProjectManager!=null && userTechLead!=null) {
 		if (!userProjectManager.getName().equals(project.getProjectManagerName())) {
-			String projectManagerNotFound = "project Manager Email and Name doesn't match. please re-enter.";
+			String projectManagerNotFound = "Project Manager Email Id and Name doesn't match. please re-enter.";
 			
 			log.warn(projectManagerNotFound);
 			throw new InvalidUserException(projectManagerNotFound);
 		
 		}  if (!userTechLead.getName().equals(project.getTechLeadName())) {
 			
-			String techLeadNotFound = "Tech Lead Email and Name doesn't match. please re-enter.";
+			String techLeadNotFound = "Tech Lead Email Id and Name doesn't match. please re-enter.";
 			log.warn(techLeadNotFound);
 			throw new InvalidUserException(techLeadNotFound);
 		
@@ -174,7 +174,7 @@ public class ProjectServiceImpl implements ProjectService{
 			log.warn("Project with Id " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 		}  if (userProjectManager==null) {
-			String projectManagerNotFound = "project Manager EmailId doesn't exist.  please enter existing user ";
+			String projectManagerNotFound = "Project Manager EmailId doesn't exist.  please enter existing user ";
 			
 			log.warn(projectManagerNotFound);
 			throw new NoSuchElementExistException(projectManagerNotFound);
@@ -188,14 +188,14 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		if (optionalProject!=null && userProjectManager!=null && userTechLead!=null) {
 		if (!userProjectManager.getName().equals(project.getProjectManagerName())) {
-			String projectManagerNotFound = "project Manager Email and Name doesn't match. please re-enter.";
+			String projectManagerNotFound = "Project Manager Email Id and Name doesn't match. please re-enter.";
 			
 			log.warn(projectManagerNotFound);
 			throw new InvalidUserException(projectManagerNotFound);
 		
 		}  if (!userTechLead.getName().equals(project.getTechLeadName())) {
 			
-			String techLeadNotFound = "Tech Lead Email and Name doesn't match. please re-enter.";
+			String techLeadNotFound = "Tech Lead Email Id and Name doesn't match. please re-enter.";
 			log.warn(techLeadNotFound);
 			throw new InvalidUserException(techLeadNotFound);
 		
@@ -230,13 +230,13 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		if(optionalProject==null) {
-			log.warn("Project with Id " + projectId + " doesn't Exist");
+			log.warn("Project with Id: " + projectId + " doesn't Exist");
 			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
 
 			
 		} 
 		
-		log.info("deleted project with Id :"+projectId);
+		log.info("deleted project with Id : "+projectId);
 		projectRepository.deleteById(projectId);
 		
 	}
@@ -257,14 +257,14 @@ public class ProjectServiceImpl implements ProjectService{
 		if (project == null) {
 			
 			log.warn("project Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("project Id doesn't exist");
+			throw new NoSuchElementExistException("Project Id doesn't exist");
 			
 		} 
 		
 		if (user==  null) {
 			
 			log.warn("story Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("user doesn't exist " +userName);
+			throw new NoSuchElementExistException("User doesn't exist " +userName);
 		}
 		
 
@@ -278,7 +278,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		user.setProjects(projectSet);
 		
-		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
+		String msg= "User with Id: " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Servcie Impl "+msg);
 		
 //		projectRepository.save(project);
@@ -301,7 +301,7 @@ public class ProjectServiceImpl implements ProjectService{
 		if (project == null) {
 			
 			log.warn("project Id does'nt exist " + projectId);
-			throw new NoSuchElementExistException("project Id doesn't exist");
+			throw new NoSuchElementExistException("Project Id doesn't exist");
 			
 		} 
 		

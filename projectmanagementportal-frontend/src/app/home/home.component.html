@@ -7,13 +7,13 @@
                 <li><a *ngIf="(LoggedIn)" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a>
                 </li>
                 <li><a *ngIf="(LoggedIn)" routerLink="['/home/',username]" class="nav-link">Home</a></li>
-                <li><a *ngIf="(LoggedIn)" routerLink="/my-projects" class="nav-link">MyProjects</a></li>
+                <li><a *ngIf="(LoggedIn)" routerLink="/my-projects" class="nav-link">My Projects</a></li>
 
                 <!-- filter by status-->
 
                 <select class="form-control" (change)="getByProjectStatus()" #status>
                     <option selected class="btn btn-outline-success" value="Filter by status"><small>Filter by
-                            status</small></option>
+                            Status</small></option>
                     <option value="To-Do">To-Do</option>
                     <option value="In-Progress">In-Progress</option>
                     <option value="Ready-For-Test">Ready-For-Test</option>
@@ -34,7 +34,7 @@
                 placeholder="search...">
             <li><a *ngIf="(LoggedIn) && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New
                     Project</a></li>
-            <li><a *ngIf="(LoggedIn)" (click)="logout()" class="nav-link">logout</a></li>
+            <li><a *ngIf="(LoggedIn)" (click)="logout()" class="nav-link">Logout</a></li>
         </ul>
     </nav>
 </header>

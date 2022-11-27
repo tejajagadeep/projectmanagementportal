@@ -19,7 +19,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="storyTitle" name="storyTitle"
-                            placeholder="storyTitle" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
+                            placeholder="Story Title" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
                             [class.is-invalid]="storyTitle.invalid && storyTitle.touched" />
                         <small class="text-danger" [class.d-none]="storyTitle.valid || storyTitle.untouched">Story Title
                             is required</small>
@@ -32,7 +32,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
-                            placeholder="storyDescription" [(ngModel)]="story.storyDescription" minlength="100"
+                            placeholder="Story Description" [(ngModel)]="story.storyDescription" minlength="100"
                             maxlength="255" required #storyDescription="ngModel"
                             [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
                         <small class="text-danger"
@@ -46,7 +46,7 @@
                         <h6 class="mb-0">Assignee</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="assignee" name="assignee" placeholder="assignee"
+                        <input type="text" class="form-control" id="assignee" name="assignee" placeholder="Assignee"
                             [(ngModel)]="story.assignee" required #assignee="ngModel"
                             [class.is-invalid]="assignee.invalid && assignee.touched" />
                         <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
@@ -61,7 +61,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId"
-                            placeholder="assigneeEmailId" [(ngModel)]="story.assigneeEmailId"
+                            placeholder="Assignee Email Id" [(ngModel)]="story.assigneeEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #assigneeEmailId="ngModel"
                             [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
                         <small class="text-danger"
@@ -77,7 +77,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
-                            placeholder="assignmentDate" [ngModel]="story.assignmentDate  | date: 'yyyy-MM-dd'"
+                            placeholder="Assignment Date" [ngModel]="story.assignmentDate  | date: 'yyyy-MM-dd'"
                             (ngModelChange)="story.assignmentDate = $event" required #assignmentDate="ngModel"
                             [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
                         <small class="text-danger"
@@ -92,7 +92,7 @@
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="targetDate" name="targetDate"
-                            placeholder="targetDate" [ngModel]="story.targetDate | date: 'yyyy-MM-dd' "
+                            placeholder="Target Date" [ngModel]="story.targetDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="story.targetDate = $event" required #targetDate="ngModel"
                             [class.is-invalid]="targetDate.invalid && targetDate.touched" />
                         <small class="text-danger" [class.d-none]="targetDate.valid || targetDate.untouched">Target Date
@@ -119,11 +119,9 @@
                         <h6 class="mb-0">Remarks</h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
-                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="remarks"
-                            [(ngModel)]="story.remarks" required #remarks="ngModel"
-                            [class.is-invalid]="remarks.invalid && remarks.touched" />
-                        <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
-                            required</small>
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks"
+                            [(ngModel)]="story.remarks"
+                             />
                     </fieldset>
                 </div>
 
