@@ -49,6 +49,18 @@ export class ProjectStoryRegistrationComponent implements OnInit {
     this.location.back()
   }
 
+  OnlyAlbhabets(event: any):boolean{
+
+    const charCode = (event.which)?event.which: event.keyCode;
+
+    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+       return true
+    }
+
+
+    return false;
+  }
+
   getUser(userName: string) {
     console.log()
     this.userService.getUserByUserName(userName).subscribe(

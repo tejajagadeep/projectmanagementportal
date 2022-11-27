@@ -22,7 +22,8 @@ export class ProjectRegistrationComponent implements OnInit {
   dateDummy!: Date
 
   user!: User
-
+  users!: User[]
+  emailIds!: string[]
   
   constructor(
 
@@ -65,6 +66,26 @@ export class ProjectRegistrationComponent implements OnInit {
     this.router.navigate(['view-project-status', this.projectId]);
   }
 
+  OnlyAlbhabets(event: any):boolean{
+
+    const charCode = (event.which)?event.which: event.keyCode;
+
+    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+       return true
+    }
+
+
+    return false;
+  }
+
+  getUserEmailId(){
+    this.userService.getUserEmailId().subscribe(
+      response => {
+        this.emailIds = response;
+      }
+    )
+  }
+
   saveProject() {
     this.projectDataService.saveProject(this.project)
       .subscribe(
@@ -89,4 +110,16 @@ export class ProjectRegistrationComponent implements OnInit {
     this.errorMessageResponse = error.error.message
   }
 
+  getAllUsers() {
+    this.userService.getAllUsers(this.username).subscribe(
+      response => this.users
+      // {
+      //   // console.log(response);
+      //   this.user = response;
+      //   // console.log(this.user)
+      // }
+    );
+    console.log('getAllUsers')
+
+  }
 }

@@ -39,6 +39,18 @@ export class ProjectStoryUpdateComponent implements OnInit {
     this.location.back()
   }
 
+  OnlyAlbhabets(event: any):boolean{
+
+    const charCode = (event.which)?event.which: event.keyCode;
+
+    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+       return true
+    }
+
+
+    return false;
+  }
+
   getStoryById(storyId: string) {
     this.storyDataService.getStoryById(storyId).subscribe(
       response => {

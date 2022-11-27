@@ -218,7 +218,7 @@
     <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
       <h1 class="text-success text-center">User SignUp</h1>
 
-      <div class="container text-center alert alert-warning" *ngIf="errorMessageResponse">Error {{errorMessageResponse}}
+      <div class="container text-center alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
       </div>
 
       <div class="row align-items-center pt-4 pb-3">
@@ -227,7 +227,13 @@
         </label>
         <div class="form-group col-md-9 pe-5">
           <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="user.name"
-            required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" />
+             #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
+            (keypress)="OnlyAlbhabets($event)"
+            />
+            <small [class.d-none]="( name.untouched)"
+            class="text-danger">  <small >
+              Name is required.
+            </small></small>
           <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required field</small>
         </div>
       </div>

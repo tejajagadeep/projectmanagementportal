@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserDataService } from '../service/data/user-data.service';
@@ -19,13 +20,32 @@ export class MemberSignUpComponent implements OnInit {
   dummyNumber!: number
   dummyDate!: Date
 
+  registerForm!: FormGroup
+
   constructor(private userDataService: UserDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { }
+
+  OnlyAlbhabets(event: any):boolean{
+
+    const charCode = (event.which)?event.which: event.keyCode;
+
+    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+       return true
+    }
+
+
+    return false;
+  }
+
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
+    this.registerForm =this.formBuilder.group({
+      name:['',Validators.required]
+    })
     this.user = new User('', '', '', this.dummyNumber, this.dummyDate, 'Admin', '',[]);
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();

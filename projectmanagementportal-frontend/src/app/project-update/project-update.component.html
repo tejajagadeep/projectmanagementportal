@@ -76,7 +76,8 @@
                         <input type="text" class="form-control" id="projectManagerName" name="projectManagerName"
                             placeholder="Project Manager Name" [(ngModel)]="project.projectManagerName" required
                             #projectManagerName="ngModel"
-                            [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched" />
+                            [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched" 
+                            (keypress)="OnlyAlbhabets($event)"/>
                         <small class="text-danger"
                             [class.d-none]="projectManagerName.valid || projectManagerName.untouched">Project Manager
                             Name is
@@ -107,7 +108,8 @@
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techLeadName" name="techLeadName"
                             placeholder="Tech Lead Name" [(ngModel)]="project.techLeadName" required
-                            #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched" />
+                            #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched" 
+                            (keypress)="OnlyAlbhabets($event)"/>
                         <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">Tech
                             Lead Name is
                             required</small>

@@ -61,6 +61,23 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserByName(name),HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getUserEmailId")
+	public ResponseEntity<List<String>> getUserEmailId(){
+		
+		log.info("inside getByUserName of User Controller");
+		return new ResponseEntity<>(userService.getUserEmailId(),HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+	@GetMapping("/getUserNames")
+	public ResponseEntity<List<String>> getUserNames(){
+		
+		log.info("inside getByUserName of User Controller");
+		return new ResponseEntity<>(userService.getUserNames(),HttpStatus.OK);
+	}
+	
+	
 //	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 //	@GetMapping("/getUserByUserId/{userId}")
 ////	@PostFilter("filterObject.userId==authentication.name")

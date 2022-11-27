@@ -61,7 +61,8 @@
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="assignee" name="assignee" placeholder="Assignee"
                             [(ngModel)]="story.assignee" required #assignee="ngModel"
-                            [class.is-invalid]="assignee.invalid && assignee.touched" />
+                            [class.is-invalid]="assignee.invalid && assignee.touched" 
+                            (keypress)="OnlyAlbhabets($event)"/>
                         <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
                             required</small>
                         <!-- <input class="form-control" id="assignee" name="assignee" [(ngModel)]="story.assignee" required #assignee="ngModel" readonly> -->
@@ -150,6 +151,6 @@
     </div>
 </section>
 
-<div *ngIf="user.role==='Member' ">
+<div *ngIf="user.role==='Member' " >
     <app-home></app-home>
     </div>
