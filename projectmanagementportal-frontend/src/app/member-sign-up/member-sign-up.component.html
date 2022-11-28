@@ -212,7 +212,7 @@
 </div> -->
 
 <!-- ................................................................... -->
-<section class="h-100 h-custom gradient-custom" style="background-color:  #8fc4b7;">
+<section class="h-100 h-custom gradient-custom" style="background-color:  #8fc4b7;" *ngIf="!isLogin">
   <div class="container  h-100">
 
     <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
@@ -353,3 +353,4 @@
     </form>
   </div>
 </section>
+<app-home *ngIf="isLogin"></app-home>

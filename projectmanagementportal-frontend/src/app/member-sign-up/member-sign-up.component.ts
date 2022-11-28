@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
+import { AuthenticationDataService } from '../service/auth/authentication-data.service';
 import { UserDataService } from '../service/data/user-data.service';
 
 
@@ -20,6 +21,7 @@ export class MemberSignUpComponent implements OnInit {
   dummyNumber!: number
   dummyDate!: Date
 
+  isLogin = false
   registerForm!: FormGroup
 
    userNameT!: boolean
@@ -30,6 +32,7 @@ export class MemberSignUpComponent implements OnInit {
      passwordT!: boolean
 
   constructor(private userDataService: UserDataService,
+    private authenticateLoginService: AuthenticationDataService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder
@@ -52,6 +55,7 @@ export class MemberSignUpComponent implements OnInit {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
     
     this.user = new User('', '', '', this.dummyNumber, this.dummyDate, 'Admin', '',[]);
+    this.isLogin = this.authenticateLoginService.isUserLoggedIn();
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
     // this.userId = this.route.snapshot.params['userId'];
