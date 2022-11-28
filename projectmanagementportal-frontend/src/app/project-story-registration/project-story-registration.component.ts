@@ -25,6 +25,14 @@ export class ProjectStoryRegistrationComponent implements OnInit {
 
   user!: User
 
+   storyIdT!: boolean
+     storyTitleT!: boolean
+     storyDescriptionT!: boolean
+     assigneeT!: boolean
+     assigneeEmailIdT!: boolean
+     assignmentDateT!: boolean
+     targetDateT!: boolean
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -78,6 +86,30 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   }
 
   saveProjectStory() {
+
+    if(this.story.storyId===''){
+      this.storyIdT=true
+    }
+    if(this.story.storyTitle===''){
+      this.storyTitleT=true
+    }
+    if(this.story.storyDescription===''){
+      this.storyDescriptionT=true
+    }
+    if(this.story.assignee===''){
+      this.assigneeT=true
+    }
+    if(this.story.assigneeEmailId===''){
+      this.assigneeEmailIdT=true
+    }
+    if(this.story.assignmentDate===this.dateDummy){
+      this.assignmentDateT=true
+    }
+    if(this.story.targetDate===this.dateDummy){
+      this.targetDateT=true
+    }
+    
+
     this.storyDataService.saveStory(this.story)
       .subscribe(
         response => {

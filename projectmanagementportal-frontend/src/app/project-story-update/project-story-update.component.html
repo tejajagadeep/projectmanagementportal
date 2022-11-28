@@ -15,7 +15,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="storyTitle">
-                        <h6 class="mb-0">Story Title</h6>
+                        <h6 class="mb-0">Story Title<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="storyTitle" name="storyTitle"
@@ -28,7 +28,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="storyDescription">
-                        <h6 class="mb-0">Story Description</h6>
+                        <h6 class="mb-0">Story Description<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
@@ -43,7 +43,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assignee">
-                        <h6 class="mb-0">Assignee</h6>
+                        <h6 class="mb-0">Assignee<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="assignee" name="assignee" placeholder="Assignee"
@@ -58,7 +58,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assigneeEmailId">
-                        <h6 class="mb-0">Assignee Email Id</h6>
+                        <h6 class="mb-0">Assignee Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId"
@@ -74,7 +74,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assignmentDate">
-                        <h6 class="mb-0">Assignment Date</h6>
+                        <h6 class="mb-0">Assignment Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
@@ -89,7 +89,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="targetDate">
-                        <h6 class="mb-0">Target Date</h6>
+                        <h6 class="mb-0">Target Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="targetDate" name="targetDate"
@@ -103,7 +103,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
-                        <h6 class="mb-0">Status</h6>
+                        <h6 class="mb-0">Status<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="story.status" required>

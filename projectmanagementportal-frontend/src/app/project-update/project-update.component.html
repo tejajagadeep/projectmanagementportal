@@ -14,7 +14,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectName">
-                        <h6 class="mb-0">Project Name</h6>
+                        <h6 class="mb-0">Project Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectName" name="projectName"
@@ -28,7 +28,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
-                        <h6 class="mb-0">Project Description</h6>
+                        <h6 class="mb-0">Project Description<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
@@ -44,7 +44,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputteamName">
-                        <h6 class="mb-0">Team Name</h6>
+                        <h6 class="mb-0">Team Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="teamName" name="teamName" placeholder="Team Name"
@@ -57,7 +57,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputteamSize">
-                        <h6 class="mb-0">Team Size</h6>
+                        <h6 class="mb-0">Team Size<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="Team Size"
@@ -70,7 +70,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
-                        <h6 class="mb-0">Project Manager Name</h6>
+                        <h6 class="mb-0">Project Manager Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectManagerName" name="projectManagerName"
@@ -87,7 +87,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
-                        <h6 class="mb-0">Project Manager Email Id</h6>
+                        <h6 class="mb-0">Project Manager Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
@@ -103,7 +103,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
-                        <h6 class="mb-0">Tech Lead Name</h6>
+                        <h6 class="mb-0">Tech Lead Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techLeadName" name="techLeadName"
@@ -118,7 +118,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
-                        <h6 class="mb-0">Tech Lead Email Id</h6>
+                        <h6 class="mb-0">Tech Lead Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
@@ -133,7 +133,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
-                        <h6 class="mb-0">Project Start Date</h6>
+                        <h6 class="mb-0">Project Start Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectStartDate" name="projectStartDate"
@@ -148,7 +148,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
-                        <h6 class="mb-0">Project End Date</h6>
+                        <h6 class="mb-0">Project End Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
@@ -163,7 +163,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechStack">
-                        <h6 class="mb-0">Tech Stack</h6>
+                        <h6 class="mb-0">Tech Stack<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techStack" name="techStack" placeholder="Tech Stack"
@@ -206,7 +206,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
-                        <h6 class="mb-0">Status</h6>
+                        <h6 class="mb-0">Status<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="project.status" required>
@@ -220,7 +220,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputremarks">
-                        <h6 class="mb-0">Remarks</h6>
+                        <h6 class="mb-0">Remarks<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks"

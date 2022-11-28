@@ -13,13 +13,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputStorytId">
-                        <h6 class="mb-0">Story Id</h6>
+                        <h6 class="mb-0">Story Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="storyId" name="storyId" placeholder="Story Id"
                             [(ngModel)]="story.storyId" required #storyId="ngModel"
                             [class.is-invalid]="storyId.invalid && storyId.touched" />
-                        <small class="text-danger" [class.d-none]="storyId.valid || storyId.untouched">Story Id Id is
+                            <small class="text-danger" *ngIf="storyIdT && storyId.untouched">Story Id is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="storyId.valid || storyId.untouched">Story Id is
                             required</small>
                     </fieldset>
                 </div>
@@ -28,12 +30,14 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="storyTitle">
-                        <h6 class="mb-0">Story Title</h6>
+                        <h6 class="mb-0">Story Title<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="storyTitle" name="storyTitle"
                             placeholder="Story Title" [(ngModel)]="story.storyTitle" required #storyTitle="ngModel"
                             [class.is-invalid]="storyTitle.invalid && storyTitle.touched" />
+                            <small class="text-danger" *ngIf="storyTitleT && storyTitle.untouched">Story Title is
+                                required</small>
                         <small class="text-danger" [class.d-none]="storyTitle.valid || storyTitle.untouched">Story Title
                             is required</small>
                     </fieldset>
@@ -41,13 +45,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="storyDescription">
-                        <h6 class="mb-0">Story Description</h6>
+                        <h6 class="mb-0">Story Description<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="storyDescription" name="storyDescription"
                             placeholder="Story Description" [(ngModel)]="story.storyDescription" minlength="100"
                             maxlength="255" required #storyDescription="ngModel"
                             [class.is-invalid]="storyDescription.invalid && storyDescription.touched"></textarea>
+                            <small class="text-danger" *ngIf="storyDescriptionT && storyDescription.untouched">Story Description is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="storyDescription.valid || storyDescription.untouched">Story Description
                             is required and should have minimium 100 characters</small>
@@ -56,13 +62,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assignee">
-                        <h6 class="mb-0">Assignee</h6>
+                        <h6 class="mb-0">Assignee<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="assignee" name="assignee" placeholder="Assignee"
                             [(ngModel)]="story.assignee" required #assignee="ngModel"
                             [class.is-invalid]="assignee.invalid && assignee.touched" 
                             (keypress)="OnlyAlbhabets($event)"/>
+                            <small class="text-danger" *ngIf="assigneeT && assignee.untouched">Assignee is
+                                required</small>
                         <small class="text-danger" [class.d-none]="assignee.valid || assignee.untouched">Assignee is
                             required</small>
                         <!-- <input class="form-control" id="assignee" name="assignee" [(ngModel)]="story.assignee" required #assignee="ngModel" readonly> -->
@@ -71,13 +79,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assigneeEmailId">
-                        <h6 class="mb-0">Assignee Email Id</h6>
+                        <h6 class="mb-0">Assignee Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="assigneeEmailId" name="assigneeEmailId"
                             placeholder="Assignee Email Id" [(ngModel)]="story.assigneeEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #assigneeEmailId="ngModel"
                             [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
+                            <small class="text-danger" *ngIf="assigneeEmailIdT && assigneeEmailId.untouched">Assignee Email Id is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="assigneeEmailId.valid || assigneeEmailId.untouched">Assignee Email Id is
                             required</small>
@@ -87,13 +97,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="assignmentDate">
-                        <h6 class="mb-0">Assignment Date</h6>
+                        <h6 class="mb-0">Assignment Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="assignmentDate" name="assignmentDate"
                             placeholder="Assignment Date" [ngModel]="story.assignmentDate  | date: 'yyyy-MM-dd'"
                             (ngModelChange)="story.assignmentDate = $event" required #assignmentDate="ngModel"
                             [class.is-invalid]="assignmentDate.invalid && assignmentDate.touched" />
+                            <small class="text-danger" *ngIf="assignmentDateT && assignmentDate.untouched">Assignment Date is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="assignmentDate.valid || assignmentDate.untouched">Assignment Date
                             is a required field.</small>
@@ -102,13 +114,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="targetDate">
-                        <h6 class="mb-0">Target Date</h6>
+                        <h6 class="mb-0">Target Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="targetDate" name="targetDate"
                             placeholder="Target Date" [ngModel]="story.targetDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="story.targetDate = $event" required #targetDate="ngModel"
                             [class.is-invalid]="targetDate.invalid && targetDate.touched" />
+                            <small class="text-danger" *ngIf="targetDateT && targetDate.untouched">Target Date is
+                                required</small>
                         <small class="text-danger" [class.d-none]="targetDate.valid || targetDate.untouched">Target Date
                             is a required field.</small>
                     </fieldset>
@@ -116,7 +130,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
-                        <h6 class="mb-0">Status</h6>
+                        <h6 class="mb-0">Status<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="story.status" required>

@@ -14,12 +14,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectId">
-                        <h6 class="mb-0">Project Id</h6>
+                        <h6 class="mb-0">Project Id<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectId" name="projectId" placeholder="Project Id"
                             [(ngModel)]="project.projectId" required #projectId="ngModel"
                             [class.is-invalid]="projectId.invalid && projectId.touched" />
+                            <small class="text-danger" *ngIf="projectIdT && projectId.untouched">Project Id Id
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id Id
                             is
                             required</small>
@@ -28,12 +31,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectName">
-                        <h6 class="mb-0">Project Name</h6>
+                        <h6 class="mb-0">Project Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectName" name="projectName"
                             placeholder="Project Name" [(ngModel)]="project.projectName" required #projectName="ngModel"
                             [class.is-invalid]="projectName.invalid && projectName.touched" />
+                            <small class="text-danger" *ngIf="projectNameT && projectName.untouched"> Project Name
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">Project
                             Name
                             Id is required</small>
@@ -42,13 +48,17 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
-                        <h6 class="mb-0">Project Description</h6>
+                        <h6 class="mb-0">Project Description<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
                             placeholder="Project Description" [(ngModel)]="project.projectDescription" minlength="100"
                             maxlength="255" required #projectDescription="ngModel"
                             [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
+                            <small class="text-danger" *ngIf="projectDescriptionT && projectDescription.untouched"> Project
+                                Description
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="projectDescription.valid || projectDescription.untouched">Project
                             Description Id
@@ -58,12 +68,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputteamName">
-                        <h6 class="mb-0">Team Name</h6>
+                        <h6 class="mb-0">Team Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="teamName" name="teamName" placeholder="Team Name"
                             [(ngModel)]="project.teamName" required #teamName="ngModel"
                             [class.is-invalid]="teamName.invalid && teamName.touched" />
+                            <small class="text-danger" *ngIf="teamNameT && teamName.untouched"> Team Name
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="teamName.valid || teamName.untouched">Team Name is
                             required</small>
                     </fieldset>
@@ -71,12 +84,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputteamSize">
-                        <h6 class="mb-0">Team Size</h6>
+                        <h6 class="mb-0">Team Size<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="Team Size"
                             min="1" [(ngModel)]="project.teamSize" required #teamSize="ngModel"
                             [class.is-invalid]="teamSize.invalid && teamSize.touched" />
+                            <small class="text-danger" *ngIf="teamSizeT && teamSize.untouched"> Team Size
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
                             required</small>
                     </fieldset>
@@ -84,7 +100,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
-                        <h6 class="mb-0">Project Manager Name</h6>
+                        <h6 class="mb-0">Project Manager Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="projectManagerName" name="projectManagerName"
@@ -92,6 +108,10 @@
                             #projectManagerName="ngModel"
                             [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched"
                             (keypress)="OnlyAlbhabets($event)" />
+                            <small class="text-danger" *ngIf="projectManagerNameT && projectManagerName.untouched"> Project Manager
+                                Name
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="projectManagerName.valid || projectManagerName.untouched">Project Manager
                             Name is
@@ -101,13 +121,17 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
-                        <h6 class="mb-0">Project Manager Email Id</h6>
+                        <h6 class="mb-0">Project Manager Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
                             placeholder="Project Manager Email Id" [(ngModel)]="project.projectManagerEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #projectManagerEmailId="ngModel"
                             [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
+                            <small class="text-danger" *ngIf="projectManagerEmailIdT && projectManagerEmailId.untouched"> Project
+                                Manager Email Id
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">Project
                             Manager Email Id is
@@ -117,13 +141,17 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
-                        <h6 class="mb-0">Tech Lead Name</h6>
+                        <h6 class="mb-0">Tech Lead Name<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techLeadName" name="techLeadName"
                             placeholder="Tech Lead Name" [(ngModel)]="project.techLeadName" required
                             #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched"
                             (keypress)="OnlyAlbhabets($event)" />
+                            <small class="text-danger" *ngIf="techLeadNameT && techLeadName.untouched"> Tech
+                                Lead Name
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">Tech
                             Lead Name is
                             required</small>
@@ -132,13 +160,16 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
-                        <h6 class="mb-0">Tech Lead Email Id</h6>
+                        <h6 class="mb-0">Tech Lead Email Id<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="email" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
                             placeholder="Tech Lead Email Id" [(ngModel)]="project.techLeadEmailId"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #techLeadEmailId="ngModel"
                             [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
+                            <small class="text-danger" *ngIf="techLeadEmailIdT && techLeadEmailId.untouched"> Tech Lead Email Id 
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">Tech Lead Email Id is
                             required</small>
@@ -147,7 +178,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
-                        <h6 class="mb-0">Project Start Date</h6>
+                        <h6 class="mb-0">Project Start Date<span class="required">*</span></h6>
                     </label>
 
                     <fieldset class="form-group col-md-9 pe-5">
@@ -155,6 +186,9 @@
                             placeholder="Project Start Date" [ngModel]="project.projectStartDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="project.projectStartDate = $event" required #projectStartDate="ngModel"
                             [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
+                            <small class="text-danger" *ngIf="projectStartDateT && projectStartDate.untouched"> Project Start Date
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="projectStartDate.valid || projectStartDate.untouched">Project Start Date
                             is a required field.</small>
@@ -163,13 +197,16 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
-                        <h6 class="mb-0">Project End Date</h6>
+                        <h6 class="mb-0">Project End Date<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
                             placeholder="Project End Date" [ngModel]="project.projectEndDate | date: 'yyyy-MM-dd' "
                             (ngModelChange)="project.projectEndDate = $event" required #projectEndDate="ngModel"
                             [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
+                            <small class="text-danger" *ngIf="projectEndDateT && projectEndDate.untouched"> Project End Date
+                                is
+                                required</small>
                         <small class="text-danger"
                             [class.d-none]="projectEndDate.valid || projectEndDate.untouched">Project End Date
                             is a required field.</small>
@@ -178,12 +215,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputtechStack">
-                        <h6 class="mb-0">Tech Stack</h6>
+                        <h6 class="mb-0">Tech Stack<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="techStack" name="techStack" placeholder="Tech Stack"
                             [(ngModel)]="project.techStack" required #techStack="ngModel"
                             [class.is-invalid]="techStack.invalid && techStack.touched" />
+                            <small class="text-danger" *ngIf="techStackT && techStack.untouched"> Tech Stack
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">Tech Stack is
                             required</small>
                     </fieldset>
@@ -221,7 +261,7 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
-                        <h6 class="mb-0">Status</h6>
+                        <h6 class="mb-0">Status<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
                         <select class="form-control" name="status" id="status" [(ngModel)]="project.status" required>
@@ -235,12 +275,15 @@
 
                 <div class="row align-items-center pt-4 pb-3">
                     <label class="col-md-3 ps-5" for="exampleInputremarks">
-                        <h6 class="mb-0">Remarks</h6>
+                        <h6 class="mb-0">Remarks<span class="required">*</span></h6>
                     </label>
                     <fieldset class="form-group col-md-9 pe-5">
                         <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks"
                             [(ngModel)]="project.remarks" required #remarks="ngModel"
                             [class.is-invalid]="remarks.invalid && remarks.touched" />
+                            <small class="text-danger" *ngIf="remarksT && remarks.untouched"> Remarks
+                                is
+                                required</small>
                         <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
                             required</small>
                     </fieldset>
@@ -261,7 +304,7 @@
     </div>
 </section>
 
-<!-- <mat-from-field>
+<!-- <mat-form-field>
     <mat-label>
         emailIds
     </mat-label>
@@ -271,7 +314,7 @@
             {{emailId}}
         </mat-option>
     </mat-autocomplete>
-</mat-from-field> -->
+</mat-form-field> -->
 
 <div *ngIf="user.role==='Member' ">
     <app-home></app-home>

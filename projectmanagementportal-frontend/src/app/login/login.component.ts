@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('login.component.ts')
-    this.password = 'ABCabc@123'
+    this.username = ''
+    this.password = ''
     this.isLogin = this.authenticateLoginService.isUserLoggedIn();
     console.log(this.isLogin)
   }
@@ -73,15 +74,21 @@ export class LoginComponent implements OnInit {
     //   error => this.errorMessage = "Invalid Credantials"
     // )
 
-    this.authenticateLoginService.authenticate(this.username, this.password).subscribe(
-      response => {
-        this.user = response
-        this.router.navigate(['/home', this.username])
-      },
-      error => {
-        this.errorMessage = "Invalid Credentials"
-      }
+    if (this.username === '') {
+      this.errorMessage = 'User Id is required'
+    } else if (this.password===''){
+      this.errorMessage = 'Password is required'
+     } else {
+      this.authenticateLoginService.authenticate(this.username, this.password).subscribe(
+        response => {
+          this.user = response
+          this.router.navigate(['/home', this.username])
+        },
+        error => {
+          this.errorMessage = "Invalid Credentials"
+        }
 
-    );
+      );
+    }
   }
 }

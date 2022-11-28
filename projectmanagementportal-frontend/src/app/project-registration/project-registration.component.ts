@@ -24,6 +24,21 @@ export class ProjectRegistrationComponent implements OnInit {
   user!: User
   users!: User[]
   emailIds!: string[]
+
+   projectIdT!: boolean
+     projectNameT!: boolean
+     projectDescriptionT!: boolean
+     teamNameT!: boolean
+     teamSizeT!: boolean
+     projectManagerNameT!: boolean
+     projectManagerEmailIdT!: boolean
+     techLeadNameT!: boolean
+     techLeadEmailIdT!: boolean
+     projectStartDateT!: boolean
+     projectEndDateT!: boolean
+     techStackT!: boolean
+     statusT!: boolean
+     remarksT!: boolean
   
   constructor(
 
@@ -87,6 +102,48 @@ export class ProjectRegistrationComponent implements OnInit {
   }
 
   saveProject() {
+    if(this.project.projectId===''){
+      this.projectIdT= true
+    }
+
+    if(this.project.projectName===''){
+      this.projectNameT= true
+    }
+    if(this.project.projectDescription===''){
+      this.projectDescriptionT= true
+    }
+    if(this.project.teamName===''){
+      this.teamNameT= true
+    }
+    if(this.project.teamSize===''){
+      this.teamSizeT= true
+    }
+    if(this.project.projectManagerName===''){
+      this.projectManagerNameT= true
+    }
+    if(this.project.projectManagerEmailId===''){
+      this.projectManagerEmailIdT= true
+    }
+    if(this.project.techLeadName===''){
+      this.techLeadNameT= true
+    }
+    if(this.project.techLeadEmailId===''){
+      this.techLeadEmailIdT= true
+    }
+    if(this.project.projectStartDate===this.dateDummy){
+      this.projectStartDateT= true
+    }
+    if(this.project.projectEndDate===this.dateDummy){
+      this.projectEndDateT= true
+    }
+    if(this.project.techStack===''){
+      this.techStackT= true
+    }
+    if(this.project.remarks===''){
+      this.remarksT= true
+    }
+    
+
     this.projectDataService.saveProject(this.project)
       .subscribe(
         response => {

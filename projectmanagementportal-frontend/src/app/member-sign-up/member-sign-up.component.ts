@@ -22,6 +22,13 @@ export class MemberSignUpComponent implements OnInit {
 
   registerForm!: FormGroup
 
+   userNameT!: boolean
+     nameT!: boolean
+     emailAddressT!: boolean
+     contactNoT!: boolean
+     dateOfBirthT!: boolean
+     passwordT!: boolean
+
   constructor(private userDataService: UserDataService,
     private route: ActivatedRoute,
     private router: Router,
@@ -43,9 +50,7 @@ export class MemberSignUpComponent implements OnInit {
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
-    this.registerForm =this.formBuilder.group({
-      name:['',Validators.required]
-    })
+    
     this.user = new User('', '', '', this.dummyNumber, this.dummyDate, 'Admin', '',[]);
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
@@ -72,6 +77,24 @@ export class MemberSignUpComponent implements OnInit {
   }
 
   registerUser() {
+    if(this.user.userName===''){
+      this.userNameT=true
+    }
+    if(this.user.name===''){
+      this.nameT=true
+    }
+    if(this.user.emailAddress===''){
+      this.emailAddressT=true
+    }
+    if(this.user.contactNo===this.dummyNumber){
+      this.contactNoT=true
+    }
+    if(this.user.dateOfBirth===this.dummyDate){
+      this.dateOfBirthT=true
+    }
+    if(this.user.password===''){
+      this.passwordT=true
+    }
     this.userDataService.saveUser(this.user)
       .subscribe(
         response => {
@@ -86,6 +109,10 @@ export class MemberSignUpComponent implements OnInit {
   }
 
   saveUser() {
+
+    
+    
+
     this.userDataService.saveUser(this.user)
       .subscribe(
         response => {
