@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { AuthenticationDataService } from '../service/auth/authentication-data.service';
@@ -22,7 +21,6 @@ export class MemberSignUpComponent implements OnInit {
   dummyDate!: Date
 
   isLogin = false
-  registerForm!: FormGroup
 
    userNameT!: boolean
      nameT!: boolean
@@ -30,12 +28,12 @@ export class MemberSignUpComponent implements OnInit {
      contactNoT!: boolean
      dateOfBirthT!: boolean
      passwordT!: boolean
+     roleT!: boolean
 
   constructor(private userDataService: UserDataService,
     private authenticateLoginService: AuthenticationDataService,
     private route: ActivatedRoute,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private router: Router
   ) { }
 
   OnlyAlbhabets(event: any):boolean{
@@ -54,7 +52,7 @@ export class MemberSignUpComponent implements OnInit {
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');
     
-    this.user = new User('', '', '', this.dummyNumber, this.dummyDate, 'Admin', '',[]);
+    this.user = new User('', '', '', this.dummyNumber, this.dummyDate, '', '',[]);
     this.isLogin = this.authenticateLoginService.isUserLoggedIn();
     // this.user = new User('','','',this.dummyNumber,'','','');
     // this.user = new User();
@@ -99,6 +97,9 @@ export class MemberSignUpComponent implements OnInit {
     if(this.user.password===''){
       this.passwordT=true
     }
+    if(this.user.role===''){
+      this.roleT=true
+    } 
     this.userDataService.saveUser(this.user)
       .subscribe(
         response => {
@@ -110,6 +111,7 @@ export class MemberSignUpComponent implements OnInit {
           this.handleErrorMessage(error);
         }
       )
+    
   }
 
   saveUser() {

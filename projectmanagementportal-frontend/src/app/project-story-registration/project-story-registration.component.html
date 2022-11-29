@@ -133,12 +133,18 @@
                         <h6 class="mb-0">Status<span class="required">*</span></h6>
                     </label>
                     <div class="form-group col-md-9 pe-5">
-                        <select class="form-control" name="status" id="status" [(ngModel)]="story.status" required>
+                        <select class="form-control" name="status" id="status" [(ngModel)]="story.status" required
+                        #status="ngModel"
+                        [class.is-invalid]="status.invalid && status.touched">
+                            <option value="" selected>Select Project Status</option>
                             <option value="To-Do" >To-Do</option>
                             <option value="In-Progress">In-Progress</option>
                             <option value="Ready-For-Test">Ready-For-Test</option>
                             <option value="Completed">Completed</option>
                         </select>
+                        <small class="text-danger" *ngIf="statusT && status.untouched"> Status
+                            is
+                            required</small>
                     </div>
                 </div>
 

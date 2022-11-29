@@ -51,7 +51,7 @@ export class ProjectRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.project = new Project('', '', '', '', '', '', '', '', '', this.dateDummy, this.dateDummy, '', 'To-Do', '', '', this.projectAssigned,[])
+    this.project = new Project('', '', '', '', '', '', '', '', '', this.dateDummy, this.dateDummy, '', '', '', '', this.projectAssigned,[])
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     console.log('projects-reistration.component.ts')
@@ -143,7 +143,9 @@ export class ProjectRegistrationComponent implements OnInit {
       this.remarksT= true
     }
     
-
+    if(this.project.status===''){
+      this.statusT=true
+    } 
     this.projectDataService.saveProject(this.project)
       .subscribe(
         response => {

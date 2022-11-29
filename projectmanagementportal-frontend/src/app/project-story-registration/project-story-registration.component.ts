@@ -32,6 +32,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
      assigneeEmailIdT!: boolean
      assignmentDateT!: boolean
      targetDateT!: boolean
+     statusT!: boolean
 
   constructor(
     private router: Router,
@@ -45,7 +46,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   ngOnInit(): void {
     console.log('project-story-registration.component.ts')
     this.projectId = this.route.snapshot.params['projectId']
-    this.story = new Story('', '', '', '', '', this.dateDummy, this.dateDummy, 'To-Do', '', '', this.storyAssigned);
+    this.story = new Story('', '', '', '', '', this.dateDummy, this.dateDummy, '', '', '', this.storyAssigned);
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     this.story.assignee = this.user.name
@@ -109,7 +110,9 @@ export class ProjectStoryRegistrationComponent implements OnInit {
       this.targetDateT=true
     }
     
-
+    if(this.story.status===''){
+      this.statusT=true
+    } 
     this.storyDataService.saveStory(this.story)
       .subscribe(
         response => {

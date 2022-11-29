@@ -302,10 +302,14 @@
           <h6 class="mb-0">User Type<span class="required">*</span></h6>
         </label>
         <div class="form-group col-md-9 pe-5">
-          <select class="form-control" name="role" id="role" [(ngModel)]="user.role" required>
-            <option value="Admin" selected>Admin</option>
+          <select class="form-control" name="role" id="role" [(ngModel)]="user.role" required #role="ngModel"
+          [class.is-invalid]="role.invalid && role.touched">
+            <option value="" selected>Select User Role</option>
+            <option value="Admin">Admin</option>
             <option value="Member">Member</option>
           </select>
+          <small class="text-danger" *ngIf="roleT && role.untouched">User Type is
+            required field</small>
         </div>
       </div>
 
