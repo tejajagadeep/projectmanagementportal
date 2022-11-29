@@ -310,6 +310,8 @@
           </select>
           <small class="text-danger" *ngIf="roleT && role.untouched">User Type is
             required field</small>
+            <small class="text-danger" [class.d-none]="role.valid || role.untouched">User Type is a
+              required field.</small>
         </div>
       </div>
 
