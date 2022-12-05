@@ -28,6 +28,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -75,6 +77,7 @@ public class User {
 	
 	@NotNull(message = "dateOfBirth should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 //	@NotEmpty(message = "projectEndDate should not be empty")
 	private Date dateOfBirth;
 	
