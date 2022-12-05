@@ -196,17 +196,7 @@ public class Story {
 		this.storyAssignedToUsers = storyAssignedToUsers;
 	}
 
-	public Story(@Size(max = 20) String storyId, String projectIdName,
-			@NotNull(message = "storyTitle should not be Null") @Size(max = 50) @NotEmpty(message = "storyTitle should not be Null") String storyTitle,
-			@NotNull(message = "storyDescription should not be Null") @Size(min = 100, message = "story description should contain minimium 100 characters") @NotEmpty(message = "storyDescription should not be Null") String storyDescription,
-			@NotNull(message = "assignee should not be Null") @Size(max = 30) @NotEmpty(message = "assignee should not be Null") String assignee,
-			@NotNull(message = "assigneeEmailId should not be Null") @Size(max = 50) @Email @NotEmpty(message = "assigneeEmailId should not be Null") String assigneeEmailId,
-			@NotNull(message = "assignmentDate should not be Null") Date assignmentDate,
-			@NotNull(message = "targetDate should not be Null") Date targetDate,
-			@NotNull(message = "status should not be Null") @Size(max = 30) @NotEmpty(message = "status should not be Null") String status,
-			@NotNull(message = "remarks should not be Null") @Size(max = 100) @NotEmpty(message = "remarks should not be empty") String remarks,
-			ArrayList<String> storyAssignedToUsers) {
-		super();
+	public Story(String storyId, String projectIdName, String storyTitle, String storyDescription, String assignee, String assigneeEmailId, Date assignmentDate, Date targetDate, String status, String remarks, ArrayList<String> storyAssignedToUsers) {
 		this.storyId = storyId;
 		this.projectIdName = projectIdName;
 		this.storyTitle = storyTitle;
@@ -240,7 +230,7 @@ public class Story {
 			@NotNull(message = "assignmentDate should not be Null") Date assignmentDate,
 			@NotNull(message = "targetDate should not be Null") Date targetDate,
 			@NotNull(message = "status should not be Null") @Size(max = 30) @NotEmpty(message = "status should not be Null") String status,
-			@NotNull(message = "remarks should not be Null") @Size(max = 100) @NotEmpty(message = "remarks should not be empty") String remarks) {
+			 String remarks) {
 		super();
 		this.storyId = storyId;
 		this.projectIdName = projectIdName;

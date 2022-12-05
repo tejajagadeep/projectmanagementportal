@@ -48,6 +48,17 @@ export class MemberSignUpComponent implements OnInit {
     return false;
   }
 
+  OnlyNumbers(event: any):boolean{
+
+    const charCode = (event.which)?event.which: event.keyCode;
+
+    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+       return false
+    }
+
+
+    return true;
+  }
 
   ngOnInit(): void {
     // this.user = new User('','','',this.dummyNumber,this.dummyDate,'','');

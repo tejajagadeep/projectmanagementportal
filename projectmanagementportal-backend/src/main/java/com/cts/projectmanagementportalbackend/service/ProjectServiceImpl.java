@@ -1,9 +1,6 @@
 package com.cts.projectmanagementportalbackend.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +10,12 @@ import org.springframework.stereotype.Service;
 import com.cts.projectmanagementportalbackend.ProjectmanagementportalBackendApplication;
 import com.cts.projectmanagementportalbackend.exception.IdAlreadyExistException;
 import com.cts.projectmanagementportalbackend.exception.InvalidUserException;
-import com.cts.projectmanagementportalbackend.exception.InvalidUserIdOrPasswordException;
 import com.cts.projectmanagementportalbackend.exception.NoSuchElementExistException;
 import com.cts.projectmanagementportalbackend.exception.TeamSizeExcedsException;
-import com.cts.projectmanagementportalbackend.model.MessageResponse;
 import com.cts.projectmanagementportalbackend.model.Project;
-import com.cts.projectmanagementportalbackend.model.Story;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.ProjectRepository;
-import com.cts.projectmanagementportalbackend.repository.StoryRepository;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
-import com.cts.projectmanagementportalbackend.security.UserDetailsServiceImpl;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
@@ -34,9 +26,7 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	@Autowired
 	UserRepository userRepository;
-	
-	@Autowired
-	StoryRepository storyRepository;
+
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
@@ -91,7 +81,7 @@ public class ProjectServiceImpl implements ProjectService{
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		if(optionalProject==null) {
 			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
 		
 			
 		} 
@@ -114,7 +104,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if(optionalProject!=null) {
 			log.warn("Project with Id " + project.getProjectId() + " Already Exist");
-			throw new IdAlreadyExistException("Project with Id: " + project.getProjectId() + " Already Exist");
+			throw new IdAlreadyExistException("Project with Id: " + project.getProjectId() + " Already Exist.");
 		}  if (userProjectManager==null) {
 			String projectManagerNotFound = "Project Manager Email Id doesn't exist.  please enter existing user. ";
 			
@@ -130,7 +120,7 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		if (optionalProject==null && userProjectManager!=null && userTechLead!=null) {
 		if (!userProjectManager.getName().equals(project.getProjectManagerName())) {
-			String projectManagerNotFound = "Project Manager Email Id and Name doesn't match. please re-enter.";
+			String projectManagerNotFound = "project Manager Email Id and Name doesn't match. please re-enter.";
 			
 			log.warn(projectManagerNotFound);
 			throw new InvalidUserException(projectManagerNotFound);
@@ -147,7 +137,7 @@ public class ProjectServiceImpl implements ProjectService{
 			
 //			assign(project.getProjectManagerName(), project.getProjectId());
 			
-			log.info("saved project "+ project.toString());
+			log.info("saved project "+ project);
 			return projectRepository.save(project);
 		
 		
@@ -172,9 +162,9 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if(optionalProject==null) {
 			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
+			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
 		}  if (userProjectManager==null) {
-			String projectManagerNotFound = "Project Manager EmailId doesn't exist.  please enter existing user ";
+			String projectManagerNotFound = "Project Manager EmailId doesn't exist. please enter existing user. ";
 			
 			log.warn(projectManagerNotFound);
 			throw new NoSuchElementExistException(projectManagerNotFound);
@@ -182,7 +172,7 @@ public class ProjectServiceImpl implements ProjectService{
 		} 
 		if (userTechLead==null) {
 			
-			String techLeadNotFound = "Tech Lead Email Id doesn't exist.  please enter existing user.";
+			String techLeadNotFound = "Tech Lead Email Id doesn't exist. please enter existing user.";
 			log.warn(techLeadNotFound);
 			throw new NoSuchElementExistException(techLeadNotFound);
 		}
@@ -195,28 +185,27 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		}  if (!userTechLead.getName().equals(project.getTechLeadName())) {
 			
-			String techLeadNotFound = "Tech Lead Email Id and Name doesn't match. please re-enter.";
+			String techLeadNotFound = "Tech Id Lead Email and Name doesn't match. please re-enter.";
 			log.warn(techLeadNotFound);
 			throw new InvalidUserException(techLeadNotFound);
 		
 		} 
 		}
-		log.info("udpated project with id"+projectId + project.toString());
-		Project projectData = optionalProject;
-		projectData.setProjectName(project.getProjectName());
-		projectData.setProjectDescription(project.getProjectDescription());
-		projectData.setTeamName(project.getTeamName());
-		projectData.setTeamSize(project.getTeamSize());
-		projectData.setProjectManagerName(project.getProjectManagerName());
-		projectData.setProjectManagerEmailId(project.getProjectManagerEmailId());
-		projectData.setTechLeadName(project.getTechLeadName());
-		projectData.setTechLeadEmailId(project.getTechLeadEmailId());
-		projectData.setProjectStartDate(project.getProjectStartDate());
-		projectData.setProjectEndDate(project.getProjectEndDate());
-		projectData.setTechStack(project.getTechStack());
-		projectData.setStatus(project.getStatus());
-		projectData.setRemarks(project.getRemarks());
-		return projectRepository.save(projectData);
+		log.info("updated project with id"+projectId + project);
+		optionalProject.setProjectName(project.getProjectName());
+		optionalProject.setProjectDescription(project.getProjectDescription());
+		optionalProject.setTeamName(project.getTeamName());
+		optionalProject.setTeamSize(project.getTeamSize());
+		optionalProject.setProjectManagerName(project.getProjectManagerName());
+		optionalProject.setProjectManagerEmailId(project.getProjectManagerEmailId());
+		optionalProject.setTechLeadName(project.getTechLeadName());
+		optionalProject.setTechLeadEmailId(project.getTechLeadEmailId());
+		optionalProject.setProjectStartDate(project.getProjectStartDate());
+		optionalProject.setProjectEndDate(project.getProjectEndDate());
+		optionalProject.setTechStack(project.getTechStack());
+		optionalProject.setStatus(project.getStatus());
+		optionalProject.setRemarks(project.getRemarks());
+		return projectRepository.save(optionalProject);
 	
 	}
 
@@ -230,8 +219,8 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		if(optionalProject==null) {
-			log.warn("Project with Id: " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist");
+			log.warn("Project with Id: " + projectId + " doesn't Exist.");
+			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
 
 			
 		} 
@@ -247,7 +236,7 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public void assign(String userName, String projectId){
 		
-        Set<Project> projectSet = null;
+        Set<Project> projectSet;
 		
 		User user = userRepository.findByUserName(userName);
 		
@@ -256,14 +245,14 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if (project == null) {
 			
-			log.warn("project Id does'nt exist " + userName);
+			log.warn("Project Id doesn't exist " + userName);
 			throw new NoSuchElementExistException("Project Id doesn't exist");
 			
 		} 
 		
 		if (user==  null) {
 			
-			log.warn("story Id does'nt exist " + userName);
+			log.warn("Story Id doesn't exist " + userName);
 			throw new NoSuchElementExistException("User doesn't exist " +userName);
 		}
 		
@@ -278,8 +267,8 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		user.setProjects(projectSet);
 		
-		String msg= "User with Id: " + userName + " is assigned to project with Id " + projectId;
-		log.info("inside assign of Story Servcie Impl "+msg);
+		String msg= "user with Id " + userName + " is assigned to project with Id " + projectId;
+		log.info("inside assign of Story Service Impl "+msg);
 		
 //		projectRepository.save(project);
 		userRepository.save(user);
@@ -292,7 +281,7 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public void assignProjectToUser(String userName, String projectId) {
 		
-        Set<Project> projectSet = null;
+        Set<Project> projectSet;
 		
 		User user = userRepository.findByUserName(userName);
 		
@@ -300,15 +289,15 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if (project == null) {
 			
-			log.warn("project Id does'nt exist " + projectId);
-			throw new NoSuchElementExistException("Project Id doesn't exist");
+			log.warn("project Id doesn't exist " + projectId);
+			throw new NoSuchElementExistException("Project Id doesn't exist.");
 			
 		} 
 		
 		if (user==  null) {
 			
-			log.warn("User with Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("User Id doesn't exist ");
+			log.warn("User with Id doesn't exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist. ");
 		}
 		
 
@@ -332,13 +321,13 @@ public class ProjectServiceImpl implements ProjectService{
 		System.out.println(projectSizeParseInt);
 		if (user.getEmailAddress().equals(project.getProjectManagerEmailId())) {
 			
-			throw new IdAlreadyExistException("User already Assigned As Project Manager");
+			throw new IdAlreadyExistException("User already Assigned As Project Manager.");
 		}  if (user.getEmailAddress().equals(project.getTechLeadEmailId())) {
 			
-			throw new IdAlreadyExistException("User already Assigned As Tech Lead");
+			throw new IdAlreadyExistException("User already Assigned As Tech Lead.");
 		}  if (userName.equals(project.getProjectOwner())) {
 			
-			throw new IdAlreadyExistException("User already Assigned As Project Owner");
+			throw new IdAlreadyExistException("User already Assigned As Project Owner.");
 		}
 		
 		projectSet = user.getProjects();
@@ -352,7 +341,7 @@ public class ProjectServiceImpl implements ProjectService{
 		ArrayList<String> dummy = new ArrayList<>();
 		
 		if(project.getProjectAssignedToUsers()!=null) {
-			project.getProjectAssignedToUsers().stream().forEach( assignProjectUser -> {
+			project.getProjectAssignedToUsers().forEach(assignProjectUser -> {
 				
 				if(assignProjectUser.contentEquals(userName)) {
 					throw new IdAlreadyExistException("User already Assigned.");
@@ -361,8 +350,6 @@ public class ProjectServiceImpl implements ProjectService{
 				dummy.add(assignProjectUser);
 			});
 		}
-//		System.out.println(dummy.size());
-//		System.out.println(projectSizeParseInt);
 		if (dummy.size()>=projectSizeParseInt) {
 			
 			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
@@ -370,19 +357,13 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		
 		project.addProjectAssignedToUsers(userName);
-			
-//		storySetAssign.forEach(storyEach -> {
-//			
-//			storyEach.addStoryAssignedToUsers(userName);
-//		});
-		
-//		user.setProjects(projectSet); 
+
 		user.addProjects(project);
 		
 		log.info(" getProjectAssignedToUsers List: "+ project.getProjectAssignedToUsers());
 		
 		String msg= "User with Id : " + userName + " is assigned to project with Id : " + projectId;
-		log.info("inside assign of Story Servcie Impl "+msg);
+		log.info("inside assign of Story Service Impl "+msg);
 		
 		userRepository.save(user);
 		

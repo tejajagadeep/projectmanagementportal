@@ -39,7 +39,7 @@ export class ProfilesComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.userService.getAllUsers(this.username).subscribe(
+    this.userService.getAllUsers().subscribe(
       response => this.handleGetUsers(response)
       // {
       //   // console.log(response);

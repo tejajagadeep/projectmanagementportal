@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Project Management Portal API",
-    "description": "This is the UI for API of Project Management Portal",
-    "version": "1.6.11"
+    "title": "Project Management Portal Application",
+    "description": "This is the Swagger UI for Project Management Portal Spring Boot Application.",
+    "version": "1.0"
   },
   "servers": [
     {
@@ -12,24 +12,19 @@
     }
   ],
   "paths": {
-    "/api/v1.0/story/updateStoryAssignAdmin/{projectId}/story/{storyId}": {
-      "put": {
+    "/api/v1.0/story/storyId/{storyId}": {
+      "get": {
         "tags": [
           "story-controller"
         ],
-        "operationId": "assign",
+        "summary": "Retrieve Story",
+        "description": "fetch a story details by story Id from the data base.",
+        "operationId": "getStoryById",
         "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "storyId",
             "in": "path",
+            "description": "Enter Story Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -42,7 +37,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
+                  "$ref": "#/components/schemas/Story"
                 }
               }
             }
@@ -77,19 +72,25 @@
               }
             }
           }
-        }
-      }
-    },
-    "/api/v1.0/story/updateStoryAdmin/{storyId}": {
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "story-controller"
         ],
+        "summary": "Update Story",
+        "description": "fetch the details of a story by story Id and update the story and save it to the database.",
         "operationId": "updateStoryByIdAdmin",
         "parameters": [
           {
             "name": "storyId",
             "in": "path",
+            "description": "Enter Story Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -97,6 +98,7 @@
           }
         ],
         "requestBody": {
+          "description": "Enter Story Details",
           "content": {
             "application/json": {
               "schema": {
@@ -147,19 +149,96 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "story-controller"
+        ],
+        "summary": "Delete Story",
+        "description": "Delete a story by story Id. Access by only Admin.",
+        "operationId": "deleteStoryById",
+        "parameters": [
+          {
+            "name": "storyId",
+            "in": "path",
+            "description": "Enter Story Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Story"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/story/assignStoryToUsers/{userName}/story/{storyId}": {
+    "/api/v1.0/story/storyAssignAdmin/{projectId}/story/{storyId}": {
       "put": {
         "tags": [
           "story-controller"
         ],
-        "operationId": "assignStoryToUsers",
+        "summary": "Foreign key Story",
+        "description": "assigning the story to a project. Making the project Id as a foreign key. Access by only admin.",
+        "operationId": "assign",
         "parameters": [
           {
-            "name": "userName",
+            "name": "projectId",
             "in": "path",
+            "description": "Enter Project Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -168,6 +247,7 @@
           {
             "name": "storyId",
             "in": "path",
+            "description": "Enter Story Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -215,19 +295,170 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/project/updateProjectById/{projectId}": {
+    "/api/v1.0/story/assignStoryToUsers/{userName}/story/{storyId}": {
+      "put": {
+        "tags": [
+          "story-controller"
+        ],
+        "summary": "Assign a Story to User.",
+        "description": "Assigning a story to a user.",
+        "operationId": "assignStoryToUsers",
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "path",
+            "description": "Enter User Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "storyId",
+            "in": "path",
+            "description": "Enter Story Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      }
+    },
+    "/api/v1.0/project/projectId/{projectId}": {
+      "get": {
+        "tags": [
+          "project-controller"
+        ],
+        "summary": "Retrieve Project",
+        "description": "Retrieve a Project details from the data base by project id.",
+        "operationId": "getProjectById",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Enter Project Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "project-controller"
         ],
+        "summary": "Update Project",
+        "description": "Update project details by project Id and save it into the data base. Access by only admin",
         "operationId": "updateProjectById",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
+            "description": "Enter Project Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -235,6 +466,7 @@
           }
         ],
         "requestBody": {
+          "description": "Enter Project Details",
           "content": {
             "application/json": {
               "schema": {
@@ -285,19 +517,96 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "project-controller"
+        ],
+        "summary": "Delete Project",
+        "description": "Delete a project by project Id. Access by only admin.",
+        "operationId": "deleteProjectById",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Enter Project Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/project/updateProjectAssign/{userName}/project/{projectId}": {
+    "/api/v1.0/project/projectAssign/{userName}/project/{projectId}": {
       "put": {
         "tags": [
           "project-controller"
         ],
+        "summary": "Assign Project",
+        "description": "Assign a project to user. Access by only admin",
         "operationId": "assign_1",
         "parameters": [
           {
             "name": "userName",
             "in": "path",
+            "description": "Enter User Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -306,6 +615,7 @@
           {
             "name": "projectId",
             "in": "path",
+            "description": "Enter Project Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -353,7 +663,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
     "/api/v1.0/project/assignProjectToUser/{userName}/project/{projectId}": {
@@ -361,11 +676,14 @@
         "tags": [
           "project-controller"
         ],
+        "summary": "Assign Project to User",
+        "description": "Assign project to user by fetching project Id and user Id. Access by admin.",
         "operationId": "assignProjectToUser",
         "parameters": [
           {
             "name": "userName",
             "in": "path",
+            "description": "Enter User Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -374,6 +692,7 @@
           {
             "name": "projectId",
             "in": "path",
+            "description": "Enter Project Id",
             "required": true,
             "schema": {
               "type": "string"
@@ -421,67 +740,12 @@
               }
             }
           }
-        }
-      }
-    },
-    "/login": {
-      "post": {
-        "tags": [
-          "auth-controller"
-        ],
-        "operationId": "authenticateUser",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
+        "security": [
+          {
+            "Bearer Authentication": []
           }
-        }
+        ]
       }
     },
     "/authenticate": {
@@ -489,6 +753,8 @@
         "tags": [
           "jwt-authentication-controller"
         ],
+        "summary": "JWT Token Generation",
+        "description": "Key in username and password to get JWT Token by which you can authorize other rest points.",
         "operationId": "createAuthenticationToken",
         "requestBody": {
           "content": {
@@ -549,8 +815,11 @@
         "tags": [
           "user-controller"
         ],
+        "summary": "Sign up New User",
+        "description": "User gives the user details which are stored in the database.",
         "operationId": "saveUser",
         "requestBody": {
+          "description": "Enter User Details",
           "content": {
             "application/json": {
               "schema": {
@@ -604,13 +873,74 @@
         }
       }
     },
-    "/api/v1.0/story/storyRegistration": {
+    "/api/v1.0/story": {
+      "get": {
+        "tags": [
+          "story-controller"
+        ],
+        "summary": "Retrieve All Stories",
+        "description": "Retrieve all the stories in the data base.",
+        "operationId": "getAllStories",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Story"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "story-controller"
         ],
+        "summary": "Save Story",
+        "description": "User gives story details which are story in the data base. Access by only ADMIN",
         "operationId": "saveStory",
         "requestBody": {
+          "description": "Enter Story Details",
           "content": {
             "application/json": {
               "schema": {
@@ -661,16 +991,82 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/project/projectRegistration": {
+    "/api/v1.0/project": {
+      "get": {
+        "tags": [
+          "project-controller"
+        ],
+        "summary": "Retrieve Projects",
+        "description": "Retrieve All the Projects from the data base.",
+        "operationId": "getAllProjects",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "project-controller"
         ],
+        "summary": "Save Project",
+        "description": "Save project details into the data base. Access by only admin.",
         "operationId": "saveProject",
         "requestBody": {
+          "description": "Enter Project Details",
           "content": {
             "application/json": {
               "schema": {
@@ -721,199 +1117,22 @@
               }
             }
           }
-        }
-      }
-    },
-    "/basicauth": {
-      "get": {
-        "tags": [
-          "auth-controller"
-        ],
-        "operationId": "authenticateUser1",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1.0/user/getUserByUserName/{userName}": {
-      "get": {
-        "tags": [
-          "user-controller"
-        ],
-        "summary": "Returns a User",
-        "description": "Takes Id and returns single User",
-        "operationId": "getByUserName",
-        "parameters": [
+        },
+        "security": [
           {
-            "name": "userName",
-            "in": "path",
-            "description": "Id of the Demo",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "Bearer Authentication": []
           }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Demo Object",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     },
-    "/api/v1.0/user/getUserByName/{name}": {
+    "/api/v1.0/user": {
       "get": {
         "tags": [
           "user-controller"
         ],
-        "operationId": "getUserByName",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "description": "Id of the Demo",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Demo Object",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1.0/user/getAllUsers/{userName}": {
-      "get": {
-        "tags": [
-          "user-controller"
-        ],
+        "summary": "Retrieve Users",
+        "description": "fetch all users from the database.",
         "operationId": "getAllUsers",
-        "parameters": [
-          {
-            "name": "userName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -958,19 +1177,27 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/story/getStoryById/{storyId}": {
+    "/api/v1.0/user/userName/{userName}": {
       "get": {
         "tags": [
-          "story-controller"
+          "user-controller"
         ],
-        "operationId": "getStoryById",
+        "summary": "Retrieve User",
+        "description": "Takes in userId and Retrieves  single User details.",
+        "operationId": "getByUserName",
         "parameters": [
           {
-            "name": "storyId",
+            "name": "userName",
             "in": "path",
+            "description": "User Id of the User",
             "required": true,
             "schema": {
               "type": "string"
@@ -978,16 +1205,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/Story"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1017,30 +1234,45 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "200",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/story/getAllStories": {
+    "/api/v1.0/user/name/{name}": {
       "get": {
         "tags": [
-          "story-controller"
+          "user-controller"
         ],
-        "operationId": "getAllStories",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Story"
-                  }
-                }
-              }
+        "summary": "Retrieve User",
+        "description": "Takes in name and Retrieves  single User details.",
+        "operationId": "getUserByName",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "User name of the User",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
-          },
+          }
+        ],
+        "responses": {
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1070,20 +1302,38 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "200",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/project/getProjectsByStatus/{status}": {
+    "/api/v1.0/project/status/{status}": {
       "get": {
         "tags": [
           "project-controller"
         ],
+        "summary": "Retrieve Projects by Status",
+        "description": "Retrieve All the Projects from the data base by status of the project.",
         "operationId": "getProjectsByStatus",
         "parameters": [
           {
             "name": "status",
             "in": "path",
+            "description": "Enter Project Status.( 'To-Do', 'In-Progress', 'Ready-For-Test', 'Completed') ",
             "required": true,
             "schema": {
               "type": "string"
@@ -1134,19 +1384,27 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer Authentication": []
+          }
+        ]
       }
     },
-    "/api/v1.0/project/getProjectsByProjectManagerName/{projectManagerName}": {
+    "/api/v1.0/project/projectManagerName/{projectManagerName}": {
       "get": {
         "tags": [
           "project-controller"
         ],
+        "summary": "Retrieve Projects by Project Manager.",
+        "description": "Retrieve all Projects details from the data base by project manager name.",
         "operationId": "getProjectsByProjectManagerName",
         "parameters": [
           {
             "name": "projectManagerName",
             "in": "path",
+            "description": "Enter Project Manager Name",
             "required": true,
             "schema": {
               "type": "string"
@@ -1197,246 +1455,12 @@
               }
             }
           }
-        }
-      }
-    },
-    "/api/v1.0/project/getProjectById/{projectId}": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getProjectById",
-        "parameters": [
+        },
+        "security": [
           {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "Bearer Authentication": []
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/Project"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1.0/project/getAllProjects": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getAllProjects",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Project"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1.0/story/deleteStoryById/{storyId}": {
-      "delete": {
-        "tags": [
-          "story-controller"
-        ],
-        "operationId": "deleteStoryById",
-        "parameters": [
-          {
-            "name": "storyId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Story"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1.0/project/deleteProjectById/{projectId}": {
-      "delete": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "deleteProjectById",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Project"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageResponse"
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   },
@@ -1532,7 +1556,6 @@
           "assignee",
           "assigneeEmailId",
           "assignmentDate",
-          "remarks",
           "status",
           "storyDescription",
           "storyTitle",
@@ -1699,6 +1722,44 @@
           }
         }
       },
+      "JwtRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "log": {
+            "$ref": "#/components/schemas/Logger"
+          }
+        },
+        "description": "Enter username and password"
+      },
+      "Logger": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "errorEnabled": {
+            "type": "boolean"
+          },
+          "infoEnabled": {
+            "type": "boolean"
+          },
+          "warnEnabled": {
+            "type": "boolean"
+          },
+          "traceEnabled": {
+            "type": "boolean"
+          },
+          "debugEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
       "User": {
         "required": [
           "contactNo",
@@ -1752,43 +1813,13 @@
             }
           }
         }
-      },
-      "JwtRequest": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "log": {
-            "$ref": "#/components/schemas/Logger"
-          }
-        }
-      },
-      "Logger": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "errorEnabled": {
-            "type": "boolean"
-          },
-          "infoEnabled": {
-            "type": "boolean"
-          },
-          "debugEnabled": {
-            "type": "boolean"
-          },
-          "traceEnabled": {
-            "type": "boolean"
-          },
-          "warnEnabled": {
-            "type": "boolean"
-          }
-        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer Authentication": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

@@ -1,5 +1,7 @@
 package com.cts.projectmanagementportalbackend.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +38,9 @@ public class JwtAuthenticationController {
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
 
-
+	@Operation(summary = "JWT Token Generation", description = "Key in username and password to get JWT Token by which you can authorize other rest points." )
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	public ResponseEntity<?> createAuthenticationToken(@Parameter(description = "Enter username and password") @RequestBody JwtRequest authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		

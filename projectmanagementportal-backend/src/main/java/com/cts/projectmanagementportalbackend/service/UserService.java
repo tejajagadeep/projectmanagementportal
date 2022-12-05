@@ -16,9 +16,5 @@ public interface UserService {
 	User saveUser(User user) ;
 
 	User getUserByName(String name) ;
-
-	List<String> getUserEmailId();
-
-	List<String> getUserNames();
 	
 }

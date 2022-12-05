@@ -44,7 +44,7 @@ class UserControllerTest {
 		userList.add( new User("user2","user2","user2@gmail.com",78945612311L,date,"MEMBER","{bcrypt}$2a$10$CrYQ4MZGyFKcsRVdHzF.iu1lcFWHBcQx3i9faJj2I/KEwZ3ZNsflm"));
 		
 		when(userService.getAllUsers()).thenReturn(userList);
-		ResponseEntity<List<User>> response = userController.getAllUsers("user1");
+		ResponseEntity<List<User>> response = userController.getAllUsers();
 		assertEquals(HttpStatus.OK,response.getStatusCode());
 		assertEquals(2, response.getBody().size());
 	}

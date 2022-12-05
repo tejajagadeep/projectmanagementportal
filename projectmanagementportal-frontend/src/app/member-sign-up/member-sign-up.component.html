@@ -258,7 +258,7 @@
         <div class="form-group col-md-9 pe-5">
           <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="Contact Number"
             [(ngModel)]="user.contactNo" required minlength="10" maxlength="10" #contactNo="ngModel"
-            [class.is-invalid]="contactNo.invalid && contactNo.touched" />
+            [class.is-invalid]="contactNo.invalid && contactNo.touched" (keypress)="OnlyNumbers($event)"/>
             <small class="text-danger" *ngIf="contactNoT && contactNo.untouched">Email Address is
               required field</small>
           <small class="text-danger" [class.d-none]="contactNo.valid || contactNo.untouched">Contact Number is required

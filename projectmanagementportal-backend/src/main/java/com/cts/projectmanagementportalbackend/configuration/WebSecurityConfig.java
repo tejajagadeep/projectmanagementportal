@@ -66,12 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/userSignUp").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1.0/user/login/**").permitAll()
-				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-				.antMatchers("/v3/api-docs/**").permitAll()
 				.antMatchers("/swagger-ui/**").permitAll()
-				.antMatchers("/swagger-resources/**").permitAll()
-				.antMatchers("/swagger-ui.html").permitAll()
-				.antMatchers("/webjars/**").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		;
 
 		http.cors();

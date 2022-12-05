@@ -170,7 +170,7 @@ export class ProjectRegistrationComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.userService.getAllUsers(this.username).subscribe(
+    this.userService.getAllUsers().subscribe(
       response => this.users
       // {
       //   // console.log(response);

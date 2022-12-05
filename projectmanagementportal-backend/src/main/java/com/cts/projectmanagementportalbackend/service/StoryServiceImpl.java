@@ -60,8 +60,8 @@ public class StoryServiceImpl implements StoryService {
 		Story optionalStory = storyRepository.findByStoryId(storyId);
 
 		if (optionalStory==null) {
-			log.warn("Story with Id: " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id: " + storyId + " doesn't Exist.");
 		} 
 		log.info(" inside getStoryById of StoryServiceImpl : " + storyId);
 		return optionalStory;
@@ -80,25 +80,25 @@ public class StoryServiceImpl implements StoryService {
 		User userAssignee = userRepository.findByEmailAddress(story.getAssigneeEmailId());
 		
 		if (optionalStory!=null) {
-			log.warn("Story Id " + story.getStoryId() + " Already Exist");
-			throw new IdAlreadyExistException("Story Id Already Exist");
+			log.warn("Story Id " + story.getStoryId() + " Already Exist.");
+			throw new IdAlreadyExistException("Story Id Already Exist.");
 
 		} 
 		
 		
 		if (userAssignee == null) {
 
-			String assigneNotFound = "User mail doesn't exist. please enter exist user...";
-			log.warn(assigneNotFound);
-			throw new NoSuchElementExistException(assigneNotFound);
+			String assigneeNotFound = "User mail doesn't exist. please enter exist user...";
+			log.warn(assigneeNotFound);
+			throw new NoSuchElementExistException(assigneeNotFound);
 			
 
 		} 
 		if(optionalStory==null && userAssignee != null) {
 		if (!userAssignee.getName().equals(story.getAssignee())) {
-			String assigneNotFound = "Name doesn't match with Email Id. please enter valid user...";
-			log.warn(assigneNotFound);
-			throw new InvalidUserException(assigneNotFound);
+			String assigneeNotFound = "Name doesn't match with Email Id. please enter valid user...";
+			log.warn(assigneeNotFound);
+			throw new InvalidUserException(assigneeNotFound);
 
 		} 
 		}
@@ -132,21 +132,21 @@ public class StoryServiceImpl implements StoryService {
 		if (optionalStory==null) {
 
 			log.warn("Story with Id " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id: " + storyId + " Doesn't Exist.");
 
 		}  if (userAssignee == null) {
 
-			String assigneNotFound = "User mail doesn't exist. please enter exist user...";
-			log.warn(assigneNotFound);
-			throw new NoSuchElementExistException(assigneNotFound);
+			String assigneeNotFound = "User mail doesn't exist. please enter exist user...";
+			log.warn(assigneeNotFound);
+			throw new NoSuchElementExistException(assigneeNotFound);
 			
 
 		} 
 		if(optionalStory!=null && userAssignee != null) {
 		if (!userAssignee.getName().equals(story.getAssignee())) {
-			String assigneNotFound = "Name doesn't match with Email Id. please enter valid user...";
-			log.warn(assigneNotFound);
-			throw new InvalidUserException(assigneNotFound);
+			String assigneeNotFound = "Name doesn't match with Email Id. please enter valid user...";
+			log.warn(assigneeNotFound);
+			throw new InvalidUserException(assigneeNotFound);
 
 		} 
 		}
@@ -215,8 +215,8 @@ public class StoryServiceImpl implements StoryService {
 
 		Story optionalProject = storyRepository.findByStoryId(storyId);
 		if (optionalProject==null) {
-			log.warn("Story with Id: " + storyId + " Doesn't Exist");
-			throw new NoSuchElementExistException("Story with Id " + storyId + " Doesn't Exist");
+			log.warn("Story with Id " + storyId + " Doesn't Exist");
+			throw new NoSuchElementExistException("Story with Id: " + storyId + " doesn't Exist.");
 	
 			
 		} 
@@ -239,15 +239,15 @@ public class StoryServiceImpl implements StoryService {
 
 		if (project == null) {
 
-			log.warn("project Id does'nt exist " + projectId);
-			throw new NoSuchElementExistException("Project Id doesn't exist");
+			log.warn("project Id doesn't exist " + projectId);
+			throw new NoSuchElementExistException("Project Id doesn't exist.");
 
 		} 
 		
 		if (story == null) {
 
-			log.warn("story Id does'nt exist " + storyId);
-			throw new NoSuchElementExistException("Story Id doesn't exist");
+			log.warn("story Id doesn't exist " + storyId);
+			throw new NoSuchElementExistException("Story Id doesn't exist.");
 		}
 
 		storySet = project.getStories();
@@ -262,7 +262,7 @@ public class StoryServiceImpl implements StoryService {
 //				projectRepository.findById(story.getProjectIdName()).get().getProjectAssignedToUsers());
 
 		String msg = "story with Id " + storyId + " is assigned to project with Id " + projectId;
-		log.info("inside assign of Story Servcie Impl " + msg);
+		log.info("inside assign of Story Service Impl " + msg);
 
 		projectRepository.save(project);
 
@@ -279,15 +279,15 @@ public class StoryServiceImpl implements StoryService {
 
 		if (user == null) {
 
-			log.warn("User Id does'nt exist " + userName);
-			throw new NoSuchElementExistException("User Id doesn't exist");
+			log.warn("User Id doesn't exist " + userName);
+			throw new NoSuchElementExistException("User Id doesn't exist.");
 
 		} 
 		
 		if (story == null) {
 
-			log.warn("story Id does'nt exist " + storyId);
-			throw new NoSuchElementExistException("Story Id doesn't exist");
+			log.warn("story Id doesn't exist " + storyId);
+			throw new NoSuchElementExistException("Story Id doesn't exist.");
 		}
 
 		Project project = projectRepository.findByProjectId(story.getProjectIdName());
@@ -295,7 +295,7 @@ public class StoryServiceImpl implements StoryService {
 	
 		if(story.getStoryAssignedToUsers()!=null) {
 			if(story.getStoryAssignedToUsers().contains(userName)==true) {
-				throw new IdAlreadyExistException("User Id Already Assigned For this story");
+				throw new IdAlreadyExistException("User Id Already Assigned For this story.");
 			}
 		}
 		
@@ -308,7 +308,7 @@ public class StoryServiceImpl implements StoryService {
 			}
 			if (project.getProjectAssignedToUsers() != null) {
 				if(project.getProjectAssignedToUsers().contains(userName)==false){
-					throw new NoSuchElementExistException("User not Part of the Project..");
+					throw new NoSuchElementExistException("User not Part of the Project.");
 				}
 			}
 				
@@ -318,7 +318,7 @@ public class StoryServiceImpl implements StoryService {
 		story.addStoryAssignedToUsers(userName);
 
 		String msg = "story with Id " + storyId + " is assigned to User with Id " + userName;
-		log.info("inside assign of Story Servcie Impl " + msg);
+		log.info("inside assign of Story Service Impl " + msg);
 
 		storyRepository.save(story);
 

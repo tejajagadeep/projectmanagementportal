@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,34 +42,42 @@ public class StoryController {
 	
 	@Autowired
 	StoryService storyService;
-	
+
+	@Operation(summary = "Retrieve All Stories", description = "Retrieve all the stories in the data base." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getAllStories")
+	@GetMapping("")
 	public ResponseEntity<List<Story>> getAllStories(){
 		
 		log.info("inside getAllStories of Story Controller");
 		return new ResponseEntity<>(storyService.getAllStories(), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Retrieve Story", description = "fetch a story details by story Id from the data base." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getStoryById/{storyId}")
-	public ResponseEntity<Story> getStoryById(@PathVariable String storyId){
+	@GetMapping("/storyId/{storyId}")
+	public ResponseEntity<Story> getStoryById(@Parameter(description = "Enter Story Id") @PathVariable String storyId){
 		
 		log.info("inside getStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.getStoryById(storyId), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Save Story", description = "User gives story details which are story in the data base. Access by only ADMIN" ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/storyRegistration")
-	public ResponseEntity<Story> saveStory(@Valid @RequestBody Story story) {
+	@PostMapping("")
+	public ResponseEntity<Story> saveStory(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Enter Story Details") @Valid @RequestBody Story story) {
 		
 		log.info("inside storyRegistration of Story Controller");
 		return new ResponseEntity<>(storyService.saveStory(story), HttpStatus.CREATED);
 	}
-	
+
+	@Operation(summary = "Update Story", description = "fetch the details of a story by story Id and update the story and save it to the database." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@PutMapping("updateStoryAdmin/{storyId}")
-	public ResponseEntity<Story> updateStoryByIdAdmin(@PathVariable String storyId, @Valid @RequestBody Story story){
+	@PutMapping("/storyId/{storyId}")
+	public ResponseEntity<Story> updateStoryByIdAdmin(@Parameter(description = "Enter Story Id") @PathVariable String storyId,@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Enter Story Details")  @Valid @RequestBody Story story){
 		
 		log.info("inside updateStoryById of Story Controller");
 		return new ResponseEntity<>(storyService.updateStoryAdmin(storyId, story), HttpStatus.OK);
@@ -79,28 +90,34 @@ public class StoryController {
 //		log.info("inside updateStoryById of Story Controller");
 //		return new ResponseEntity<>(storyService.updateStoryMember(storyId, story), HttpStatus.OK);
 //	}
-	
+
+	@Operation(summary = "Foreign key Story", description = "assigning the story to a project. Making the project Id as a foreign key. Access by only admin." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("updateStoryAssignAdmin/{projectId}/story/{storyId}")
-	public ResponseEntity<MessageResponse> assign(@PathVariable String projectId, @PathVariable String storyId) {
+	@PutMapping("storyAssignAdmin/{projectId}/story/{storyId}")
+	public ResponseEntity<MessageResponse> assign(@Parameter(description = "Enter Project Id") @PathVariable String projectId,@Parameter(description = "Enter Story Id")  @PathVariable String storyId) {
 		storyService.assign(projectId, storyId);
 		String msg= "story with Id " + storyId + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Assign a Story to User.", description = "Assigning a story to a user." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("assignStoryToUsers/{userName}/story/{storyId}")
-	public ResponseEntity<MessageResponse> assignStoryToUsers(@PathVariable String userName, @PathVariable String storyId) {
+	@PutMapping("/assignStoryToUsers/{userName}/story/{storyId}")
+	public ResponseEntity<MessageResponse> assignStoryToUsers(@Parameter(description = "Enter User Id") @PathVariable String userName,@Parameter(description = "Enter Story Id")  @PathVariable String storyId) {
 		storyService.assignStoryToUser(userName, storyId);
 		String msg= "story with Id " + storyId + " is assigned to User with Id " + userName;
 		log.info("inside assign of Story Controller "+msg);
 		return new ResponseEntity<>(new MessageResponse(msg), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Delete Story", description = "Delete a story by story Id. Access by only Admin." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@DeleteMapping("/deleteStoryById/{storyId}")
-	public ResponseEntity<List<Story>> deleteStoryById(@PathVariable String storyId){
+	@DeleteMapping("/storyId/{storyId}")
+	public ResponseEntity<List<Story>> deleteStoryById(@Parameter(description = "Enter Story Id") @PathVariable String storyId){
 		
 		log.info("inside deleteStoryById of Story Controller");
 		storyService.deleteStoryById(storyId);

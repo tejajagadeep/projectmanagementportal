@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,63 +42,75 @@ public class ProjectController {
 	ProjectService projectService;
 	
 	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
-	
+
+	@Operation(summary = "Retrieve Projects", description = "Retrieve All the Projects from the data base." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getAllProjects")
+	@GetMapping("")
 //	@PostFilter("filterObject.projectManagerName==authentication.name")
 	public ResponseEntity<List<Project>> getAllProjects(){
 		log.info("inside getAllProjects of project Controller");
 		return new ResponseEntity<>(projectService.getAllProjects(),HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Retrieve Projects by Project Manager.", description = "Retrieve all Projects details from the data base by project manager name." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getProjectsByProjectManagerName/{projectManagerName}")
-	public ResponseEntity<List<Project>> getProjectsByProjectManagerName(@PathVariable String projectManagerName){
+	@GetMapping("/projectManagerName/{projectManagerName}")
+	public ResponseEntity<List<Project>> getProjectsByProjectManagerName(@Parameter(description = "Enter Project Manager Name") @PathVariable String projectManagerName){
 
 		log.info("inside getProjectsByProjectManagerName of project Controller");
 		return new ResponseEntity<>(projectService.getProjectsByProjectManagerName(projectManagerName), HttpStatus.OK);
 	}
-	
-	
-	
+
+
+	@Operation(summary = "Retrieve Projects by Status", description = "Retrieve All the Projects from the data base by status of the project." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getProjectsByStatus/{status}")
-	public ResponseEntity<List<Project>> getProjectsByStatus(@PathVariable String status){
+	@GetMapping("/status/{status}")
+	public ResponseEntity<List<Project>> getProjectsByStatus(@Parameter(description = "Enter Project Status.( 'To-Do', 'In-Progress', 'Ready-For-Test', 'Completed') ") @PathVariable String status){
 
 		log.info("inside getProjectsByStatus of project Controller");
 		return new ResponseEntity<>(projectService.getProjectsByStatus(status), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Retrieve Project", description = "Retrieve a Project details from the data base by project id." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/getProjectById/{projectId}")
-	public ResponseEntity<Project> getProjectById(@PathVariable String projectId){
+	@GetMapping("/projectId/{projectId}")
+	public ResponseEntity<Project> getProjectById(@Parameter(description = "Enter Project Id") @PathVariable String projectId){
 
 		log.info("inside getProjectById of project Controller");
 		return new ResponseEntity<>(projectService.getProjectById(projectId), HttpStatus.OK);
 	}
-	
-	
+
+	@Operation(summary = "Save Project", description = "Save project details into the data base. Access by only admin." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/projectRegistration")
+	@PostMapping("")
 	@ResponseBody
-	public ResponseEntity<Project> saveProject(@Valid @RequestBody Project project)  {
+	public ResponseEntity<Project> saveProject(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Enter Project Details") @Valid @RequestBody Project project)  {
 
 		log.info("inside saveProject of project Controller");
 		return new ResponseEntity<>(projectService.saveProject(project), HttpStatus.CREATED);
 	}
-	
+
+	@Operation(summary = "Update Project", description = "Update project details by project Id and save it into the data base. Access by only admin" ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("/updateProjectById/{projectId}")
+	@PutMapping("/projectId/{projectId}")
 	@ResponseBody
-	public ResponseEntity<Project> updateProjectById(@PathVariable String projectId, @Valid @RequestBody Project project){
+	public ResponseEntity<Project> updateProjectById(@Parameter(description = "Enter Project Id") @PathVariable String projectId,@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Enter Project Details")  @Valid @RequestBody Project project){
 
 		log.info("inside updateProjectById of project Controller");
 		return new ResponseEntity<>(projectService.updateProjectById(projectId, project), HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "Assign Project", description = "Assign a project to user. Access by only admin" ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("updateProjectAssign/{userName}/project/{projectId}")
-	public ResponseEntity<MessageResponse> assign(@PathVariable String userName, @PathVariable String projectId) {
+	@PutMapping("/projectAssign/{userName}/project/{projectId}")
+	public ResponseEntity<MessageResponse> assign(@Parameter(description = "Enter User Id") @PathVariable String userName,@Parameter(description = "Enter Project Id")  @PathVariable String projectId) {
 		projectService.assign(userName, projectId);
 		String msg= "user with name " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assign of Story Controller "+msg);
@@ -105,9 +120,11 @@ public class ProjectController {
 	/*
 	 * 
 	 */
+	@Operation(summary = "Assign Project to User", description = "Assign project to user by fetching project Id and user Id. Access by admin." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("assignProjectToUser/{userName}/project/{projectId}")
-	public ResponseEntity<MessageResponse> assignProjectToUser(@PathVariable String userName, @PathVariable String projectId) {
+	@PutMapping("/assignProjectToUser/{userName}/project/{projectId}")
+	public ResponseEntity<MessageResponse> assignProjectToUser(@Parameter(description = "Enter User Id") @PathVariable String userName,@Parameter(description = "Enter Project Id")  @PathVariable String projectId) {
 		projectService.assignProjectToUser(userName, projectId);
 		String msg= "User with Id " + userName + " is assigned to project with Id " + projectId;
 		log.info("inside assignProjectToUser of Story Controller "+msg);
@@ -117,9 +134,11 @@ public class ProjectController {
 	/*
 	 * 
 	 */
+	@Operation(summary = "Delete Project", description = "Delete a project by project Id. Access by only admin." ) //method level
+	@SecurityRequirement(name = "Bearer Authentication")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@DeleteMapping("/deleteProjectById/{projectId}")
-	public ResponseEntity<List<Project>> deleteProjectById(@PathVariable String projectId){
+	@DeleteMapping("/projectId/{projectId}")
+	public ResponseEntity<List<Project>> deleteProjectById(@Parameter(description = "Enter Project Id") @PathVariable String projectId){
 
 		log.info("inside deleteProjectById of project Controller");
 		projectService.deleteProjectById(projectId);

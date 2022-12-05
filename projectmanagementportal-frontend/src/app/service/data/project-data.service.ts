@@ -16,7 +16,7 @@ export class ProjectDataService {
   ) { }
 
   getAllProjects() {
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getAllProjects`)
+    return this.http.get<Project[]>(`${PROJECT_API_URL}`)
   }
 
   getProjectsByProjectOwner(projectOwner: string) {
@@ -24,7 +24,7 @@ export class ProjectDataService {
   }
 
   getProjectsByProjectManagerName(projectManagerName: string) {
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByProjectManagerName/${projectManagerName}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/projectManagerName/${projectManagerName}`);
   }
 
   getProjectByAssignedTo(getProjectByAssignedTo: string) {
@@ -35,27 +35,27 @@ export class ProjectDataService {
     return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByTechLeadName/${techLeadName}`);
   }
   getProjectsByStatus(status: string) {
-    return this.http.get<Project[]>(`${PROJECT_API_URL}/getProjectsByStatus/${status}`);
+    return this.http.get<Project[]>(`${PROJECT_API_URL}/status/${status}`);
   }
 
   getProjectById(projectId: string) {
-    return this.http.get<Project>(`${PROJECT_API_URL}/getProjectById/${projectId}`);
+    return this.http.get<Project>(`${PROJECT_API_URL}/projectId/${projectId}`);
   }
 
   saveProject(project: Project) {
-    return this.http.post<Project>(`${PROJECT_API_URL}/projectRegistration`, project);
+    return this.http.post<Project>(`${PROJECT_API_URL}`, project);
   }
 
   updateProjectById(projectId: string, project: Project) {
-    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectById/${projectId}`, project);
+    return this.http.put<Project>(`${PROJECT_API_URL}/projectId/${projectId}`, project);
   }
 
   deleteProjectById(projectId: string) {
-    return this.http.delete<Project>(`${PROJECT_API_URL}/deleteProjectById/${projectId}`);
+    return this.http.delete<Project>(`${PROJECT_API_URL}/projectId/${projectId}`);
   }
 
   ProjectAssign(username: string, projectId: string, project: Project) {
-    return this.http.put<Project>(`${PROJECT_API_URL}/updateProjectAssign/${username}/project/${projectId}`, project);
+    return this.http.put<Project>(`${PROJECT_API_URL}/projectAssign/${username}/project/${projectId}`, project);
   }
 
   assignProjectToUser(username: string, projectId: string, messageResponse: MessageResponse) {
