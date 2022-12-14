@@ -62,7 +62,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
 
     const charCode = (event.which)?event.which: event.keyCode;
 
-    if(charCode > 31 && (charCode < 48 || charCode > 57) || charCode == ' ') {
+    if (charCode == 32 || ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))) {
        return true
     }
 

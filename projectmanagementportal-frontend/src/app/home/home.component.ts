@@ -77,7 +77,8 @@ export class HomeComponent implements OnInit {
     this.userService.getUserByUserName(userName).subscribe(
       response => {
         console.log("response")
-        this.user = response;
+        this.user = response
+        sessionStorage.setItem('userRole',response.role)
       },
       error => {
         console.log("error")

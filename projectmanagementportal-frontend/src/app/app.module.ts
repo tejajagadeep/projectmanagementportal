@@ -28,6 +28,7 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
 import { ProjectStoryRegistrationComponent } from './project-story-registration/project-story-registration.component';
 import { ProjectStoryUpdateComponent } from './project-story-update/project-story-update.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
     ProjectUpdateComponent,
     ProjectStoryRegistrationComponent,
     ProjectStoryUpdateComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

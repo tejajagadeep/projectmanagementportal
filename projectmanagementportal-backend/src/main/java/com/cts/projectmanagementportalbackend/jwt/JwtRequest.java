@@ -22,8 +22,6 @@ public class JwtRequest implements Serializable {
 	private String username;
 	private String password;
 	
-	Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);
-	
 	//need default constructor for JSON Parsing
 	public JwtRequest()
 	{

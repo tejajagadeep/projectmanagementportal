@@ -15,47 +15,40 @@ import com.cts.projectmanagementportalbackend.repository.UserRepository;
 
 
 @SpringBootTest
-class UserDetailsServiceImplTest {
+class UserDetailsServiceImplTest2 {
 	
 	@InjectMocks
 	UserDetailsServiceImpl userDetailsServiceImpl;
 	
 	@Mock
 	private UserRepository userRoleRepository;
-	
-	@Mock
-	User userRole;
 
 	@Test
 	void testLoadUserByUsername() {
-		userRole.setUserName("thunder");
-		userRole.setPassword("thunder");
-		userRole.setRole("DOCTOR");
-		
 		User role = new User();
 		
 		role.setUserName("thunder");
 		role.setPassword("thunder");
 		role.setRole("DOCTOR");
 		
-		System.out.println(role.toString());
 		
 		when(userRoleRepository.findByUserName("thunder")).thenReturn(role);
 		UserDetailsImpl userDetails = new UserDetailsImpl(role);
 		UserDetails user = new UserDetailsImpl(role);
-		System.out.println(userDetailsServiceImpl.loadUserByUsername("thunder").toString());
-		assertEquals(user, userDetailsServiceImpl.loadUserByUsername("thunder"));
+		assertEquals(userDetails.getUsername(), userDetailsServiceImpl.loadUserByUsername("thunder").getUsername());
+		assertEquals(userDetails.getPassword(), userDetailsServiceImpl.loadUserByUsername("thunder").getPassword());
+		assertEquals(userDetails.getAuthorities(), userDetailsServiceImpl.loadUserByUsername("thunder").getAuthorities());
+		assertEquals(userDetails.isAccountNonExpired(), userDetailsServiceImpl.loadUserByUsername("thunder").isAccountNonExpired());
+		assertEquals(userDetails.isAccountNonLocked(), userDetailsServiceImpl.loadUserByUsername("thunder").isAccountNonLocked());
+		assertEquals(userDetails.isCredentialsNonExpired(), userDetailsServiceImpl.loadUserByUsername("thunder").isCredentialsNonExpired());
+		assertEquals(userDetails.isEnabled(), userDetailsServiceImpl.loadUserByUsername("thunder").isEnabled());
+		assertEquals(userDetails.getUserDetails().getPassword(), userDetailsServiceImpl.loadUserByUsername("thunder").getPassword());
 	}
 	
 	@Test
 	void testLoadUserByUsernameException() {
-		userRole.setUserName("thunder");
-		userRole.setPassword("thunder");
-		userRole.setRole("DOCTOR");
 		
 		when(userRoleRepository.findByUserName("thunder")).thenReturn(null);
-		UserDetailsImpl userDetails = new UserDetailsImpl(userRole);
 		assertThrows(UsernameNotFoundException.class, ()->userDetailsServiceImpl.loadUserByUsername("thunder"));
 	}
-
 }

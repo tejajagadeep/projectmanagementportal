@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -19,6 +20,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 		bearerFormat = "JWT",
 		scheme = "bearer"
 )
+@EnableEurekaClient
 public class ProjectmanagementportalBackendApplication {
 
 	static Logger log = LoggerFactory.getLogger(ProjectmanagementportalBackendApplication.class);

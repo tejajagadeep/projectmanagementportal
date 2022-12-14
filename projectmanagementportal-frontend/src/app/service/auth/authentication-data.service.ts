@@ -47,7 +47,8 @@ export class AuthenticationDataService {
     // console.log(!(user === null))
     // return !(user === null)
     let user = sessionStorage.getItem('authenticatedUser')
-    if (user === null) return false
+    let token = sessionStorage.getItem('token')
+    if (user === null || token===null) return false
     return true
   }
 
@@ -55,6 +56,7 @@ export class AuthenticationDataService {
     sessionStorage.removeItem('authenticatedUser')
     sessionStorage.removeItem('token')
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    sessionStorage.removeItem('userRole');
   }
 
   // authenticationService(username: string, password: string): Observable<any> {

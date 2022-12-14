@@ -9,32 +9,27 @@ import { UserDataService } from '../data/user-data.service';
 })
 export class AdminRouteGuardService implements CanActivate {
 
-  userDetails!: User
-  constructor(
-    private router: Router,
-    private authService: AuthenticationDataService,
-    private userSerivce: UserDataService
-    ) { }
+  constructor(private router: Router,
+    private authService: AuthenticationDataService) { }
+
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
-
-
-    this.userSerivce.getUserByUserName(this.authService.getLoggedInUserName()).subscribe(
-      resposne =>{
-        this.userDetails=resposne
+    const role = route.data['roles'] as Array<string>
+    if (role && this.authService.isUserLoggedIn()) {
+      const match = (sessionStorage.getItem('userRole') === role[0])
+      if (match) {
+        return true
+      } else {
+        this.router.navigate(['forbidden']);
+        return false
       }
-    )
+    }
+    // if (this.authService.isUserLoggedIn())
+    //   return true;
 
-    if (this.authService.isUserLoggedIn() && this.userDetails.role=='Admin'){
-      return true;
-    }
-    else if (this.authService.isUserLoggedIn() && this.userDetails.role=='Member'){
-      this.router.navigate(['error']);
-      return true;
-    }
     this.router.navigate(['login']);
     return false;
 
   }
+
 }

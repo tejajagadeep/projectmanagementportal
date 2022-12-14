@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -27,12 +28,13 @@ const routes: Routes = [
   { path: 'view-project-status', component: HomeComponent, canActivate: [AuthGuardDataService] },
   { path: 'my-projects', component: MyProjectsComponent, canActivate: [AuthGuardDataService] },
   { path: 'view-project-status/:projectId', component: ViewProjectStatusComponent, canActivate: [AuthGuardDataService] },
-  { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-registration', component: ProjectRegistrationComponent, canActivate: [AdminRouteGuardService], data: {roles:['Admin']} },
   { path: 'view-project-story-status/:projectId/:storyId', component: ViewProjectStoryStatusComponent, canActivate: [AuthGuardDataService] },
-  { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AuthGuardDataService] },
-  { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AuthGuardDataService] },
+  { path: 'project-update/:projectId', component: ProjectUpdateComponent, canActivate: [AdminRouteGuardService], data: {roles:['Admin']}  },
+  { path: 'project-story-registration/:projectId', component: ProjectStoryRegistrationComponent, canActivate: [AdminRouteGuardService], data: {roles:['Admin']}  },
   { path: 'project-story-update/:storyId', component: ProjectStoryUpdateComponent, canActivate: [AuthGuardDataService] },
   { path: 'error', component: ErrorComponent, canActivate: [AuthGuardDataService] },
+  { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthGuardDataService] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
   { path: '**', component: LoginComponent, canActivate: [AuthGuardDataService] }
 
