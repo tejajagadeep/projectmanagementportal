@@ -3,6 +3,7 @@ package com.cts.projectmanagementportalbackend.security;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+import com.cts.projectmanagementportalbackend.jwt.JwtTokenUtil;
 import com.cts.projectmanagementportalbackend.model.User;
 import com.cts.projectmanagementportalbackend.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,9 @@ class UserDetailsServiceImplTest {
     @Mock
     private UserRepository userRoleRepository;
 
+    @Mock
+    JwtTokenUtil jwtTokenUtil;
+
     @Test
     void testLoadUserByUsername() {
         String dateString = "1999/07/28";
@@ -42,6 +46,8 @@ class UserDetailsServiceImplTest {
         assertEquals(userDetails.isCredentialsNonExpired(), userDetailsServiceImpl.loadUserByUsername("thunder").isCredentialsNonExpired());
         assertEquals(userDetails.isEnabled(), userDetailsServiceImpl.loadUserByUsername("thunder").isEnabled());
         assertEquals(userDetails.getUserDetails().getPassword(), userDetailsServiceImpl.loadUserByUsername("thunder").getPassword());
+
+        jwtTokenUtil.getUsernameFromToken("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aW5heSIsImV4cCI6MTY3MTAyNDQ2NywiaWF0IjoxNjcxMDA2NDY3fQ.pI85nvf54aRBcuQxRU8bCvnhlRKxF5nww01RbCTE_sd3AarETLXKhWsue1f8wKFAkljsiVUQlFX2zo5XwlWk8Q");
     }
 
     @Test

@@ -16,11 +16,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -80,13 +80,13 @@ public class Story {
 	
 	@NotNull(message = "assignmentDate should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern ="yyyy-MM-dd")
 //	@NotEmpty(message = "assignmentDate should not be Null")
 	private Date assignmentDate;
 	
 	@NotNull(message = "targetDate should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern ="yyyy-MM-dd")
 //	@NotEmpty(message = "targetDate should not be Null")
 	private Date targetDate;
 	

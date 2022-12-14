@@ -20,9 +20,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -90,13 +89,13 @@ public class Project {
 
 	@NotNull(message = "projectStartDate should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern ="yyyy-MM-dd")
 //	@NotEmpty(message = "projectStartDate should not be empty")
 	private Date projectStartDate;
 
 	@NotNull(message = "projectEndDate should not be Null")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern ="yyyy-MM-dd")
 //	@NotEmpty(message = "projectEndDate should not be empty")
 	private Date projectEndDate;
 
