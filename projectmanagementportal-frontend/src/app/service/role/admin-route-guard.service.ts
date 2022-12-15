@@ -15,12 +15,14 @@ export class AdminRouteGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const role = route.data['roles'] as Array<string>
+    const username = sessionStorage.getItem('authenticatedUser')
     if (role && this.authService.isUserLoggedIn()) {
       const match = (sessionStorage.getItem('userRole') === role[0])
       if (match) {
         return true
       } else {
-        this.router.navigate(['forbidden']);
+        alert("You don't have access to this path. Redirect to home page.")
+        this.router.navigate(['home',username]);
         return false
       }
     }
