@@ -69,7 +69,7 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	/*
-	 * Get Project By Project Id
+	 * Get Project By Project ID
 	 */
 	@Override
 	public Project getProjectById(String projectId) {
@@ -79,12 +79,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		// TODO Auto-generated method stub
 		Project optionalProject = projectRepository.findByProjectId(projectId);
-		if(optionalProject==null) {
-			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
-		
-			
-		} 
+		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project ID doesn't Exists."));
 		log.info("project with Id: "+ projectId);
 		return optionalProject;
 	}
@@ -101,51 +96,32 @@ public class ProjectServiceImpl implements ProjectService{
 		User userTechLead = userRepository.findByEmailAddress(project.getTechLeadEmailId());
 		
 		Project optionalProject = projectRepository.findByProjectId(project.getProjectId());
-		
-		if(optionalProject!=null) {
-			log.warn("Project with Id " + project.getProjectId() + " Already Exist");
-			throw new IdAlreadyExistException("Project with Id: " + project.getProjectId() + " Already Exist.");
-		}  if (userProjectManager==null) {
-			String projectManagerNotFound = "Project Manager Email Id doesn't exist.  please enter existing user. ";
-			
-			log.warn(projectManagerNotFound);
-			throw new NoSuchElementExistException(projectManagerNotFound);
-			
-		} 
-		if (userTechLead==null) {
-			
-			String techLeadNotFound = "Tech Lead Email Id doesn't exist.  please enter existing user.";
-			log.warn(techLeadNotFound);
-			throw new NoSuchElementExistException(techLeadNotFound);
+		if(optionalProject!=null){
+			throw new IdAlreadyExistException("Project Id Already Exists.");
 		}
-		if (optionalProject==null && userProjectManager!=null && userTechLead!=null) {
+
+		Optional.ofNullable(userProjectManager).orElseThrow(()->new NoSuchElementExistException("Project Manager Email Id doesn't exist.  please enter existing user. "));
+		Optional.ofNullable(userTechLead).orElseThrow(()->new NoSuchElementExistException("Tech Lead Email Id doesn't exist.  please enter existing user."));
+
 		if (!userProjectManager.getName().equals(project.getProjectManagerName())) {
 			String projectManagerNotFound = "project Manager Email Id and Name doesn't match. please re-enter.";
-			
+
 			log.warn(projectManagerNotFound);
 			throw new InvalidUserException(projectManagerNotFound);
-		
+
 		}  if (!userTechLead.getName().equals(project.getTechLeadName())) {
-			
+
 			String techLeadNotFound = "Tech Lead Email Id and Name doesn't match. please re-enter.";
 			log.warn(techLeadNotFound);
 			throw new InvalidUserException(techLeadNotFound);
-		
-		} 
+
 		}
-			
-			
-//			assign(project.getProjectManagerName(), project.getProjectId());
-			
-			log.info("saved project "+ project);
+		log.info("saved project "+ project);
 			return projectRepository.save(project);
-		
-		
-		
 	}
 	
 	/*
-	 * Updating Project By Project Id
+	 * Updating Project By Project ID
 	 */
 
 	@Override
@@ -159,58 +135,33 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		// TODO Auto-generated method stub
 		Project optionalProject = projectRepository.findByProjectId(projectId);
-		
-		if(optionalProject==null) {
-			log.warn("Project with Id " + projectId + " doesn't Exist");
-			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
-		}  if (userProjectManager==null) {
-			String projectManagerNotFound = "Project Manager EmailId doesn't exist. please enter existing user. ";
-			
-			log.warn(projectManagerNotFound);
-			throw new NoSuchElementExistException(projectManagerNotFound);
-			
-		} 
-		if (userTechLead==null) {
-			
-			String techLeadNotFound = "Tech Lead Email Id doesn't exist. please enter existing user.";
-			log.warn(techLeadNotFound);
-			throw new NoSuchElementExistException(techLeadNotFound);
-		}
-		if (optionalProject!=null && userProjectManager!=null && userTechLead!=null) {
+
+		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project with Id " + project.getProjectId() + " doesn't Exist."));
+		Optional.ofNullable(userProjectManager).orElseThrow(()->new NoSuchElementExistException("Project Manager Email Id doesn't exist.  please enter existing user. "));
+		Optional.ofNullable(userTechLead).orElseThrow(()->new NoSuchElementExistException("Tech Lead Email Id doesn't exist.  please enter existing user."));
+
 		if (!userProjectManager.getName().equals(project.getProjectManagerName())) {
 			String projectManagerNotFound = "Project Manager Email Id and Name doesn't match. please re-enter.";
-			
+
 			log.warn(projectManagerNotFound);
 			throw new InvalidUserException(projectManagerNotFound);
-		
-		}  if (!userTechLead.getName().equals(project.getTechLeadName())) {
-			
-			String techLeadNotFound = "Tech Id Lead Email and Name doesn't match. please re-enter.";
+
+		}
+		if (!userTechLead.getName().equals(project.getTechLeadName())) {
+
+			String techLeadNotFound = "Tech Lead Email and Name doesn't match. please re-enter.";
 			log.warn(techLeadNotFound);
 			throw new InvalidUserException(techLeadNotFound);
-		
-		} 
+
 		}
 		log.info("updated project with id"+projectId + project);
-		optionalProject.setProjectName(project.getProjectName());
-		optionalProject.setProjectDescription(project.getProjectDescription());
-		optionalProject.setTeamName(project.getTeamName());
-		optionalProject.setTeamSize(project.getTeamSize());
-		optionalProject.setProjectManagerName(project.getProjectManagerName());
-		optionalProject.setProjectManagerEmailId(project.getProjectManagerEmailId());
-		optionalProject.setTechLeadName(project.getTechLeadName());
-		optionalProject.setTechLeadEmailId(project.getTechLeadEmailId());
-		optionalProject.setProjectStartDate(project.getProjectStartDate());
-		optionalProject.setProjectEndDate(project.getProjectEndDate());
-		optionalProject.setTechStack(project.getTechStack());
-		optionalProject.setStatus(project.getStatus());
-		optionalProject.setRemarks(project.getRemarks());
-		return projectRepository.save(optionalProject);
+
+		return projectRepository.save(project);
 	
 	}
 
 	/*
-	 * Deleting Project By Project Id
+	 * Deleting Project By Project ID
 	 */
 	@Override
 	public void deleteProjectById(String projectId) {
@@ -218,13 +169,9 @@ public class ProjectServiceImpl implements ProjectService{
 		log.info(" inside deleteProjectById of ProjectServiceImpl : ");
 		
 		Project optionalProject = projectRepository.findByProjectId(projectId);
-		if(optionalProject==null) {
-			log.warn("Project with Id: " + projectId + " doesn't Exist.");
-			throw new NoSuchElementExistException("Project with Id: " + projectId + " doesn't Exist.");
+		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist."));
 
-			
-		} 
-		
+
 		log.info("deleted project with Id : "+projectId);
 		projectRepository.deleteById(projectId);
 		
@@ -241,29 +188,18 @@ public class ProjectServiceImpl implements ProjectService{
 		User user = userRepository.findByUserName(userName);
 		
 		Project project = projectRepository.findByProjectId(projectId);
-		
-		
-		if (project == null) {
-			
-			log.warn("Project Id doesn't exist " + userName);
-			throw new NoSuchElementExistException("Project Id doesn't exist");
-			
-		} 
-		
-		if (user==  null) {
-			
-			log.warn("Story Id doesn't exist " + userName);
-			throw new NoSuchElementExistException("User doesn't exist " +userName);
-		}
-		
+
+
+		Optional.ofNullable(project).orElseThrow(()->new NoSuchElementExistException("Project with Id " + project.getProjectId() + " doesn't Exist."));
+		Optional.ofNullable(user).orElseThrow(()->new NoSuchElementExistException("User with ID " + userName + "doesn't exist"));
+
+
 
 		project.setProjectOwner(user.getUserName());
 		
 		projectSet = user.getProjects();
 		
 		projectSet.add(project);
-		
-//		user.addProjects(project);
 		
 		user.setProjects(projectSet);
 		
@@ -286,19 +222,10 @@ public class ProjectServiceImpl implements ProjectService{
 		User user = userRepository.findByUserName(userName);
 		
 		Project project = projectRepository.findByProjectId(projectId);
-		
-		if (project == null) {
-			
-			log.warn("project Id doesn't exist " + projectId);
-			throw new NoSuchElementExistException("Project Id doesn't exist.");
-			
-		} 
-		
-		if (user==  null) {
-			
-			log.warn("User with Id doesn't exist " + userName);
-			throw new NoSuchElementExistException("User Id doesn't exist. ");
-		}
+
+		Optional.ofNullable(project).orElseThrow(()-> new NoSuchElementExistException("Project Id doesn't exist."));
+		Optional.ofNullable(user).orElseThrow(()-> new NoSuchElementExistException("User Id doesn't exist."));
+
 		
 
 		int projectSizeParseInt  = Integer.parseInt(project.getTeamSize());
@@ -315,12 +242,10 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		if (!projectPMEqualsTL || !projectTLEqualsPO || !projectPOEqualsPM) {
 			projectSizeParseInt=projectSizeParseInt-1;
-			System.out.println(projectSizeParseInt);
 		}
 		projectSizeParseInt=projectSizeParseInt-1;
-		System.out.println(projectSizeParseInt);
 		if (user.getEmailAddress().equals(project.getProjectManagerEmailId())) {
-			
+
 			throw new IdAlreadyExistException("User already Assigned As Project Manager.");
 		}  if (user.getEmailAddress().equals(project.getTechLeadEmailId())) {
 			
@@ -336,8 +261,6 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		user.setProjects(projectSet);
 		
-//		List<Story> storySetAssign =storyRepository.findByProjectIdName(projectId);
-		
 		ArrayList<String> dummy = new ArrayList<>();
 		
 		if(project.getProjectAssignedToUsers()!=null) {
@@ -350,6 +273,7 @@ public class ProjectServiceImpl implements ProjectService{
 				dummy.add(assignProjectUser);
 			});
 		}
+
 		if (dummy.size()>=projectSizeParseInt) {
 			
 			throw new TeamSizeExcedsException("Cannot Assign User Please Update Team Size.");
