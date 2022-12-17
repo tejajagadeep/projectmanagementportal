@@ -70,36 +70,6 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserByName(name),HttpStatus.OK);
 	}
 
-	@Operation(summary = "Retrieve Emails", description = "Retrieves all User email addresses.")
-	@SecurityRequirement(name = "Bearer Authentication")
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/emails")
-	public @ApiResponse(description = "200") ResponseEntity<List<String>> getAllUserEmail(){
-
-		log.info("inside getAllUserEmail of User Controller");
-		return new ResponseEntity<>(userService.getAllUserEmail(),HttpStatus.OK);
-	}
-
-	@Operation(summary = "Retrieve Names", description = "Retrieves all User names.")
-	@SecurityRequirement(name = "Bearer Authentication")
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/names")
-	public @ApiResponse(description = "200") ResponseEntity<List<String>> getAllUserNames(){
-
-		log.info("inside getAllUserEmail of User Controller");
-		return new ResponseEntity<>(userService.getAllUserNames(),HttpStatus.OK);
-	}
-
-	@Operation(summary = "Retrieve UserIds", description = "Retrieves all User Ids.")
-	@SecurityRequirement(name = "Bearer Authentication")
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
-	@GetMapping("/userIds")
-	public @ApiResponse(description = "200") ResponseEntity<List<String>> getAllUserIDs(){
-
-		log.info("inside getAllUserEmail of User Controller");
-		return new ResponseEntity<>(userService.getAllUserID(),HttpStatus.OK);
-	}
-	
 //	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 //	@GetMapping("/getUserByUserId/{userId}")
 ////	@PostFilter("filterObject.userId==authentication.name")

@@ -109,8 +109,8 @@
                             [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched"
                             (keypress)="OnlyAlbhabets($event)" />
                             <mat-autocomplete #auto1="matAutocomplete">
-                                <mat-option *ngFor="let nameP of names" [value]="nameP">
-                                    {{nameP}}
+                                <mat-option *ngFor="let nameP of users" [value]="nameP.name">
+                                    {{nameP.name}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="projectManagerNameT && projectManagerName.untouched"> Project Manager
@@ -134,8 +134,8 @@
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #projectManagerEmailId="ngModel"
                             [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
                             <mat-autocomplete #auto2="matAutocomplete">
-                                <mat-option *ngFor="let emailIdT of emailIds" [value]="emailIdT">
-                                    {{emailIdT}}
+                                <mat-option *ngFor="let emailIdT of users" [value]="emailIdT.emailAddress">
+                                    {{emailIdT.emailAddress}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="projectManagerEmailIdT && projectManagerEmailId.untouched"> Project
@@ -159,8 +159,8 @@
                             #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched"
                             (keypress)="OnlyAlbhabets($event)" />
                             <mat-autocomplete #auto3="matAutocomplete">
-                                <mat-option *ngFor="let nameP of names" [value]="nameP">
-                                    {{nameP}}
+                                <mat-option *ngFor="let nameP of users" [value]="nameP.name">
+                                    {{nameP.name}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="techLeadNameT && techLeadName.untouched"> Tech
@@ -183,8 +183,8 @@
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #techLeadEmailId="ngModel"
                             [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
                             <mat-autocomplete #auto4="matAutocomplete">
-                                <mat-option *ngFor="let emailId of emailIds" [value]="emailId">
-                                    {{emailId}}
+                                <mat-option *ngFor="let emailId of users" [value]="emailId.emailAddress">
+                                    {{emailId.emailAddress}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="techLeadEmailIdT && techLeadEmailId.untouched"> Tech Lead Email Id 

@@ -26,6 +26,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
   emailIds!: string[]
   names!: string[]
   user!: User
+  users!: User[]
 
    storyIdT!: boolean
      storyTitleT!: boolean
@@ -49,8 +50,8 @@ export class ProjectStoryRegistrationComponent implements OnInit {
     console.log('project-story-registration.component.ts')
     this.projectId = this.route.snapshot.params['projectId']
     this.story = new Story('', '', '', '', '', this.dateDummy, this.dateDummy, '', '', '', this.storyAssigned);
-    this.getUserEmailId()
-    this.getUsernames()
+    
+    this.getAllUsers()
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     this.story.assignee = this.user.name
@@ -61,6 +62,25 @@ export class ProjectStoryRegistrationComponent implements OnInit {
 
   navBack() {
     this.location.back()
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe(
+      response => this.handleGetUsers(response)
+      // {
+      //   // console.log(response);
+      //   this.user = response;
+      //   // console.log(this.user)
+      // }
+    );
+    console.log('getAllUsers')
+
+  }
+
+  handleGetUsers(response: any) {
+    this.users = response
+    console.log('handle getUsers')
+
   }
 
   OnlyAlbhabets(event: any):boolean{
@@ -91,21 +111,7 @@ export class ProjectStoryRegistrationComponent implements OnInit {
     )
   }
 
-  getUserEmailId() {
-    this.userService.getUserEmailId().subscribe(
-      response => {
-        this.emailIds = response;
-      }
-    )
-  }
-
-  getUsernames() {
-    this.userService.getNames().subscribe(
-      response => {
-        this.names = response;
-      }
-    )
-  }
+  
 
   saveProjectStory() {
 

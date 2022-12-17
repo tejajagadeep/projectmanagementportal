@@ -141,8 +141,8 @@
             <input matInput type="text" [matAutocomplete]="auto" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assign To UserId"
                 [(ngModel)]="assignedTo" required>
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let emailId of userIDs" [value]="emailId">
-                        {{emailId}}
+                    <mat-option *ngFor="let emailId of users" [value]="emailId.userName">
+                        {{emailId.userName}}
                     </mat-option>
                 </mat-autocomplete>
                 <small class="text-danger" *ngIf="assignUndefined">User Id is required</small>

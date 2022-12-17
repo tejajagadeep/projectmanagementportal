@@ -29,7 +29,7 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   userByName!: User
   userIDs!: string[]
   name!: string
-
+  users!: User[]
   projectId!: string
   project!: Project
 
@@ -73,8 +73,8 @@ export class ViewProjectStoryStatusComponent implements OnInit {
   }
 
   getAllUserIds(){
-    this.userService.getUserIds().subscribe(
-      response => this.userIDs = response
+    this.userService.getAllUsers().subscribe(
+      response => this.users = response
     )
   }
 

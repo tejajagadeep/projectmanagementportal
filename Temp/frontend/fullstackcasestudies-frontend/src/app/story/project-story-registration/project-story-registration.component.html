@@ -70,8 +70,8 @@
                             [class.is-invalid]="assignee.invalid && assignee.touched" 
                             (keypress)="OnlyAlbhabets($event)"/>
                             <mat-autocomplete #auto1="matAutocomplete">
-                                <mat-option *ngFor="let nameP of names" [value]="nameP">
-                                    {{nameP}}
+                                <mat-option *ngFor="let nameP of users" [value]="nameP.name">
+                                    {{nameP.name}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="assigneeT && assignee.untouched">Assignee is
@@ -92,8 +92,8 @@
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #assigneeEmailId="ngModel"
                             [class.is-invalid]="assigneeEmailId.invalid && assigneeEmailId.touched" />
                             <mat-autocomplete #auto2="matAutocomplete">
-                                <mat-option *ngFor="let nameP of emailIds" [value]="nameP">
-                                    {{nameP}}
+                                <mat-option *ngFor="let nameP of users" [value]="nameP.emailAddress">
+                                    {{nameP.emailAddress}}
                                 </mat-option>
                             </mat-autocomplete>
                             <small class="text-danger" *ngIf="assigneeEmailIdT && assigneeEmailId.untouched">Assignee Email Id is

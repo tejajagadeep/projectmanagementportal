@@ -71,27 +71,6 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	@Override
-	public List<String> getAllUserEmail() {
-		List<String> emails = new ArrayList<>();
-		userRepository.findAll().forEach(user -> emails.add(user.getEmailAddress()));
-		return emails;
-	}
-
-	@Override
-	public List<String> getAllUserNames() {
-		List<String> names = new ArrayList<>();
-		userRepository.findAll().forEach(user -> names.add(user.getName()));
-		return names;
-	}
-
-	@Override
-	public List<String> getAllUserID() {
-		List<String> names = new ArrayList<>();
-		userRepository.findAll().forEach(user -> names.add(user.getUserName()));
-		return names;
-	}
-
 	/*
 	 * Sign Up User
 	 */

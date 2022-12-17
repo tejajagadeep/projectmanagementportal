@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/app/model/story';
+import { User } from 'src/app/model/user';
 import { AuthenticationDataService } from 'src/app/service/auth/authentication-data.service';
 import { StoryDataService } from 'src/app/service/data/story-data.service';
 import { UserDataService } from 'src/app/service/data/user-data.service';
@@ -20,8 +21,7 @@ export class ProjectStoryUpdateComponent implements OnInit {
   temp!: string
   storyAssigned!: string[]
   username!: string
-  emailIds!: string[]
-  names!: string[]
+  users!: User[]
 
   constructor(
     private router: Router,
@@ -36,7 +36,6 @@ export class ProjectStoryUpdateComponent implements OnInit {
     console.log('project-story-update.component.ts')
     this.storyId = this.route.snapshot.params['storyId'];
     this.getStoryById(this.storyId);
-    this.getUserEmailId()
     this.getUsernames()
     this.username = this.authService.getLoggedInUserName();
   }
@@ -45,18 +44,11 @@ export class ProjectStoryUpdateComponent implements OnInit {
     this.location.back()
   }
 
-  getUserEmailId() {
-    this.userService.getUserEmailId().subscribe(
-      response => {
-        this.emailIds = response;
-      }
-    )
-  }
 
   getUsernames() {
-    this.userService.getNames().subscribe(
+    this.userService.getAllUsers().subscribe(
       response => {
-        this.names = response;
+        this.users = response;
       }
     )
   }

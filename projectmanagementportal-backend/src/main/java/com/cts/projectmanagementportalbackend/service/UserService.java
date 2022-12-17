@@ -17,9 +17,4 @@ public interface UserService {
 
 	User getUserByName(String name) ;
 
-    List<String> getAllUserEmail();
-
-	List<String> getAllUserNames();
-
-	List<String> getAllUserID();
 }

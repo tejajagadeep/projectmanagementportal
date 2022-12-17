@@ -26,6 +26,7 @@ export class ProjectUpdateComponent implements OnInit {
   user!: User
   emailIds!: string[]
   names!: string[]
+  users!: User[]
 
   constructor(
     private router: Router,
@@ -43,7 +44,6 @@ export class ProjectUpdateComponent implements OnInit {
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
     this.getUserEmailId()
-    this.getUsernames()
   }
 
   OnlyAlbhabets(event: any):boolean{
@@ -75,21 +75,12 @@ export class ProjectUpdateComponent implements OnInit {
   }
 
   getUserEmailId() {
-    this.userService.getUserEmailId().subscribe(
+    this.userService.getAllUsers().subscribe(
       response => {
-        this.emailIds = response;
+        this.users = response;
       }
     )
   }
-
-  getUsernames() {
-    this.userService.getNames().subscribe(
-      response => {
-        this.names = response;
-      }
-    )
-  }
-
   navBack() {
     this.location.back()
   }

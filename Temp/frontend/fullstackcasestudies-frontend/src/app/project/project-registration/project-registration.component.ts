@@ -57,8 +57,7 @@ export class ProjectRegistrationComponent implements OnInit {
     this.project = new Project('', '', '', '', '', '', '', '', '', this.dateDummy, this.dateDummy, '', '', '', '', this.projectAssigned, [])
     this.username = this.authService.getLoggedInUserName();
     this.getUser(this.username)
-    this.getUserEmailId()
-    this.getUsernames()
+    this.getAllUsers()
     console.log('projects-reistration.component.ts')
     this.users.forEach(element => {
       this.emails.forEach(element1 => {
@@ -68,9 +67,9 @@ export class ProjectRegistrationComponent implements OnInit {
     console.log(this.emails)
   }
 
-  getAllemail(){
-    this.userService.getUserEmailId().subscribe(
-      response => this.emails = response
+  getAllUsers(){
+    this.userService.getAllUsers().subscribe(
+      response => this.users = response
     )
   }
 
@@ -116,21 +115,6 @@ export class ProjectRegistrationComponent implements OnInit {
     return false;
   }
 
-  getUserEmailId() {
-    this.userService.getUserEmailId().subscribe(
-      response => {
-        this.emailIds = response;
-      }
-    )
-  }
-
-  getUsernames() {
-    this.userService.getNames().subscribe(
-      response => {
-        this.names = response;
-      }
-    )
-  }
   saveProject() {
     if (this.project.projectId === '') {
       this.projectIdT = true
@@ -199,16 +183,4 @@ export class ProjectRegistrationComponent implements OnInit {
     this.errorMessageResponse = error.error.message
   }
 
-  getAllUsers() {
-    this.userService.getAllUsers().subscribe(
-      response => this.users
-      // {
-      //   // console.log(response);
-      //   this.user = response;
-      //   // console.log(this.user)
-      // }
-    );
-    console.log('getAllUsers')
-
-  }
 }

@@ -48,16 +48,4 @@ export class UserDataService {
     return this.http.get<User>(`${USER_API_URL}/name/${name}`);
   }
 
-  getUserEmailId() {
-    return this.http.get<string[]>(`${USER_API_URL}/emails`);
-  }
-
-  getNames() {
-    return this.http.get<string[]>(`${USER_API_URL}/names`);
-  }
-
-
-  getUserIds() {
-    return this.http.get<string[]>(`${USER_API_URL}/userIds`);
-  }
 }
