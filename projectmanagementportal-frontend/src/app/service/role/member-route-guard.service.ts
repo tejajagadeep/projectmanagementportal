@@ -11,10 +11,10 @@ export class MemberRouteGuardService implements CanActivate {
     private authService: AuthenticationDataService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isUserLoggedIn())
+    if (!(this.authService.isUserLoggedIn()))
       return true;
 
-    this.router.navigate(['login']);
+    this.router.navigate(['home',sessionStorage.getItem('authenticatedUser')]);
     return false;
 
   }

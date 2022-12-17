@@ -14,14 +14,15 @@ import { ProjectStoryUpdateComponent } from './project-story-update/project-stor
 import { ProjectUpdateComponent } from './project-update/project-update.component';
 import { AuthGuardDataService } from './service/auth/auth-guard-data.service';
 import { AdminRouteGuardService } from './service/role/admin-route-guard.service';
+import { MemberRouteGuardService } from './service/role/member-route-guard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewProjectStatusComponent } from './view-project-status/view-project-status.component';
 import { ViewProjectStoryStatusComponent } from './view-project-story-status/view-project-story-status.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'member-signUp', component: MemberSignUpComponent },
+  { path: 'login', component: LoginComponent, canActivate: [MemberRouteGuardService] },
+  { path: 'member-signUp', component: MemberSignUpComponent, canActivate: [MemberRouteGuardService] },
   { path: 'home/:userName', component: HomeComponent, canActivate: [AuthGuardDataService] },
   { path: 'profiles/:userName', component: ProfilesComponent, canActivate: [AuthGuardDataService] },
   { path: 'user-profile/:userName', component: UserProfileComponent, canActivate: [AuthGuardDataService] },
@@ -36,7 +37,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent, canActivate: [AuthGuardDataService] },
   { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthGuardDataService] },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardDataService] },
-  { path: '**', component: LoginComponent, canActivate: [AuthGuardDataService] }
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
 ];
 
