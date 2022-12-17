@@ -77,7 +77,6 @@ public class ProjectServiceImpl implements ProjectService{
 		log.info(" inside getProjectById of ProjectServiceImpl : ");
 		
 		
-		// TODO Auto-generated method stub
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project ID doesn't Exists."));
 		log.info("project with Id: "+ projectId);
@@ -133,7 +132,6 @@ public class ProjectServiceImpl implements ProjectService{
 		User userTechLead = userRepository.findByEmailAddress(project.getTechLeadEmailId());
 		
 		
-		// TODO Auto-generated method stub
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 
 		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project with Id " + project.getProjectId() + " doesn't Exist."));
@@ -171,7 +169,6 @@ public class ProjectServiceImpl implements ProjectService{
 		Project optionalProject = projectRepository.findByProjectId(projectId);
 		Optional.ofNullable(optionalProject).orElseThrow(()->new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist."));
 
-
 		log.info("deleted project with Id : "+projectId);
 		projectRepository.deleteById(projectId);
 		
@@ -190,7 +187,7 @@ public class ProjectServiceImpl implements ProjectService{
 		Project project = projectRepository.findByProjectId(projectId);
 
 
-		Optional.ofNullable(project).orElseThrow(()->new NoSuchElementExistException("Project with Id " + project.getProjectId() + " doesn't Exist."));
+		Optional.ofNullable(project).orElseThrow(()->new NoSuchElementExistException("Project with Id " + projectId + " doesn't Exist."));
 		Optional.ofNullable(user).orElseThrow(()->new NoSuchElementExistException("User with ID " + userName + "doesn't exist"));
 
 

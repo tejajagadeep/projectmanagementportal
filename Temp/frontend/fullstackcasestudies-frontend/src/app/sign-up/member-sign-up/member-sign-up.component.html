@@ -1,0 +1,362 @@
+<!-- <div class="container">
+
+
+
+    <form class="card" style="border-radius: 15px;">
+
+        <h1 class="text-center">SignUp</h1>
+
+        <div class="card-body">
+
+            <div class="container alert alert-warning" *ngIf = "errorMessageResponse">Error: {{errorMessageResponse}}</div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="name">
+                    <h6 class="mb-0">Name</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="user.name" class="form-control form-control-lg" name="name"
+                         required />
+                </div>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="emailAddress">
+                    <h6 class="mb-0">Email ID</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="email" [(ngModel)]="user.emailAddress" class="form-control" name="emailAddress"
+                         required />
+                </div>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="contactNo">
+                    <h6 class="mb-0">Contact Number</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="tel" [(ngModel)]="user.contactNo" class="form-control" name="contactNo"
+                    pattern="[0-9]{10}" title="must have 10 numbers"  maxlength="10"  required />
+                </div>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="userType">
+                    <h6 class="mb-0">User Type</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="user.userType" class="form-control" name="userType"
+                         required />
+                </div>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="dateOfBirth">
+                    <h6 class="mb-0">DOB</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="date" [ngModel]="user.dateOfBirth | date : 'yyyy-MM-dd' " class="form-control" name="dateOfBirth"
+                         required />
+                </div> 
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="userId">
+                    <h6 class="mb-0">User Id</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="text" [(ngModel)]="user.userId" class="form-control" name="userId"
+                        minlength="5" maxlength="8" pattern=".{5,8}" title="user Id should between 5 and 8 characters" required="user Id should between 5 and 8 characters">
+                </div>
+            </div>
+
+            <div class="row align-items-center pt-4 pb-3">
+                <label class="col-md-3 ps-5" for="password">
+                    <h6 class="mb-0">Password</h6>
+                </label>
+                <div class="form-group col-md-9 pe-5">
+                    <input type="password" [(ngModel)]="user.password" class="form-control" name="password" id="pwd"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3">
+                <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
+                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                <input type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">
+            </div>
+        </div>
+
+    </form>
+</div> -->
+
+<!-- <div class="container">
+
+
+
+  <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
+
+    <h1 class="text-center">SignUp</h1>
+
+    <div class="card-body">
+
+      <div class="container alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}</div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="name">
+          <h6 class="mb-0">Name</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="user.name"
+            required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" />
+          <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="emailAddress">
+          <h6 class="mb-0">Email ID</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="abc@gmail.com"
+            [(ngModel)]="user.emailAddress" required #emailAddress="ngModel"
+            [class.is-invalid]="emailAddress.invalid && emailAddress.touched" />
+          <small class="text-danger" [class.d-none]="emailAddress.valid || emailAddress.untouched">Email Address is
+            required
+            field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="contactNo">
+          <h6 class="mb-0">Contact Number</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+
+          <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="Contact Number"
+            [(ngModel)]="user.contactNo" required #contactNo="ngModel"
+            [class.is-invalid]="contactNo.invalid && contactNo.touched" pattern="[0-9]{10}" title="must have 10 numbers"
+            maxlength="10" />
+          <small class="text-danger" [class.d-none]="contactNo.valid || contactNo.untouched">Contact Number is required
+            field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="userType">
+          <h6 class="mb-0">User Type</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="userType" id="Member" value="Member"
+              [(ngModel)]="user.userType" />
+            <label class="form-check-label" for="exampleRadios1">Member</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="userType" id="Admin" value="Admin"
+              [(ngModel)]="user.userType" />
+            <label class="form-check-label" for="exampleRadios2">Admin</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="dateOfBirth">
+          <h6 class="mb-0">DOB</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+
+          <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth"
+            [ngModel]="user.dateOfBirth | date : 'yyyy-MM-dd' " required #dateOfBirth="ngModel"
+            [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" />
+          <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date of Birth is a
+            required
+            field.</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="userId">
+          <h6 class="mb-0">User Id</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="text" class="form-control" id="userId" name="userId" placeholder="User Id"
+            [(ngModel)]="user.userId" required #userId="ngModel" [class.is-invalid]="userId.invalid && userId.touched"
+            minlength="5" maxlength="8" pattern=".{5,8}" title="user Id should between 5 and 8 characters" />
+          <small class="text-danger" [class.d-none]="userId.valid || userId.untouched">User Id is required field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="col-md-3 ps-5" for="password">
+          <h6 class="mb-0">Password</h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+            [(ngModel)]="user.password" required #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" />
+          <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is a required
+            field</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end pt-3">
+        <button type="button" class="btn btn-light" (click)="navLogin()">Login</button>
+        <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+        <input type="submit" class="btn btn-warning btn-lg ms-2" (click)="saveUser()">
+      </div>
+    </div>
+
+  </form>
+</div> -->
+
+<!-- ................................................................... -->
+<section class="h-100 h-custom gradient-custom" style="background-color:  #8fc4b7;" *ngIf="!isLogin">
+  <div class="container  h-100">
+
+    <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="registerUser()">
+      <h1 class="text-success text-center">User SignUp</h1>
+
+      <div class="container text-center alert alert-warning" *ngIf="errorMessageResponse">Error: {{errorMessageResponse}}
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputName">
+          <h6 class="mb-0">Name<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="user.name"
+             #name="ngModel" [class.is-invalid]="name.invalid && name.touched" required
+            (keypress)="OnlyAlbhabets($event)"
+            />
+          <small class="text-danger" *ngIf="nameT && name.untouched">Name is required field</small>
+            
+          <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputEmailAddress">
+          <h6 class="mb-0">Email Address<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="abc@gmail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.emailAddress" required
+            #emailAddress="ngModel" [class.is-invalid]="emailAddress.invalid && emailAddress.touched "  />
+            <small class="text-danger" *ngIf="emailAddressT && emailAddress.untouched">Email Address is
+              required field</small>
+          <small class="text-danger" [class.d-none]="emailAddress.valid || emailAddress.untouched">Email Address is
+            required field</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputcontactNo">
+          <h6 class="mb-0">Contact Number<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="Contact Number"
+            [(ngModel)]="user.contactNo" required minlength="10" maxlength="10" #contactNo="ngModel"
+            [class.is-invalid]="contactNo.invalid && contactNo.touched" (keypress)="OnlyNumbers($event)"/>
+            <small class="text-danger" *ngIf="contactNoT && contactNo.untouched">Email Address is
+              required field</small>
+          <small class="text-danger" [class.d-none]="contactNo.valid || contactNo.untouched">Contact Number is required
+            field with 10 number</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputDateOfBirth">
+          <h6 class="mb-0">Date of Birth<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth"
+            [ngModel]="user.dateOfBirth | date: 'yyyy-MM-dd' " (ngModelChange)="user.dateOfBirth = $event"
+           required #dateOfBirth="ngModel"
+            [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" />
+            <small class="text-danger" *ngIf="dateOfBirthT && dateOfBirth.untouched">Email Address is
+              required field</small>
+          <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date of Birth is a
+            required field.</small>
+        </div>
+      </div>
+
+      <!-- <div class="row align-items-center pt-4 pb-3">
+        <mat-form-field>
+        <mat-label class="form-label col-md-3 ps-5" for="exampleInputDateOfBirth">
+          <h6 class="mb-0">Date of Birth</h6>
+        </mat-label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="date" class="form-control" id="dob" name="dateOfBirth" placeholder="Date of Birth"
+            (ngModel)="(user.dateOfBirth)" matInput [matDatepicker]="picker" max="2003-01-01" required #dateOfBirth="ngModel" />
+            <mat-datepicker-toggle [for]="picker" maxSuffix>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-datepicker-toggle>
+            </div>
+          </mat-form-field>
+      </div> -->
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputType">
+          <h6 class="mb-0">User Type<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <select class="form-control" name="role" id="role" [(ngModel)]="user.role" required #role="ngModel"
+          [class.is-invalid]="role.invalid && role.touched">
+            <option value="" selected>Select User Type</option>
+            <option value="Admin">Admin</option>
+            <option value="Member">Member</option>
+          </select>
+          <small class="text-danger" *ngIf="roleT && role.untouched">User Type is
+            required field</small>
+            <small class="text-danger" [class.d-none]="role.valid || role.untouched">User Type is a
+              required field.</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputUserId">
+          <h6 class="mb-0">User Id<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="text" class="form-control" id="userName" name="userName" placeholder="User Id"
+            [(ngModel)]="user.userName" required #userName="ngModel"
+            [class.is-invalid]="userName.invalid && userName.touched" minlength="5" maxlength="8" pattern=".{5,8}" />
+            <small class="text-danger" *ngIf="userNameT && userName.untouched">User Id is required</small>
+            <small class="text-danger" [class.d-none]="userName.valid || userName.untouched">User Id is required and
+            should
+            have 5 to 8 charaters</small>
+        </div>
+      </div>
+
+      <div class="row align-items-center pt-4 pb-3">
+        <label class="form-label col-md-3 ps-5" for="exampleInputPassword">
+          <h6 class="mb-0">Password<span class="required">*</span></h6>
+        </label>
+        <div class="form-group col-md-9 pe-5">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="user.password" required #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched" />
+            <small class="text-danger" *ngIf="passwordT && password.untouched">Password is required</small>
+          <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is a should be
+            greater than 8 chracters containing atleas one uppercase, one numeric and a special character</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-around pt-3">
+        <div>
+          <button class="btn btn-primary" routerLink="/login">Login</button>
+        </div>
+        <div>
+          <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+<app-home *ngIf="isLogin"></app-home>

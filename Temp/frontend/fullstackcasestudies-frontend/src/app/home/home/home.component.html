@@ -1,0 +1,63 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #97d2fc;">
+        <h4>&#160;&#160;{{username}}</h4>
+
+        <div class="p-2 " style="color:rgba(23, 119, 14, 0.87)">
+            <ul class="navbar-nav">
+                <li><a *ngIf="(LoggedIn)" [routerLink]="['/user-profile/',username]" class="nav-link">Profile</a>
+                </li>
+                <li><a *ngIf="(LoggedIn)" routerLink="['/home/',username]" class="nav-link">Home</a></li>
+                <li><a *ngIf="(LoggedIn)" routerLink="/my-projects" class="nav-link">My Projects</a></li>
+
+                <!-- filter by status-->
+
+                <select class="form-control" (change)="getByProjectStatus()" #status>
+                    <option selected class="btn btn-outline-success" value="Filter by status"><small>Filter by
+                            Status</small></option>
+                    <option value="To-Do">To-Do</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Ready-For-Test">Ready-For-Test</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </ul>
+        </div>
+        <div class="navbar-nav navbar-collapse justify-content-center">
+            <h3 class="">Project Management</h3>
+        </div>
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="projectIdName" #projectIdName>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (change)="getByProjectByIdOrManagerName()">Search</button>
+              </form> -->
+
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="search...">
+            <li><a *ngIf="(LoggedIn) && user.role === 'Admin' " routerLink="/project-registration" class="nav-link">New
+                    Project</a></li>
+            <li><a *ngIf="(LoggedIn)" (click)="logout()" class="nav-link">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<br>
+
+<div class="main">
+    <h1> PROJECTS </h1>
+    <div class="row" id="divStyle">
+        <div *ngFor="let projectDetail of project | filter: searchText" class="offer-content">
+            <h6 class="card-title align-center" id="h6">{{projectDetail.projectName}}</h6>
+            <p class="card-text ">
+            <div class="d-flex flex-column ">
+                <div class="p-2 "><b>Project Id:</b> {{projectDetail.projectId}}</div>
+                <div class="p-2 "><b>Project Manager Name:</b> {{projectDetail.projectManagerName}}
+                </div>
+                <div class="p-2"><b>Team Name:</b> {{projectDetail.teamName}}</div>
+                <div class="p-2"><b>Tech Stack:</b> {{projectDetail.techStack}}</div>
+                <div class="p-2"><b>Status:</b> {{projectDetail.status}}</div>
+            </div><br>
+            <a [routerLink]="['/view-project-status/',projectDetail.projectId]" class="btn btn-success">Project
+                Details</a>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

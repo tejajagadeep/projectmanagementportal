@@ -1,0 +1,33 @@
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+}
+
+
+/* Change background on mouse-over */
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+/* Main content */
+.main {
+    margin-top: 30px;
+    /* Add a top margin to avoid content overlay */
+}
+h3 {
+text-transform: uppercase;
+font-size: 25x;
+}
+
+h4{
+    color: rgb(4, 4, 34);
+    text-transform: uppercase;
+    text-decoration: wavy;
+    }

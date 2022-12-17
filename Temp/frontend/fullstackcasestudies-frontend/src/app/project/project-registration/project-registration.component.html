@@ -1,0 +1,349 @@
+<section class="h-100 h-custom" style="background-color: #8fc4b7;" *ngIf="user.role==='Admin' ">
+    <div class="container">
+
+        <form class="card" style="border-radius: 15px;" #RegisterForm="ngForm" (ngSubmit)="saveProject()">
+
+            <h1 class="text-center">project Registration</h1>
+
+            <div class="card-body">
+
+                <div class="container text-center  alert alert-warning" *ngIf="errorMessageResponse">Error:
+                    {{errorMessageResponse}}
+                </div>
+
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectId">
+                        <h6 class="title mb-0">Project Id<span class="required">*</span></h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectId" name="projectId" placeholder="Project Id"
+                            [(ngModel)]="project.projectId" required #projectId="ngModel"
+                            [class.is-invalid]="projectId.invalid && projectId.touched" />
+                            <small class="text-danger" *ngIf="projectIdT && projectId.untouched">Project Id
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="projectId.valid || projectId.untouched">Project Id
+                            is
+                            required</small>
+                    </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectName">
+                        <h6 class="mb-0">Project Name<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="projectName" name="projectName"
+                            placeholder="Project Name" [(ngModel)]="project.projectName" required #projectName="ngModel"
+                            [class.is-invalid]="projectName.invalid && projectName.touched" />
+                            <small class="text-danger" *ngIf="projectNameT && projectName.untouched"> Project Name
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="projectName.valid || projectName.untouched">Project
+                            Name
+                            Id is required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectDescription">
+                        <h6 class="mb-0">Project Description<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <textarea type="text" class="form-control" id="projectDescription" name="projectDescription"
+                            placeholder="Project Description" [(ngModel)]="project.projectDescription" minlength="100"
+                            maxlength="255" required #projectDescription="ngModel"
+                            [class.is-invalid]="projectDescription.invalid && projectDescription.touched"></textarea>
+                            <small class="text-danger" *ngIf="projectDescriptionT && projectDescription.untouched"> Project
+                                Description
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="projectDescription.valid || projectDescription.untouched">Project
+                            Description Id
+                            is requiredand should have minimium 100 characters</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputteamName">
+                        <h6 class="mb-0">Team Name<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="teamName" name="teamName" placeholder="Team Name"
+                            [(ngModel)]="project.teamName" required #teamName="ngModel"
+                            [class.is-invalid]="teamName.invalid && teamName.touched" />
+                            <small class="text-danger" *ngIf="teamNameT && teamName.untouched"> Team Name
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="teamName.valid || teamName.untouched">Team Name is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputteamSize">
+                        <h6 class="mb-0">Team Size<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="number" class="form-control" id="teamSize" name="teamSize" placeholder="Team Size"
+                            min="1" [(ngModel)]="project.teamSize" required #teamSize="ngModel"
+                            [class.is-invalid]="teamSize.invalid && teamSize.touched" />
+                            <small class="text-danger" *ngIf="teamSizeT && teamSize.untouched"> Team Size
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="teamSize.valid || teamSize.untouched">Team Size is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectManagerName">
+                        <h6 class="mb-0">Project Manager Name<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input matInput type="text" [matAutocomplete]="auto1" class="form-control" id="projectManagerName" name="projectManagerName"
+                            placeholder="Project Manager Name" [(ngModel)]="project.projectManagerName" required
+                            #projectManagerName="ngModel"
+                            [class.is-invalid]="projectManagerName.invalid && projectManagerName.touched"
+                            (keypress)="OnlyAlbhabets($event)" />
+                            <mat-autocomplete #auto1="matAutocomplete">
+                                <mat-option *ngFor="let nameP of names" [value]="nameP">
+                                    {{nameP}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <small class="text-danger" *ngIf="projectManagerNameT && projectManagerName.untouched"> Project Manager
+                                Name
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="projectManagerName.valid || projectManagerName.untouched">Project Manager
+                            Name is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectManagerEmailId">
+                        <h6 class="mb-0">Project Manager Email Id<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input matInput type="email" [matAutocomplete]="auto2" class="form-control" id="projectManagerEmailId" name="projectManagerEmailId"
+                            placeholder="Project Manager Email Id" [(ngModel)]="project.projectManagerEmailId"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #projectManagerEmailId="ngModel"
+                            [class.is-invalid]="projectManagerEmailId.invalid && projectManagerEmailId.touched" />
+                            <mat-autocomplete #auto2="matAutocomplete">
+                                <mat-option *ngFor="let emailIdT of emailIds" [value]="emailIdT">
+                                    {{emailIdT}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <small class="text-danger" *ngIf="projectManagerEmailIdT && projectManagerEmailId.untouched"> Project
+                                Manager Email Id
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="projectManagerEmailId.valid || projectManagerEmailId.untouched">Project
+                            Manager Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechLeadName">
+                        <h6 class="mb-0">Tech Lead Name<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input matInput type="text" [matAutocomplete]="auto3" class="form-control" id="techLeadName" name="techLeadName"
+                            placeholder="Tech Lead Name" [(ngModel)]="project.techLeadName" required
+                            #techLeadName="ngModel" [class.is-invalid]="techLeadName.invalid && techLeadName.touched"
+                            (keypress)="OnlyAlbhabets($event)" />
+                            <mat-autocomplete #auto3="matAutocomplete">
+                                <mat-option *ngFor="let nameP of names" [value]="nameP">
+                                    {{nameP}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <small class="text-danger" *ngIf="techLeadNameT && techLeadName.untouched"> Tech
+                                Lead Name
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="techLeadName.valid || techLeadName.untouched">Tech
+                            Lead Name is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechLeadEmailId">
+                        <h6 class="mb-0">Tech Lead Email Id<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input matInput type="email" [matAutocomplete]="auto4" class="form-control" id="techLeadEmailId" name="techLeadEmailId"
+                            placeholder="Tech Lead Email Id" [(ngModel)]="project.techLeadEmailId"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required #techLeadEmailId="ngModel"
+                            [class.is-invalid]="techLeadEmailId.invalid && techLeadEmailId.touched" />
+                            <mat-autocomplete #auto4="matAutocomplete">
+                                <mat-option *ngFor="let emailId of emailIds" [value]="emailId">
+                                    {{emailId}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <small class="text-danger" *ngIf="techLeadEmailIdT && techLeadEmailId.untouched"> Tech Lead Email Id 
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="techLeadEmailId.valid || techLeadEmailId.untouched">Tech Lead Email Id is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectStartDate">
+                        <h6 class="mb-0">Project Start Date<span class="required">*</span></h6>
+                    </label>
+
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="projectStartDate" name="projectStartDate"
+                            placeholder="Project Start Date" [ngModel]="project.projectStartDate | date: 'yyyy-MM-dd' "
+                            (ngModelChange)="project.projectStartDate = $event" required #projectStartDate="ngModel"
+                            [class.is-invalid]="projectStartDate.invalid && projectStartDate.touched" />
+                            <small class="text-danger" *ngIf="projectStartDateT && projectStartDate.untouched"> Project Start Date
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="projectStartDate.valid || projectStartDate.untouched">Project Start Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputprojectEndDate">
+                        <h6 class="mb-0">Project End Date<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="date" class="form-control" id="projectEndDate" name="projectEndDate"
+                            placeholder="Project End Date" [ngModel]="project.projectEndDate | date: 'yyyy-MM-dd' "
+                            (ngModelChange)="project.projectEndDate = $event" required #projectEndDate="ngModel"
+                            [class.is-invalid]="projectEndDate.invalid && projectEndDate.touched" />
+                            <small class="text-danger" *ngIf="projectEndDateT && projectEndDate.untouched"> Project End Date
+                                is
+                                required</small>
+                        <small class="text-danger"
+                            [class.d-none]="projectEndDate.valid || projectEndDate.untouched">Project End Date
+                            is a required field.</small>
+                    </fieldset>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputtechStack">
+                        <h6 class="mb-0">Tech Stack<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="techStack" name="techStack" placeholder="Tech Stack"
+                            [(ngModel)]="project.techStack" required #techStack="ngModel"
+                            [class.is-invalid]="techStack.invalid && techStack.touched" />
+                            <small class="text-danger" *ngIf="techStackT && techStack.untouched"> Tech Stack
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="techStack.valid || techStack.untouched">Tech Stack is
+                            required</small>
+                    </fieldset>
+                </div>
+
+                <!-- <div class="row align-items-center pt-4 pb-3">
+                    <label class="form-label col-md-3 ps-5" for="exampleInputstatus">
+                        <h6 class="mb-0">Status</h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="To-Do" value="To-Do"
+                                [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios1">To-Do</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="In-Progress"
+                                value="In-Progress" [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios2">In-Progress</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Ready-For-Test"
+                                value="Ready-For-Test" [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios3">Ready-For-Test</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="Completed" value="Completed"
+                                [(ngModel)]="project.status" />
+                            <label class="form-check-label" for="exampleRadios4">Completed</label>
+                        </div>
+                        <small class="text-danger" [class.d-none]="status.valid || status.untouched">Status is
+                            required</small>
+                    </div>
+                </div> -->
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="form-label col-md-3 ps-5" for="exampleInputStatus">
+                        <h6 class="mb-0">Status<span class="required">*</span></h6>
+                    </label>
+                    <div class="form-group col-md-9 pe-5">
+                        <select class="form-control" name="status" id="status" [(ngModel)]="project.status" required #status="ngModel"
+                        [class.is-invalid]="status.invalid && status.touched" >
+                            <option value="" selected>Select Project Status</option>
+                            <option value="To-Do">To-Do</option>
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Ready-For-Test">Ready-For-Test</option
+                                >
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <small class="text-danger" *ngIf="statusT && status.untouched"> Status
+                            is
+                            required</small>
+                            <small class="text-danger" [class.d-none]="status.valid || status.untouched">Status is a
+                                required field.</small>
+                    </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                    <label class="col-md-3 ps-5" for="exampleInputremarks">
+                        <h6 class="mb-0">Remarks<span class="required">*</span></h6>
+                    </label>
+                    <fieldset class="form-group col-md-9 pe-5">
+                        <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks"
+                            [(ngModel)]="project.remarks" required #remarks="ngModel"
+                            [class.is-invalid]="remarks.invalid && remarks.touched" />
+                            <small class="text-danger" *ngIf="remarksT && remarks.untouched"> Remarks
+                                is
+                                required</small>
+                        <small class="text-danger" [class.d-none]="remarks.valid || remarks.untouched">Remarks is
+                            required</small>
+                    </fieldset>
+                </div>
+
+
+
+
+                <div class="d-flex justify-content-around pt-3">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="navBack()">Back</button>
+                    <button type="button" class="btn btn-light" [routerLink]="['/home/',username]">Home</button>
+                    <button type="reset" class="btn btn-info btn-lg">Reset All</button>
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Register</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<!-- <mat-form-field>
+    <mat-label>
+        emailIds
+    </mat-label>
+    <input matInput type="text" [matAutocomplete]="auto"/>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let emailId of emailIds">
+            {{emailId}}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field> -->
+
+<div *ngIf="user.role==='Member' ">
+    <app-home></app-home>
+</div>

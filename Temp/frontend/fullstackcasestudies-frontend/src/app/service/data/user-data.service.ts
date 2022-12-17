@@ -1,7 +1,7 @@
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { USER_API_URL } from 'src/app/app.constants';
+import { USER_API_URL } from 'src/app/app.contants';
 import { MessageResponse } from 'src/app/model/message-response';
 import { User } from 'src/app/model/user';
 
@@ -52,4 +52,12 @@ export class UserDataService {
     return this.http.get<string[]>(`${USER_API_URL}/emails`);
   }
 
+  getNames() {
+    return this.http.get<string[]>(`${USER_API_URL}/names`);
+  }
+
+
+  getUserIds() {
+    return this.http.get<string[]>(`${USER_API_URL}/userIds`);
+  }
 }

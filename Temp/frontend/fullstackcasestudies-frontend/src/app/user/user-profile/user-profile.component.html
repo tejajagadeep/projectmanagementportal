@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+
+<!-- Main -->
+<div class="main">
+    <h2>Profile</h2>
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-pen fa-xs edit"></i>
+            <table class="table-striped">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h6>User Name</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.userName}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Name</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Email</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.emailAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Contact No</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.contactNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Date Of Birth</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.dateOfBirth | date : 'yyyy-MM-dd'}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>User Type</h6>
+                        </td>
+                        <td>:</td>
+                        <td>{{user.role}}</td>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between pt-3">
+                <a [routerLink]="['/home/',username]" class="btn btn-primary">Back</a>
+
+                <a *ngIf="isUserLoggedIn" [routerLink]="['/profiles/',username]"
+                    class="btn btn-primary">Profiles</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

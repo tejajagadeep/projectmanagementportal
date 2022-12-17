@@ -1,0 +1,273 @@
+<app-menu></app-menu>
+
+
+<div class="container">
+    <div class="profile-details-content">
+        <h1 class="text-center">{{project.projectName}} Details</h1>
+        <table class="table table-striped table-bordered table-light">
+            <thead>
+                <tr>
+                    <th>Properties</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <h6>Project Id</h6>
+                    </td>
+                    <td>{{project.projectId}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project Name</h6>
+                    </td>
+                    <td>{{project.projectName}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project Description</h6>
+                    </td>
+                    <td>{{project.projectDescription}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Team Name</h6>
+                    </td>
+                    <td>{{project.teamName}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Team Size</h6>
+                    </td>
+                    <td>{{project.teamSize}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project Manager Name</h6>
+                    </td>
+                    <td>{{project.projectManagerName}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project Manager Email Id</h6>
+                    </td>
+                    <td>{{project.projectManagerEmailId}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Tech Lead Name</h6>
+                    </td>
+                    <td>{{project.techLeadName}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Tech Lead Email Id</h6>
+                    </td>
+                    <td>{{project.techLeadEmailId}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project Start Date</h6>
+                    </td>
+                    <td>{{project.projectStartDate | date : 'yyyy-MM-dd'}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Project End Date</h6>
+                    </td>
+                    <td>{{project.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Tech Stack</h6>
+                    </td>
+                    <td>{{project.techStack}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Status</h6>
+                    </td>
+                    <td>{{project.status}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Remarks</h6>
+                    </td>
+                    <td>{{project.remarks}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Posted By User</h6>
+                    </td>
+                    <td>{{project.projectOwner}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Users Assigned</h6>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-wrap justify-content-start">
+                            <div *ngFor="let assign of project.projectAssignedToUsers">
+                                <div>&nbsp;&nbsp;&nbsp;Id:-&nbsp; {{assign}}&nbsp;;</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <div class="d-flex justify-content-between">
+            <button *ngIf="user.role === 'Admin' && project.projectOwner === username"
+                (click)="deleteProject(project.projectId)" class="btn btn-danger">Delete</button>
+            <button
+                *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+                [routerLink]="['/project-story-registration/',project.projectId]" class="btn btn-secondary">New Story
+                For
+                {{project.projectName}}</button>
+            <button
+                *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+                (click)="updateProject(project.projectId)" class="btn btn-warning">Update</button>
+        </div>
+        <br>
+        <br>
+
+        <form
+            *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+            class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="projectAssign()">
+
+            <h6 class="mb-0">Story Title</h6>
+            <input matInput type="text" [matAutocomplete]="auto" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assign To UserId"
+                [(ngModel)]="assignedTo" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let emailId of userIDs" [value]="emailId">
+                        {{emailId}}
+                    </mat-option>
+                </mat-autocomplete>
+                <small class="text-danger" *ngIf="assignUndefined">User Id is required</small>
+            <button type="submit" class="btn btn-success">assignedToUser</button>
+        </form>
+        <br>
+        <div class="alert alert-primary" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
+
+    </div>
+</div>
+
+
+
+
+<div class="row" id="divStyle">
+    <div *ngFor="let storyDetail of project.stories" class="offer-content">
+        <!-- <div *ngIf="storyDetail.projectIdName == projectId" class="offer-content"> -->
+            <h6 class="card-title align-center" id="h6">
+                {{storyDetail.storyTitle}}</h6>
+            <p class="card-text ">
+            <div class="d-flex flex-column ">
+                <div class="p-2 "><b>Story Id:</b> {{storyDetail.storyId}}</div>
+                <div class="p-2 "><b>Assignee:</b> {{storyDetail.assignee}}
+                </div>
+                <div class="p-2"><b>Assignment Date:</b> {{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</div>
+                <div class="p-2"><b>TargetDate:</b> {{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</div>
+                <div class="p-2"><b>Status:</b> {{storyDetail.status}}</div>
+            </div><br>
+            <a [routerLink]="['/view-project-story-status/',project.projectId,storyDetail.storyId]"
+                class="btn btn-success">Story
+                Details</a>
+        <!-- </div> -->
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="alert alert-success" role="alert" *ngIf="message">{{message}}</div>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+    <table class="table table-striped">
+        <caption>List project</caption>
+        <thead class="thead-light">
+            <tr>
+                <th>Project Id</th>
+                <th>ProjectName</th>
+                <th>Description</th>
+                <th>Team Name</th>
+                <th>Team Size</th>
+                <th>Project Manager Name</th>
+                <th>Project Manager Email Id</th>
+                <th>Tech Lead Name</th>
+                <th>Tech Lead Email Id</th>
+                <th>Project Start Date</th>
+                <th>Project End Date</th>
+                <th>Tech Stack</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let projectDetail of projects">
+                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+                <td>{{projectDetail.projectId}}</td>
+                <td>{{projectDetail.projectName}}</td>
+                <td>{{projectDetail.projectDescription}}</td>
+                <td>{{projectDetail.teamName}}</td>
+                <td>{{projectDetail.teamSize}}</td>
+                <td>{{projectDetail.projectManagerName}}</td>
+                <td>{{projectDetail.projectManagerEmailId}}</td>
+                <td>{{projectDetail.techLeadName}}</td>
+                <td>{{projectDetail.techLeadEmailId}}</td>
+                <td>{{projectDetail.projectStartDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{projectDetail.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{projectDetail.techStack}}</td>
+                <td>{{projectDetail.status}}</td>
+                <td>{{projectDetail.remarks}}</td>
+                <td><button (click)="updateProject(projectDetail.projectId)" class="btn btn-info">Update</button></td>
+                <td><button (click)="deleteProject(projectDetail.projectId)" class="btn btn-warning">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<p>project-stories-registration-or-updation works!</p>
+<h1 class="text-center">project-stories-registration</h1> -->
+
+
+<!-- <div class="container">
+    <div class="alert alert-success" role="alert" *ngIf="message">{{message}}</div>
+    <table class="table table-striped">
+        <caption>List project Stories</caption>
+        <thead class="thead-light">
+            <tr>
+                <th>Story Id</th>
+                <th>Story Title</th>
+                <th>Story Description</th>
+                <th>Assignee</th>
+                <th>Assignee Email Id</th>
+                <th>Assignee Date</th>
+                <th>Target Date</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let storyDetail of story">
+                <td>{{storyDetail.storyId}}</td>
+                <td>{{storyDetail.storyTitle}}</td>
+                <td>{{storyDetail.storyDescription}}</td>
+                <td>{{storyDetail.assignee}}</td>
+                <td>{{storyDetail.assigneeEmailId}}</td>
+                <td>{{storyDetail.assignmentDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{storyDetail.targetDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{storyDetail.status}}</td>
+                <td>{{storyDetail.remarks}}</td>
+                <td><button (click)="updateStory(storyDetail.storyId)" class="btn btn-info">Update</button></td>
+                <td><button (click)="deleteStory(storyDetail.storyId)" class="btn btn-warning">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+<app-footer></app-footer>

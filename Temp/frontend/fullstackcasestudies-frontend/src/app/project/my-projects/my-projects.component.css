@@ -1,0 +1,188 @@
+@import url(https://unpkg.com/bootstrap@5.2.2/dist/css/bootstrap.css);
+
+.offer-content a {
+    width: 100%;
+}
+
+.offer-contentPM a {
+    width: 100%;
+}
+
+.offer-contentTL a {
+    width: 100%;
+}
+
+.offer-contentAT a {
+    width: 100%;
+}
+
+#left-pane {
+    padding-top: 40px;
+    border-right: 2px solid rgb(29, 28, 28);
+    border-bottom: 2px solid black;
+    height: 590px;
+}
+
+#left-pane>div {
+    margin-top: 25%;
+}
+
+#left-pane a {
+    padding: 10px 30px;
+    width: 90%;
+}
+
+#right-pane {
+    padding: 0px 30px;
+}
+
+.offer-content {
+    margin-top: 40px;
+    width: 30%;
+    border: 1px solid rgb(34, 33, 33);
+    border-bottom: none;
+    display: inline-block;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.offer-contentPM {
+    margin-top: 40px;
+    width: 30%;
+    border: 1px solid rgb(34, 33, 33);
+    border-bottom: none;
+    display: inline-block;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.offer-contentTL {
+    margin-top: 40px;
+    width: 30%;
+    border: 1px solid rgb(34, 33, 33);
+    border-bottom: none;
+    display: inline-block;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.offer-contentAT {
+    margin-top: 40px;
+    width: 30%;
+    border: 1px solid rgb(34, 33, 33);
+    border-bottom: none;
+    display: inline-block;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul>li {
+    display: inline-block;
+}
+
+input.form-control {
+    display: inline;
+}
+
+.offer-content a {
+    background-color: rgba(204, 0, 102) !important;
+}
+
+.offer-contentPM a {
+    background-color: rgba(51, 204, 204) !important;
+}
+
+.offer-contentTL a {
+    background-color: rgba(204, 102, 0) !important;
+}
+
+.offer-contentAT a {
+    background-color: rgba(115, 0, 153) !important;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+
+button.material-icons {
+    border: none;
+    background: transparent;
+}
+
+h1 {
+    text-align: center;
+    color: rgba(51, 204, 51);
+    padding-top: 50px;
+}
+
+#h4O {
+    text-align: center;
+    color: rgba(255, 0, 128);
+}
+
+#h4PM {
+    text-align: center;
+    color: rgb(77, 124, 131);
+}
+
+#h4TL {
+    text-align: center;
+    color: rgba(153, 153, 0);
+}
+
+#h4AT {
+    text-align: center;
+    color: rgba(191, 0, 255);
+}
+
+
+#divStyle {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+#pMO {
+    background: rgba(204, 0, 102);
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+}
+
+#pMPM {
+    background: rgba(51, 204, 204);
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+#pMTL {
+    background: rgba(204, 102, 0);
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+#pMAT {
+    background: rgba(115, 0, 153);
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }

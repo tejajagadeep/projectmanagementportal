@@ -1,0 +1,138 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="profile-details-content">
+        <h1 class="text-center">{{story.storyTitle}} Details</h1>
+        <table class="table table-striped table-bordered table-light" id="test">
+            <thead>
+                <tr>
+                    <th>Properties</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <h6>Story Id</h6>
+                    </td>
+                    <td>{{story.storyId}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Story Title</h6>
+                    </td>
+                    <td>{{story.storyTitle}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Story Description</h6>
+                    </td>
+                    <td>{{story.storyDescription}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Assignee</h6>
+                    </td>
+                    <td>{{story.assignee}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Assignee Email Id</h6>
+                    </td>
+                    <td>{{story.assigneeEmailId}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Assignment Date</h6>
+                    </td>
+                    <td>{{story.assignmentDate | date : 'yyyy-MM-dd'}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Target Date</h6>
+                    </td>
+                    <td>{{story.targetDate | date : 'yyyy-MM-dd'}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Status</h6>
+                    </td>
+                    <td>{{story.status}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Remarks</h6>
+                    </td>
+                    <td>{{story.remarks}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Users Assigned</h6>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-wrap justify-content-start">
+                        <div *ngFor="let assign of story.storyAssignedToUsers">
+                            <div>&nbsp;&nbsp;&nbsp;Id:-&nbsp; {{assign}}&nbsp;;</div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+            <button *ngIf="user.role === 'Admin' && project.projectOwner == username || story.assignee == user.name"
+                 class="btn btn-danger" (click)="deleteStory(story.storyId)">Delete</button>
+            
+            <button
+                *ngIf="(project.projectOwner == username || story.assignee == user.name|| project.projectManagerName === user.name)"
+                (click)="updateStory(story.storyId)" class="btn btn-warning">Update</button>
+            <ng-container *ngFor="let assign of story.storyAssignedToUsers">
+                <button *ngIf="assign === username && user.role == 'Member'  " (click)="updateStory(story.storyId)"
+                    class="btn btn-warning">Update</button>
+            </ng-container>
+        </div>
+        <br>
+        <br>
+
+        <form
+            *ngIf="user.role === 'Admin' && (project.projectOwner === username || project.projectManagerName === userByName.name)"
+            class="d-flex justify-content-between" #RegisterForm="ngForm" (ngSubmit)="storyAssign()">
+
+            <h6 class="mb-0">Story Title</h6>
+            <input matInput type="text" [matAutocomplete]="auto" class="form-control" id="assignedTo" name="assignedTo" placeholder="Assign To UserId"
+                [(ngModel)]="assignedTo" maxlength="8" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let emailId of userIDs" [value]="emailId">
+                        {{emailId}}
+                    </mat-option>
+                </mat-autocomplete>
+
+            <button type="submit" class="btn btn-success">assignedToUser</button>
+        </form>
+        <br>
+        <div class="alert alert-primary" *ngIf="messageAssigned">Message: {{messageAssigned}}</div>
+        <br>
+        <a [routerLink]="['/view-project-status/',projectId]" class="btn btn-primary">Back</a>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete Story</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are You Sure You want to Delete The story. Once Deleted You will not be able to retrieve the details again.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="deleteStory(story.storyId)" >Delete Story</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

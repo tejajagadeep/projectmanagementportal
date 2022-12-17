@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cts.projectmanagementportalbackend.model.User;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 
@@ -13,5 +15,7 @@ public interface UserRepository extends JpaRepository<User, String>{
 	public User findByUserName(String userName);
 
 	public User findByName(String name);
+
+//	public List<String> findAllEmailAddress();
 	
 }

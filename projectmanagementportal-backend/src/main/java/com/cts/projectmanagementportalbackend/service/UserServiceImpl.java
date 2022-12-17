@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +69,27 @@ public class UserServiceImpl implements UserService {
 		log.info("users" + optionalUser);
 		return optionalUser;
 		
+	}
+
+	@Override
+	public List<String> getAllUserEmail() {
+		List<String> emails = new ArrayList<>();
+		userRepository.findAll().forEach(user -> emails.add(user.getEmailAddress()));
+		return emails;
+	}
+
+	@Override
+	public List<String> getAllUserNames() {
+		List<String> names = new ArrayList<>();
+		userRepository.findAll().forEach(user -> names.add(user.getName()));
+		return names;
+	}
+
+	@Override
+	public List<String> getAllUserID() {
+		List<String> names = new ArrayList<>();
+		userRepository.findAll().forEach(user -> names.add(user.getUserName()));
+		return names;
 	}
 
 	/*

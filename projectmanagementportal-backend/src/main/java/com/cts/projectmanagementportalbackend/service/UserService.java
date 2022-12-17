@@ -16,5 +16,10 @@ public interface UserService {
 	User saveUser(User user) ;
 
 	User getUserByName(String name) ;
-	
+
+    List<String> getAllUserEmail();
+
+	List<String> getAllUserNames();
+
+	List<String> getAllUserID();
 }
